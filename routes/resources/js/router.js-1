@@ -1,0 +1,1138 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter)
+
+import ExampleComponent from "./components/ExampleComponent";
+import ExampleComponentTwo from "./components/ExampleComponentTwo";
+
+import Category from "./components/admin/category/Category";
+import CategoryAdd from "./components/admin/category/Add";
+import CategoryEdit from "./components/admin/category/Edit";
+
+import Subcategory from "./components/admin/subCategory/SubCategory";
+import SubCategoryAdd from "./components/admin/subCategory/Add";
+import SubCategoryEdit from "./components/admin/subCategory/Edit";
+
+import SubSubCategory from "./components/admin/subSubCategory/SubSubCategory";
+import SubSubCategoryAdd from "./components/admin/subSubCategory/Add";
+import SubSubCategoryEdit from "./components/admin/subSubCategory/Edit";
+
+import Slider from "./components/admin/slider/Slider";
+import SliderAdd from "./components/admin/slider/Add";
+import SliderEdit from "./components/admin/slider/Edit";
+
+
+import AttributeAdd from "./components/admin/attribute/Add";
+import Attribute from "./components/admin/attribute/Attribute";
+
+import VariantAdd from "./components/admin/variant/Add";
+import Variant from "./components/admin/variant/Variant";
+
+
+import AddMerchant from "./components/admin/merchant/Add";
+import EditMerchant from "./components/admin/merchant/Edit";
+import Merchant from "./components/admin/merchant/Merchant";
+
+
+import AddCity from "./components/admin/city/Add";
+import EditCity from "./components/admin/city/Edit";
+import City from "./components/admin/city/City";
+
+
+
+import AddCompany from "./components/admin/company/Add";
+import EditCompany from "./components/admin/company/Edit";
+import Company from "./components/admin/company/Company";
+
+
+
+
+import AddCredit from "./components/admin/credit/Add";
+import EditCredit from "./components/admin/credit/Edit";
+import Credit from "./components/admin/credit/Credit";
+
+import AddDebit from "./components/admin/debit/Add";
+import EditDebit from "./components/admin/debit/Edit";
+import Debit from "./components/admin/debit/Debit";
+
+import AddOffer from "./components/admin/offer/Add";
+import EditOffer from "./components/admin/offer/Edit";
+import Offer from "./components/admin/offer/Offer";
+
+import AddCourier from "./components/admin/courier/Add";
+import EditCourier from "./components/admin/courier/Edit";
+import Courier from "./components/admin/courier/Courier";
+
+import AddComment from "./components/admin/comment/Add";
+import EditComment from "./components/admin/comment/Edit";
+import Comment from "./components/admin/comment/Comment";
+
+import AddProduct from "./components/admin/product/Add";
+import EditProduct from "./components/admin/product/Edit";
+import Product from "./components/admin/product/Product";
+
+
+
+import AddPurchase from "./components/admin/purchase/Add";
+import EditPurchase from "./components/admin/purchase/Edit";
+import Purchase from "./components/admin/purchase/Purchase";
+import ViewPurchase from "./components/admin/purchase/View";
+
+
+
+
+
+import AddSale from "./components/admin/sale/Add";
+import OfficeSale from "./components/admin/sale/OfficeSale";
+import CompanySale from "./components/admin/sale/CompanySale";
+
+import ViewSale from "./components/admin/sale/View";
+
+
+
+
+
+import AddOrder from "./components/admin/order/Add";
+import AddWholeSale from "./components/admin/order/AddWholeSale";
+
+// import EditOrder from "./components/admin/order/Edit";
+import Order from "./components/admin/order/Order";
+import ApprovedOrder from "./components/admin/order/Approved";
+import NewOrder from "./components/admin/order/New";
+import PendingOrder from "./components/admin/order/Pending";
+import ShipmentOrder from "./components/admin/order/Shipment";
+import DeliveredOrder from "./components/admin/order/Delivered";
+import ReturnOrder from "./components/admin/order/Return";
+import CancelOrder from "./components/admin/order/Cancel";
+import WholeSaleOrder from "./components/admin/order/Wholesale";
+
+
+
+
+import ViewOrder from "./components/admin/order/View";
+
+
+import Admin from "./components/admin/Index.vue";
+import AdminLogin from "./components/admin/Login.vue";
+
+import AdminList from "./components/admin/admin/Admin" ;
+import addAdmin from "./components/admin/admin/Add" ;
+import editAdmin from "./components/admin/admin/Edit" ;
+import adminPasswordChange from "./components/admin/admin/Password" ;
+import AdminProfile from "./components/admin/admin/Profile.vue";
+
+
+import Welcome from "./components/public/Index";
+import SingleProduct from "./components/public/SingleProduct";
+import PublicCategory from "./components/public/CategoryWiseProduct";
+import UserLogin from "./components/public/Login";
+import UserRegister from "./components/public/Register";
+import Checkout from "./components/public/Checkout";
+import OrderHistory from "./components/public/OrderHistory";
+import UserProfile from "./components/public/Profile";
+import SubCategoryProduct from "./components/public/SubCategoryProduct";
+import SubSubCategoryProduct from "./components/public/SubSubCategoryProduct";
+
+import SearchProduct from "./components/public/SearchProduct";
+
+import AboutUs from "./components/public/Aboutus";
+import ContactUs from "./components/public/Contactus";
+
+
+
+
+import OrderReport from "./components/admin/Report/OrderReport";
+import OfficeSaleReport from "./components/admin/Report/OfficeSale";
+import AccountReport from "./components/admin/Report/Account";
+import ProductSock from "./components/admin/Report/ProductStock";
+
+
+
+
+import resellerHome from "./components/admin/reseller/index" ;
+import  resellerAdd from "./components/admin/reseller/Add" ;
+import  resellerEdit from "./components/admin/reseller/Edit" ;
+
+
+
+
+
+
+
+
+const routes = [
+
+    {
+        path: '/',
+        component: Welcome,
+        name: 'welcome',
+        props: true,
+        meta: {
+            title: 'Madina Fashion|| Online shopping bangladesh'
+        }
+
+    },
+    {
+        path: '/public/product/view/:slug',
+        component: SingleProduct,
+        name: 'single',
+        props: true,
+        meta: {
+            title: 'Singe product'
+        }
+    },
+
+    {
+        path: '/public/category/products/:slug',
+        component: PublicCategory,
+        name: 'PublcaCategory',
+
+        meta: {
+            title: 'Category wise product'
+        }
+    },
+
+    {
+        path: '/public/sub/caetgory/products/:slug',
+        component: SubCategoryProduct,
+        name: 'PublicSubCategory',
+
+        meta: {
+            title: 'sub-category wise product'
+        }
+    },
+
+    {
+        path: '/public/sub/sub/caetgory/products/:slug',
+        component: SubSubCategoryProduct,
+        name: 'PublicSubSUbCategory',
+
+        meta: {
+            title: 'sub-sub-category wise product'
+        }
+    },
+
+    {
+        path: '/public/products/search/:search',
+        component: SearchProduct,
+        name: 'PublicProductSearch',
+
+        meta: {
+            title: 'search product'
+        }
+    },
+
+    {
+        path: '/public/about/us',
+        component: AboutUs,
+        name: 'AboutUs',
+
+        meta: {
+            title: 'About||us'
+        }
+    },
+    {
+        path: '/public/contact/us',
+        component: ContactUs,
+        name: 'ContactUs',
+
+        meta: {
+            title: 'Contact||us'
+        }
+    },
+
+
+    {
+        path: '/public/user/login',
+        component: UserLogin,
+        name: 'UserLogin',
+        meta: {
+            title: 'Login || User'
+        }
+
+    },
+    {
+        path: '/public/user/register',
+        component: UserRegister,
+        name: 'UserRegister',
+        meta: {
+            title: 'Register || User'
+        }
+
+    },
+    {
+        path: '/public/user/Checkout',
+        component: Checkout,
+        name: 'Chekout',
+        meta: {
+            title: 'Checkout || User',
+            requiresAuthUser: true,
+
+        }
+
+    },
+    {
+        path: '/public/user/order/history',
+        component: OrderHistory,
+        name: 'OrderHistory',
+        meta: {
+            title: 'Order || History',
+            requiresAuthUser: true,
+
+        }
+
+    },
+
+    {
+        path: '/public/user/profile',
+        component: UserProfile,
+        name: 'UserProfile',
+        meta: {
+            title: 'Prilfe || User',
+            requiresAuthUser: true,
+
+        }
+
+    },
+
+    {
+        path: '/example',
+        component: ExampleComponentTwo,
+    },
+    {
+        path: '/backend/dashboard',
+        component: Admin,
+        name: 'dashboard',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Dashboard'
+
+        }
+    },
+    {
+        path: '/backend/category',
+        component: Category,
+        name: "category",
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'category'
+        }
+    },
+    {
+        path: '/backend/categoryEdit/:categoryId',
+        component: CategoryEdit,
+        name: "CategoryEdit",
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'category || edit'
+
+        }
+    },
+    {
+        path: '/backend/categoryAdd',
+        component: CategoryAdd,
+        name: "categoryAdd",
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'category || add'
+
+        }
+    },
+
+    {
+        path: '/backend/subcategory',
+        component: Subcategory,
+        name: 'SubCategory',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'subCategory'
+        }
+    },
+    {
+        path: '/backend/subcategoryAdd',
+        component: SubCategoryAdd,
+        name: "subcategoryAdd",
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'sub category add'
+        }
+    },
+    {
+        path: '/backend/subcategoryEdit/:id',
+        component: SubCategoryEdit,
+        name: "subcategoryEdit",
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'sub category edit'
+        }
+    },
+
+    {
+        path: '/backend/subSubCategory',
+        component: SubSubCategory,
+        name: 'subSubCategory',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'sub sub category'
+        }
+    },
+    {
+        path: '/backend/subSubCategoryAdd',
+        component: SubSubCategoryAdd,
+        name: "subSubCategoryAdd",
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'sub sub category add'
+        }
+    },
+    {
+        path: '/backend/subSubCategoryEdit/:id',
+        component: SubSubCategoryEdit,
+        name: "subSubCategoryEdit",
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'sub sub subcategory || Edit'
+        }
+    },
+
+    {
+        path: '/backend/slider',
+        component: Slider,
+        name: 'slider',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'slider'
+        }
+    },
+    {
+        path: '/backend/sliderAdd',
+        component: SliderAdd,
+        name: "sliderAdd",
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'slider || add'
+        }
+    },
+    {
+        path : '/backend/sliderEdit/:id',
+        component : SliderEdit,
+        name : 'sliderEdit',
+        meta : {
+
+             requiresAuthAdmin : true ,
+             title : 'slider || edit'
+        }
+    },
+    {
+        path: '/backend/attribute',
+        component: Attribute,
+        name: "attribute",
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'attribute'
+        }
+    },
+    {
+        path: '/backend/attributeAdd',
+        component: AttributeAdd,
+        name: "attributeAdd",
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'attribute || add'
+        }
+    },
+
+    {
+        path: '/backend/reseller/menage',
+        component: resellerHome,
+        name  :'resellerHome',
+        props : true ,
+        meta : {
+            title : 'Reseller | Menage',
+            requiresAuthAdmin: true,
+        }
+    },
+
+    {
+        path: '/backend/reseller/add',
+        component: resellerAdd,
+        name  :'resellerAdd',
+        props : true ,
+        meta : {
+            title : 'Reseller | Add',
+            requiresAuthAdmin: true,
+        }
+    },
+
+    {
+        path: '/backend/reseller/edit/:id',
+        component: resellerEdit,
+        name  :'resellerEdit',
+        props : true ,
+        meta : {
+            title : 'Reseller | Edit',
+            requiresAuthAdmin: true,
+        }
+    },
+
+
+    {
+        path: '/backend/variant',
+        component: Variant,
+        name: "variant",
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'variant'
+        }
+    },
+    {
+        path: '/backend/variantAdd',
+        component: VariantAdd,
+        name: "variantAdd",
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'variant add'
+        }
+    },
+
+    {
+        path: '/backend/adminLogin',
+        component: AdminLogin,
+        name: 'adminLogin',
+        meta: {
+            title: 'Login || Admin'
+        }
+
+    },
+
+
+    {
+        path: '/backend/merchant',
+        component: Merchant,
+        name: 'merchant',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'merchant'
+        }
+
+    },
+    {
+        path: '/backend/addMerchant',
+        component: AddMerchant,
+        name: 'merchantAdd',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'merchant add'
+        }
+    },
+    {
+        path: '/backend/editMerchant/:id',
+        component: EditMerchant,
+        name: 'editMerchant',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Merchant Edit'
+        }
+    },
+
+    {
+        path: '/backend/credit',
+        component: Credit,
+        name: 'credit',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Credit'
+        }
+
+    },
+    {
+        path: '/backend/credit/add',
+        component: AddCredit,
+        name: 'creditAdd',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'add|credit'
+        }
+
+    },
+
+    {
+        path: '/backend/credit/edit/:id',
+        component: EditCredit,
+        name: 'creditEdit',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Edit"credit'
+        }
+
+    },
+
+    {
+        path: '/backend/debit',
+        component: Debit,
+        name: 'debit',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Debit'
+        }
+
+    },
+    {
+        path: '/backend/debit/add',
+        component: AddDebit,
+        name: 'debitAdd',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'add|debit'
+        }
+
+    },
+
+    {
+        path: '/backend/debit/edit/:id',
+        component: EditDebit,
+        name: 'debitEdit',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Edit|Debit'
+        }
+
+    },
+
+
+    {
+        path: '/backend/city',
+        component: City,
+        name: 'city',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'city'
+        }
+
+    },
+    {
+        path: '/backend/addCity',
+        component: AddCity,
+        name: 'cityAdd',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'add city'
+        }
+    },
+    {
+        path: '/backend/editCity/:id',
+        component: EditCity,
+        name: 'editCity',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'edit city'
+        }
+    },
+
+    {
+        path: '/backend/company',
+        component: Company,
+        name: 'company',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'company'
+        }
+
+    },
+    {
+        path: '/backend/add/company',
+        component: AddCompany,
+        name: 'addCompany',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'add company'
+        }
+    },
+    {
+        path: '/backend/edit/company/:id',
+        component: EditCompany,
+        name: 'editCompany',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'edit company'
+        }
+    },
+
+
+
+
+    {
+        path: '/backend/offer',
+        component: Offer,
+        name: 'offer',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'offer'
+        }
+
+    },
+    {
+        path: '/backend/add',
+        component: AddOffer,
+        name: 'offerAdd',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'add offer'
+        }
+    },
+    {
+        path: '/backend/editOffer/:id',
+        component: EditOffer,
+        name: 'editOffer',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'edit offer'
+        }
+    },
+
+    {
+        path: '/backend/courier',
+        component: Courier,
+        name: 'courier',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'courier'
+        }
+
+    },
+    {
+        path: '/backend/addCourier',
+        component: AddCourier,
+        name: 'courierAdd',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'add courier'
+        }
+    },
+    {
+        path: '/backend/editCourier/:id',
+        component: EditCourier,
+        name: 'editCourier',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Courier edit'
+        }
+    },
+
+    {
+        path: '/backend/comment',
+        component: Comment,
+        name: 'comment',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'comment'
+        }
+
+    },
+    {
+        path: '/backend/addComment',
+        component: AddComment,
+        name: 'commentAdd',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'comment || add'
+        }
+    },
+    {
+        path: '/backend/editComment/:id',
+        component: EditComment,
+        name: 'editComment',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'comment edit'
+        }
+    },
+
+    {
+        path: '/backend/product',
+        component: Product,
+        name: 'product',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Product'
+        }
+
+    },
+
+
+    {
+        path: '/backend/report/product/stock',
+        component: ProductSock,
+        name: 'productStcok',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Product||stock'
+        }
+
+    },
+
+
+    {
+        path: '/backend/addProduct',
+        component: AddProduct,
+        name: 'productAdd',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'product || add'
+        }
+    },
+    {
+        path: '/backend/product/edit/:id',
+        component: EditProduct,
+        name: 'productEdit',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'product edit'
+        }
+    },
+
+
+    {
+        path: '/backend/purchase',
+        component: Purchase,
+        name: 'purchase',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Purchase'
+        }
+
+    },
+    {
+        path: '/backend/addPurchase',
+        component: AddPurchase,
+        name: 'addPurchase',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'purchase || add'
+        }
+    },
+    {
+        path: '/backend/purchaseEdit/:id',
+        component: EditPurchase,
+        name: 'purchaseEdit',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'purchase edit'
+        }
+    },
+
+
+
+    {
+        path: '/backend/order',
+        component: Order,
+        name: 'order',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Order'
+        }
+
+    },
+
+    {
+        path: '/backend/new/order',
+        component: NewOrder,
+        name: 'NewOrder',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'New | Order'
+        }
+
+    },
+
+
+    {
+        path: '/backend/order/pending',
+        component: PendingOrder,
+        name: 'PendingOrder',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Pending | Order'
+        }
+
+    },
+
+    {
+        path: '/backend/order/approved',
+        component: ApprovedOrder,
+        name: 'ApprovedOrder',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Approved | Order'
+        }
+
+    },
+
+    {
+        path: '/backend/order/shopment',
+        component: ShipmentOrder,
+        name: 'ShipmentOrder',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'ShipmentOrder | Order'
+        }
+
+    },
+    {
+        path: '/backend/order/delivered',
+        component: DeliveredOrder,
+        name: 'DeliveredOrder',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'DeliveredOrder | Order'
+        }
+
+    },
+    {
+        path: '/backend/order/return',
+        component: ReturnOrder,
+        name: 'ReturnOrder',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'ReturnOrder | Order'
+        }
+
+    },
+    {
+        path: '/backend/order/cancel',
+        component: CancelOrder,
+        name: 'CancelOrder',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'CancelOrder | Order'
+        }
+
+    },
+    {
+        path: '/backend/order/wholesale',
+        component: WholeSaleOrder,
+        name: 'WholeSaleOrder',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'WholeSaleOrder | Order'
+        }
+
+    },
+    
+    {
+        path: '/backend/addOrder',
+        component: AddOrder,
+        name: 'addOrder',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'order || add'
+        }
+    },
+
+    {
+        path: '/backend/add/wholesale',
+        component: AddWholeSale,
+        name: 'addWholeSale',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'wholesale || add'
+        }
+    },
+
+    {
+        path: '/backend/view/order/:id',
+        component: ViewOrder,
+        name: 'viewOrder',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'order || view'
+        }
+    },
+    // {
+    //     path: '/backend/orderEdit/:id',
+    //     component: EditOrder,
+    //     name: 'orderEdit',
+    //     meta: {
+    //         requiresAuthAdmin: true,
+    //         title: 'order edit'
+    //     }
+    // },
+
+    {
+        path: '/backend/purchaseView/:id',
+        component: ViewPurchase,
+        name: 'purchaseView',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'view | purchase'
+        }
+    },
+
+
+
+    {
+        path: '/backend/sale/office',
+        component:OfficeSale ,
+        name: 'officeSale',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Office | Sale'
+        }
+    },
+
+    {
+        path: '/backend/sale/company',
+        component:CompanySale ,
+        name: 'compnaySale',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Company  | Sale'
+        }
+    },
+
+
+
+    {
+        path: '/backend/sale/add',
+        component: AddSale,
+        name: 'AddSale',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Add | Sale'
+        }
+    },
+
+    {
+        path: '/backend/sale/view/:id',
+        component: ViewSale,
+        name: 'ViewSale',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'View | Sale'
+        }
+    },
+
+    {
+        path: '/backend/order/report',
+        component: OrderReport,
+        name: 'OrderReport',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Order | Report'
+        }
+    },
+
+    {
+        path: '/backend/office/sale/report',
+        component: OfficeSaleReport,
+        name: 'OfficeSaleReport',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Office|sale | Report'
+        }
+    },
+    {
+        path: '/backend/account/report',
+        component: AccountReport,
+        name: 'AccountReport',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Office|sale | Report'
+        }
+    },
+
+    
+
+
+    {
+        path: '/backend/listAdmin',
+        component: AdminList,
+        name: 'admin',
+        meta: {
+            requiresAuthAdmin: true
+        }
+
+    },
+    
+
+    {
+        path: '/backend/admin/profile',
+        component: AdminProfile,
+        name: 'adminProfile',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'Profile | Admin'
+        }
+
+    },
+    {
+        path: '/backend/addAdmin',
+        component: addAdmin,
+        name: 'adminAdd',
+        meta: {
+            requiresAuthAdmin: true
+        }
+    },
+    {
+        path: '/backend/editAdmin/:adminId',
+        component: editAdmin,
+        name: 'editAdmin',
+        meta: {
+            requiresAuthAdmin: true
+        }
+    },
+
+    {
+        path: '/backend/admin/password/:id',
+        component : adminPasswordChange,
+        name : 'passwordChange',
+        meta:{
+            requiresAuthAdmin : true 
+        }
+    },
+
+    
+]
+
+
+const router = new VueRouter({
+    mode: 'history',
+    routes
+})
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuthAdmin)) {
+        if (localStorage.getItem('admin_token')) {
+            next()
+            return
+        }
+        next('/backend/adminLogin')
+    }
+     else {
+        next()
+    }
+
+    if (to.matched.some(record => record.meta.requiresAuthUser)) {
+        if (localStorage.getItem('user_token')) {
+            next()
+            return
+        }
+        next('/public/user/login')
+    } else {
+        next()
+    }
+
+    // if (to.matched.some(record=>record.meta.progressbar)){
+    //     progress: {
+    //         func: [
+    //             {call: 'color', modifier: 'temp', argument: '#ffb000'},
+    //             {call: 'fail', modifier: 'temp', argument: '#6e0000'},
+    //             {call: 'location', modifier: 'temp', argument: 'top'},
+    //             {call: 'transition', modifier: 'temp', argument: {speed: '1.5s', opacity: '0.6s', termination: 400}}
+    //         ]
+    //     }
+    // }
+})
+
+export default router

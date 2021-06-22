@@ -1,0 +1,320 @@
+<?php
+$admin = null;
+if (session()->has('admin')) {
+$admin = session()->get('admin');
+}
+?>
+<aside class="main-sidebar">
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel" style="border-bottom:1px solid #ddd;">
+
+                <div class="pull-left image">
+                    @if ($admin != null && !empty($admin->image))
+                        <img src="{{ asset('storage/' . $admin->image) }}" class="img-circle" alt="User Image">
+                    @else
+                        <img src="{{ asset('admin/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+                    @endif
+                </div>
+                <div class="pull-left info" style="top:1px;">
+                    @if ($admin != null)
+                        <h4>{{ explode(' ', trim($admin->name))[0] }}</h4>
+                    @endif
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+           
+            
+          
+        </div>
+        <br />
+      
+        <ul class="sidebar-menu" data-widget="tree">
+            
+
+            <li class="treeview">
+                <a to="/">
+                    <i class="fa fa-dashboard"></i> <span>
+                        <router-link :to="{name:'dashboard'}">Dashboard</router-link>
+                    </span>
+
+                </a>
+
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-list-alt"></i> <span>Order</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+
+
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <router-link :to="{ name: 'addOrder'}"><i class="fa fa-plus"></i>Add</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ name: 'order'}"><i class="fa fa-eye"></i>Manage</router-link>
+
+                    </li>
+                      <li>
+                        <router-link :to="{ name: 'addWholeSale'}"><i class="fa fa-eye"></i>Whoesale</router-link>
+
+                    </li>
+
+                </ul>
+            </li>
+
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-list-alt"></i> <span>Sale</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+
+
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <router-link :to="{ name: 'AddSale'}"><i class="fa fa-plus"></i>Add</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ name: 'officeSale'}"><i class="fa fa-eye"></i>Office sale</router-link>
+
+                    </li>
+
+                    <li>
+                        <router-link :to="{ name: 'compnaySale'}"><i class="fa fa-eye"></i>Company sale</router-link>
+
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-list-alt"></i> <span>Purchase</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+
+
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <router-link :to="{ name: 'addPurchase'}"><i class="fa fa-plus"></i>Add</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ name: 'purchase'}"><i class="fa fa-eye"></i>Manage</router-link>
+
+                    </li>
+
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-cogs"></i> <span>Product</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li>
+                        <router-link :to="{ name: 'productAdd'}"><i class="fa fa-plus"></i>Add</router-link>
+                        <router-link :to="{ name: 'product'}"><i class="fa fa-eye"></i>Manage</router-link>
+                        {{-- <router-link :to="{ name: 'productStcok'}"><i class="fa fa-eye"></i>Stock</router-link> --}}
+
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-list-alt"></i> <span>Category</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <router-link :to="{ name: 'category'}"><i class="fa fa-circle-o"></i> category</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ name: 'SubCategory'}"><i class="fa fa-circle-o"></i>sub category
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ name: 'subSubCategory'}"><i class="fa fa-circle-o"></i>sub sub category
+                        </router-link>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-money"></i> <span>Accounts</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <router-link :to="{ name: 'credit'}"><i class="fa fa-eye"></i> Credit</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ name: 'debit'}"><i class="fa fa-eye"></i>Debit</router-link>
+                    </li>
+                </ul>
+            </li>
+          
+
+           
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-deviantart"></i> <span>attribute</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <router-link :to="{ name: 'attributeAdd'}"><i class="fa fa-plus"></i> Add</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ name: 'attribute'}"><i class="fa fa-eye"></i>Manage</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ name: 'variant'}"><i class="fa fa-circle-o"></i>Variant</router-link>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-address-card"></i> <span>Merchant</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <router-link :to="{ name: 'merchantAdd'}"><i class="fa fa-plus"></i> Add</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ name: 'merchant'}"><i class="fa fa-eye"></i>Manage</router-link>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-sliders"></i> <span>Slider</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <router-link :to="{ name: 'sliderAdd'}"><i class="fa fa-plus"></i> Add</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ name: 'slider'}"><i class="fa fa-eye"></i>Manage</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ name: 'offer'}"><i class="fa fa-eye"></i>Offer</router-link>
+
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user-secret"></i> <span>Admin</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <router-link :to="{ name: 'adminAdd'}"><i class="fa fa-plus"></i> Add</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ name: 'admin'}"><i class="fa fa-eye"></i>Manage</router-link>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user-secret"></i> <span>Reseller</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <router-link :to="{ name: 'resellerAdd'}"><i class="fa fa-plus"></i> Add</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ name: 'resellerHome'}"><i class="fa fa-eye"></i>Manage</router-link>
+                    </li>
+                </ul>
+            </li>
+
+
+             <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-file"></i> <span>Report</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <router-link :to="{ name: 'OrderReport'}"><i class="fa fa-eye"></i> Order Report</router-link>
+                    </li>
+
+                    <li>
+                        <router-link :to="{ name: 'OfficeSaleReport'}"><i class="fa fa-eye"></i>Office Sale Repot
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ name: 'AccountReport'}"><i class="fa fa-eye"></i>Account Report
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ name: 'productStcok'}"><i class="fa fa-eye"></i>Stock Report</router-link>
+
+                    <li>
+                 </ul>
+            </li>
+
+
+          
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-cogs"></i> <span>Basic setup</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <router-link :to="{ name: 'city'}"><i class="fa fa-plus"></i>City</router-link>
+                    </li>
+                    <li>
+                        <router-link :to="{ name: 'courier'}"><i class="fa fa-eye"></i>Courier</router-link>
+                        <router-link :to="{ name: 'company'}"><i class="fa fa-eye"></i>Company</router-link>
+
+                        <router-link :to="{ name: 'comment'}"><i class="fa fa-eye"></i>Comment</router-link>
+                        {{-- <router-link :to="{ name: 'offer'}"><i class="fa fa-eye"></i>Offer</router-link> --}}
+
+                    </li>
+                </ul>
+            </li>
+           
+
+
+        </ul>
+    </section>
+</aside>
