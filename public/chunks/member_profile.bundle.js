@@ -9,10 +9,6 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
-/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -137,111 +133,191 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MODULE_1__["HasError"].name, vform__WEBPACK_IMPORTED_MODULE_1__["HasError"]);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Profile",
-  created: function created() {
-    var _this = this;
-
-    this.getAdmin();
-    setTimeout(function () {
-      _this.loading = false;
-    }, 500);
+  mounted: function mounted() {
+    this.getMemberInformation();
+    this.getAggreement();
   },
   data: function data() {
     return {
-      form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
-        name: "",
-        email: "",
-        image: "",
-        id: ""
-      }),
       loading: true,
-      error: "",
-      actionText: "Edit",
-      editMode: false,
-      file: this.$store.state.image_base_link + "images/static/user2-160x160.jpg"
+      admin: "",
+      basePath: this.$store.getters.image_base_link,
+      aggreement_details: ""
     };
   },
   methods: {
-    updateProfile: function updateProfile() {
+    getAggreement: function getAggreement() {
+      var _this = this;
+
+      axios.get("/api/get/aggreement/info").then(function (resp) {
+        _this.aggreement_details = resp.data.setting.policy;
+      });
+    },
+    getMemberInformation: function getMemberInformation() {
       var _this2 = this;
 
-      console.log("add");
-      this.form.post("/update/admin/" + this.form.id, {
-        transformRequest: [function (data, headers) {
-          return objectToFormData(data);
-        }]
-      }).then(function (resp) {
-        if (resp.data.status == "SUCCESS") {
-          _this2.$toasted.show("Your profile was updated.", {
-            type: "success",
-            position: "top-right",
-            duration: 1000
-          });
-
-          _this2.editMode = false;
-
-          _this2.$router.push({
-            name: "adminLogin"
-          });
-        }
-      })["catch"](function (error) {
-        console.log(error);
-        _this2.error = "some thing want to wrong";
+      axios.get("/api/member/profile/info").then(function (resp) {
+        console.log(resp);
+        _this2.admin = resp.data.member;
+        _this2.loading = false;
       });
-    },
-    uploadImage: function uploadImage(e) {
-      var _this3 = this;
-
-      var file = e.target.files[0]; ///let image file size check
-
-      var reader = new FileReader();
-      reader.readAsDataURL(file);
-
-      reader.onload = function (evt) {
-        var img = new Image();
-
-        img.onload = function () {
-          if (img.width < 360 && img.height < 360) {
-            _this3.form.image = file;
-            _this3.file = evt.target.result;
-            return;
-          } else {
-            _this3.disabled = true;
-            alert("Image maximu size 360*360px.But Upload imaze size" + img.width + "*" + img.height + "px");
-            return;
-          }
-        };
-
-        img.src = evt.target.result;
-      };
-    },
-    getAdmin: function getAdmin() {
-      var _this4 = this;
-
-      axios.get("/single/admin").then(function (resp) {
-        _this4.form.name = resp.data.admin.name;
-        _this4.form.email = resp.data.admin.email;
-        _this4.form.id = resp.data.admin.id;
-
-        if (resp.data.admin.image != null) {
-          _this4.file = _this4.$store.state.image_base_link + resp.data.admin.image;
-        }
-      });
-    },
-    edit: function edit() {
-      if (this.editMode == true) {
-        this.updateProfile();
-      } else {
-        this.editMode = true;
-        this.actionText = "Update";
-      }
     }
-  },
-  computed: {}
+  }
 });
 
 /***/ }),
@@ -258,7 +334,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.mb-2[data-v-1ccefd24] {\r\n  margin-bottom: 5px !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.nid_image[data-v-1ccefd24] {\r\n      height: 150px;\r\n      width: 300px;\n}\n.download_icon[data-v-1ccefd24]{\r\n   cursor: pointer;\r\n    font-size: 29px;\r\n    position: absolute;\r\n    margin: 4px -30px;\r\n    color: green;\n}\n.aggreement_container[data-v-1ccefd24] {\r\n   height: 400px;\r\n   overflow-y: scroll;\n}\np[data-v-1ccefd24] {\r\n    font-size: 16px;\r\n    line-height: 17px;\n}\n.profile_img[data-v-1ccefd24] {\r\n  width: 150px;\r\n  height: 150px;\r\n  border-radius: 50%;\r\n  border: 3px solid #161745;\r\n  padding: 3px;\r\n  line-height: 0;\n}\n.aggreement_image[data-v-1ccefd24]{\r\n    width:90%;\r\n    height: 320px;\r\n    border:1px solid #161745 ;\n}\n.aggreement_info[data-v-1ccefd24]{\r\n    overflow-y: scroll;\n}\n.custom_row[data-v-1ccefd24] {\r\n  margin-left: -30px !important;\r\n  margin-right: 0px !important;\n}\n.m_l[data-v-1ccefd24] {\r\n    margin-left: 30px;\n}\n@media screen  and(max-width:450px){\n.custom_row[data-v-1ccefd24] {\r\n      margin-left: -9px!important;\r\n      margin-right: -22px !important;\n}\n.nid_image[data-v-1ccefd24] {\r\n      height: 150px;\r\n      width: 250px;\n}\n}\r\n\r\n\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -313,7 +389,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("admin-main"),
+      _c("member-main"),
       _vm._v(" "),
       _c("div", { staticClass: "content-wrapper" }, [
         _c("section", { staticClass: "content-header" }, [
@@ -324,9 +400,9 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "btn btn-primary",
-                  attrs: { to: { name: "admin" } }
+                  attrs: { to: { name: "member_dashboard" } }
                 },
-                [_c("i", { staticClass: "fa fa-arrow-right" })]
+                [_c("i", { staticClass: "fa fa-arrow-left" })]
               )
             ],
             1
@@ -336,214 +412,492 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("section", { staticClass: "content" }, [
-          _c("div", { staticClass: "row justify-content-center" }, [
-            _c("div", { staticClass: "col-lg-4 col-lg-offset-3" }, [
-              _c("div", { staticClass: "box box-primary" }, [
-                _c("div", { staticClass: "box-body box-profile" }, [
-                  _c("img", {
-                    staticClass: "profile-user-img img-responsive img-circle",
-                    attrs: { src: _vm.file, alt: "User profile picture" }
-                  }),
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "row custom_row" }, [
+              _c("div", { staticClass: "col-md-6 col-sm-12 col-xs-12" }, [
+                _c("div", { staticClass: "box box-primary" }, [
+                  _vm._m(1),
                   _vm._v(" "),
-                  _vm.form.name
-                    ? _c(
-                        "h3",
-                        { staticClass: "profile-username text-center" },
+                  _c("div", { staticClass: "box-body" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col-md-4 col-sm-12 col-xs-12 text-center"
+                        },
                         [
-                          _vm._v(
-                            "\n                " +
-                              _vm._s(_vm.form.name) +
-                              "\n              "
-                          )
+                          _c("img", {
+                            staticClass: "profile_img",
+                            attrs: {
+                              src: _vm.admin.image
+                                ? _vm.basePath + _vm.admin.image
+                                : _vm.basePath +
+                                  "images/static/user2-160x160.jpg",
+                              alt: _vm.admin.name
+                            }
+                          })
                         ]
-                      )
-                    : _c(
-                        "h3",
-                        { staticClass: "profile-username text-center" },
-                        [_vm._v(".......")]
                       ),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-muted text-center" }, [
-                    _vm._v("Admin")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "ul",
-                    { staticClass: "list-group list-group-unbordered" },
-                    [
-                      _c("li", { staticClass: "list-group-item" }, [
-                        _c("b", [_vm._v("Name")]),
-                        _vm._v(" "),
-                        !_vm.editMode
-                          ? _c("div", [
-                              _vm.form.name
-                                ? _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "pull-right text-bold text-black",
-                                      staticStyle: { "margin-top": "-18px" }
-                                    },
-                                    [_vm._v(_vm._s(_vm.form.name))]
-                                  )
-                                : _c("a", { staticClass: "pull-right" }, [
-                                    _vm._v("....")
-                                  ])
-                            ])
-                          : _c(
-                              "div",
-                              [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.name,
-                                      expression: "form.name"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  class: {
-                                    "is-invalid": _vm.form.errors.has("name")
-                                  },
-                                  attrs: { type: "text", name: "name" },
-                                  domProps: { value: _vm.form.name },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.form,
-                                        "name",
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("has-error", {
-                                  attrs: { form: _vm.form, field: "name" }
-                                })
-                              ],
-                              1
-                            )
-                      ]),
                       _vm._v(" "),
-                      _c("li", { staticClass: "list-group-item" }, [
-                        _c("b", [_vm._v("Email")]),
-                        _vm._v(" "),
-                        !_vm.editMode
-                          ? _c("div", [
-                              _vm.form.email
-                                ? _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "pull-right text-bold text-black",
-                                      staticStyle: { "margin-top": "-18px" }
-                                    },
-                                    [_vm._v(_vm._s(_vm.form.email))]
-                                  )
-                                : _c("a", { staticClass: "pull-right" }, [
-                                    _vm._v("....")
-                                  ])
-                            ])
-                          : _c(
-                              "div",
-                              [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.email,
-                                      expression: "form.email"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  class: {
-                                    "is-invalid": _vm.form.errors.has("email")
-                                  },
-                                  attrs: { type: "email", name: "email" },
-                                  domProps: { value: _vm.form.email },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.form,
-                                        "email",
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("has-error", {
-                                  attrs: { form: _vm.form, field: "email" }
-                                }),
-                                _vm._v(" "),
-                                _c("br"),
-                                _vm._v(" "),
-                                _c("b", [_vm._v("Upload Image")]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "form-group" }, [
-                                  _c("input", {
-                                    staticClass: "form-control",
-                                    attrs: { type: "file", name: "image" },
-                                    on: { change: _vm.uploadImage }
-                                  })
+                      _c(
+                        "div",
+                        { staticClass: "col-md-8 col-sm-12 col-xs-12" },
+                        [
+                          _c("ul", [
+                            _c("li", [
+                              _c("p", [
+                                _vm._v("\n                          Name : "),
+                                _c("span", { staticClass: "m_l" }, [
+                                  _vm._v(" " + _vm._s(_vm.admin.name) + " ")
                                 ])
-                              ],
-                              1
-                            )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c(
-                      "div",
-                      { class: _vm.editMode ? "col-lg-8" : "col-lg-12" },
-                      [
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("p", [
+                                _vm._v("\n                          Email : "),
+                                _c("span", { staticClass: "m_l" }, [
+                                  _vm._v(" " + _vm._s(_vm.admin.email) + " ")
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("p", [
+                                _vm._v("\n                          Phone : "),
+                                _c("span", { staticClass: "m_l" }, [
+                                  _vm._v(" " + _vm._s(_vm.admin.phone) + " ")
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("p", [
+                                _vm._v(
+                                  "Present Address :  " +
+                                    _vm._s(_vm.admin.present_address)
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("p", [
+                                _vm._v(
+                                  "\n                          Permanent Address :  " +
+                                    _vm._s(_vm.admin.permanent_address) +
+                                    "\n                        "
+                                )
+                              ])
+                            ])
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-12 text-center" }, [
+                        _c("img", {
+                          staticClass: "nid_image",
+                          attrs: {
+                            src: _vm.basePath + _vm.admin.nid,
+                            alt: "image"
+                          }
+                        }),
+                        _vm._v(" "),
                         _c(
                           "a",
                           {
-                            staticClass: "btn btn-primary btn-block",
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.edit($event)
-                              }
+                            attrs: {
+                              href: _vm.basePath + _vm.admin.nid,
+                              download: ""
                             }
                           },
-                          [_c("b", [_vm._v(_vm._s(_vm.actionText))])]
+                          [
+                            _c("i", {
+                              staticClass: "fa fa-download download_icon"
+                            })
+                          ]
                         )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _vm.editMode
-                      ? _c("div", { staticClass: "col-lg-4" }, [
+                      ])
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6 col-sm-12 col-xs-12" }, [
+                _c("div", { staticClass: "box box-primary" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "box-body" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col-md-4 col-sm-12 col-xs-12 text-center"
+                        },
+                        [
+                          _c("img", {
+                            staticClass: "profile_img",
+                            attrs: {
+                              src: _vm.admin.nominee_image
+                                ? _vm.basePath + _vm.admin.nominee_image
+                                : _vm.basePath +
+                                  "images/static/user2-160x160.jpg",
+                              alt: _vm.admin.nominee_name
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-md-8 col-sm-12 col-xs-12" },
+                        [
+                          _c("ul", [
+                            _c("li", [
+                              _c("p", [
+                                _vm._v("\n                          Name : "),
+                                _c("span", { staticClass: "m_l" }, [
+                                  _vm._v(" " + _vm._s(_vm.admin.name) + " ")
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("p", [
+                                _vm._v("\n                          Email : "),
+                                _c("span", { staticClass: "m_l" }, [
+                                  _vm._v(" " + _vm._s(_vm.admin.email) + " ")
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("p", [
+                                _vm._v("\n                          Phone : "),
+                                _c("span", { staticClass: "m_l" }, [
+                                  _vm._v(" " + _vm._s(_vm.admin.phone) + " ")
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("p", [
+                                _vm._v(
+                                  "Present Address :  " +
+                                    _vm._s(_vm.admin.nominee_present_address)
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("p", [
+                                _vm._v(
+                                  "\n                          Permanent Address : " +
+                                    _vm._s(
+                                      _vm.admin.nominee_permanent_address
+                                    ) +
+                                    "\n                        "
+                                )
+                              ])
+                            ])
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-12 text-center" }, [
+                        _c("img", {
+                          staticClass: "nid_image",
+                          attrs: {
+                            src: _vm.basePath + _vm.admin.nominee_nid,
+                            alt: "image"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            attrs: {
+                              href: _vm.basePath + _vm.admin.nominee_nid,
+                              download: ""
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fa fa-download download_icon"
+                            })
+                          ]
+                        )
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row custom_row" }, [
+              _c("div", { staticClass: "col-md-6 col-sm-12 col-xs-12" }, [
+                _c("div", { staticClass: "box box-primary" }, [
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "box-body" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col-md-4 col-sm-12 col-xs-12 text-center"
+                        },
+                        [
+                          _c("img", {
+                            staticClass: "profile_img",
+                            attrs: {
+                              src: _vm.admin.father_image
+                                ? _vm.basePath + _vm.admin.father_image
+                                : _vm.basePath +
+                                  "images/static/user2-160x160.jpg",
+                              alt: _vm.admin.father_name
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-md-8 col-sm-12 col-xs-12" },
+                        [
+                          _c("ul", [
+                            _c("li", [
+                              _c("p", [
+                                _vm._v("\n                          Name : "),
+                                _c("span", { staticClass: "m_l" }, [
+                                  _vm._v(
+                                    " " + _vm._s(_vm.admin.father_name) + " "
+                                  )
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("p", [
+                                _vm._v("\n                          Phone : "),
+                                _c("span", { staticClass: "m_l" }, [
+                                  _vm._v(
+                                    " " + _vm._s(_vm.admin.father_phone) + " "
+                                  )
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("p", [
+                                _vm._v(
+                                  "Present Address :  " +
+                                    _vm._s(_vm.admin.parent_present_address)
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("p", [
+                                _vm._v(
+                                  "\n                          Permanent Address :  " +
+                                    _vm._s(_vm.admin.parent_permanent_address) +
+                                    "\n                        "
+                                )
+                              ])
+                            ])
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-12 text-center" }, [
+                        _c("img", {
+                          staticClass: "nid_image",
+                          attrs: {
+                            src: _vm.basePath + _vm.admin.father_nid,
+                            alt: "image"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            attrs: {
+                              href: _vm.basePath + _vm.admin.father_nid,
+                              download: ""
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fa fa-download download_icon"
+                            })
+                          ]
+                        )
+                      ])
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6 col-sm-12 col-xs-12" }, [
+                _c("div", { staticClass: "box box-primary" }, [
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "box-body" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col-md-4 col-sm-12 col-xs-12 text-center"
+                        },
+                        [
+                          _c("img", {
+                            staticClass: "profile_img",
+                            attrs: {
+                              src: _vm.admin.mother_image
+                                ? _vm.basePath + _vm.admin.mother_image
+                                : _vm.basePath +
+                                  "images/static/user2-160x160.jpg",
+                              alt: _vm.admin.mother_name
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-md-8 col-sm-12 col-xs-12" },
+                        [
+                          _c("ul", [
+                            _c("li", [
+                              _c("p", [
+                                _vm._v("\n                          Name : "),
+                                _c("span", { staticClass: "m_l" }, [
+                                  _vm._v(
+                                    " " + _vm._s(_vm.admin.mother_name) + " "
+                                  )
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("p", [
+                                _vm._v("\n                          Phone : "),
+                                _c("span", { staticClass: "m_l" }, [
+                                  _vm._v(
+                                    " " + _vm._s(_vm.admin.mother_phone) + " "
+                                  )
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("p", [
+                                _vm._v("NID: "),
+                                _c("span", { staticClass: "m_l" }, [
+                                  _vm._v(
+                                    " " + _vm._s(_vm.admin.mother_nid) + " "
+                                  )
+                                ])
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("p", [
+                                _vm._v(
+                                  "Present Address :  " +
+                                    _vm._s(_vm.admin.parent_present_address)
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c("p", [
+                                _vm._v(
+                                  "\n                          Permanent Address :  " +
+                                    _vm._s(_vm.admin.parent_permanent_address) +
+                                    "\n                        "
+                                )
+                              ])
+                            ])
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-12 text-center" }, [
+                        _c("img", {
+                          staticClass: "nid_image",
+                          attrs: {
+                            src: _vm.basePath + _vm.admin.mother_nid,
+                            alt: "image"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            attrs: {
+                              href: _vm.basePath + _vm.admin.mother_nid,
+                              download: ""
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fa fa-download download_icon"
+                            })
+                          ]
+                        )
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row custom_row" }, [
+              _c("div", { staticClass: "col-md-12 col-sm-12 col-xs-12" }, [
+                _c("div", { staticClass: "box box-primary" }, [
+                  _vm._m(5),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "box-body" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-6 col-sm-12 col-xs-12" },
+                        [
                           _c(
-                            "a",
-                            {
-                              staticClass: "btn btn-danger btn-block",
-                              attrs: { href: "#" },
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  ;(_vm.editMode = false),
-                                    (_vm.actionText = "Edit")
+                            "div",
+                            { staticClass: "form-group aggreement_container" },
+                            [
+                              _c("p", {
+                                domProps: {
+                                  innerHTML: _vm._s(_vm.aggreement_details)
                                 }
-                              }
-                            },
-                            [_c("b", [_vm._v("cancel")])]
+                              })
+                            ]
                           )
-                        ])
-                      : _vm._e()
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-md-6 col-sm-12 col-xs-12" },
+                        [
+                          _c("img", {
+                            staticClass: "aggreement_image",
+                            attrs: {
+                              src: _vm.admin.aggreement_image
+                                ? _vm.basePath + _vm.admin.aggreement_image
+                                : _vm.basePath +
+                                  "images/static/user2-160x160.jpg",
+                              alt: "aggreement"
+                            }
+                          })
+                        ]
+                      )
+                    ])
                   ])
                 ])
               ])
@@ -564,11 +918,51 @@ var staticRenderFns = [
       _c("li", [
         _c("a", { attrs: { href: "#" } }, [
           _c("i", { staticClass: "fa fa-dashboard" }),
-          _vm._v("Dashboard ")
+          _vm._v("member")
         ])
       ]),
       _vm._v(" "),
-      _c("li", { staticClass: "active" }, [_vm._v("Category")])
+      _c("li", { staticClass: "active" }, [_vm._v("profile")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-header with-border text-center" }, [
+      _c("h3", { staticClass: "box-title" }, [_vm._v("Personal Information")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-header with-border text-center" }, [
+      _c("h3", { staticClass: "box-title" }, [_vm._v("Nominee Information")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-header with-border text-center" }, [
+      _c("h3", { staticClass: "box-title" }, [_vm._v("Father Information")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-header with-border text-center" }, [
+      _c("h3", { staticClass: "box-title" }, [_vm._v("Mother Information")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-header with-border text-center" }, [
+      _c("h3", { staticClass: "box-title" }, [_vm._v("Aggreement Information")])
     ])
   }
 ]

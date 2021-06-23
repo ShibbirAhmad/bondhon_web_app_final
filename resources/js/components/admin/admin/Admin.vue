@@ -4,7 +4,7 @@
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-          <router-link :to="{ name: 'adminAdd' }" class="btn btn-primary"
+          <router-link :to="{ name: 'admin_add' }" class="btn btn-primary"
             ><i class="fa fa-plus"></i
           ></router-link>
         </h1>
@@ -12,7 +12,7 @@
           <li>
             <a href="#"><i class="fa fa-dashboard"></i>Dashboard</a>
           </li>
-          <li class="active">Memebers</li>
+          <li class="active">Admin</li>
         </ol>
       </section>
       <section class="content">
@@ -21,7 +21,7 @@
             <div class="col-lg-11">
               <div class="box box-primary">
                 <div class="box-header with-border text-center">
-                  <h3 class="box-title">Bondhon Members </h3>
+                  <h3 class="box-title">Bondhon Admin </h3>
 
                   <div class="row">
                     <div class="col-md-2">
@@ -59,7 +59,6 @@
                         <th scope="col">Phone</th>
                         <th scope="col">Email</th>
                         <th scope="col">Image</th>
-                        <th scope="col">Address</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
                       </tr>
@@ -73,8 +72,8 @@
                         v-bind:key="index"
                       >
                         <td scope="row">{{ index + 1 }}</td>
-                        <td> <router-link :to="{name:'admin_details',params:{id:admin.id}}"> {{ admin.name }} </router-link> </td>
-                        <td>{{ admin.phone }}</td>
+                        <td> <router-link :to="{name:'adminProfile',params:{id:admin.id}}"> {{ admin.name }} </router-link> </td>
+                        <td>{{ admin.phone ? admin.phone : '' }}</td>
                         <td>{{ admin.email }}</td>
                         <td>
                           <img
@@ -90,7 +89,7 @@
                             alt="admin Image"
                           />
                         </td>
-                        <td> <address>{{ admin.present_address }}</address> </td>
+
                         <td>
                           <span class="badge" v-if="admin.status == 1"
                             >Active</span
@@ -141,7 +140,7 @@
                     <div class="col-lg-6">
                       <pagination
                         :data="admins"
-                        @pagination-change-page="getPagination"
+                        @pagination-change-page="adminList"
                       >
                       </pagination>
                     </div>
@@ -302,15 +301,9 @@ export default {
         }
       });
     },
-    getPagination(page = 1) {
-      this.loading = true;
-      axios.get("/list/admin?page=" + page).then((response) => {
-        this.loading = false;
-        this.admins = response.data.admins;
-      });
-    },
+
   },
-  computed: {},
+
 };
 </script>
 

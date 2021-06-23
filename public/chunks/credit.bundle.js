@@ -580,7 +580,49 @@ var render = function() {
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(credit.comment))]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(credit.admin.name))])
+                              _c("td", [_vm._v(_vm._s(credit.admin.name))]),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _vm.$can("edit credit")
+                                    ? _c(
+                                        "router-link",
+                                        {
+                                          staticClass: "btn btn-success btn-sm",
+                                          attrs: {
+                                            to: {
+                                              name: "creditEdit",
+                                              params: { id: credit.id }
+                                            }
+                                          }
+                                        },
+                                        [_c("i", { staticClass: "fa fa-edit" })]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.current_date == credit.date &&
+                                  _vm.$can("delete credit")
+                                    ? _c(
+                                        "a",
+                                        {
+                                          staticClass: "btn btn-sm btn-danger",
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.trash(credit.id, index)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fa fa-trash"
+                                          })
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ],
+                                1
+                              )
                             ])
                           })
                         ],
@@ -680,7 +722,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Comment")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Insert")])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Insert")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Action")])
       ])
     ])
   }

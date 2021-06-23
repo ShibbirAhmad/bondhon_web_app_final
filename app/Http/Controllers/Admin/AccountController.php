@@ -212,20 +212,16 @@ class AccountController extends Controller
 
     public function destroy_credit(Request $request, $id)
     {
-        if($request->ajax()){
             $credit=Credit::find($id);
             if($credit){
-                if($credit->delete()){
+              $credit->delete();
                     return response()->json([
                         'status' => 'SUCCESS',
                         'message' => "credit was successfully deleted",
                     ]);
-                }
+
             }
 
-        }else{
-            return abort(404);
-        }
 
 
     }
@@ -450,20 +446,17 @@ class AccountController extends Controller
 
     public function destroy_debit(Request $request,$id)
     {
-        if($request->ajax()){
             $debit=Debit::find($id);
             if($debit){
-                if($debit->delete()){
+               $debit->delete() ;
                     return response()->json([
                         'status' => 'SUCCESS',
                         'message' => "debit was successfully deleted",
                     ]);
-                }
+
             }
 
-        }else{
-            return abort(404);
-        }
+
     }
 
 

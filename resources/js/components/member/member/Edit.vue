@@ -1,6 +1,6 @@
 <template>
   <div>
-    <admin-main></admin-main>
+    <member-main></member-main>
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
@@ -73,7 +73,7 @@
                           Present Address <b class="text-danger">*</b>
                         </label>
                         <input
-                          v-model="form.permanent_address"
+                          v-model="form.present_address"
                           type="text"
                           name="present_address"
                           class="form-control"
@@ -148,7 +148,7 @@ Vue.component(HasError.name, HasError);
 export default {
   created() {
     setTimeout(() => {
-      this.getAdmin();
+      this.getMemberInformation();
       this.loading = false;
     }, 500);
   },
@@ -157,25 +157,25 @@ export default {
       form: new Form({
         name: "",
         email: "",
-        phone: "",
         present_address: "",
         image: "",
       }),
       base_url: this.$store.state.image_base_link,
       loading: true,
       error: "",
+      member_id: "",
     };
   },
 
   methods: {
-    getAdmin() {
+    getMemberInformation() {
       axios
         .get("/api/member/profile/info")
         .then((resp) => {
           console.log(resp);
           if (resp.data.status == "OK") {
+            this.member_id = resp.data.member.id;
             this.form.name = resp.data.member.name;
-            this.form.phone = resp.data.member.phone;
             this.form.email = resp.data.member.email;
             this.form.image = resp.data.member.image;
             this.form.present_address = resp.data.member.present_address;
@@ -184,7 +184,7 @@ export default {
     },
     update() {
       this.form
-        .post("/api/edit/member/profile/info", {
+        .post("/api/edit/member/profile/info/"+this.member_id, {
           transformRequest: [
             function (data, headers) {
               return objectToFormData(data);
@@ -193,15 +193,15 @@ export default {
         })
         .then((resp) => {
           console.log(resp);
-          if (resp.data.status == "SUCCESS") {
-            this.$router.push({ name: "admin" });
+          if (resp.data.status == "OK") {
+            this.$router.push({ name: "member_dashboard" });
             this.$toasted.show(resp.data.message, {
               type: "success",
               position: "top-center",
               duration: 4000,
             });
           } else {
-            this.error = "some thing want to wrong";
+            this.error = "some thing went to wrong";
           }
         });
     },
@@ -249,4 +249,7 @@ export default {
   border-radius: 50%;
   border: 1px solid #ddd;
 }
+
+
+
 </style>

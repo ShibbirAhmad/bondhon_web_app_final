@@ -17,7 +17,7 @@
                         <div class="col-lg-8 col-lg-offset-1">
                             <div class="box box-primary">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Roleee table</h3>
+                                    <h3 class="box-title">Role table</h3>
                                 </div>
                                 <div class="box-body">
                                     <table class="table">
@@ -35,10 +35,10 @@
                                         <tr v-for="(role,index) in roles" v-bind:key="index">
                                             <td scope="row">{{index+1}}</td>
                                             <td>{{role.name}}</td>
-                                          
+
                                             <td>
-                                         <router-link  :to="{ name: 'editAdmin', params: { adminId: role.id }}"
-                                                             class="btn btn-success btn-sm">Edit</router-link>
+                                         <!-- <router-link  :to="{ name: 'editAdmin', params: { adminId: role.id }}"
+                                                             class="btn btn-success btn-sm">Edit</router-link> -->
 
                                         <router-link :to="{ name: 'EditPermissions', params: { id: role.id }}"
                                                              class="btn btn-primary btn-sm">Permissions </router-link>
@@ -47,12 +47,12 @@
                                         </tbody>
 
                                     </table>
-                                    
+
                                     </div>
                                 <div class="box-footer">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            
+
 
                                         </div>
                                         <div class="col-lg-6 mt-1" style="margin-top: 25px;text-align:right;">
@@ -62,14 +62,14 @@
                                             </p>
                                         </div>
                                     </div>
-                                
+
 
 
                                 </div>
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
 
             </section>
@@ -113,11 +113,11 @@
                         console.log(error);
                     })
             },
-           
+
         },
 
-       
-      
+
+
     }
 
 </script>

@@ -337,7 +337,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     bondhonMemberList: function bondhonMemberList() {
       var _this4 = this;
 
-      axios.get("/api/list/admin").then(function (resp) {
+      axios.get("/api/member/list").then(function (resp) {
         console.log(resp);
         var options = {};
         resp.data.admins.data.forEach(function (element) {

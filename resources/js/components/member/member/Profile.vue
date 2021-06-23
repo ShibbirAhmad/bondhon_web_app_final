@@ -1,120 +1,272 @@
+
+
 <template>
   <div>
-    <admin-main></admin-main>
+    <member-main></member-main>
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-          <router-link :to="{ name: 'admin' }" class="btn btn-primary">
-            <i class="fa fa-arrow-right"></i>
-          </router-link>
+          <router-link :to="{ name: 'member_dashboard' }" class="btn btn-primary"
+            ><i class="fa fa-arrow-left"></i
+          ></router-link>
         </h1>
         <ol class="breadcrumb">
           <li>
-            <a href="#"> <i class="fa fa-dashboard"></i>Dashboard </a>
+            <a href="#"><i class="fa fa-dashboard"></i>member</a>
           </li>
-          <li class="active">Category</li>
+          <li class="active">profile</li>
         </ol>
       </section>
+
       <section class="content">
-        <div class="row justify-content-center">
-          <div class="col-lg-4 col-lg-offset-3">
-            <!-- Profile Image -->
-            <div class="box box-primary">
-              <div class="box-body box-profile">
-                <img
-                  class="profile-user-img img-responsive img-circle"
-                  :src="file"
-                  alt="User profile picture"
-                />
-
-                <h3 class="profile-username text-center" v-if="form.name">
-                  {{ form.name }}
-                </h3>
-                <h3 class="profile-username text-center" v-else>.......</h3>
-
-                <p class="text-muted text-center">Admin</p>
-
-                <ul class="list-group list-group-unbordered">
-                  <li class="list-group-item">
-                    <b>Name</b>
-                    <div v-if="!editMode">
-                      <a
-                        class="pull-right text-bold text-black"
-                        v-if="form.name"
-                        style="margin-top: -18px"
-                        >{{ form.name }}</a
-                      >
-                      <a class="pull-right" v-else>....</a>
-                    </div>
-                    <div v-else>
-                      <input
-                        type="text"
-                        class="form-control"
-                        v-model="form.name"
-                        name="name"
-                        :class="{ 'is-invalid': form.errors.has('name') }"
+        <div class="container">
+          <div class="row custom_row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+              <div class="box box-primary">
+                <div class="box-header with-border text-center">
+                  <h3 class="box-title">Personal Information</h3>
+                </div>
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12 text-center">
+                      <img
+                        :src="
+                          admin.image
+                            ? basePath + admin.image
+                            : basePath + 'images/static/user2-160x160.jpg'
+                        "
+                        class="profile_img"
+                        :alt="admin.name"
                       />
-                      <has-error :form="form" field="name"></has-error>
                     </div>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Email</b>
-                    <div v-if="!editMode">
-                      <a
-                        class="pull-right text-bold text-black"
-                        v-if="form.email"
-                        style="margin-top: -18px"
-                        >{{ form.email }}</a
-                      >
-                      <a class="pull-right" v-else>....</a>
-                    </div>
-                    <div v-else>
-                      <input
-                        type="email"
-                        class="form-control"
-                        v-model="form.email"
-                        name="email"
-                        :class="{ 'is-invalid': form.errors.has('email') }"
-                      />
-                      <has-error :form="form" field="email"></has-error>
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                      <ul>
+                        <li>
+                          <p>
+                            Name : <span class="m_l"> {{ admin.name }} </span>
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Email : <span class="m_l"> {{ admin.email }} </span>
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Phone : <span class="m_l"> {{ admin.phone }} </span>
+                          </p>
+                        </li>
 
-                      <br />
-                      <b>Upload Image</b>
-                      <div class="form-group">
-                        <input
-                          type="file"
-                          name="image"
-                          class="form-control"
-                          @change="uploadImage"
-                        />
-                      </div>
+                        <li>
+                          <p>Present Address :  {{ admin.present_address }}</p>
+                        </li>
+                        <li>
+                          <p>
+                            Permanent Address :  {{ admin.permanent_address }}
+                          </p>
+                        </li>
+                      </ul>
                     </div>
-                  </li>
-                </ul>
-
-                <div class="row">
-                  <div :class="editMode ? 'col-lg-8' : 'col-lg-12'">
-                    <a
-                      href="#"
-                      class="btn btn-primary btn-block"
-                      @click.prevent="edit"
-                    >
-                      <b>{{ actionText }}</b>
-                    </a>
+                     <div class="col-md-12 text-center">
+                       <img class="nid_image" :src="basePath+ admin.nid " alt="image">
+                        <a :href="basePath+admin.nid" download > <i class="fa fa-download download_icon"></i> </a>
+                     </div>
                   </div>
-                  <div class="col-lg-4" v-if="editMode">
-                    <a
-                      href="#"
-                      class="btn btn-danger btn-block"
-                      @click.prevent="(editMode = false), (actionText = 'Edit')"
-                    >
-                      <b>cancel</b>
-                    </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+              <div class="box box-primary">
+                <div class="box-header with-border text-center">
+                  <h3 class="box-title">Nominee Information</h3>
+                </div>
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12 text-center">
+                      <img
+                        :src="
+                          admin.nominee_image
+                            ? basePath + admin.nominee_image
+                            : basePath + 'images/static/user2-160x160.jpg'
+                        "
+                        class="profile_img"
+                        :alt="admin.nominee_name"
+                      />
+                    </div>
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                      <ul>
+                        <li>
+                          <p>
+                            Name : <span class="m_l"> {{ admin.name }} </span>
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Email : <span class="m_l"> {{ admin.email }} </span>
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Phone : <span class="m_l"> {{ admin.phone }} </span>
+                          </p>
+                        </li>
+
+                        <li>
+                          <p>Present Address :  {{ admin.nominee_present_address }}</p>
+                        </li>
+                        <li>
+                          <p>
+                            Permanent Address : {{ admin.nominee_permanent_address }}
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+                     <div class="col-md-12 text-center">
+                       <img class="nid_image" :src="basePath+ admin.nominee_nid "  alt="image">
+                      <a :href="basePath+admin.nominee_nid" download > <i class="fa fa-download download_icon"></i> </a>
+                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+           <div class="row custom_row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+              <div class="box box-primary">
+                <div class="box-header with-border text-center">
+                  <h3 class="box-title">Father Information</h3>
+                </div>
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12 text-center">
+                      <img
+                        :src="
+                          admin.father_image
+                            ? basePath + admin.father_image
+                            : basePath + 'images/static/user2-160x160.jpg'
+                        "
+                        class="profile_img"
+                        :alt="admin.father_name"
+                      />
+                    </div>
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                      <ul>
+                        <li>
+                          <p>
+                            Name : <span class="m_l"> {{ admin.father_name }} </span>
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Phone : <span class="m_l"> {{ admin.father_phone }} </span>
+                          </p>
+                        </li>
+
+                        <li>
+                          <p>Present Address :  {{ admin.parent_present_address }}</p>
+                        </li>
+                        <li>
+                          <p>
+                            Permanent Address :  {{ admin.parent_permanent_address }}
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-md-12 text-center">
+                       <img class="nid_image" :src="basePath+ admin.father_nid " alt="image">
+                        <a :href="basePath+admin.father_nid" download > <i class="fa fa-download download_icon"></i> </a>
+                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <div class="col-md-6 col-sm-12 col-xs-12">
+              <div class="box box-primary">
+                <div class="box-header with-border text-center">
+                  <h3 class="box-title">Mother Information</h3>
+                </div>
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12 text-center">
+                      <img
+                        :src="
+                          admin.mother_image
+                            ? basePath + admin.mother_image
+                            : basePath + 'images/static/user2-160x160.jpg'
+                        "
+                        class="profile_img"
+                        :alt="admin.mother_name"
+                      />
+                    </div>
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                      <ul>
+                        <li>
+                          <p>
+                            Name : <span class="m_l"> {{ admin.mother_name }} </span>
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Phone : <span class="m_l"> {{ admin.mother_phone }} </span>
+                          </p>
+                        </li>
+                        <li>
+                          <p>NID: <span class="m_l"> {{ admin.mother_nid }} </span> </p>
+                        </li>
+                        <li>
+                          <p>Present Address :  {{ admin.parent_present_address }}</p>
+                        </li>
+                        <li>
+                          <p>
+                            Permanent Address :  {{ admin.parent_permanent_address }}
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+                      <div class="col-md-12 text-center">
+                       <img class="nid_image" :src="basePath+ admin.mother_nid " alt="image">
+                        <a :href="basePath+admin.mother_nid" download > <i class="fa fa-download download_icon"></i> </a>
+                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+           <div class="row custom_row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="box box-primary">
+                <div class="box-header with-border text-center">
+                  <h3 class="box-title">Aggreement Information</h3>
+                </div>
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                       <div class="form-group aggreement_container">
+                          <p v-html="aggreement_details"  >
+                         </p>
+                       </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <img
+                        :src="
+                          admin.aggreement_image
+                            ? basePath + admin.aggreement_image
+                            : basePath + 'images/static/user2-160x160.jpg'
+                        "
+                        class="aggreement_image"
+                        alt="aggreement"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
         </div>
       </section>
     </div>
@@ -122,120 +274,112 @@
 </template>
 
 
-<script>
-import Vue from "vue";
-import { Form, HasError, AlertError } from "vform";
 
-Vue.component(HasError.name, HasError);
+
+<script>
 export default {
-  name: "Profile",
-  created() {
-    this.getAdmin();
-    setTimeout(() => {
-      this.loading = false;
-    }, 500);
+  mounted() {
+    this.getMemberInformation();
+    this.getAggreement();
   },
+
   data() {
     return {
-      form: new Form({
-        name: "",
-        email: "",
-        image: "",
-        id: "",
-      }),
-
       loading: true,
-      error: "",
+      admin: "",
+      basePath: this.$store.getters.image_base_link,
+     aggreement_details:"",
 
-      actionText: "Edit",
-      editMode: false,
-      file: this.$store.state.image_base_link+"images/static/user2-160x160.jpg",
     };
   },
 
   methods: {
-    updateProfile() {
-      console.log("add");
-      this.form
-        .post("/update/admin/" + this.form.id, {
-          transformRequest: [
-            function (data, headers) {
-              return objectToFormData(data);
-            },
-          ],
-        })
-        .then((resp) => {
-          if (resp.data.status == "SUCCESS") {
-            this.$toasted.show("Your profile was updated.", {
-              type: "success",
-              position: "top-right",
-              duration: 1000,
-            });
-            this.editMode = false;
-            this.$router.push({ name: "adminLogin" });
-         
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          this.error = "some thing want to wrong";
-        });
-    },
-    uploadImage(e) {
-      const file = e.target.files[0];
-
-      ///let image file size check
-      let reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (evt) => {
-        let img = new Image();
-        img.onload = () => {
-          if (img.width < 360 && img.height < 360) {
-            this.form.image = file;
-            this.file = evt.target.result;
-            return;
-          } else {
-            this.disabled = true;
-            alert(
-              "Image maximu size 360*360px.But Upload imaze size" +
-                img.width +
-                "*" +
-                img.height +
-                "px"
-            );
-            return;
-          }
-        };
-        img.src = evt.target.result;
-      };
-    },
-
-    getAdmin() {
-      axios.get("/single/admin").then((resp) => {
-        this.form.name = resp.data.admin.name;
-        this.form.email = resp.data.admin.email;
-        this.form.id = resp.data.admin.id;
-        if (resp.data.admin.image != null) {
-          this.file =this.$store.state.image_base_link+resp.data.admin.image;
-        }
+     getAggreement() {
+      axios.get("/api/get/aggreement/info")
+      .then((resp) => {
+          this.aggreement_details = resp.data.setting.policy;
       });
     },
-
-    edit() {
-      if (this.editMode == true) {
-        this.updateProfile();
-      } else {
-        this.editMode = true;
-        this.actionText = "Update";
-      }
+    getMemberInformation() {
+      axios
+        .get("/api/member/profile/info")
+        .then((resp) => {
+          console.log(resp);
+          this.admin = resp.data.member;
+          this.loading = false;
+        });
     },
   },
-  computed: {},
 };
 </script>
 
+
+
 <style scoped>
-.mb-2 {
-  margin-bottom: 5px !important;
+
+.nid_image {
+      height: 150px;
+      width: 300px;
 }
+.download_icon{
+   cursor: pointer;
+    font-size: 29px;
+    position: absolute;
+    margin: 4px -30px;
+    color: green;
+}
+.aggreement_container {
+   height: 400px;
+   overflow-y: scroll;
+}
+
+p {
+    font-size: 16px;
+    line-height: 17px;
+}
+.profile_img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #161745;
+  padding: 3px;
+  line-height: 0;
+}
+
+.aggreement_image{
+    width:90%;
+    height: 320px;
+    border:1px solid #161745 ;
+}
+.aggreement_info{
+    overflow-y: scroll;
+}
+.custom_row {
+  margin-left: -30px !important;
+  margin-right: 0px !important;
+}
+
+.m_l {
+    margin-left: 30px;
+}
+
+@media screen  and(max-width:450px){
+
+  .custom_row {
+      margin-left: -9px!important;
+      margin-right: -22px !important;
+  }
+  .nid_image {
+      height: 150px;
+      width: 250px;
+    }
+
+
+
+
+}
+
+
+
+
 </style>

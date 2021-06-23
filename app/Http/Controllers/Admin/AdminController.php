@@ -19,17 +19,102 @@ class AdminController extends Controller
 {
 
 
-    public function __construct(Request $request)
-    {
-        $this->middleware('admin');
-        if(!$request->ajax()){
-       //   return abort(404);
-        }
-
-    }
     public function index()
     {
-        $admins = Admin::orderby('id', 'desc')->paginate(10);
+        $admins = Admin::where('admin_role',1)->orderby('id', 'desc')->paginate(10);
+        return response()->json([
+            'admins' => $admins,
+            'status' => 'SUCCESS'
+        ]);
+    }
+
+
+
+     public function AddSiteAdmin(Request $request){
+
+        $validatedData = $request->validate([
+            'email' => 'required ',
+            'password' => 'required',
+            'name' => 'required',
+            'phone' => 'required|unique:admins',
+        ]);
+        $admin = new Admin();
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->phone = $request->phone;
+        $admin->admin_role = 1;
+        $admin->password = Hash::make($request->password);
+        $admin->present_address = 'demo';
+        $admin->permanent_address = 'demo';
+        //nominee info
+        $admin->nominee_name ='demo';
+        $admin->nominee_email = 'demo';
+        $admin->nominee_phone = 'demo';
+        $admin->nominee_phone = 'demo';
+        $admin->nominee_father_phone = 'demo';
+        $admin->nominee_mother_phone = 'demo';
+        $admin->nominee_father_name = 'demo';
+        $admin->nominee_mother_name = 'demo';
+        $admin->nominee_present_address = 'demo';
+        $admin->nominee_permanent_address = 'demo' ;
+        $admin->nominee_parent_present_address = 'demo' ;
+        $admin->nominee_parent_permanent_address = 'demo' ;
+        //family info
+         $admin->father_name = 'demo';
+         $admin->father_phone = 'demo';
+         $admin->mother_name ='demo';
+         $admin->mother_phone = 'demo';
+         $admin->parent_present_address = 'demo';
+         $admin->parent_permanent_address = 'demo';
+         $admin->agree_with_aggreement = 'yes';
+         $admin->aggreement_image = 'demo.png';
+
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images/admin', 'public');
+            $admin->image = $path;
+        }
+          $admin->save();
+            return response()->json([
+                'status' => 'SUCCESS',
+                'message' => 'admin add successfully'
+            ]);
+
+
+    }
+
+
+
+
+
+
+  public function updateSiteAdmin(Request $request, $id){
+        //return $request->all();
+        $validatedData = $request->validate([
+            'email' => 'required ',
+            'name' => 'required',
+            'phone' => 'required|unique:admins,phone,'.$id,
+        ]);
+        $admin =Admin::find($id);
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->phone = $request->phone;
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images/admin', 'public');
+            $admin->image = $path;
+        }
+        $admin->save();
+            return response()->json([
+                'status' => 'SUCCESS',
+                'message' => 'admin update successfully'
+            ]);
+    }
+
+
+
+    public function memberList(){
+        $admins = Admin::where('admin_role',2)->orderby('id', 'desc')->paginate(10);
         return response()->json([
             'admins' => $admins,
             'status' => 'SUCCESS'
@@ -189,7 +274,7 @@ class AdminController extends Controller
             $path = $request->file('aggreement_image')->store('images/admin', 'public');
             $admin->aggreement_image = $path;
             $admin->save();
-
+            Admin::sendWelcomeMessage($admin);
         });
 
          return response()->json([
@@ -362,6 +447,7 @@ class AdminController extends Controller
 
            $admin->save();
 
+
         });
 
          return response()->json([
@@ -374,17 +460,15 @@ class AdminController extends Controller
     }
 
 
-    public function updatePassword(Request $request , $id){
+    public function updatePassword(Request $request){
 
         $validatedData = $request->validate([
             'old_password' => 'required ',
             'new_password' => 'required',
-
         ]);
-
-        $admin= Admin::find($id);
+        $admin_id = session()->get('admin')['id'] ;
+        $admin= Admin::where('id',$admin_id)->first() ;
         $admin_current_password=$admin->password;
-
         if (Hash::check($request->old_password,$admin_current_password)) {
             if($request->new_password==$request->old_password){
                 return response()->json([

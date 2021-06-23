@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Credit;
-use App\Models\Debit;
+use Carbon\Carbon;
 use App\Models\Admin;
-use App\Models\AdminProfit;
-use App\Models\AdminAccount;
-use App\Models\BillPaidStatement;
-use App\Models\EmployeeSalary;
+use App\Models\Debit;
+use App\Models\Credit;
 use App\Models\Project;
-use App\Models\ProjectCost;
-use App\Models\ProjectProfit;
 use App\Models\Investor;
 use App\Models\Investment;
+use App\Models\AdminProfit;
+use App\Models\ProjectCost;
+use App\Models\AdminAccount;
+use Illuminate\Http\Request;
+use App\Models\ProjectProfit;
+use App\Models\EmployeeSalary;
 use App\Models\InvestmentReturn;
+use App\Models\BillPaidStatement;
 use App\Models\InvestorProfitPaid;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class DashboardController extends Controller
 {
@@ -118,7 +119,8 @@ class DashboardController extends Controller
 
 
 
-     public function memberProfile(){
+
+    public function memberProfile(){
             $member_id=session()->get('member')['id'];
             $member = Admin::where('id',$member_id)->first();
             return response()->json([
@@ -129,6 +131,63 @@ class DashboardController extends Controller
 
 
 
+    public function memberProfileUpdate(Request $request,$id){
+            $member_id=session()->get('member')['id'];
+            $validatedData = $request->validate([
+                  'email' => 'required|unique:admins,email,'.$member_id,
+              ]) ;
+
+            $member = Admin::where('id',$member_id)->first();
+            $member->name=$request->name ;
+            $member->email=$request->email ;
+            $member->present_address=$request->present_address ;
+            if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images/admin', 'public');
+            $member->image = $path;
+            }
+            $member->save();
+
+            return response()->json([
+                "status" => "OK" ,
+                "message" => "your personal information has updated"
+                ]);
+        }
+
+
+
+
+    public function updatePassword(Request $request){
+        // return $request->all();
+        $validatedData = $request->validate([
+            'old_password' => 'required ',
+            'new_password' => 'required',
+
+        ]);
+
+        $member_id=session()->get('member')['id'];
+        $admin=Admin::where('id',$member_id)->first();
+        $admin_current_password=$admin->password;
+
+        if (Hash::check($request->old_password,$admin_current_password)) {
+            if($request->new_password==$request->old_password){
+                return response()->json([
+                    "message" => "current password and new password can't be same ",
+                ]);
+            }else{
+                $admin->password=Hash::make($request->new_password);
+                    if ($admin->save()) {
+                        return response()->json([ "success" => "OK", "message" => "password changed successfully" ]);
+                    }
+            }
+         }else{
+             return response()->json([
+                "message" => "current password is incorrect! ",
+              ]);
+         }
+
+
+
+    }
 
 
 

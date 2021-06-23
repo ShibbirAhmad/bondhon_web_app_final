@@ -77,15 +77,17 @@
                       </div>
                     </div>
                   </div>
-                  <br />
-                  <button
+                  <div class="form-group text-center">
+                     <button
                       :disabled="form.busy"
                       type="submit"
                       class="btn btn-primary btn-block"
-                      v-if="$can('manage order')"
+                      
                   >
                     <i class="fa fa-spin fa-spinner" v-if="form.busy"></i>Update
                   </button>
+                  </div>
+
                 </form>
               </div>
             </div>
@@ -175,7 +177,7 @@ export default {
     },
   },
 };
-</script> 
+</script>
 
 <style scoped>
 .mb-2 {

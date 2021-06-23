@@ -55,7 +55,7 @@
                   <div class="col-md-3">
                     <div>
                       <router-link
-                        :to="{name:'member_details',params:{id:member.id}}"
+                        :to="{name:'member_profile',params:{id:member.id}}"
                         style="color: #000 !important"
                         class="btn btn-default btn-flat"
                         >Profile</router-link
@@ -69,7 +69,7 @@
                         style="color: #000 !important"
                         class="btn btn-default btn-flat"
                         :to="{
-                          name: 'passwordChange',
+                          name: 'member_password',
                           params: { id: member.id },
                         }"
                         >change password</router-link

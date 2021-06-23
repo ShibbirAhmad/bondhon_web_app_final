@@ -97,11 +97,13 @@ Route::group([
 
      //start dashboard route
 
+    Route::get('api/admin/to/member/dashboard/{id}', 'LoginController@adminAccessMember');
     Route::get('api/dashboard/analysis', 'DashboardController@index');
     Route::get('api/list/member/collections', 'DashboardController@memberCollections');
     Route::get('api/list/member/profits', 'DashboardController@memberProfits');
+    Route::get('api/update/member/password', 'DashboardController@updatePassword');
     Route::get('api/member/profile/info', 'DashboardController@memberProfile');
-    Route::get('api/edit/member/profile/info', 'DashboardController@memberProfileUpdate');
+    Route::post('api/edit/member/profile/info/{id}', 'DashboardController@memberProfileUpdate');
 
     //started user
     Route::get('list/user/all','UserController@getUser');
@@ -218,12 +220,16 @@ Route::group([
     //start the others  route
     Route::get('/others', 'OthersController@others');
 
+    //site admin
+      Route::post('api/site/admin/add', 'AdminController@AddSiteAdmin');
+      Route::post('api/update/site/admin/{id}', 'AdminController@updateSiteAdmin');
 
     //start the admin route
     Route::get('/single/admin', 'LoginController@admin');
     Route::get('/logout/admin', 'LoginController@logout');
     Route::get('/logout/member', 'LoginController@logoutMember');
     Route::get('api/list/admin', 'AdminController@index');
+    Route::get('api/member/list', 'AdminController@memberList');
     Route::post('api/add/admin', 'AdminController@store');
     Route::get('api/search/admin/{data}', 'AdminController@search_admin');
     Route::get('deactive/admin/{id}', 'AdminController@deactive');
@@ -231,7 +237,7 @@ Route::group([
     Route::get('api/edit/admin/{id}', 'AdminController@edit');
     Route::get('api/admin/account/details/{id}', 'AdminController@adminDetails');
     Route::post('api/update/admin/{id}', 'AdminController@update');
-    Route::post('api/update/admin/password/{id}', 'AdminController@updatePassword');
+    Route::get('api/update/admin/password', 'AdminController@updatePassword');
     Route::get('/api/role/get/admin/{id}', 'AdminController@getAdminRole');
     Route::post('/api/role/update/admin/{id}', 'AdminController@updateAdminRole');
     Route::get('api/get/admin/permission/list/{id}', 'AdminController@getAdminPermission');

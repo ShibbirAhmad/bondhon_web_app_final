@@ -163,7 +163,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     var _this = this;
 
     setTimeout(function () {
-      _this.getAdmin();
+      _this.getMemberInformation();
 
       _this.loading = false;
     }, 500);
@@ -173,25 +173,25 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
       form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
         name: "",
         email: "",
-        phone: "",
         present_address: "",
         image: ""
       }),
       base_url: this.$store.state.image_base_link,
       loading: true,
-      error: ""
+      error: "",
+      member_id: ""
     };
   },
   methods: {
-    getAdmin: function getAdmin() {
+    getMemberInformation: function getMemberInformation() {
       var _this2 = this;
 
       axios.get("/api/member/profile/info").then(function (resp) {
         console.log(resp);
 
         if (resp.data.status == "OK") {
+          _this2.member_id = resp.data.member.id;
           _this2.form.name = resp.data.member.name;
-          _this2.form.phone = resp.data.member.phone;
           _this2.form.email = resp.data.member.email;
           _this2.form.image = resp.data.member.image;
           _this2.form.present_address = resp.data.member.present_address;
@@ -201,16 +201,16 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     update: function update() {
       var _this3 = this;
 
-      this.form.post("/api/edit/member/profile/info", {
+      this.form.post("/api/edit/member/profile/info/" + this.member_id, {
         transformRequest: [function (data, headers) {
           return objectToFormData(data);
         }]
       }).then(function (resp) {
         console.log(resp);
 
-        if (resp.data.status == "SUCCESS") {
+        if (resp.data.status == "OK") {
           _this3.$router.push({
-            name: "admin"
+            name: "member_dashboard"
           });
 
           _this3.$toasted.show(resp.data.message, {
@@ -219,7 +219,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
             duration: 4000
           });
         } else {
-          _this3.error = "some thing want to wrong";
+          _this3.error = "some thing went to wrong";
         }
       });
     },
@@ -269,7 +269,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.mb-2[data-v-42701dd6] {\r\n  margin-bottom: 5px !important;\n}\n.member_profile[data-v-42701dd6] {\r\n  width: 300px;\r\n  height: 300px;\r\n  border-radius: 50%;\r\n  border: 1px solid #ddd;\n}\r\n", ""]);
+exports.push([module.i, "\n.mb-2[data-v-42701dd6] {\r\n  margin-bottom: 5px !important;\n}\n.member_profile[data-v-42701dd6] {\r\n  width: 300px;\r\n  height: 300px;\r\n  border-radius: 50%;\r\n  border: 1px solid #ddd;\n}\r\n\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -324,7 +324,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("admin-main"),
+      _c("member-main"),
       _vm._v(" "),
       _c("div", { staticClass: "content-wrapper" }, [
         _c("section", { staticClass: "content-header" }, [
@@ -494,8 +494,8 @@ var render = function() {
                                         {
                                           name: "model",
                                           rawName: "v-model",
-                                          value: _vm.form.permanent_address,
-                                          expression: "form.permanent_address"
+                                          value: _vm.form.present_address,
+                                          expression: "form.present_address"
                                         }
                                       ],
                                       staticClass: "form-control",
@@ -512,7 +512,7 @@ var render = function() {
                                         placeholder: "present_address"
                                       },
                                       domProps: {
-                                        value: _vm.form.permanent_address
+                                        value: _vm.form.present_address
                                       },
                                       on: {
                                         input: function($event) {
@@ -521,7 +521,7 @@ var render = function() {
                                           }
                                           _vm.$set(
                                             _vm.form,
-                                            "permanent_address",
+                                            "present_address",
                                             $event.target.value
                                           )
                                         }

@@ -89,7 +89,8 @@ class ProjectController extends Controller
         $project->emabaded_url = $request->emabaded_url;
         $project->comments = $request->comments;
         $project->description = $request->description;
-        $project->aggreement_details = $request->aggreement_details;
+        $project->description = $request->description;
+        $project->status = 1;
         $path = $request->file('agreement_image')->store('images/project_aggreement', 'public');
         $project->agreement_image = $path;
 

@@ -17,16 +17,17 @@
       </h1>
       <section v-else class="content">
 
-        <div class="row" >
+           <div class="row" >
+
 
          <div class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ memberData.total_collection_paid }}  <span class="money_icon"> &#2547; </span>  </h3>
                 <span class="sub_info" > </span>
                 <h4> Total Paid </h4>
-              <a href="#" class="small-box-footer"
+                <router-link :to="{ name: 'member_collection_history' }" class="small-box-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
-              ></a>
+              ></router-link>
             </div>
           </div>
 
@@ -36,129 +37,132 @@
                <h3 > {{ memberData.total_profit_taken }}  <span class="money_icon"> &#2547; </span>  </h3>
                 <span class="sub_info" > </span>
                 <h4> Total Profit Got </h4>
-              <a href="#" class="small-box-footer"
+               <router-link :to="{ name: 'member_profit_history' }" class="small-box-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
-              ></a>
+              ></router-link>
             </div>
           </div>
 
-        <div class="col-lg-3 col-xs-6">
+          <div  v-if="$can('member_and_amount')" class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.total_member }}  </h3>
                 <span class="sub_info" >  {{ analysis.total_amount_of_member  }} &#2547;  </span>
                 <h4> Member & Amount </h4>
-              <router-link :to="{ name: 'admin' }" class="small-box-footer"
+                <a href="#" class="small-box-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
-              ></router-link>
+              ></a>
             </div>
           </div>
 
 
-           <div class="col-lg-3 col-xs-6">
+           <div  v-if="$can('project_and_cost')" class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.total_project }}  </h3>
                 <span class="sub_info" >  {{ analysis.total_project_cost  }} &#2547;  </span>
                 <h4> Project & Cost </h4>
-              <router-link :to="{ name: 'project' }" class="small-box-footer"
+                <a href="#" class="small-box-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
-              ></router-link>
+              ></a>
             </div>
           </div>
 
 
 
-           <div class="col-lg-3 col-xs-6">
+           <div v-if="$can('investor_and_amount')"  class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.total_investor }}  </h3>
                 <span class="sub_info" >  {{ analysis.total_invested_amount - analysis.total_invested_return_amount }} &#2547;  </span>
                 <h4> Investor & Amount </h4>
-              <router-link :to="{ name: 'project' }" class="small-box-footer"
+               <a href="#" class="small-box-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
-              ></router-link>
+              ></a>
             </div>
           </div>
 
 
-           <div class="col-lg-3 col-xs-6">
+           <div v-if="$can('project_and_profit')"  class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.total_project }}  </h3>
                 <span class="sub_info" >  {{ analysis.total_project_profit  }} &#2547;  </span>
                 <h4> Project & Profit </h4>
-              <router-link :to="{ name: 'project' }" class="small-box-footer"
+              <a href="#" class="small-box-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
-              ></router-link>
+              ></a>
             </div>
           </div>
 
 
-           <div class="col-lg-3 col-xs-6">
+           <div v-if="$can('credit_this_month')"  class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.this_month_credit }} <span class="money_icon">  &#2547;</span>  </h3>
                 <span class="sub_info" >  </span>
                 <h4>  Credit This Month  </h4>
-              <router-link :to="{ name: 'credit' }" class="small-box-footer"
+                <a href="#" class="small-box-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
-              ></router-link>
+              ></a>
             </div>
           </div>
 
-            <div class="col-lg-3 col-xs-6">
+            <div v-if="$can('credit_total')" class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.total_credit }} <span class="money_icon">  &#2547;</span>  </h3>
                 <span class="sub_info" >  </span>
                 <h4>  Credit Total </h4>
-              <router-link :to="{ name: 'credit' }" class="small-box-footer"
+               <a href="#" class="small-box-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
-              ></router-link>
+              ></a>
             </div>
           </div>
 
-           <div class="col-lg-3 col-xs-6">
+           <div v-if="$can('debit_this_month')"  class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.this_month_debit }}  <span class="money_icon"> &#2547; </span>  </h3>
                 <span class="sub_info" > </span>
                 <h4>  Debit This Month  </h4>
-              <router-link :to="{ name: 'debit' }" class="small-box-footer"
+             <a href="#" class="small-box-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
-              ></router-link>
+              ></a>
             </div>
           </div>
 
 
-         <div class="col-lg-3 col-xs-6">
+         <div v-if="$can('debit_total')"  class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.total_debit }}  <span class="money_icon"> &#2547; </span>  </h3>
                 <span class="sub_info" > </span>
                 <h4>  Debit Total </h4>
-              <router-link :to="{ name: 'debit' }" class="small-box-footer"
+               <a href="#" class="small-box-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
-              ></router-link>
+              ></a>
             </div>
           </div>
 
-          <div class="col-lg-3 col-xs-6">
+          <div v-if="$can('company_assets')"  class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.company_value }}  <span class="money_icon"> &#2547; </span>  </h3>
                 <span class="sub_info" > </span>
                 <h4> Company Assets </h4>
-              <a href="#" class="small-box-footer"
+               <a href="#" class="small-box-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
               ></a>
             </div>
           </div>
 
-            <div class="col-lg-3 col-xs-6">
+
+          <div v-if="$can('share_value')"  class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.share_value }}  <span class="money_icon"> &#2547; </span>  </h3>
                 <span class="sub_info" > </span>
                 <h4> Share Value </h4>
-              <a href="#" class="small-box-footer"
+               <a href="#" class="small-box-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
               ></a>
             </div>
           </div>
 
+
         </div>
+
 
 
 

@@ -1,115 +1,85 @@
 <template>
   <div>
-    <admin-main></admin-main>
+    <member-main></member-main>
     <div class="content-wrapper">
-      <section class="content-header">
-        <h1>
-          <router-link :to="{ name: 'admin' }" class="btn btn-primary">
-            <i class="fa fa-arrow-right"></i>
-          </router-link>
-        </h1>
+      <section style="margin-bottom: 20px" class="content-header">
         <ol class="breadcrumb">
           <li>
-            <a href="#"> <i class="fa fa-dashboard"></i>Dashboard </a>
+            <a href="#"><i class="fa fa-dashboard"></i>Dashboard</a>
           </li>
-          <li class="active">Category</li>
+          <li class="active">notice</li>
         </ol>
       </section>
       <section class="content">
-        <div class="row justify-content-center">
-          <div class="col-lg-4 col-lg-offset-3">
-            <!-- Profile Image -->
-            <div class="box box-primary">
-              <div class="box-body box-profile">
-                <img
-                  class="profile-user-img img-responsive img-circle"
-                  :src="file"
-                  alt="User profile picture"
-                />
-
-                <h3 class="profile-username text-center" v-if="form.name">
-                  {{ form.name }}
-                </h3>
-                <h3 class="profile-username text-center" v-else>.......</h3>
-
-                <p class="text-muted text-center">Admin</p>
-
-                <ul class="list-group list-group-unbordered">
-                  <li class="list-group-item">
-                    <b>Name</b>
-                    <div v-if="!editMode">
-                      <a
-                        class="pull-right text-bold text-black"
-                        v-if="form.name"
-                        style="margin-top: -18px"
-                        >{{ form.name }}</a
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-10 ">
+              <div class="box box-primary">
+                <div class="box-header with-border text-center">
+                  <h3 class="box-title">Notice messages </h3>
+                </div>
+                <div class="box-body">
+                  <table class="table table-hover table-stripeed ">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Message</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <h1 class="text-center" v-if="loading">
+                        <i class="fa fa-spin fa-spinner"></i>
+                      </h1>
+                      <tr
+                        v-for="(notice, index) in notices.data"
+                        v-bind:key="index"
                       >
-                      <a class="pull-right" v-else>....</a>
-                    </div>
-                    <div v-else>
-                      <input
-                        type="text"
-                        class="form-control"
-                        v-model="form.name"
-                        name="name"
-                        :class="{ 'is-invalid': form.errors.has('name') }"
-                      />
-                      <has-error :form="form" field="name"></has-error>
-                    </div>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Email</b>
-                    <div v-if="!editMode">
-                      <a
-                        class="pull-right text-bold text-black"
-                        v-if="form.email"
-                        style="margin-top: -18px"
-                        >{{ form.email }}</a
+                        <td >
+                         <p v-if="notice.status=='0' " style="color:#000">  {{ index + 1 }} </p>
+                         <p v-else style="color:#566D7E">  {{ index + 1 }} </p>
+                        </td>
+                        <td >
+                         <p v-if="notice.status=='0' " style="color:#000">  {{ notice.name }} </p>
+                         <p v-else style="color:#566D7E">  {{ notice.name }} </p>
+                        </td>
+
+                        <td >
+                          <textarea v-if="notice.status=='0' " style="color:#000" class="form-control" rows="3">
+                           {{ notice.message }} </textarea>
+
+                             <textarea v-else style="color:566D7E" class="form-control" rows="3">
+                           {{ notice.message }} </textarea>
+                        </td>
+                        <td >
+
+
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="box-footer">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <pagination
+                        :data="notices"
+                        :limit="3"
+                        @pagination-change-page="noticeList"
                       >
-                      <a class="pull-right" v-else>....</a>
+                      </pagination>
                     </div>
-                    <div v-else>
-                      <input
-                        type="email"
-                        class="form-control"
-                        v-model="form.email"
-                        name="email"
-                        :class="{ 'is-invalid': form.errors.has('email') }"
-                      />
-                      <has-error :form="form" field="email"></has-error>
-
-                      <br />
-                      <b>Upload Image</b>
-                      <div class="form-group">
-                        <input
-                          type="file"
-                          name="image"
-                          class="form-control"
-                          @change="uploadImage"
-                        />
-                      </div>
+                    <div
+                      class="col-lg-6 mt-1"
+                      style="margin-top: 25px; text-align: right"
+                    >
+                      <p>
+                        Showing <strong>{{ notices.from }}</strong> to
+                        <strong>{{ notices.to }}</strong> of total
+                        <strong>{{ notices.total }}</strong> entries
+                      </p>
                     </div>
-                  </li>
-                </ul>
-
-                <div class="row">
-                  <div :class="editMode ? 'col-lg-8' : 'col-lg-12'">
-                    <a
-                      href="#"
-                      class="btn btn-primary btn-block"
-                      @click.prevent="edit"
-                    >
-                      <b>{{ actionText }}</b>
-                    </a>
-                  </div>
-                  <div class="col-lg-4" v-if="editMode">
-                    <a
-                      href="#"
-                      class="btn btn-danger btn-block"
-                      @click.prevent="(editMode = false), (actionText = 'Edit')"
-                    >
-                      <b>cancel</b>
-                    </a>
                   </div>
                 </div>
               </div>
@@ -121,121 +91,39 @@
   </div>
 </template>
 
-
 <script>
-import Vue from "vue";
-import { Form, HasError, AlertError } from "vform";
-
-Vue.component(HasError.name, HasError);
 export default {
-  name: "Profile",
   created() {
-    this.getAdmin();
     setTimeout(() => {
+      this.noticeList();
       this.loading = false;
     }, 500);
   },
   data() {
     return {
-      form: new Form({
-        name: "",
-        email: "",
-        image: "",
-        id: "",
-      }),
-
+      notices: {},
       loading: true,
-      error: "",
-
-      actionText: "Edit",
-      editMode: false,
-      file: this.$store.state.image_base_link+"images/static/user2-160x160.jpg",
+      item: 10,
+      search: "",
     };
   },
-
   methods: {
-    updateProfile() {
-      console.log("add");
-      this.form
-        .post("/update/admin/" + this.form.id, {
-          transformRequest: [
-            function (data, headers) {
-              return objectToFormData(data);
-            },
-          ],
+    noticeList(page = 1) {
+      axios
+        .get("/api/display/notices?page=" + page, {
+          params: {
+            item: this.item,
+          },
         })
         .then((resp) => {
-          if (resp.data.status == "SUCCESS") {
-            this.$toasted.show("Your profile was updated.", {
-              type: "success",
-              position: "top-right",
-              duration: 1000,
-            });
-            this.editMode = false;
-            this.$router.push({ name: "adminLogin" });
-         
+          console.log(resp);
+          if (resp.data.status == "OK") {
+            this.notices = resp.data.notices;
+
           }
-        })
-        .catch((error) => {
-          console.log(error);
-          this.error = "some thing want to wrong";
         });
     },
-    uploadImage(e) {
-      const file = e.target.files[0];
 
-      ///let image file size check
-      let reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (evt) => {
-        let img = new Image();
-        img.onload = () => {
-          if (img.width < 360 && img.height < 360) {
-            this.form.image = file;
-            this.file = evt.target.result;
-            return;
-          } else {
-            this.disabled = true;
-            alert(
-              "Image maximu size 360*360px.But Upload imaze size" +
-                img.width +
-                "*" +
-                img.height +
-                "px"
-            );
-            return;
-          }
-        };
-        img.src = evt.target.result;
-      };
-    },
-
-    getAdmin() {
-      axios.get("/single/admin").then((resp) => {
-        this.form.name = resp.data.admin.name;
-        this.form.email = resp.data.admin.email;
-        this.form.id = resp.data.admin.id;
-        if (resp.data.admin.image != null) {
-          this.file =this.$store.state.image_base_link+resp.data.admin.image;
-        }
-      });
-    },
-
-    edit() {
-      if (this.editMode == true) {
-        this.updateProfile();
-      } else {
-        this.editMode = true;
-        this.actionText = "Update";
-      }
-    },
   },
-  computed: {},
 };
 </script>
-
-<style scoped>
-.mb-2 {
-  margin-bottom: 5px !important;
-}
-</style>

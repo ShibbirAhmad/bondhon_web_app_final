@@ -607,7 +607,7 @@ const routes = [
 
     {
         path: '/backend/listAdmin',
-        component: () => import(/* webpackChunkName: "admin" */'./components/admin/admin/Admin'),
+        component: () => import(/* webpackChunkName: "admin" */'./components/admin/admin/Admin.vue'),
         name: 'admin',
         meta: {
             requiresAuthAdmin: true
@@ -616,9 +616,21 @@ const routes = [
     },
 
 
+     {
+        path: '/backend/list/member',
+        component: () => import(/* webpackChunkName: "bondhon_member" */'./components/admin/admin/Member.vue'),
+        name: 'bondhon_member',
+         meta: {
+            title: 'member | list',
+            requiresAuthAdmin: true
+        }
+
+    },
+
+
     {
         path: '/backend/admin/profile',
-        component: () => import(/* webpackChunkName: "adminProfile" */'./components/admin/admin/Add'),
+        component: () => import(/* webpackChunkName: "adminProfile" */'./components/admin/admin/AdminProfile.vue'),
         name: 'adminProfile',
         meta: {
             requiresAuthAdmin: true,
@@ -626,31 +638,62 @@ const routes = [
         }
 
     },
+
     {
-        path: '/backend/addAdmin',
-        component: () => import(/* webpackChunkName: "adminAdd" */'./components/admin/admin/Add'),
-        name: 'adminAdd',
+        path: '/backend/add/member',
+        component: () => import(/* webpackChunkName: "member_add" */'./components/admin/admin/MemberAdd.vue'),
+        name: 'member_add',
         meta: {
-            requiresAuthAdmin: true
+            requiresAuthAdmin: true,
+            title : 'member add'
         }
     },
-    {
-        path: '/backend/editAdmin/:adminId',
-        component: () => import(/* webpackChunkName: "editAdmin" */'./components/admin/admin/Edit'),
+
+  {
+        path: '/backend/add/admin',
+        component: () => import(/* webpackChunkName: "admin_add" */'./components/admin/admin/AdminAdd.vue'),
+        name: 'admin_add',
+        meta: {
+            requiresAuthAdmin: true,
+               title : 'admin add'
+        }
+    },
+      {
+        path: '/backend/edit/admin/:adminId',
+        component: () => import(/* webpackChunkName: "editAdmin" */'./components/admin/admin/AdminEdit.vue'),
         name: 'editAdmin',
         meta: {
             requiresAuthAdmin: true
         }
     },
+    {
+        path: '/backend/edit/member/:adminId',
+        component: () => import(/* webpackChunkName: "edit_member" */'./components/admin/admin/EditMember.vue'),
+        name: 'edit_member',
+        meta: {
+            requiresAuthAdmin: true
+        }
+    },
      {
-        path: '/backend/member/details/:id',
-        component: () => import(/* webpackChunkName: "member_details" */'./components/admin/admin/AdminDetails.vue'),
-        name: 'member_details',
+        path: '/backend/admin/details/:id',
+        component: () => import(/* webpackChunkName: "admin_profile" */'./components/admin/admin/AdminProfile.vue'),
+        name: 'admin_profile',
             meta: {
             title:"memeber details",
             requiresAuthAdmin: true
         }
     },
+
+    {
+        path: '/backend/member/details/:id',
+        component: () => import(/* webpackChunkName: "bondhon_member_details" */'./components/admin/admin/MemberDetails.vue'),
+        name: 'bondhon_member_details',
+            meta: {
+            title:"memeber details",
+            requiresAuthAdmin: true
+        }
+    },
+
     {
         path: '/backend/assign/role/admin/:id',
         component: () => import(/* webpackChunkName: "assingRoleAdmin" */'./components/admin/admin/Role'),

@@ -774,7 +774,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     adminList: function adminList() {
       var _this2 = this;
 
-      axios.get("/api/list/admin").then(function (resp) {
+      axios.get("/api/member/list").then(function (resp) {
         console.log(resp);
 
         if (resp.data.status == "SUCCESS") {

@@ -324,7 +324,7 @@ export default {
 
       bondhonMemberList() {
       axios
-        .get("/api/list/admin")
+        .get("/api/member/list")
         .then((resp) => {
           console.log(resp);
           let options = {};

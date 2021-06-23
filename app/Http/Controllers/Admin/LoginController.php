@@ -72,8 +72,26 @@ class LoginController extends Controller
 
     }
 
-      public function member()
-    {
+
+    //function for admin to merchan access
+    public function adminAccessMember($id){
+
+          $member = Admin::find($id);
+          if ($member) {
+              session()->put('member',$member);
+              return response()->json([
+                 'status' => 'SUCCESS',
+                  'token'=>'427525ghfhgdcgfc',
+                  'member' => $member,
+              ]);
+          }
+    }
+
+
+
+
+
+      public function member(){
         // return "hello";
         $member = session()->get('member');
         if ($member) {

@@ -757,7 +757,8 @@ export default {
     },
 
     adminList() {
-      axios.get("/api/list/admin").then((resp) => {
+      axios.get("/api/member/list")
+      .then((resp) => {
         console.log(resp);
         if (resp.data.status == "SUCCESS") {
           this.admins = resp.data.admins;

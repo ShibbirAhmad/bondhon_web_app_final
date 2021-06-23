@@ -55,7 +55,7 @@
                   <div class="col-md-3">
                     <div>
                       <router-link
-                        :to="{name:'admin_details',params:{id:getAdmin.id}}"
+                        :to="{name:'admin_profile',params:{id:getAdmin.id}}"
                         style="color: #000 !important"
                         class="btn btn-default btn-flat"
                         >Profile</router-link

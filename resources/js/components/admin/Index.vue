@@ -19,7 +19,7 @@
 
         <div class="row" >
 
-          <div class="col-lg-3 col-xs-6">
+          <div  v-if="$can('member_and_amount')" class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.total_member }}  </h3>
                 <span class="sub_info" >  {{ analysis.total_amount_of_member  }} &#2547;  </span>
@@ -31,7 +31,7 @@
           </div>
 
 
-           <div class="col-lg-3 col-xs-6">
+           <div  v-if="$can('project_and_cost')" class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.total_project }}  </h3>
                 <span class="sub_info" >  {{ analysis.total_project_cost  }} &#2547;  </span>
@@ -44,7 +44,7 @@
 
 
 
-           <div class="col-lg-3 col-xs-6">
+           <div v-if="$can('investor_and_amount')"  class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.total_investor }}  </h3>
                 <span class="sub_info" >  {{ analysis.total_invested_amount - analysis.total_invested_return_amount }} &#2547;  </span>
@@ -56,7 +56,7 @@
           </div>
 
 
-           <div class="col-lg-3 col-xs-6">
+           <div v-if="$can('project_and_profit')"  class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.total_project }}  </h3>
                 <span class="sub_info" >  {{ analysis.total_project_profit  }} &#2547;  </span>
@@ -68,7 +68,7 @@
           </div>
 
 
-           <div class="col-lg-3 col-xs-6">
+           <div v-if="$can('credit_this_month')"  class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.this_month_credit }} <span class="money_icon">  &#2547;</span>  </h3>
                 <span class="sub_info" >  </span>
@@ -79,7 +79,7 @@
             </div>
           </div>
 
-            <div class="col-lg-3 col-xs-6">
+            <div v-if="$can('credit_total')" class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.total_credit }} <span class="money_icon">  &#2547;</span>  </h3>
                 <span class="sub_info" >  </span>
@@ -90,7 +90,7 @@
             </div>
           </div>
 
-           <div class="col-lg-3 col-xs-6">
+           <div v-if="$can('debit_this_month')"  class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.this_month_debit }}  <span class="money_icon"> &#2547; </span>  </h3>
                 <span class="sub_info" > </span>
@@ -102,7 +102,7 @@
           </div>
 
 
-         <div class="col-lg-3 col-xs-6">
+         <div v-if="$can('debit_total')"  class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.total_debit }}  <span class="money_icon"> &#2547; </span>  </h3>
                 <span class="sub_info" > </span>
@@ -113,7 +113,7 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-xs-6">
+          <div v-if="$can('company_assets')"  class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.company_value }}  <span class="money_icon"> &#2547; </span>  </h3>
                 <span class="sub_info" > </span>
@@ -125,7 +125,7 @@
           </div>
 
 
-          <div class="col-lg-3 col-xs-6">
+          <div v-if="$can('share_value')"  class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
                <h3 > {{ analysis.share_value }}  <span class="money_icon"> &#2547; </span>  </h3>
                 <span class="sub_info" > </span>
@@ -135,7 +135,7 @@
               ></a>
             </div>
           </div>
-          
+
 
         </div>
 

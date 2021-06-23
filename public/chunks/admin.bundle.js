@@ -176,7 +176,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     var _this = this;
@@ -310,19 +309,8 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       });
-    },
-    getPagination: function getPagination() {
-      var _this6 = this;
-
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      this.loading = true;
-      axios.get("/list/admin?page=" + page).then(function (response) {
-        _this6.loading = false;
-        _this6.admins = response.data.admins;
-      });
     }
-  },
-  computed: {}
+  }
 });
 
 /***/ }),
@@ -356,7 +344,7 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "btn btn-primary",
-                  attrs: { to: { name: "adminAdd" } }
+                  attrs: { to: { name: "admin_add" } }
                 },
                 [_c("i", { staticClass: "fa fa-plus" })]
               )
@@ -377,7 +365,7 @@ var render = function() {
                     { staticClass: "box-header with-border text-center" },
                     [
                       _c("h3", { staticClass: "box-title" }, [
-                        _vm._v("Bondhon Members ")
+                        _vm._v("Bondhon Admin ")
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "row" }, [
@@ -507,7 +495,7 @@ var render = function() {
                                       {
                                         attrs: {
                                           to: {
-                                            name: "admin_details",
+                                            name: "adminProfile",
                                             params: { id: admin.id }
                                           }
                                         }
@@ -518,7 +506,9 @@ var render = function() {
                                   1
                                 ),
                                 _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(admin.phone))]),
+                                _c("td", [
+                                  _vm._v(_vm._s(admin.phone ? admin.phone : ""))
+                                ]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(admin.email))]),
                                 _vm._v(" "),
@@ -540,12 +530,6 @@ var render = function() {
                                           alt: "admin Image"
                                         }
                                       })
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _c("address", [
-                                    _vm._v(_vm._s(admin.present_address))
-                                  ])
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [
@@ -652,7 +636,7 @@ var render = function() {
                         [
                           _c("pagination", {
                             attrs: { data: _vm.admins },
-                            on: { "pagination-change-page": _vm.getPagination }
+                            on: { "pagination-change-page": _vm.adminList }
                           })
                         ],
                         1
@@ -704,7 +688,7 @@ var staticRenderFns = [
         ])
       ]),
       _vm._v(" "),
-      _c("li", { staticClass: "active" }, [_vm._v("Memebers")])
+      _c("li", { staticClass: "active" }, [_vm._v("Admin")])
     ])
   },
   function() {
@@ -722,8 +706,6 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Email")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Image")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Address")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
         _vm._v(" "),

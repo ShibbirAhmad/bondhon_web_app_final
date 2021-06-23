@@ -206,20 +206,6 @@ var render = function() {
                                   _c(
                                     "router-link",
                                     {
-                                      staticClass: "btn btn-success btn-sm",
-                                      attrs: {
-                                        to: {
-                                          name: "editAdmin",
-                                          params: { adminId: role.id }
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("Edit")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "router-link",
-                                    {
                                       staticClass: "btn btn-primary btn-sm",
                                       attrs: {
                                         to: {
@@ -305,7 +291,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box-header with-border" }, [
-      _c("h3", { staticClass: "box-title" }, [_vm._v("Roleee table")])
+      _c("h3", { staticClass: "box-title" }, [_vm._v("Role table")])
     ])
   },
   function() {

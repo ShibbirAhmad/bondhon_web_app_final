@@ -124,6 +124,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MODULE_1__["HasError"].name, vform__WEBPACK_IMPORTED_MODULE_1__["HasError"]);
@@ -473,28 +475,26 @@ var render = function() {
                             )
                           }),
                           _vm._v(" "),
-                          _c("br"),
-                          _vm._v(" "),
-                          _vm.$can("manage order")
-                            ? _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-primary btn-block",
-                                  attrs: {
-                                    disabled: _vm.form.busy,
-                                    type: "submit"
-                                  }
-                                },
-                                [
-                                  _vm.form.busy
-                                    ? _c("i", {
-                                        staticClass: "fa fa-spin fa-spinner"
-                                      })
-                                    : _vm._e(),
-                                  _vm._v("Update\n                ")
-                                ]
-                              )
-                            : _vm._e()
+                          _c("div", { staticClass: "form-group text-center" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary btn-block",
+                                attrs: {
+                                  disabled: _vm.form.busy,
+                                  type: "submit"
+                                }
+                              },
+                              [
+                                _vm.form.busy
+                                  ? _c("i", {
+                                      staticClass: "fa fa-spin fa-spinner"
+                                    })
+                                  : _vm._e(),
+                                _vm._v("Update\n                ")
+                              ]
+                            )
+                          ])
                         ],
                         2
                       )

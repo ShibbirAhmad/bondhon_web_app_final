@@ -79,20 +79,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MODULE_1__["HasError"].name, vform__WEBPACK_IMPORTED_MODULE_1__["HasError"]);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Add",
   created: function created() {
     var _this = this;
 
-    console.log(this.$route.params.id);
-    this.adminId = this.$route.params.id;
-    this.getAdmin();
     setTimeout(function () {
       _this.loading = false;
-    }, 500);
+    }, 1000);
   },
   data: function data() {
     return {
@@ -105,42 +102,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     };
   },
   methods: {
-    getAdmin: function getAdmin() {
+    updatePassword: function updatePassword() {
       var _this2 = this;
 
-      axios.get('/edit/admin/' + this.$route.params.id).then(function (resp) {
-        console.log(resp);
-
-        if (resp.data.status == 'SUCCESS') {
-          _this2.form.name = resp.data.admin.name;
-          _this2.form.email = resp.data.admin.email;
-        } else {
-          _this2.$toasted.show('some thing want to wrong', {
-            type: "error",
-            position: "top-center",
-            duration: 5000
-          });
-        }
-      })["catch"](function (error) {
-        console.log(error);
-
-        _this2.$toasted.show('some thing want to wrong', {
-          type: "error",
-          position: "top-center",
-          duration: 5000
-        });
-      });
-    },
-    updatePassword: function updatePassword() {
-      var _this3 = this;
-
-      this.form.post('/update/admin/password/' + this.$route.params.id, {
-        transformRequest: [function (data, headers) {
-          return objectToFormData(data);
-        }],
-        onUploadProgress: function onUploadProgress(e) {
-          // Do whatever you want with the progress event
-          console.log(e);
+      axios.get('/api/update/member/password', {
+        params: {
+          old_password: this.form.old_password,
+          new_password: this.form.new_password
         }
       }).then(function (resp) {
         console.log(resp);
@@ -150,14 +118,16 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
             type: 'info',
             text: resp.data.message
           });
+
+          if (resp.data.success == "OK") {
+            _this2.$router.push({
+              name: "member_dashboard"
+            });
+          }
         }
-      })["catch"](function (error) {
-        console.log(error);
-        _this3.error = 'some thing want to wrong';
       });
     }
-  },
-  computed: {}
+  }
 });
 
 /***/ }),
@@ -229,7 +199,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("admin-main"),
+      _c("member-main"),
       _vm._v(" "),
       _c("div", { staticClass: "content-wrapper" }, [
         _c("section", { staticClass: "content-header" }, [
@@ -240,9 +210,9 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "btn btn-primary",
-                  attrs: { to: { name: "admin" } }
+                  attrs: { to: { name: "member_dashboard" } }
                 },
-                [_c("i", { staticClass: "fa fa-arrow-right" })]
+                [_c("i", { staticClass: "fa fa-arrow-left" })]
               )
             ],
             1
@@ -387,25 +357,28 @@ var render = function() {
                             1
                           ),
                           _vm._v(" "),
-                          _c("br"),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-primary",
-                              attrs: { disabled: _vm.form.busy, type: "submit" }
-                            },
-                            [
-                              _vm.form.busy
-                                ? _c("i", {
-                                    staticClass: "fa fa-spin fa-spinner"
-                                  })
-                                : _vm._e(),
-                              _vm._v(
-                                "update \n                                "
-                              )
-                            ]
-                          )
+                          _c("div", { staticClass: "form-group text-center" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: {
+                                  disabled: _vm.form.busy,
+                                  type: "submit"
+                                }
+                              },
+                              [
+                                _vm.form.busy
+                                  ? _c("i", {
+                                      staticClass: "fa fa-spin fa-spinner"
+                                    })
+                                  : _vm._e(),
+                                _vm._v(
+                                  "update\n                                "
+                                )
+                              ]
+                            )
+                          ])
                         ]
                       )
                 ])

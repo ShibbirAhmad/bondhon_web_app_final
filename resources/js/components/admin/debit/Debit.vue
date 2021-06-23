@@ -89,7 +89,7 @@
                         <th scope="col">Amount</th>
                         <th scope="col">Comment</th>
                         <th scope="col">Insert</th>
-                        <!-- <th scope="col">Action</th> -->
+                        <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -107,7 +107,7 @@
                         <td>{{ debit.comment }}</td>
 
                         <td>{{ debit.admin.name }}</td>
-                    <!-- <td>
+                    <td>
                           <router-link
 
                             :to="{
@@ -125,7 +125,7 @@
                             @click="trash(debit.id, index)"
                             ><i class="fa fa-trash"></i
                           ></a>
-                        </td> -->
+                        </td>
                       </tr>
                     </tbody>
                   </table>

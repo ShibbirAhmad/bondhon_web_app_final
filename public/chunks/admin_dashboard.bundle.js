@@ -391,310 +391,364 @@ var render = function() {
             )
           : _c("section", { staticClass: "content" }, [
               _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
-                  _c(
-                    "div",
-                    { staticClass: "small-box  bg-green" },
-                    [
-                      _c("h3", [
-                        _vm._v(" " + _vm._s(_vm.analysis.total_member) + "  ")
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "sub_info" }, [
-                        _vm._v(
-                          "  " +
-                            _vm._s(_vm.analysis.total_amount_of_member) +
-                            " ৳  "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("h4", [_vm._v(" Member & Amount ")]),
-                      _vm._v(" "),
+                _vm.$can("member_and_amount")
+                  ? _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
                       _c(
-                        "router-link",
-                        {
-                          staticClass: "small-box-footer",
-                          attrs: { to: { name: "admin" } }
-                        },
+                        "div",
+                        { staticClass: "small-box  bg-green" },
                         [
-                          _vm._v("More info "),
-                          _c("i", { staticClass: "fa fa-arrow-circle-right" })
-                        ]
+                          _c("h3", [
+                            _vm._v(
+                              " " + _vm._s(_vm.analysis.total_member) + "  "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "sub_info" }, [
+                            _vm._v(
+                              "  " +
+                                _vm._s(_vm.analysis.total_amount_of_member) +
+                                " ৳  "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("h4", [_vm._v(" Member & Amount ")]),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "small-box-footer",
+                              attrs: { to: { name: "admin" } }
+                            },
+                            [
+                              _vm._v("More info "),
+                              _c("i", {
+                                staticClass: "fa fa-arrow-circle-right"
+                              })
+                            ]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  )
-                ]),
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
-                  _c(
-                    "div",
-                    { staticClass: "small-box  bg-green" },
-                    [
-                      _c("h3", [
-                        _vm._v(" " + _vm._s(_vm.analysis.total_project) + "  ")
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "sub_info" }, [
-                        _vm._v(
-                          "  " +
-                            _vm._s(_vm.analysis.total_project_cost) +
-                            " ৳  "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("h4", [_vm._v(" Project & Cost ")]),
-                      _vm._v(" "),
+                _vm.$can("project_and_cost")
+                  ? _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
                       _c(
-                        "router-link",
-                        {
-                          staticClass: "small-box-footer",
-                          attrs: { to: { name: "project" } }
-                        },
+                        "div",
+                        { staticClass: "small-box  bg-green" },
                         [
-                          _vm._v("More info "),
-                          _c("i", { staticClass: "fa fa-arrow-circle-right" })
-                        ]
+                          _c("h3", [
+                            _vm._v(
+                              " " + _vm._s(_vm.analysis.total_project) + "  "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "sub_info" }, [
+                            _vm._v(
+                              "  " +
+                                _vm._s(_vm.analysis.total_project_cost) +
+                                " ৳  "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("h4", [_vm._v(" Project & Cost ")]),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "small-box-footer",
+                              attrs: { to: { name: "project" } }
+                            },
+                            [
+                              _vm._v("More info "),
+                              _c("i", {
+                                staticClass: "fa fa-arrow-circle-right"
+                              })
+                            ]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  )
-                ]),
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
-                  _c(
-                    "div",
-                    { staticClass: "small-box  bg-green" },
-                    [
-                      _c("h3", [
-                        _vm._v(" " + _vm._s(_vm.analysis.total_investor) + "  ")
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "sub_info" }, [
-                        _vm._v(
-                          "  " +
-                            _vm._s(
-                              _vm.analysis.total_invested_amount -
-                                _vm.analysis.total_invested_return_amount
-                            ) +
-                            " ৳  "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("h4", [_vm._v(" Investor & Amount ")]),
-                      _vm._v(" "),
+                _vm.$can("investor_and_amount")
+                  ? _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
                       _c(
-                        "router-link",
-                        {
-                          staticClass: "small-box-footer",
-                          attrs: { to: { name: "project" } }
-                        },
+                        "div",
+                        { staticClass: "small-box  bg-green" },
                         [
-                          _vm._v("More info "),
-                          _c("i", { staticClass: "fa fa-arrow-circle-right" })
-                        ]
+                          _c("h3", [
+                            _vm._v(
+                              " " + _vm._s(_vm.analysis.total_investor) + "  "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "sub_info" }, [
+                            _vm._v(
+                              "  " +
+                                _vm._s(
+                                  _vm.analysis.total_invested_amount -
+                                    _vm.analysis.total_invested_return_amount
+                                ) +
+                                " ৳  "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("h4", [_vm._v(" Investor & Amount ")]),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "small-box-footer",
+                              attrs: { to: { name: "project" } }
+                            },
+                            [
+                              _vm._v("More info "),
+                              _c("i", {
+                                staticClass: "fa fa-arrow-circle-right"
+                              })
+                            ]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  )
-                ]),
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
-                  _c(
-                    "div",
-                    { staticClass: "small-box  bg-green" },
-                    [
-                      _c("h3", [
-                        _vm._v(" " + _vm._s(_vm.analysis.total_project) + "  ")
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "sub_info" }, [
-                        _vm._v(
-                          "  " +
-                            _vm._s(_vm.analysis.total_project_profit) +
-                            " ৳  "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("h4", [_vm._v(" Project & Profit ")]),
-                      _vm._v(" "),
+                _vm.$can("project_and_profit")
+                  ? _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
                       _c(
-                        "router-link",
-                        {
-                          staticClass: "small-box-footer",
-                          attrs: { to: { name: "project" } }
-                        },
+                        "div",
+                        { staticClass: "small-box  bg-green" },
                         [
-                          _vm._v("More info "),
-                          _c("i", { staticClass: "fa fa-arrow-circle-right" })
-                        ]
+                          _c("h3", [
+                            _vm._v(
+                              " " + _vm._s(_vm.analysis.total_project) + "  "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "sub_info" }, [
+                            _vm._v(
+                              "  " +
+                                _vm._s(_vm.analysis.total_project_profit) +
+                                " ৳  "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("h4", [_vm._v(" Project & Profit ")]),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "small-box-footer",
+                              attrs: { to: { name: "project" } }
+                            },
+                            [
+                              _vm._v("More info "),
+                              _c("i", {
+                                staticClass: "fa fa-arrow-circle-right"
+                              })
+                            ]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  )
-                ]),
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
-                  _c(
-                    "div",
-                    { staticClass: "small-box  bg-green" },
-                    [
-                      _c("h3", [
-                        _vm._v(
-                          " " + _vm._s(_vm.analysis.this_month_credit) + " "
-                        ),
-                        _c("span", { staticClass: "money_icon" }, [
-                          _vm._v("  ৳")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "sub_info" }),
-                      _vm._v(" "),
-                      _c("h4", [_vm._v("  Credit This Month  ")]),
-                      _vm._v(" "),
+                _vm.$can("credit_this_month")
+                  ? _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
                       _c(
-                        "router-link",
-                        {
-                          staticClass: "small-box-footer",
-                          attrs: { to: { name: "credit" } }
-                        },
+                        "div",
+                        { staticClass: "small-box  bg-green" },
                         [
-                          _vm._v("More info "),
-                          _c("i", { staticClass: "fa fa-arrow-circle-right" })
-                        ]
+                          _c("h3", [
+                            _vm._v(
+                              " " + _vm._s(_vm.analysis.this_month_credit) + " "
+                            ),
+                            _c("span", { staticClass: "money_icon" }, [
+                              _vm._v("  ৳")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "sub_info" }),
+                          _vm._v(" "),
+                          _c("h4", [_vm._v("  Credit This Month  ")]),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "small-box-footer",
+                              attrs: { to: { name: "credit" } }
+                            },
+                            [
+                              _vm._v("More info "),
+                              _c("i", {
+                                staticClass: "fa fa-arrow-circle-right"
+                              })
+                            ]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  )
-                ]),
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
-                  _c(
-                    "div",
-                    { staticClass: "small-box  bg-green" },
-                    [
-                      _c("h3", [
-                        _vm._v(" " + _vm._s(_vm.analysis.total_credit) + " "),
-                        _c("span", { staticClass: "money_icon" }, [
-                          _vm._v("  ৳")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "sub_info" }),
-                      _vm._v(" "),
-                      _c("h4", [_vm._v("  Credit Total ")]),
-                      _vm._v(" "),
+                _vm.$can("credit_total")
+                  ? _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
                       _c(
-                        "router-link",
-                        {
-                          staticClass: "small-box-footer",
-                          attrs: { to: { name: "credit" } }
-                        },
+                        "div",
+                        { staticClass: "small-box  bg-green" },
                         [
-                          _vm._v("More info "),
-                          _c("i", { staticClass: "fa fa-arrow-circle-right" })
-                        ]
+                          _c("h3", [
+                            _vm._v(
+                              " " + _vm._s(_vm.analysis.total_credit) + " "
+                            ),
+                            _c("span", { staticClass: "money_icon" }, [
+                              _vm._v("  ৳")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "sub_info" }),
+                          _vm._v(" "),
+                          _c("h4", [_vm._v("  Credit Total ")]),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "small-box-footer",
+                              attrs: { to: { name: "credit" } }
+                            },
+                            [
+                              _vm._v("More info "),
+                              _c("i", {
+                                staticClass: "fa fa-arrow-circle-right"
+                              })
+                            ]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  )
-                ]),
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
-                  _c(
-                    "div",
-                    { staticClass: "small-box  bg-green" },
-                    [
-                      _c("h3", [
-                        _vm._v(
-                          " " + _vm._s(_vm.analysis.this_month_debit) + "  "
-                        ),
-                        _c("span", { staticClass: "money_icon" }, [
-                          _vm._v(" ৳ ")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "sub_info" }),
-                      _vm._v(" "),
-                      _c("h4", [_vm._v("  Debit This Month  ")]),
-                      _vm._v(" "),
+                _vm.$can("debit_this_month")
+                  ? _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
                       _c(
-                        "router-link",
-                        {
-                          staticClass: "small-box-footer",
-                          attrs: { to: { name: "debit" } }
-                        },
+                        "div",
+                        { staticClass: "small-box  bg-green" },
                         [
-                          _vm._v("More info "),
-                          _c("i", { staticClass: "fa fa-arrow-circle-right" })
-                        ]
+                          _c("h3", [
+                            _vm._v(
+                              " " + _vm._s(_vm.analysis.this_month_debit) + "  "
+                            ),
+                            _c("span", { staticClass: "money_icon" }, [
+                              _vm._v(" ৳ ")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "sub_info" }),
+                          _vm._v(" "),
+                          _c("h4", [_vm._v("  Debit This Month  ")]),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "small-box-footer",
+                              attrs: { to: { name: "debit" } }
+                            },
+                            [
+                              _vm._v("More info "),
+                              _c("i", {
+                                staticClass: "fa fa-arrow-circle-right"
+                              })
+                            ]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  )
-                ]),
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
-                  _c(
-                    "div",
-                    { staticClass: "small-box  bg-green" },
-                    [
-                      _c("h3", [
-                        _vm._v(" " + _vm._s(_vm.analysis.total_debit) + "  "),
-                        _c("span", { staticClass: "money_icon" }, [
-                          _vm._v(" ৳ ")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "sub_info" }),
-                      _vm._v(" "),
-                      _c("h4", [_vm._v("  Debit Total ")]),
-                      _vm._v(" "),
+                _vm.$can("debit_total")
+                  ? _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
                       _c(
-                        "router-link",
-                        {
-                          staticClass: "small-box-footer",
-                          attrs: { to: { name: "debit" } }
-                        },
+                        "div",
+                        { staticClass: "small-box  bg-green" },
                         [
-                          _vm._v("More info "),
-                          _c("i", { staticClass: "fa fa-arrow-circle-right" })
-                        ]
+                          _c("h3", [
+                            _vm._v(
+                              " " + _vm._s(_vm.analysis.total_debit) + "  "
+                            ),
+                            _c("span", { staticClass: "money_icon" }, [
+                              _vm._v(" ৳ ")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "sub_info" }),
+                          _vm._v(" "),
+                          _c("h4", [_vm._v("  Debit Total ")]),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "small-box-footer",
+                              attrs: { to: { name: "debit" } }
+                            },
+                            [
+                              _vm._v("More info "),
+                              _c("i", {
+                                staticClass: "fa fa-arrow-circle-right"
+                              })
+                            ]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  )
-                ]),
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
-                  _c("div", { staticClass: "small-box  bg-green" }, [
-                    _c("h3", [
-                      _vm._v(" " + _vm._s(_vm.analysis.company_value) + "  "),
-                      _c("span", { staticClass: "money_icon" }, [_vm._v(" ৳ ")])
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "sub_info" }),
-                    _vm._v(" "),
-                    _c("h4", [_vm._v(" Company Assets ")]),
-                    _vm._v(" "),
-                    _vm._m(1)
-                  ])
-                ]),
+                _vm.$can("company_assets")
+                  ? _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
+                      _c("div", { staticClass: "small-box  bg-green" }, [
+                        _c("h3", [
+                          _vm._v(
+                            " " + _vm._s(_vm.analysis.company_value) + "  "
+                          ),
+                          _c("span", { staticClass: "money_icon" }, [
+                            _vm._v(" ৳ ")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "sub_info" }),
+                        _vm._v(" "),
+                        _c("h4", [_vm._v(" Company Assets ")]),
+                        _vm._v(" "),
+                        _vm._m(1)
+                      ])
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
-                  _c("div", { staticClass: "small-box  bg-green" }, [
-                    _c("h3", [
-                      _vm._v(" " + _vm._s(_vm.analysis.share_value) + "  "),
-                      _c("span", { staticClass: "money_icon" }, [_vm._v(" ৳ ")])
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "sub_info" }),
-                    _vm._v(" "),
-                    _c("h4", [_vm._v(" Share Value ")]),
-                    _vm._v(" "),
-                    _vm._m(2)
-                  ])
-                ])
+                _vm.$can("share_value")
+                  ? _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
+                      _c("div", { staticClass: "small-box  bg-green" }, [
+                        _c("h3", [
+                          _vm._v(" " + _vm._s(_vm.analysis.share_value) + "  "),
+                          _c("span", { staticClass: "money_icon" }, [
+                            _vm._v(" ৳ ")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "sub_info" }),
+                        _vm._v(" "),
+                        _c("h4", [_vm._v(" Share Value ")]),
+                        _vm._v(" "),
+                        _vm._m(2)
+                      ])
+                    ])
+                  : _vm._e()
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [

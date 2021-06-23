@@ -80,15 +80,15 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
-                                             <th scope="col">Date</th>
-
-                        <th scope="col">Invoice_no</th>
-                         <th scope="col">Purpose</th>
+                          <th scope="col">#</th>
+                          <th scope="col">Date</th>
+                          <th scope="col">Invoice_no</th>
+                          <th scope="col">Purpose</th>
                           <th scope="col">Credit In</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Comment</th>
-                        <th scope="col">Insert</th>
+                          <th scope="col">Amount</th>
+                          <th scope="col">Comment</th>
+                          <th scope="col">Insert</th>
+                          <th scope="col">Action</th>
 
                       </tr>
                     </thead>
@@ -107,7 +107,7 @@
                         <td>{{ credit.comment }}</td>
                         <td>{{ credit.admin.name }}</td>
 
-                        <!-- <td>
+                        <td>
                           <router-link
                             :to="{
                               name: 'creditEdit',
@@ -126,7 +126,7 @@
 
                             ><i class="fa fa-trash"></i
                           ></a>
-                        </td> -->
+                        </td>
                       </tr>
                     </tbody>
                   </table>
