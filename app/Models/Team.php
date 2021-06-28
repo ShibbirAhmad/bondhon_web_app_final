@@ -11,9 +11,9 @@ class Team extends Model
 
        public static function sendMessageToEmployeer($employee,$amount){
 
-        $api_key = "C20047545e16e1c02a1b38.69878796";
+        $api_key = "C200833360d1a324e46036.34232547";
         $contacts = $employee->phone;
-        $senderid = '8809601000740';
+        $senderid = '8809612436107';
         $sms = 'Assalamualikum, '. $employee->name.' you have received a payment as your salary ' .$amount.'/= BDT, from the bondhonsociety.com';
         // put here your dynamic message text here
         $URL = "http://sms.esmsbd.com/smsapi?api_key=" . urlencode($api_key) . "&type=text&contacts=" . urlencode($contacts) . "&senderid=" . urlencode($senderid) . "&msg=" . urlencode($sms);

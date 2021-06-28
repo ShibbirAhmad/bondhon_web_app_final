@@ -735,7 +735,11 @@ var render = function() {
                   ? _c("div", { staticClass: "col-lg-3 col-xs-6" }, [
                       _c("div", { staticClass: "small-box  bg-green" }, [
                         _c("h3", [
-                          _vm._v(" " + _vm._s(_vm.analysis.share_value) + "  "),
+                          _vm._v(
+                            " " +
+                              _vm._s(_vm.analysis.share_value.toFixed(2)) +
+                              "  "
+                          ),
                           _c("span", { staticClass: "money_icon" }, [
                             _vm._v(" ৳ ")
                           ])

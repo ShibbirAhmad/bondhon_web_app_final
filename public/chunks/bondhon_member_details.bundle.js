@@ -396,6 +396,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getadminSalary();
@@ -1007,6 +1011,12 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(item.date))]),
                                 _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(item.month ? item.month : "empty")
+                                  )
+                                ]),
+                                _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(item.comment))]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(item.amount))])
@@ -1014,7 +1024,7 @@ var render = function() {
                             }),
                             _vm._v(" "),
                             _c("tr", [
-                              _c("td", { attrs: { colspan: "3" } }, [
+                              _c("td", { attrs: { colspan: "4" } }, [
                                 _vm._v("In Total")
                               ]),
                               _vm._v(" "),
@@ -1093,6 +1103,12 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(item.date))]),
                                 _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(item.month ? item.month : "empty")
+                                  )
+                                ]),
+                                _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(item.comment))]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(item.paid_by))]),
@@ -1102,7 +1118,7 @@ var render = function() {
                             }),
                             _vm._v(" "),
                             _c("tr", [
-                              _c("td", { attrs: { colspan: "4" } }, [
+                              _c("td", { attrs: { colspan: "5" } }, [
                                 _vm._v("In Total")
                               ]),
                               _vm._v(" "),
@@ -1229,6 +1245,8 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Date")]),
       _vm._v(" "),
+      _c("th", [_vm._v("Month")]),
+      _vm._v(" "),
       _c("th", [_vm._v("Comment")]),
       _vm._v(" "),
       _c("th", [_vm._v("Amount")])
@@ -1250,6 +1268,8 @@ var staticRenderFns = [
       _c("th", [_vm._v("#")]),
       _vm._v(" "),
       _c("th", [_vm._v("Date")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Month")]),
       _vm._v(" "),
       _c("th", [_vm._v("Comment")]),
       _vm._v(" "),

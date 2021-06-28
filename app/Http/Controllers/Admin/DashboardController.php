@@ -60,10 +60,11 @@ class DashboardController extends Controller
        $total_project_profit=ProjectProfit::sum('amount');
        $company_total_credit_money= ( intval($total_members_money) + intval($total_project_profit) ) ;
        // company current assets
-       $analysis['company_value'] = $company_total_credit_money - $company_total_cost ;
+       $company_value = $company_total_credit_money - $company_total_cost ;
+       $analysis['company_value'] = $company_value ;
        $total_member=Admin::where('admin_role',2)->count() ?? 1;
 
-       $analysis['share_value'] = ( intval( $analysis['company_value']) / $total_member ) ;
+       $analysis['share_value'] = ( $company_value  / $total_member ) ;
 
         //balance analysis
         $balnce=Credit::Balance();

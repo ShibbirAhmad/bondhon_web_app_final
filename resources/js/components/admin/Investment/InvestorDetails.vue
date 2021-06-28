@@ -82,6 +82,7 @@
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Date</th>
+                        <th scope="col">Month</th>
                         <th scope="col">Purpose</th>
                         <th scope="col">Amount</th>
                       </tr>
@@ -93,11 +94,12 @@
                       <tr v-for="(items, index) in invests" v-bind:key="index">
                         <td scope="row">{{ index + 1 }}</td>
                         <td>{{ items.date }}</td>
+                        <td>{{ items.month }}</td>
                         <td>{{ items.purpose }}</td>
                         <td>{{ items.amount }}</td>
                       </tr>
                       <tr>
-                        <td colspan="3"></td>
+                        <td colspan="4"></td>
                         <td>
                           <strong> ={{ totalinvestAmount() }}</strong>
                         </td>
@@ -110,6 +112,7 @@
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Date</th>
+                        <th scope="col">Month</th>
                         <th scope="col">Profit Month  </th>
                         <th scope="col">Comment</th>
                         <th scope="col">Paid By</th>

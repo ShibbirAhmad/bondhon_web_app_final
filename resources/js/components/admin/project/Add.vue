@@ -121,7 +121,6 @@
                       </div>
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
@@ -246,19 +245,51 @@
                             >*</b
                           ></label
                         >
-                        <input
-                          v-model="form.nid"
-                          type="number"
-                          name="nid"
+                         <input
                           class="form-control"
+                          required
                           :class="{ 'is-invalid': form.errors.has('nid') }"
-                          autofocus
-                          require
-                          placeholder="15xxxxxxxxx"
-                        />
+                          type="file"
+                            @change="uploadManagerNidImage"
+                          name="nid"
+                         />
                         <has-error :form="form" field="nid"></has-error>
                       </div>
 
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                    <div class="form-group">
+                        <label
+                          >Manager photo <b class="text-danger">*</b>
+                        </label>
+                        <input
+                          @change="uploadManagerProfile"
+                          class="form-control"
+                          type="file"
+                          required
+                        />
+                      </div>
+                       </div>
+                    <div class="col-md-6">
+                     <div class="form-group">
+                        <label>Phone<b class="text-danger">*</b></label>
+                        <input
+                          v-model="form.manager_phone"
+                          type="text"
+                          name="manager_phone"
+                          class="form-control"
+                          :class="{ 'is-invalid': form.errors.has('manager_phone') }"
+                          autofocus
+                          required
+                          maxlength="11"
+
+                          placeholder="01xxxxxxxxx"
+                        />
+                        <has-error :form="form" field="manager_phone"></has-error>
+                      </div>
                     </div>
                   </div>
 
@@ -313,18 +344,6 @@
                     </div>
                   </div>
 
-
-                <div class="form-group">
-                        <label
-                          >Manager photo <b class="text-danger">*</b>
-                        </label>
-                        <input
-                          @change="uploadManagerProfile"
-                          class="form-control"
-                          type="file"
-                          required
-                        />
-                      </div>
 
 
                 </div>
@@ -407,20 +426,19 @@
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-group">
-                        <label>NID NO<b class="text-danger">*</b></label>
-                        <input
-                          v-model="form.father_nid"
-                          type="number"
-                          name="father_nid"
+                     <div class="form-group">
+                        <label
+                          >Father/Husband NID<b class="text-danger"
+                            >*</b
+                          ></label >
+                         <input
                           class="form-control"
-                          :class="{
-                            'is-invalid': form.errors.has('father_nid'),
-                          }"
-                          autofocus
-                          require
-                          placeholder="11xxxxxxxxx"
-                        />
+                          required
+                          :class="{ 'is-invalid': form.errors.has('father_nid') }"
+                          type="file"
+                            @change="uploadFatherNidImage"
+                          name="father_nid"
+                         />
                         <has-error :form="form" field="father_nid"></has-error>
                       </div>
                     </div>
@@ -447,22 +465,20 @@
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-group">
+                    <div class="form-group">
                         <label
-                          >Mother/Wife NID NO<b class="text-danger">*</b></label
+                          >Mother/Wife NID<b class="text-danger"
+                            >*</b
+                          ></label
                         >
                         <input
-                          v-model="form.mother_nid"
-                          type="number"
-                          name="mother_nid"
                           class="form-control"
-                          :class="{
-                            'is-invalid': form.errors.has('mother_nid'),
-                          }"
-                          autofocus
-                          require
-                          placeholder="15xxxxxxxxx"
-                        />
+                          required
+                          :class="{ 'is-invalid': form.errors.has('mother_nid') }"
+                          type="file"
+                            @change="uploadMotherNidImage"
+                          name="mother_nid"
+                         />
                         <has-error :form="form" field="mother_nid"></has-error>
                       </div>
                     </div>
@@ -690,6 +706,7 @@ export default {
         total_cost: "",
         emabaded_url: "",
         manager_name: "",
+        manager_phone: "",
         present_address: "",
         permanent_address: "",
         description: "write project description",
@@ -770,6 +787,7 @@ export default {
     displayMemeberInfo(member) {
       //   console.log(member);
       this.form.manager_name = member.name;
+      this.form.manager_phone = member.phone;
       this.form.present_address = member.present_address;
       this.form.permanent_address = member.permanent_address;
       this.form.father_name = member.father_name;
@@ -782,6 +800,23 @@ export default {
       this.form.parent_present_address = member.present_address;
       this.form.parent_permanent_address = member.permanent_address;
     },
+
+
+   uploadManagerNidImage(e) {
+      const file = e.target.files[0];
+      this.form.nid = file;
+    },
+
+    uploadMotherNidImage(e) {
+      const file = e.target.files[0];
+      this.form.mother_nid = file;
+    },
+
+   uploadFatherNidImage(e) {
+      const file = e.target.files[0];
+      this.form.father_nid = file;
+    },
+
 
     uploadManagerProfile(e) {
       this.form.manager_image = e.target.files[0];

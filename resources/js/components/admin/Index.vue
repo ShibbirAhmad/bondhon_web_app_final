@@ -127,7 +127,7 @@
 
           <div v-if="$can('share_value')"  class="col-lg-3 col-xs-6">
             <div class="small-box  bg-green">
-               <h3 > {{ analysis.share_value }}  <span class="money_icon"> &#2547; </span>  </h3>
+               <h3 > {{ analysis.share_value.toFixed(2) }}  <span class="money_icon"> &#2547; </span>  </h3>
                 <span class="sub_info" > </span>
                 <h4> Share Value </h4>
               <a href="#" class="small-box-footer"

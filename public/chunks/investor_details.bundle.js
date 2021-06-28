@@ -194,6 +194,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     this.getinvests();
@@ -526,6 +529,8 @@ var render = function() {
                                   _vm._v(" "),
                                   _c("td", [_vm._v(_vm._s(items.date))]),
                                   _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(items.month))]),
+                                  _vm._v(" "),
                                   _c("td", [_vm._v(_vm._s(items.purpose))]),
                                   _vm._v(" "),
                                   _c("td", [_vm._v(_vm._s(items.amount))])
@@ -533,7 +538,7 @@ var render = function() {
                               }),
                               _vm._v(" "),
                               _c("tr", [
-                                _c("td", { attrs: { colspan: "3" } }),
+                                _c("td", { attrs: { colspan: "4" } }),
                                 _vm._v(" "),
                                 _c("td", [
                                   _c("strong", [
@@ -707,6 +712,8 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
         _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Month")]),
+        _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Purpose")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Amount")])
@@ -722,6 +729,8 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Month")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Profit Month  ")]),
         _vm._v(" "),

@@ -208,7 +208,7 @@ export default {
         signature_write: false,
         admin_id: "",
         investor_id: "",
-        profit_month: "",
+        month: "",
         old_signature: "",
       }),
       old_signature:true,
@@ -335,9 +335,9 @@ export default {
                 showCancelButton: true,
               }).then((month) => {
                 if (month.value) {
-                  this.form.profit_month = month.value;
+                  this.form.month = month.value;
                 } else {
-                  this.form.profit_month = "";
+                  this.form.month = ""; 
                 }
               });
             } else {
@@ -404,9 +404,9 @@ export default {
                 showCancelButton: true,
               }).then((month) => {
                 if (month.value) {
-                  this.form.profit_month = month.value;
+                  this.form.month = month.value;
                 } else {
-                  this.form.profit_month = "";
+                  this.form.month = "";
                 }
               });
             } else {

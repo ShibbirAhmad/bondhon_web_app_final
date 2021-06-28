@@ -63,6 +63,7 @@ class ProjectController extends Controller
             'aggreement_details' => 'required',
             'father_name' => 'required',
             'mother_name' => 'required',
+            'manager_phone' => 'required|unique:projects',
             'father_phone' => 'required|unique:projects',
             'mother_phone' => 'required|unique:projects',
         ]);
@@ -98,17 +99,20 @@ class ProjectController extends Controller
         $project->manager_name = $request->manager_name;
         $project->present_address = $request->present_address;
         $project->permanent_address = $request->permanent_address;
-        $project->nid = $request->nid;
+        $nid_path = $request->file('nid')->store('images/manager_nid','public');
+        $project->nid=$nid_path ;
         $m_path=$request->file('manager_image')->store('images/manager_image','public');
         $project->manager_image=$m_path ;
 
          //family info
          $project->father_name = $request->father_name;
          $project->father_phone = $request->father_phone;
-         $project->father_nid = $request->father_nid;
-         $project->mother_name = $request->mother_name;
+         $project->mother_name = $request->mother_name ;
          $project->mother_phone = $request->mother_phone;
-         $project->mother_nid = $request->mother_nid;
+         $f_nid = $request->file('father_nid')->store('images/manager_parent_nid','public');
+         $project->father_nid = $f_nid ;
+         $m_nid = $request->file('mother_nid')->store('images/manager_parent_nid','public');
+         $project->mother_nid = $m_nid;
          $project->parent_present_address = $request->parent_present_address;
          $project->parent_permanent_address = $request->parent_permanent_address;
 
@@ -168,8 +172,7 @@ class ProjectController extends Controller
             'permanent_address' => 'required',
             'description' => 'required',
             'aggreement_details' => 'required',
-            'father_nid' => 'required | unique:projects,father_nid,'.$id,
-            'mother_nid' => 'required | unique:projects,mother_nid,'.$id,
+            'manager_phone' => 'required|unique:projects,manager_phone,'.$id,
             'father_phone' => 'required|unique:projects,father_phone,'.$id,
             'mother_phone' => 'required|unique:projects,mother_phone,'.$id,
             'father_name' => 'required',
@@ -197,7 +200,12 @@ class ProjectController extends Controller
         $project->manager_name = $request->manager_name;
         $project->present_address = $request->present_address;
         $project->permanent_address = $request->permanent_address;
-        $project->nid = $request->nid;
+        
+        if ($request->hasFile("nid")) {
+            $nid = $request->file('nid')->store('images/manager_nid','public');
+            $project->nid = $nid ;;
+        }
+
         if ($request->hasFile("manager_image")) {
             $m_path=$request->file('manager_image')->store('images/manager_image','public');
             $project->manager_image=$m_path ;
@@ -205,14 +213,22 @@ class ProjectController extends Controller
           //family info
          $project->father_name = $request->father_name;
          $project->father_phone = $request->father_phone;
-         $project->father_nid = $request->father_nid;
          $project->mother_name = $request->mother_name;
          $project->mother_phone = $request->mother_phone;
-         $project->mother_nid = $request->mother_nid;
          $project->parent_present_address = $request->parent_present_address;
          $project->parent_permanent_address = $request->parent_permanent_address;
 
-         $project->save();
+        if ($request->hasFile("father_nid")) {
+           $father_nid = $request->file('father_nid')->store('images/manager_parent_nid','public');
+           $project->father_nid = $father_nid ;
+        }
+
+        if ($request->hasFile("mother_nid")) {
+           $mother_nid = $request->file('mother_nid')->store('images/manager_parent_nid','public');
+           $project->mother_nid = $mother_nid ;
+        }
+
+        $project->save();
 
         //project images
         if ($request->hasFile('image')) {
@@ -278,7 +294,7 @@ class ProjectController extends Controller
     }
 
 
-       public function deleteImage(Request $request,$id){
+    public function deleteImage(Request $request,$id){
         $images = ProjectImage::where('project_id',$id)->get();
         if ($images[$request->index]->delete()) {
             return response()->json([

@@ -712,6 +712,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -731,6 +786,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         total_cost: "",
         emabaded_url: "",
         manager_name: "",
+        manager_phone: "",
         nid: "",
         present_address: "",
         permanent_address: "",
@@ -776,6 +832,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         _this.form.total_cost = resp.data.project.total_cost;
         _this.form.emabaded_url = resp.data.project.emabaded_url ? resp.data.project.emabaded_url : '';
         _this.form.manager_name = resp.data.project.manager_name;
+        _this.form.manager_phone = resp.data.project.manager_phone;
         _this.form.present_address = resp.data.project.present_address;
         _this.form.permanent_address = resp.data.project.permanent_address;
         _this.form.comments = resp.data.project.comments;
@@ -800,6 +857,18 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
           _this.form.image.push(_this.basePath + image[i].image);
         }
       });
+    },
+    uploadManagerNidImage: function uploadManagerNidImage(e) {
+      var file = e.target.files[0];
+      this.form.nid = file;
+    },
+    uploadMotherNidImage: function uploadMotherNidImage(e) {
+      var file = e.target.files[0];
+      this.form.mother_nid = file;
+    },
+    uploadFatherNidImage: function uploadFatherNidImage(e) {
+      var file = e.target.files[0];
+      this.form.father_nid = file;
     },
     updateProject: function updateProject() {
       var _this2 = this;
@@ -1019,7 +1088,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred[data-v-56df38aa] {\r\n  height: 80px !important;\n}\n.mb-2[data-v-56df38aa] {\r\n  margin-bottom: 5px !important;\n}\n.height[data-v-56df38aa] {\r\n  height: 360px !important;\n}\n.uploader[data-v-56df38aa] {\r\n  width: 100%;\r\n  background: #222d32;\r\n  color: #fff;\r\n  padding: 40px 15px;\r\n  text-align: center;\r\n  border-radius: 10px;\r\n  border: 3px dashed;\r\n  font-size: 20px;\r\n  position: relative;\n}\n.draging[data-v-56df38aa] {\r\n  background: #fff;\r\n  color: #222d32;\r\n  border: 3px dashed #222d32;\n}\n.file-input label[data-v-56df38aa] {\r\n  background: #222d32;\r\n  color: #fff;\n}\ni.fa.fa-cloud-upload[data-v-56df38aa] {\r\n  font-size: 85px;\n}\n#file[data-v-56df38aa] {\r\n  opacity: 0;\r\n  z-index: -1;\n}\n.file-input[data-v-56df38aa] {\r\n  width: 280px;\r\n  margin: auto;\r\n  position: relative;\r\n  height: 86px;\n}\n.images-preview[data-v-56df38aa] {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  margin-top: 20px;\n}\n.img-wrapper[data-v-56df38aa] {\r\n  width: 110px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  margin: 10px;\r\n  height: 105px;\r\n  justify-content: space-between;\r\n  background: #fff;\r\n  box-shadow: 5px 5px 20px #3e3737;\r\n  margin-bottom: 32px;\n}\nimg[data-v-56df38aa] {\r\n  max-height: 105px;\n}\n.files[data-v-56df38aa] {\r\n  font-size: 12px;\r\n  background: #fff;\r\n  color: red;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: self-start;\r\n  padding: 3px 6px;\n}\n.name[data-v-56df38aa] {\r\n  overflow: hidden;\r\n  height: 18px;\n}\n.upload-control[data-v-56df38aa] {\r\n  position: absolute;\r\n  width: 100%;\r\n  background: #fff;\r\n  top: 0;\r\n  left: 0;\r\n  border-top-left-radius: 7px;\r\n  border-top-right-radius: 7px;\r\n  padding: 10px;\r\n  padding-bottom: 4px;\r\n  text-align: right;\n}\n.label[data-v-56df38aa] {\r\n  padding: 2px 5px;\r\n  margin-right: 10px;\r\n  border: 2px solid #222d32;\r\n  border-radius: 3px;\r\n\r\n  font-size: 15px;\r\n  cursor: pointer;\r\n  color: #222d32;\n}\n.file-input label[data-v-56df38aa] {\r\n  background: #fff;\r\n  color: #222d32;\r\n  padding: 10px 40px;\n}\n.cancel[data-v-56df38aa] {\r\n  background: #fff;\r\n\r\n  cursor: pointer;\r\n  color: red;\r\n  width: 110px;\n}\n.member_profile[data-v-56df38aa]{\r\n   width:80px;\r\n   height: 80px;\r\n   border-radius: 50%;\r\n   border:1px solid #ddd;\n}\n.btn_download[data-v-56df38aa]{\r\n  margin-top: 25px;\n}\r\n\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-blurred[data-v-56df38aa] {\r\n  height: 80px !important;\n}\n.mb-2[data-v-56df38aa] {\r\n  margin-bottom: 5px !important;\n}\n.height[data-v-56df38aa] {\r\n  height: 360px !important;\n}\n.uploader[data-v-56df38aa] {\r\n  width: 100%;\r\n  background: #222d32;\r\n  color: #fff;\r\n  padding: 40px 15px;\r\n  text-align: center;\r\n  border-radius: 10px;\r\n  border: 3px dashed;\r\n  font-size: 20px;\r\n  position: relative;\n}\n.draging[data-v-56df38aa] {\r\n  background: #fff;\r\n  color: #222d32;\r\n  border: 3px dashed #222d32;\n}\n.file-input label[data-v-56df38aa] {\r\n  background: #222d32;\r\n  color: #fff;\n}\ni.fa.fa-cloud-upload[data-v-56df38aa] {\r\n  font-size: 85px;\n}\n#file[data-v-56df38aa] {\r\n  opacity: 0;\r\n  z-index: -1;\n}\n.file-input[data-v-56df38aa] {\r\n  width: 280px;\r\n  margin: auto;\r\n  position: relative;\r\n  height: 86px;\n}\n.images-preview[data-v-56df38aa] {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  margin-top: 20px;\n}\n.img-wrapper[data-v-56df38aa] {\r\n  width: 110px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  margin: 10px;\r\n  height: 105px;\r\n  justify-content: space-between;\r\n  background: #fff;\r\n  box-shadow: 5px 5px 20px #3e3737;\r\n  margin-bottom: 32px;\n}\nimg[data-v-56df38aa] {\r\n  max-height: 105px;\n}\n.files[data-v-56df38aa] {\r\n  font-size: 12px;\r\n  background: #fff;\r\n  color: red;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: self-start;\r\n  padding: 3px 6px;\n}\n.name[data-v-56df38aa] {\r\n  overflow: hidden;\r\n  height: 18px;\n}\n.upload-control[data-v-56df38aa] {\r\n  position: absolute;\r\n  width: 100%;\r\n  background: #fff;\r\n  top: 0;\r\n  left: 0;\r\n  border-top-left-radius: 7px;\r\n  border-top-right-radius: 7px;\r\n  padding: 10px;\r\n  padding-bottom: 4px;\r\n  text-align: right;\n}\n.label[data-v-56df38aa] {\r\n  padding: 2px 5px;\r\n  margin-right: 10px;\r\n  border: 2px solid #222d32;\r\n  border-radius: 3px;\r\n\r\n  font-size: 15px;\r\n  cursor: pointer;\r\n  color: #222d32;\n}\n.file-input label[data-v-56df38aa] {\r\n  background: #fff;\r\n  color: #222d32;\r\n  padding: 10px 40px;\n}\n.cancel[data-v-56df38aa] {\r\n  background: #fff;\r\n\r\n  cursor: pointer;\r\n  color: red;\r\n  width: 110px;\n}\n.member_profile[data-v-56df38aa]{\r\n   width:80px;\r\n   height: 80px;\r\n   border-radius: 50%;\r\n   border:1px solid #ddd;\n}\n.btn_download[data-v-56df38aa]{\r\n  margin-top: 25px;\n}\n.nid_image[data-v-56df38aa] {\r\n      height: 150px;\r\n      width: 300px;\r\n      margin-bottom:10px;\n}\n.download_icon[data-v-56df38aa]{\r\n   cursor: pointer;\r\n    font-size: 29px;\r\n    position: absolute;\r\n    margin: 4px -30px;\r\n    color: green;\n}\n.ck.ck-editor[data-v-56df38aa] {\r\n    height: 250px !important;\n}\r\n\r\n\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -1679,22 +1748,25 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.nid,
-                                        expression: "form.nid"
+                                        value: _vm.form.manager_phone,
+                                        expression: "form.manager_phone"
                                       }
                                     ],
                                     staticClass: "form-control",
                                     class: {
-                                      "is-invalid": _vm.form.errors.has("nid")
+                                      "is-invalid": _vm.form.errors.has(
+                                        "manager_phone"
+                                      )
                                     },
                                     attrs: {
-                                      type: "number",
-                                      name: "nid",
+                                      type: "text",
+                                      name: "manager_phone",
                                       autofocus: "",
-                                      require: "",
-                                      placeholder: "15xxxxxxxxx"
+                                      required: "",
+                                      maxlength: "11",
+                                      placeholder: "01xxxxxxxxx"
                                     },
-                                    domProps: { value: _vm.form.nid },
+                                    domProps: { value: _vm.form.manager_phone },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -1702,7 +1774,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "nid",
+                                          "manager_phone",
                                           $event.target.value
                                         )
                                       }
@@ -1710,7 +1782,10 @@ var render = function() {
                                   }),
                                   _vm._v(" "),
                                   _c("has-error", {
-                                    attrs: { form: _vm.form, field: "nid" }
+                                    attrs: {
+                                      form: _vm.form,
+                                      field: "manager_phone"
+                                    }
                                   })
                                 ],
                                 1
@@ -2067,63 +2142,6 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.father_nid,
-                                        expression: "form.father_nid"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    class: {
-                                      "is-invalid": _vm.form.errors.has(
-                                        "father_nid"
-                                      )
-                                    },
-                                    attrs: {
-                                      type: "number",
-                                      name: "father_nid",
-                                      autofocus: "",
-                                      require: "",
-                                      placeholder: "11xxxxxxxxx"
-                                    },
-                                    domProps: { value: _vm.form.father_nid },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "father_nid",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("has-error", {
-                                    attrs: {
-                                      form: _vm.form,
-                                      field: "father_nid"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "row" }, [
-                            _c("div", { staticClass: "col-md-6" }, [
-                              _c(
-                                "div",
-                                { staticClass: "form-group" },
-                                [
-                                  _vm._m(19),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
                                         value: _vm.form.mother_name,
                                         expression: "form.mother_name"
                                       }
@@ -2164,61 +2182,6 @@ var render = function() {
                                 ],
                                 1
                               )
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-6" }, [
-                              _c(
-                                "div",
-                                { staticClass: "form-group" },
-                                [
-                                  _vm._m(20),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.mother_nid,
-                                        expression: "form.mother_nid"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    class: {
-                                      "is-invalid": _vm.form.errors.has(
-                                        "mother_nid"
-                                      )
-                                    },
-                                    attrs: {
-                                      type: "number",
-                                      name: "mother_nid",
-                                      autofocus: "",
-                                      require: "",
-                                      placeholder: "15xxxxxxxxx"
-                                    },
-                                    domProps: { value: _vm.form.mother_nid },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "mother_nid",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("has-error", {
-                                    attrs: {
-                                      form: _vm.form,
-                                      field: "mother_nid"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
                             ])
                           ]),
                           _vm._v(" "),
@@ -2228,7 +2191,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(21),
+                                  _vm._m(19),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -2284,7 +2247,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(22),
+                                  _vm._m(20),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -2342,7 +2305,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(23),
+                                  _vm._m(21),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -2400,7 +2363,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(24),
+                                  _vm._m(22),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -2462,7 +2425,7 @@ var render = function() {
                   _c("div", { staticClass: "row" }, [
                     _c("div", { staticClass: "col-lg-6" }, [
                       _c("div", { staticClass: "box box-primary" }, [
-                        _vm._m(25),
+                        _vm._m(23),
                         _vm._v(" "),
                         _c("div", { staticClass: "box-body" }, [
                           _c(
@@ -2619,7 +2582,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "col-lg-6" }, [
                       _c("div", { staticClass: "box box-primary" }, [
-                        _vm._m(26),
+                        _vm._m(24),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -2650,10 +2613,199 @@ var render = function() {
                           1
                         )
                       ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-lg-12 col-md-12" }, [
+                      _c("div", { staticClass: "box box-primary" }, [
+                        _vm._m(25),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "box-body" }, [
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _c("br"),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group" },
+                                [
+                                  _vm._m(26),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    staticClass: "form-control",
+                                    class: {
+                                      "is-invalid": _vm.form.errors.has("nid")
+                                    },
+                                    attrs: {
+                                      required: "",
+                                      type: "file",
+                                      name: "nid"
+                                    },
+                                    on: { change: _vm.uploadManagerNidImage }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("has-error", {
+                                    attrs: { form: _vm.form, field: "nid" }
+                                  })
+                                ],
+                                1
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-6 text-center" }, [
+                              _c("img", {
+                                staticClass: "nid_image",
+                                attrs: {
+                                  src: _vm.basePath + _vm.form.nid,
+                                  alt: "image"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href: _vm.basePath + _vm.form.nid,
+                                    download: ""
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "fa fa-download download_icon"
+                                  })
+                                ]
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _c("br"),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group" },
+                                [
+                                  _vm._m(27),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    staticClass: "form-control",
+                                    class: {
+                                      "is-invalid": _vm.form.errors.has(
+                                        "father_nid"
+                                      )
+                                    },
+                                    attrs: {
+                                      required: "",
+                                      type: "file",
+                                      name: "father_nid"
+                                    },
+                                    on: { change: _vm.uploadFatherNidImage }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("has-error", {
+                                    attrs: {
+                                      form: _vm.form,
+                                      field: "father_nid"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-6 text-center" }, [
+                              _c("img", {
+                                staticClass: "nid_image",
+                                attrs: {
+                                  src: _vm.basePath + _vm.form.father_nid,
+                                  alt: "image"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href: _vm.basePath + _vm.form.father_nid,
+                                    download: ""
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "fa fa-download download_icon"
+                                  })
+                                ]
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _c("br"),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group" },
+                                [
+                                  _vm._m(28),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    staticClass: "form-control",
+                                    class: {
+                                      "is-invalid": _vm.form.errors.has(
+                                        "mother_nid"
+                                      )
+                                    },
+                                    attrs: {
+                                      required: "",
+                                      type: "file",
+                                      name: "mother_nid"
+                                    },
+                                    on: { change: _vm.uploadMotherNidImage }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("has-error", {
+                                    attrs: {
+                                      form: _vm.form,
+                                      field: "mother_nid"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-6 text-center" }, [
+                              _c("img", {
+                                staticClass: "nid_image",
+                                attrs: {
+                                  src: _vm.basePath + _vm.form.mother_nid,
+                                  alt: "image"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href: _vm.basePath + _vm.form.mother_nid,
+                                    download: ""
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "fa fa-download download_icon"
+                                  })
+                                ]
+                              )
+                            ])
+                          ])
+                        ])
+                      ])
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(27)
+                  _vm._m(29)
                 ]
               )
         ])
@@ -2770,7 +2922,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", [
-      _vm._v("NID/Birth Registration NO"),
+      _vm._v("Phone"),
       _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -2842,25 +2994,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", [
-      _vm._v("Father/Husband NID"),
-      _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", [
       _vm._v("Mother/Wife Name "),
-      _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", [
-      _vm._v("Mother/Wife NID NO"),
       _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -2926,6 +3060,46 @@ var staticRenderFns = [
         _vm._v("\n                   Project Description\n                   "),
         _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-header with-border text-center" }, [
+      _c("h3", { staticClass: "box-title" }, [
+        _vm._v(
+          "\n                    Manager and Parents Nid\n                   "
+        ),
+        _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [
+      _vm._v("NID/Birth Registration NO"),
+      _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [
+      _vm._v("Father/Husband NID"),
+      _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [
+      _vm._v("Mother/Wife NID"),
+      _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
   function() {

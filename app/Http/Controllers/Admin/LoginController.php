@@ -19,11 +19,8 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
         $credential = ['email' => $request->email, 'password' => $request->password, 'status' => 1, ];
-
         if (Auth::guard('admin')->attempt($credential)) {
-
             if (Auth::guard('admin')->user()->admin_role == 1) {
-
                     Session::put('admin', Auth::guard('admin')->user());
                     $admin=Auth::guard('admin')->user();
                     return response()->json([
@@ -32,25 +29,20 @@ class LoginController extends Controller
                         'token' => Hash::make($request->password),
                         'message' => 'Login successfully'
                     ]);
-
             }
 
 
             if (Auth::guard('admin')->user()->admin_role == 2) {
-                     Session::put('member', Auth::guard('admin')->user());
+                    Session::put('member', Auth::guard('admin')->user());
                     $member=Auth::guard('admin')->user();
-
                     return response()->json([
                         'status' => 'SUCCESS',
                         'member' => $member,
                         'token' => Hash::make($request->password),
                         'message' => 'Login successfully'
                     ]);
-
             }
-
-
-        } else {
+        }else{
             return response()->json([
                 'status' => 'FAILD',
                 'message' => 'sorry ! invalid login information '

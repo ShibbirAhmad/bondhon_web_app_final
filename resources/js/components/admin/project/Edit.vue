@@ -240,24 +240,21 @@
                       </div>
                     </div>
                     <div class="col-md-6">
-
                        <div class="form-group">
-                        <label
-                          >NID/Birth Registration NO<b class="text-danger"
-                            >*</b
-                          ></label
-                        >
+                        <label>Phone<b class="text-danger">*</b></label>
                         <input
-                          v-model="form.nid"
-                          type="number"
-                          name="nid"
+                          v-model="form.manager_phone"
+                          type="text"
+                          name="manager_phone"
                           class="form-control"
-                          :class="{ 'is-invalid': form.errors.has('nid') }"
+                          :class="{ 'is-invalid': form.errors.has('manager_phone') }"
                           autofocus
-                          require
-                          placeholder="15xxxxxxxxx"
+                          required
+                          maxlength="11"
+
+                          placeholder="01xxxxxxxxx"
                         />
-                        <has-error :form="form" field="nid"></has-error>
+                        <has-error :form="form" field="manager_phone"></has-error>
                       </div>
 
                     </div>
@@ -428,27 +425,6 @@
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label>Father/Husband NID<b class="text-danger">*</b></label>
-                        <input
-                          v-model="form.father_nid"
-                          type="number"
-                          name="father_nid"
-                          class="form-control"
-                          :class="{
-                            'is-invalid': form.errors.has('father_nid'),
-                          }"
-                          autofocus
-                          require
-                          placeholder="11xxxxxxxxx"
-                        />
-                        <has-error :form="form" field="father_nid"></has-error>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
                         <label
                           >Mother/Wife Name <b class="text-danger">*</b>
                         </label>
@@ -466,27 +442,9 @@
                         <has-error :form="form" field="mother_name"></has-error>
                       </div>
                     </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label
-                          >Mother/Wife NID NO<b class="text-danger">*</b></label
-                        >
-                        <input
-                          v-model="form.mother_nid"
-                          type="number"
-                          name="mother_nid"
-                          class="form-control"
-                          :class="{
-                            'is-invalid': form.errors.has('mother_nid'),
-                          }"
-                          autofocus
-                          require
-                          placeholder="15xxxxxxxxx"
-                        />
-                        <has-error :form="form" field="mother_nid"></has-error>
-                      </div>
-                    </div>
                   </div>
+
+
 
                   <div class="row">
                     <div class="col-md-6">
@@ -684,6 +642,103 @@
                 </div>
               </div>
                </div>
+
+                <div class="col-lg-12 col-md-12">
+               <div class="box box-primary">
+                <div class="box-header with-border text-center">
+                  <h3 class="box-title">
+                     Manager and Parents Nid
+                    <b class="text-danger">*</b>
+                  </h3>
+                </div>
+                <div class="box-body">
+
+                 <div class="row">
+                   <div class="col-md-6">
+                       <br>
+                            <div class="form-group">
+                        <label
+                          >NID/Birth Registration NO<b class="text-danger"
+                            >*</b
+                          ></label
+                        >
+                         <input
+                          class="form-control"
+                          required
+                          :class="{ 'is-invalid': form.errors.has('nid') }"
+                          type="file"
+                            @change="uploadManagerNidImage"
+                          name="nid"
+                         />
+                        <has-error :form="form" field="nid"></has-error>
+                      </div>
+                      </div>
+                   <div class="col-md-6 text-center">
+                       <img class="nid_image" :src="basePath+ form.nid " alt="image">
+                        <a :href="basePath+form.nid" download > <i class="fa fa-download download_icon"></i> </a>
+                      </div>
+                 </div>
+
+
+                 <div class="row">
+                   <div class="col-md-6">
+                     <br>
+                       <div class="form-group">
+                        <label
+                          >Father/Husband NID<b class="text-danger"
+                            >*</b
+                          ></label >
+                         <input
+                          class="form-control"
+                          required
+                          :class="{ 'is-invalid': form.errors.has('father_nid') }"
+                          type="file"
+                            @change="uploadFatherNidImage"
+                          name="father_nid"
+                         />
+                        <has-error :form="form" field="father_nid"></has-error>
+                      </div>
+                      </div>
+                   <div class="col-md-6 text-center">
+
+                      <img class="nid_image" :src="basePath+ form.father_nid " alt="image">
+                        <a :href="basePath+form.father_nid" download > <i class="fa fa-download download_icon"></i> </a>
+
+                      </div>
+                 </div>
+
+                 <div class="row">
+                   <div class="col-md-6">
+                     <br>
+                      <div class="form-group">
+                        <label
+                          >Mother/Wife NID<b class="text-danger"
+                            >*</b
+                          ></label
+                        >
+                        <input
+                          class="form-control"
+                          required
+                          :class="{ 'is-invalid': form.errors.has('mother_nid') }"
+                          type="file"
+                            @change="uploadMotherNidImage"
+                          name="mother_nid"
+                         />
+                        <has-error :form="form" field="mother_nid"></has-error>
+                      </div>
+
+                      </div>
+                   <div class="col-md-6 text-center">
+                          <img class="nid_image" :src="basePath+ form.mother_nid " alt="image">
+                        <a :href="basePath+form.mother_nid" download > <i class="fa fa-download download_icon"></i> </a>
+
+                      </div>
+                 </div>
+
+
+                </div>
+              </div>
+               </div>
           </div>
 
           <div class="form-group text-center">
@@ -715,6 +770,7 @@ export default {
         total_cost: "",
         emabaded_url: "",
         manager_name: "",
+        manager_phone: "",
         nid: "",
         present_address: "",
         permanent_address: "",
@@ -760,6 +816,7 @@ export default {
         this.form.total_cost=resp.data.project.total_cost ;
         this.form.emabaded_url=resp.data.project.emabaded_url?resp.data.project.emabaded_url:'' ;
         this.form.manager_name=resp.data.project.manager_name ;
+        this.form.manager_phone=resp.data.project.manager_phone ;
         this.form.present_address=resp.data.project.present_address ;
         this.form.permanent_address=resp.data.project.permanent_address ;
         this.form.comments=resp.data.project.comments ;
@@ -785,6 +842,23 @@ export default {
 
       })
     },
+
+
+   uploadManagerNidImage(e) {
+      const file = e.target.files[0];
+      this.form.nid = file;
+    },
+
+ uploadMotherNidImage(e) {
+      const file = e.target.files[0];
+      this.form.mother_nid = file;
+    },
+
+   uploadFatherNidImage(e) {
+      const file = e.target.files[0];
+      this.form.father_nid = file;
+    },
+
 
     updateProject() {
       window.scrollTo(0, 0);
@@ -1114,6 +1188,24 @@ img {
 .btn_download{
   margin-top: 25px;
 }
+
+.nid_image {
+      height: 150px;
+      width: 300px;
+      margin-bottom:10px;
+}
+.download_icon{
+   cursor: pointer;
+    font-size: 29px;
+    position: absolute;
+    margin: 4px -30px;
+    color: green;
+}
+
+.ck.ck-editor {
+    height: 250px !important;
+}
+
 
 
 

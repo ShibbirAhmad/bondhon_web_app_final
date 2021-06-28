@@ -278,6 +278,7 @@
                     <tr>
                       <th>#</th>
                       <th>Date</th>
+                      <th>Month</th>
                       <th>Comment</th>
                       <th>Amount</th>
                     </tr>
@@ -288,11 +289,12 @@
                       >
                         <td>{{ index + 1 }}</td>
                         <td>{{ item.date }}</td>
+                        <td>{{ item.month ? item.month : 'empty' }}</td>
                         <td>{{ item.comment }}</td>
                         <td>{{ item.amount }}</td>
                       </tr>
                       <tr>
-                        <td colspan="3">In Total</td>
+                        <td colspan="4">In Total</td>
                         <td>{{ total_collections }}</td>
                       </tr>
                     </tbody>
@@ -332,6 +334,7 @@
                     <tr>
                       <th>#</th>
                       <th>Date</th>
+                      <th>Month</th>
                       <th>Comment</th>
                       <th>Paid By</th>
                       <th>Amount</th>
@@ -343,12 +346,13 @@
                       >
                         <td>{{ index + 1 }}</td>
                         <td>{{ item.date }}</td>
+                        <td>{{  item.month ? item.month : 'empty' }}</td>
                         <td>{{ item.comment }}</td>
                         <td>{{ item.paid_by }}</td>
                         <td>{{ item.amount }}</td>
                       </tr>
                       <tr>
-                        <td colspan="4">In Total</td>
+                        <td colspan="5">In Total</td>
                         <td>{{ total_profit }}</td>
                       </tr>
                     </tbody>

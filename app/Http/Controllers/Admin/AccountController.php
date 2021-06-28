@@ -130,13 +130,15 @@ class AccountController extends Controller
                 $member_name=$admin->name  ;
                 $member= new AdminAccount();
                 $member->admin_id=$id;
-                $member->amount=  $credit->amount;
-                $member->date= $credit->date;
-                $member->comment=$credit->comment;
+                $member->amount=$request->amount;
+                $member->date= $request->date;
+                $member->month= $request->month;
+                $member->comment=$request->comment;
                 $member->save();
                 $credit->comment = $credit->comment.'('.$member_name .')';
                 $credit->save();
                 Admin::sendConfirmationMessage($admin,$credit->amount,$credit->date);
+                //send mail to member
             }
 
             //investor payment inserting
@@ -144,9 +146,10 @@ class AccountController extends Controller
                 $investor=Investor::where('id',$request->investor_id)->first();
                 $investor_invest_add=new Investment();
                 $investor_invest_add->investor_id=$investor->id;
-                $investor_invest_add->amount=  $credit->amount;
-                $investor_invest_add->date= $credit->date;
-                $investor_invest_add->purpose=$credit->comment;
+                $investor_invest_add->amount=  $request->amount;
+                $investor_invest_add->date= $request->date;
+                $investor_invest_add->month= $request->month;
+                $investor_invest_add->purpose=$request->comment;
                 $investor_invest_add->save();
                 $credit->comment = $credit->comment.'('. $investor->name .')';
                 $credit->save();
@@ -307,11 +310,13 @@ class AccountController extends Controller
                 $project_cost=new ProjectCost();
                 $project_cost->project_id=$project->id;
                 $project_cost->admin_id=session()->get('admin')['id'];
-                $project_cost->amount=  $debit->amount;
-                $project_cost->date= $debit->date;
-                $project_cost->comment=$debit->comment;
+                $project_cost->amount=  $request->amount;
+                $project_cost->date= $request->date;
+                $project_cost->comment=$request->comment;
                 $project_cost->paid_by=$debit->debit_from;
                 $project_cost->save();
+                //send message to project manager
+                Admin::sendCostConfimationMessage($project,$request->amount);
                 $debit->comment = $debit->comment.'('.$project->name .')';
                 $debit->save();
                 }
