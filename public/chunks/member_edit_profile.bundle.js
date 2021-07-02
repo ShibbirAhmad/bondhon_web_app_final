@@ -335,7 +335,7 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "btn btn-primary",
-                  attrs: { to: { name: "admin" } }
+                  attrs: { to: { name: "member_dashboard" } }
                 },
                 [_c("i", { staticClass: "fa fa-arrow-left" })]
               )

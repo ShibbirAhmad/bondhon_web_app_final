@@ -258,6 +258,7 @@
                         "
                         class="aggreement_image"
                         alt="aggreement"
+                        style="margin-left:10px"
                       />
                     </div>
                   </div>
@@ -374,12 +375,36 @@ p {
       width: 250px;
     }
 
-
-
+   .aggreement_container {
+     overflow-y: scroll;
+}
 
 }
 
+.box{
+  min-height: 400px;
+}
 
+@media screen and (max-width:450px) {
+  .row {
+    margin-right: -30px !important;
+    margin-left: -30px !important;
+  }
 
+  .col-xs-12 {
+    width: 100% !important;
+  }
+
+  .table_container {
+    overflow-x:scroll;
+  }
+
+  .item_displayer{
+    margin-left:10px;
+  }
+
+}
+
+p {padding:10px}
 
 </style>

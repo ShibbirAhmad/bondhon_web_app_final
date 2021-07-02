@@ -103,6 +103,8 @@
 
 
 
+        
+
             <!-- Fact Start -->
             <div class="fact">
                 <div class="container-fluid">
@@ -111,7 +113,7 @@
                             <div class="row">
                                 <div class="col-6 col-xs-6 col-sm-6 col-md-6">
                                     <div class="fact-icon">
-                                        <i class="flaticon-worker"></i>
+                                        <i class="fa fa-user-secret custom_icon"></i>
                                     </div>
                                     <div class="fact-text">
                                         <h2 data-toggle="counter-up">{{ $total_member }}</h2>
@@ -120,7 +122,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="fact-icon">
-                                        <i class="flaticon-building"></i>
+                                        <i class="fa fa-user-circle custom_icon"></i>
                                     </div>
                                     <div class="fact-text">
                                         <h2 data-toggle="counter-up">{{ $total_investor }}</h2>
@@ -133,7 +135,8 @@
                             <div class="row">
                                 <div class="col-6  col-xs-6 col-sm-6 col-md-6">
                                     <div class="fact-icon">
-                                        <i class="flaticon-address"></i>
+                                       <i class="fa fa-compass custom_icon"></i>
+                                     
                                     </div>
                                     <div class="fact-text">
                                         <h2 data-toggle="counter-up">{{ $total_implemented_project }}</h2>
@@ -142,7 +145,7 @@
                                 </div>
                                 <div class="col-6  col-xs-6 col-sm-6 col-md-6">
                                     <div class="fact-icon">
-                                        <i class="flaticon-crane"></i>
+                                        <i class="fa fa-compass custom_icon"></i>
                                     </div>
                                     <div class="fact-text">
                                         <h2 data-toggle="counter-up">{{ $total_planned_project }}</h2>

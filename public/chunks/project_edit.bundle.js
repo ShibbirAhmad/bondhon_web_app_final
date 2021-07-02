@@ -1248,8 +1248,7 @@ var render = function() {
                                   type: "text",
                                   name: "name",
                                   autofocus: "",
-                                  placeholder: "Ex:agro firm",
-                                  required: ""
+                                  placeholder: "Ex:agro firm"
                                 },
                                 domProps: { value: _vm.form.name },
                                 on: {
@@ -1298,10 +1297,7 @@ var render = function() {
                                           "project_type"
                                         )
                                       },
-                                      attrs: {
-                                        required: "",
-                                        name: "project_type"
-                                      },
+                                      attrs: { name: "project_type" },
                                       on: {
                                         change: function($event) {
                                           var $$selectedVal = Array.prototype.filter
@@ -1403,7 +1399,6 @@ var render = function() {
                                     attrs: {
                                       type: "text",
                                       name: "place",
-                                      required: "",
                                       placeholder: "Ex:Dhaka"
                                     },
                                     domProps: { value: _vm.form.place },
@@ -1456,7 +1451,6 @@ var render = function() {
                                     attrs: {
                                       type: "number",
                                       name: "proposed_budget",
-                                      required: "",
                                       placeholder: "000000"
                                     },
                                     domProps: {
@@ -1614,7 +1608,6 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control",
-                                attrs: { required: "" },
                                 on: {
                                   change: [
                                     function($event) {
@@ -1707,8 +1700,7 @@ var render = function() {
                                       type: "text",
                                       name: "manager_name",
                                       autofocus: "",
-                                      placeholder: "Ex:agro firm",
-                                      required: ""
+                                      placeholder: "Ex:agro firm"
                                     },
                                     domProps: { value: _vm.form.manager_name },
                                     on: {
@@ -1762,7 +1754,6 @@ var render = function() {
                                       type: "text",
                                       name: "manager_phone",
                                       autofocus: "",
-                                      required: "",
                                       maxlength: "11",
                                       placeholder: "01xxxxxxxxx"
                                     },
@@ -1820,7 +1811,6 @@ var render = function() {
                                       type: "text",
                                       name: "present_address",
                                       autofocus: "",
-                                      required: "",
                                       placeholder: "present_address"
                                     },
                                     domProps: {
@@ -1877,7 +1867,6 @@ var render = function() {
                                       type: "text",
                                       name: "permanent_address",
                                       autofocus: "",
-                                      required: "",
                                       placeholder: "permanent_address"
                                     },
                                     domProps: {
@@ -2212,7 +2201,6 @@ var render = function() {
                                       type: "number",
                                       name: "father_phone",
                                       autofocus: "",
-                                      required: "",
                                       maxlength: "11",
                                       placeholder: "01xxxxxxxxx"
                                     },
@@ -2268,7 +2256,6 @@ var render = function() {
                                       type: "number",
                                       name: "mother_phone",
                                       autofocus: "",
-                                      required: "",
                                       maxlength: "11",
                                       placeholder: "01xxxxxxxxx"
                                     },
@@ -2327,7 +2314,6 @@ var render = function() {
                                       type: "text",
                                       name: "parent_present_address",
                                       autofocus: "",
-                                      required: "",
                                       placeholder: "parent_present_address"
                                     },
                                     domProps: {
@@ -2386,7 +2372,6 @@ var render = function() {
                                       type: "text",
                                       name: "parent_permanent_address",
                                       autofocus: "",
-                                      required: "",
                                       placeholder: "parent_permanent_address"
                                     },
                                     domProps: {
@@ -2635,11 +2620,7 @@ var render = function() {
                                     class: {
                                       "is-invalid": _vm.form.errors.has("nid")
                                     },
-                                    attrs: {
-                                      required: "",
-                                      type: "file",
-                                      name: "nid"
-                                    },
+                                    attrs: { type: "file", name: "nid" },
                                     on: { change: _vm.uploadManagerNidImage }
                                   }),
                                   _vm._v(" "),
@@ -2694,11 +2675,7 @@ var render = function() {
                                         "father_nid"
                                       )
                                     },
-                                    attrs: {
-                                      required: "",
-                                      type: "file",
-                                      name: "father_nid"
-                                    },
+                                    attrs: { type: "file", name: "father_nid" },
                                     on: { change: _vm.uploadFatherNidImage }
                                   }),
                                   _vm._v(" "),
@@ -2756,11 +2733,7 @@ var render = function() {
                                         "mother_nid"
                                       )
                                     },
-                                    attrs: {
-                                      required: "",
-                                      type: "file",
-                                      name: "mother_nid"
-                                    },
+                                    attrs: { type: "file", name: "mother_nid" },
                                     on: { change: _vm.uploadMotherNidImage }
                                   }),
                                   _vm._v(" "),

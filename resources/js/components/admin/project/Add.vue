@@ -818,6 +818,7 @@ export default {
     },
 
 
+
     uploadManagerProfile(e) {
       this.form.manager_image = e.target.files[0];
     },

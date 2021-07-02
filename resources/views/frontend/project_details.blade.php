@@ -13,39 +13,53 @@
                     <div class="row">
                         <div class="col-lg-8">
                             <div class="single-content wow fadeInUp">
-                                <img src="{{ asset('storage/'.$project->project_image[0]->image ) }}" />
+               <!-- Carousel Start -->
+            <div id="carousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    @foreach ($project->project_image as $key=>$item)
+
+                         <li data-target="#carousel" data-slide-to="{{ $key }}" class="{{ $key==0 ? 'active' : '' }}"></li>
+
+                    @endforeach
+
+                </ol>
+
+                <div class="carousel-inner">
+                   @foreach ($project->project_image as $key=> $image)
+                    <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
+                           <img class="slider_image" src="{{ asset('storage/'.$image->image) }}" alt="Carousel Image">
+                     </div>
+                   @endforeach
+
+
+                </div>
+
+                <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+
+
+            </div>
+            <!-- Carousel End -->
+
+
                                 <h2> {{ $project->name }}</h2>
 
                                 <p> {!! $project->description !!} </p>
-           @if ($project->embaded_url)
-                   <!-- Video Start -->
-            <div class="video wow fadeIn" data-wow-delay="0.1s">
-                <div class="container">
-                    <button type="button" class="btn-play" data-toggle="modal" data-src="{{ $project->embaded_url }}" data-target="#videoModal">
-                        <span></span>
-                    </button>
-                </div>
-            </div>
+         
 
-            <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <!-- 16:9 aspect ratio -->
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="{{ $project->embaded_url }}" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
-                          </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Video End -->
-           @endif
+                   @if ($project->emabaded_url)
+                         
 
-
+                            <iframe width="100%" height="346" src="{{ $project->emabaded_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            
+                   @endif
+                
                             </div>
 
                             <div class="single-bio wow fadeInUp">
@@ -136,19 +150,7 @@
                             <div class="comment-form wow fadeInUp">
                                 <h2>Leave a comment</h2>
                                 <form>
-                                    <div class="form-group">
-                                        <label for="name">Name *</label>
-                                        <input type="text" class="form-control" id="name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">Email *</label>
-                                        <input type="email" class="form-control" id="email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="website">Website</label>
-                                        <input type="url" class="form-control" id="website">
-                                    </div>
-
+                                
                                     <div class="form-group">
                                         <label for="message">Message *</label>
                                         <textarea id="message" cols="30" rows="5" class="form-control"></textarea>

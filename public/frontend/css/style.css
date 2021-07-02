@@ -30,13 +30,25 @@ a:focus {
     text-decoration: none;
 }
 
-.h_contact{
-   color:#161745 ;
-   font-size: 13px;
+.contact_head a {
+    color:#000000;
+    margin: 2px 5px;
+    position: absolute;
 }
-.h_contact:hover {
-    color:#fff;
+
+.contact_head  i {
+    font-size: 24px;
 }
+
+.custom_icon {
+    color: #fff;
+    z-index: 22;
+    font-size: 56px;
+    position: absolute;
+    margin-top: 31px;
+    margin-left: 23px;
+}
+
 .btn:focus {
     box-shadow: none;
 }
@@ -44,7 +56,7 @@ a:focus {
 .wrapper {
     position: relative;
     width: 100%;
-    max-width: 1366px;
+    /* max-width: 1366px; */
     margin: 0 auto;
     background: #ffffff;
 }
@@ -193,7 +205,7 @@ a:focus {
     position: fixed;
     top: 0;
     width: 100%;
-    max-width: 1366px;
+    /* max-width: 1366px; */
     box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
     z-index: 999;
 }
@@ -291,7 +303,7 @@ a:focus {
     position: relative;
     width: 100%;
     height: calc(100vh - 170px);
-    height: 400px;
+    height: 600px;
     margin: 0 auto;
     text-align: center;
     overflow: hidden;
@@ -301,12 +313,12 @@ a:focus {
 .carousel .carousel-item {
     position: relative;
     width: 100%;
-    height: 400px;
+    height: 600px;
 }
 
 .carousel .carousel-item img {
     width: 100%;
-    height: 400px;
+    height: 600px;
     background-size: cover;
     background-position: center;
 }
@@ -315,7 +327,7 @@ a:focus {
     position: absolute;
     content: "";
     width: 100%;
-    height: 400px;
+    height: 600px;
     top: 0;
     left: 0;
     z-index: 1;
@@ -330,7 +342,7 @@ a:focus {
     justify-content: center;
     flex-direction: column;
     height: calc(100vh - 170px);
-    height: 400px;
+    height: 600px;
 }
 
 .carousel .carousel-caption p {

@@ -60,12 +60,11 @@ class ProjectController extends Controller
             'manager_image' => 'required',
             'description' => 'required',
             'agreement_image' => 'required|file',
-            'aggreement_details' => 'required',
             'father_name' => 'required',
             'mother_name' => 'required',
-            'manager_phone' => 'required|unique:projects',
-            'father_phone' => 'required|unique:projects',
-            'mother_phone' => 'required|unique:projects',
+            'manager_phone' => 'required|digits:11|unique:projects',
+            'father_phone' => 'required|digits:11|unique:projects',
+            'mother_phone' => 'required|digits:11|unique:projects',
         ]);
         DB::transaction(function() use($request){
 
@@ -77,12 +76,12 @@ class ProjectController extends Controller
             $string = preg_replace("/[\/_|+ -]+/", $delimiter, $string);
             return $string;
         }
-        $slug=CleanURL($request->title);
+        $slug=CleanURL($request->name);
 
         //project info
         $project = new Project();
         $project->name = $request->name;
-        $project->slug=$slug.'-'.$request->place ;
+        $project->slug=$slug;
         $project->place = $request->place;
         $project->project_type = $request->project_type;
         $project->proposed_budget = $request->proposed_budget;
@@ -97,6 +96,7 @@ class ProjectController extends Controller
 
         //manager info
         $project->manager_name = $request->manager_name;
+        $project->manager_phone = $request->manager_phone;
         $project->present_address = $request->present_address;
         $project->permanent_address = $request->permanent_address;
         $nid_path = $request->file('nid')->store('images/manager_nid','public');
@@ -172,9 +172,9 @@ class ProjectController extends Controller
             'permanent_address' => 'required',
             'description' => 'required',
             'aggreement_details' => 'required',
-            'manager_phone' => 'required|unique:projects,manager_phone,'.$id,
-            'father_phone' => 'required|unique:projects,father_phone,'.$id,
-            'mother_phone' => 'required|unique:projects,mother_phone,'.$id,
+            'manager_phone' => 'required|digits:11|unique:projects,manager_phone,'.$id,
+            'father_phone' => 'required|digits:11|unique:projects,father_phone,'.$id,
+            'mother_phone' => 'required|digits:11|unique:projects,mother_phone,'.$id,
             'father_name' => 'required',
             'mother_name' => 'required',
             'parent_present_address' => 'required',
@@ -198,6 +198,7 @@ class ProjectController extends Controller
 
         //manager info
         $project->manager_name = $request->manager_name;
+        $project->manager_phone = $request->manager_phone;
         $project->present_address = $request->present_address;
         $project->permanent_address = $request->permanent_address;
         

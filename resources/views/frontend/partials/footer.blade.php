@@ -14,13 +14,13 @@
                                 <p><i class="fa fa-map-marker-alt"></i>Dhaka-1216, Bangladesh</p>
                                 <a href="tel:{{ $general_info->header_contact_number }}"><i class="fa fa-phone-alt"></i>{{ $general_info->header_contact_number }}</a>
                                 <br>
-                                <a href="mailto:info@bondhonsociety.com"><i class="fa fa-envelope"></i>info@bondhonsociety.com</a>
+                                <a href="mailto:mybondhonsociety2020@gmail.com">mybondhonsociety2020@gmail.com</a> 
                                 <div class="footer-social">
-                                    <a href=""><i class="fab fa-twitter"></i></a>
-                                    <a target="_blank" href="{{ $footer_info->facebook_url }}"><i class="fab fa-facebook-f"></i></a>
-                                    <a target="_blank" href="{{ $footer_info->youtube_url }}"><i class="fab fa-youtube"></i></a>
-                                    <a target="_blank" href="{{ $footer_info->twitter_url }}"><i class="fab fa-twitter"></i></a>
-                                    <a target="_blank" href="{{ $footer_info->linkedin_url }}"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href=""><i class="fa fa-twitter"></i></a>
+                                    <a target="_blank" href="{{ $footer_info->facebook_url }}"><i class="fa fa-facebook-f"></i></a>
+                                    <a target="_blank" href="{{ $footer_info->youtube_url }}"><i class="fa fa-youtube"></i></a>
+                                    <a target="_blank" href="{{ $footer_info->twitter_url }}"><i class="fa fa-twitter"></i></a>
+                                    <a target="_blank" href="{{ $footer_info->linkedin_url }}"><i class="fa fa-linkedin"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                 <div class="container copyright">
                     <div class="row">
                         <div class="col-md-6">
-                            <p>&copy; <a href="http://bondhonsociety.com">bondhonsociety.com</a> All Right Reserved.</p>
+                            <p>&copy; <a href="mailto:mybondhonsociety2020@gmail.com">mybondhonsociety2020@gmail.com</a>  All Right Reserved.</p>
                         </div>
                         <div class="col-md-6">
                             <p>Developed By <a href="mohsasagor.com"></a>MIT</p>

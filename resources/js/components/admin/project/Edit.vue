@@ -63,7 +63,7 @@
                       }"
                       autofocus
                       placeholder="Ex:agro firm"
-                      required
+                      
                     />
                     <has-error :form="form" field="name"></has-error>
                   </div>
@@ -77,7 +77,7 @@
                         </label>
                         <select
                           class="form-control"
-                          required
+                          
                           name="project_type"
                           v-model="form.project_type"
                           :class="{
@@ -114,7 +114,7 @@
                           :class="{
                             'is-invalid': form.errors.has('place'),
                           }"
-                          required
+                          
                           placeholder="Ex:Dhaka"
                         />
                         <has-error :form="form" field="place"></has-error>
@@ -137,7 +137,7 @@
                           :class="{
                             'is-invalid': form.errors.has('proposed_budget'),
                           }"
-                          required
+                          
                           placeholder="000000"
                         />
                         <has-error
@@ -196,7 +196,7 @@
                     </label>
                     <select
                       class="form-control"
-                      required
+                      
                       v-model="manager_select"
                       @change="displayMemeberInfo(manager_select)"
                     >
@@ -231,7 +231,7 @@
                           }"
                           autofocus
                           placeholder="Ex:agro firm"
-                          required
+                          
                         />
                         <has-error
                           :form="form"
@@ -249,7 +249,7 @@
                           class="form-control"
                           :class="{ 'is-invalid': form.errors.has('manager_phone') }"
                           autofocus
-                          required
+                          
                           maxlength="11"
 
                           placeholder="01xxxxxxxxx"
@@ -276,7 +276,7 @@
                             'is-invalid': form.errors.has('present_address'),
                           }"
                           autofocus
-                          required
+                          
                           placeholder="present_address"
                         />
                         <has-error
@@ -300,7 +300,7 @@
                             'is-invalid': form.errors.has('permanent_address'),
                           }"
                           autofocus
-                          required
+                          
                           placeholder="permanent_address"
                         />
                         <has-error
@@ -463,7 +463,7 @@
                             'is-invalid': form.errors.has('father_phone'),
                           }"
                           autofocus
-                          required
+                          
                           maxlength="11"
                           placeholder="01xxxxxxxxx"
                         />
@@ -488,7 +488,7 @@
                             'is-invalid': form.errors.has('mother_phone'),
                           }"
                           autofocus
-                          required
+                          
                           maxlength="11"
                           placeholder="01xxxxxxxxx"
                         />
@@ -517,7 +517,7 @@
                             ),
                           }"
                           autofocus
-                          required
+                          
                           placeholder="parent_present_address"
                         />
                         <has-error
@@ -543,7 +543,7 @@
                             ),
                           }"
                           autofocus
-                          required
+                          
                           placeholder="parent_permanent_address"
                         />
                         <has-error
@@ -664,7 +664,7 @@
                         >
                          <input
                           class="form-control"
-                          required
+                          
                           :class="{ 'is-invalid': form.errors.has('nid') }"
                           type="file"
                             @change="uploadManagerNidImage"
@@ -690,7 +690,7 @@
                           ></label >
                          <input
                           class="form-control"
-                          required
+                          
                           :class="{ 'is-invalid': form.errors.has('father_nid') }"
                           type="file"
                             @change="uploadFatherNidImage"
@@ -718,7 +718,7 @@
                         >
                         <input
                           class="form-control"
-                          required
+                          
                           :class="{ 'is-invalid': form.errors.has('mother_nid') }"
                           type="file"
                             @change="uploadMotherNidImage"

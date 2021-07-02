@@ -8,6 +8,7 @@ use App\Models\Admin ;
 use App\Models\Credit;
 use App\Models\Project;
 use App\Models\Investor;
+use App\Models\Investment;
 use App\Models\AdminProfit;
 use App\Models\ProjectCost;
 use App\Models\AdminAccount;
@@ -24,9 +25,9 @@ use App\Models\BillPaidStatement;
 use App\Models\InvestorProfitPaid;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Investment;
 use Intervention\Image\Facades\Image;
 use Maatwebsite\Excel\Facades\Excel ;
+use App\Http\Controllers\Admin\SendMailController;
 
 class AccountController extends Controller
 {
@@ -139,6 +140,8 @@ class AccountController extends Controller
                 $credit->save();
                 Admin::sendConfirmationMessage($admin,$credit->amount,$credit->date);
                 //send mail to member
+                $message= 'Assalamualikum, '. $admin->name .' your monthly collection of' .$request->month.' has been paid '. $request->amount .' /BDT' ;
+                SendMailController::sendMailToMember($admin->email,$message);
             }
 
             //investor payment inserting
@@ -153,7 +156,11 @@ class AccountController extends Controller
                 $investor_invest_add->save();
                 $credit->comment = $credit->comment.'('. $investor->name .')';
                 $credit->save();
-                Investor::InvestmentWelcome($investor,$credit->amount,$credit->date);
+                Investor::InvestmentWelcome($investor,$credit->amount,$request->month);
+                 //send mail to member
+                $message= 'Assalamualikum, '. $investor->name . ' You have invested  '. $request->amount .' /BDT on your investoment of bondhon society limited.' ;
+                SendMailController::sendMailToMember($investor->email,$message);
+
             }
 
 
@@ -330,12 +337,16 @@ class AccountController extends Controller
                 $member->admin_id=$member_id;
                 $member->amount=  $debit->amount;
                 $member->date= $debit->date;
+                $member->month= $request->month;
                 $member->comment=$debit->comment;
                 $member->paid_by=$debit->debit_from;
                 $member->save();
                 $debit->comment = $debit->comment.'('.$member_name.')';
                 $debit->save();
                 Admin::profitConfirmation($admin,$debit->amount,$debit->date);
+                //send mail to member
+                $message= 'Assalamualikum, '. $admin->name . ' Your profit has been paid '. $request->amount .' /BDT' ;
+                SendMailController::sendMailToMember($admin->email,$message);
                 }
 
                 // if salary paid
@@ -358,14 +369,19 @@ class AccountController extends Controller
                 $investor_profit_paid=new InvestorProfitPaid();
                 $investor_profit_paid->investor_id=$investor->id;
                 $investor_profit_paid->amount=  $debit->amount;
-                $investor_profit_paid->profit_month= $request->profit_month;
+                $investor_profit_paid->profit_month= $request->month;
                 $investor_profit_paid->date= $debit->date;
                 $investor_profit_paid->comment=$debit->comment;
                 $investor_profit_paid->paid_by=$debit->debit_from;
                 $investor_profit_paid->save();
                 $debit->comment = $debit->comment.'('. $investor->name .')';
                 $debit->save();
-                  Investor::SendMessageToInvestor($investor, $investor_profit_paid->amount, $investor_profit_paid->profit_month);
+                Investor::SendMessageToInvestor($investor, $investor_profit_paid->amount, $request->month);
+                //send mail to member
+                $message= 'Assalamualikum,'. $investor->name . ' Your profit has been paid '. $request->amount .'/BDT' ;
+                SendMailController::sendMailToMember($investor->email,$message);
+
+
             }
 
 
@@ -382,6 +398,10 @@ class AccountController extends Controller
                 $debit->comment = $debit->comment.'('. $investor->name .')';
                 $debit->save();
                 Investor::InvestmentReturn($investor,$debit->amount,$debit->date);
+                 //send mail to member
+                $message= 'Assalamualikum, '. $investor->name . ' You have return from bondhon society limited '. $request->amount .' /BDT' ;
+                SendMailController::sendMailToMember($investor->email,$message);
+
             }
 
             //storing bill statement payment
@@ -394,8 +414,8 @@ class AccountController extends Controller
                 $bill_paid->comment=$debit->comment;
                 $bill_paid->paid_by=$debit->debit_from;
                 $bill_paid->save();
-                    $debit->comment = $debit->comment.'('.$bill->name.')';
-                    $debit->save();
+                $debit->comment = $debit->comment.'('.$bill->name.')';
+                $debit->save();
             }
 
         });

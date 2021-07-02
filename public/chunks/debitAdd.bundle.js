@@ -223,7 +223,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         signature_write: false,
         admin_id: "",
         investor_id: "",
-        profit_month: "",
+        month: "",
         old_signature: "",
         bill_statement_id: "",
         investor_return_id: ""
@@ -360,9 +360,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
               showCancelButton: true
             }).then(function (month) {
               if (month.value) {
-                _this4.form.profit_month = month.value;
+                _this4.form.month = month.value;
               } else {
-                _this4.form.profit_month = "";
+                _this4.form.month = "";
               }
             });
           } else {
@@ -478,9 +478,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
               showCancelButton: true
             }).then(function (month) {
               if (month.value) {
-                _this8.form.profit_month = month.value;
+                _this8.form.month = month.value;
               } else {
-                _this8.form.profit_month = "";
+                _this8.form.month = "";
               }
             });
           } else {

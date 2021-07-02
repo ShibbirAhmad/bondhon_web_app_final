@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ReaplyEmail extends Mailable
+class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -34,8 +34,8 @@ class ReaplyEmail extends Mailable
      */
     public function build()
     {
-        
+
          return $this->view('admin.email')->with('data',$this->message)->subject($this->subject);
- 
+
     }
 }

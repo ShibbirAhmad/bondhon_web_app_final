@@ -18,14 +18,15 @@
       <section class="content">
         <div class="container">
           <div class="row ">
-            <div class="col-lg-8 col-md-8 col-sm-10 col-xs-12 col-lg-offset-1">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 ">
               <div class="box box-primary">
                 <div class="box-header with-border text-center">
                   <h3 class="box-title">Collection History</h3>
                 </div>
 
                 <div class="box-body">
-                  <table class="table table-striped text-center table-borderd">
+                  <div class="table_container col-lg-12 col-md-12 col-xs-12">
+                    <table class="table table-striped text-center table-borderd">
                     <tr>
                       <th>#</th>
                       <th>Date</th>
@@ -50,6 +51,7 @@
                       </tr>
                     </tbody>
                   </table>
+                  </div>
                 </div>
                 <div class="box-footer">
                   <div class="row">
@@ -62,7 +64,7 @@
                       </pagination>
                     </div>
                     <div class="col-sm-12">
-                      <p>
+                      <p class="item_displayer">
                         Showing
                         <strong>{{ collections.from }}</strong> to
                         <strong>{{ collections.to }}</strong> of total
@@ -124,4 +126,30 @@ export default {
 </script>
 
 <style scoped>
+
+
+.box{
+  min-height: 400px;
+}
+
+@media screen and (max-width:450px) {
+  .row {
+    margin-right: -30px !important;
+    margin-left: -30px !important;
+  }
+
+  .col-xs-12 {
+    width: 100% !important;
+  }
+
+  .table_container {
+    overflow-x:scroll;
+  }
+
+  .item_displayer{
+    margin-left:10px;
+  }
+
+}
+
 </style>

@@ -43,7 +43,7 @@ class Admin extends Authenticatable
         $api_key = "C200833360d1a324e46036.34232547";
         $contacts = $admin->phone;
         $senderid = '8809612436107';
-        $sms = 'Assalamualikum, ' .$admin->name. ' You have paid '.number_format($amount).'/=BDT, as your montly collection. in this date '.$date.'.  Thanks for being with bondhonsociety.com ';   // put here your dynamic message text here
+        $sms = 'Assalamualikum, ' . $admin->name. ' You have paid '.number_format($amount).' /=BDT, as your montly collection. in this date '.$date.'.  Thanks for being with bondhonsociety.com ';   // put here your dynamic message text here
         $URL = "http://sms.esmsbd.com/smsapi?api_key=" . urlencode($api_key) . "&type=text&contacts=" . urlencode($contacts) . "&senderid=" . urlencode($senderid) . "&msg=" . urlencode($sms);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $URL);
@@ -90,7 +90,7 @@ class Admin extends Authenticatable
         $api_key = "C200833360d1a324e46036.34232547";
         $contacts = $admin->phone;
         $senderid = '8809612436107';
-        $sms = 'Assalamualikum, ' .$admin->name. ' You have recieved '.number_format($amount).'/=BDT, as your  profit  from the bondhonsociety.com  the payment date is '.$profit_date.'  Thanks for being with us';   // put here your dynamic message text here
+        $sms = 'Assalamualikum, ' .$admin->name. ' You have recieved '.number_format($amount).' /=BDT, as your  profit  from the bondhonsociety.com  the payment date is '.$profit_date.'  Thanks for being with us';   // put here your dynamic message text here
         $URL = "http://sms.esmsbd.com/smsapi?api_key=" . urlencode($api_key) . "&type=text&contacts=" . urlencode($contacts) . "&senderid=" . urlencode($senderid) . "&msg=" . urlencode($sms);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $URL);
@@ -114,7 +114,7 @@ class Admin extends Authenticatable
         $api_key = "C200833360d1a324e46036.34232547";
         $contacts = $project->manager_phone;
         $senderid = '8809612436107';
-        $sms = 'Assalamualikum, ' .$project->manager_name. ' ' .$project->name .' has added ' .number_format($amount).'/=BDT, for cost purpose ';   // put here your dynamic message text here
+        $sms = 'Assalamualikum, ' .$project->manager_name. ' ' .$project->name .' has added ' .number_format($amount).' /=BDT, for cost purpose ';   // put here your dynamic message text here
         $URL = "http://sms.esmsbd.com/smsapi?api_key=" . urlencode($api_key) . "&type=text&contacts=" . urlencode($contacts) . "&senderid=" . urlencode($senderid) . "&msg=" . urlencode($sms);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $URL);

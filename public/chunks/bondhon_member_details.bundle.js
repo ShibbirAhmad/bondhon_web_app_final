@@ -398,8 +398,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getadminSalary();
@@ -455,7 +453,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.nid_image[data-v-dcb1e626] {\r\n      height: 150px;\r\n      width: 300px;\n}\n.download_icon[data-v-dcb1e626]{\r\n   cursor: pointer;\r\n    font-size: 29px;\r\n    position: absolute;\r\n    margin: 4px -30px;\r\n    color: green;\n}\n.aggreement_container[data-v-dcb1e626] {\r\n   height: 400px;\r\n   overflow-y: scroll;\n}\np[data-v-dcb1e626] {\r\n    font-size: 16px;\r\n    line-height: 17px;\n}\n.profile_img[data-v-dcb1e626] {\r\n  width: 150px;\r\n  height: 150px;\r\n  border-radius: 50%;\r\n  border: 3px solid #161745;\r\n  padding: 3px;\r\n  line-height: 0;\n}\n.aggreement_image[data-v-dcb1e626]{\r\n    width:90%;\r\n    height: 320px;\r\n    border:1px solid #161745 ;\n}\n.aggreement_info[data-v-dcb1e626]{\r\n    overflow-y: scroll;\n}\n.custom_row[data-v-dcb1e626] {\r\n  margin-left: -30px !important;\r\n  margin-right: 0px !important;\n}\n.m_l[data-v-dcb1e626] {\r\n    margin-left: 30px;\n}\r\n", ""]);
+exports.push([module.i, "\n.nid_image[data-v-dcb1e626] {\r\n      height: 150px;\r\n      width: 300px;\r\n      margin-left: 36%;\n}\n.download_icon[data-v-dcb1e626]{\r\n   cursor: pointer;\r\n    font-size: 29px;\r\n    position: absolute;\r\n    margin: 4px -30px;\r\n    color: green;\n}\n.aggreement_container[data-v-dcb1e626] {\r\n   height: 400px;\r\n   overflow-y: scroll;\n}\np[data-v-dcb1e626] {\r\n    font-size: 16px;\r\n    line-height: 17px;\n}\n.profile_img[data-v-dcb1e626] {\r\n  width: 150px;\r\n  height: 150px;\r\n  border-radius: 50%;\r\n  border: 3px solid #161745;\r\n  padding: 3px;\r\n  line-height: 0;\n}\n.aggreement_image[data-v-dcb1e626]{\r\n    width:90%;\r\n    height: 320px;\r\n    border:1px solid #161745 ;\n}\n.aggreement_info[data-v-dcb1e626]{\r\n    overflow-y: scroll;\n}\n.custom_row[data-v-dcb1e626] {\r\n  margin-left: -30px !important;\r\n  margin-right: 0px !important;\n}\n.m_l[data-v-dcb1e626] {\r\n    margin-left: 30px;\n}\r\n", ""]);
 
 // exports
 
@@ -521,7 +519,7 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "btn btn-primary",
-                  attrs: { to: { name: "admin" } }
+                  attrs: { to: { name: "bondhon_member" } }
                 },
                 [_c("i", { staticClass: "fa fa-arrow-left" })]
               )
@@ -881,15 +879,6 @@ var render = function() {
                                 _vm._v(
                                   " " + _vm._s(_vm.admin.mother_phone) + " "
                                 )
-                              ])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("p", [
-                              _vm._v("NID: "),
-                              _c("span", { staticClass: "m_l" }, [
-                                _vm._v(" " + _vm._s(_vm.admin.mother_nid) + " ")
                               ])
                             ])
                           ]),

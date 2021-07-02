@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Contracts\Session\Session;
+use App\Http\Controllers\Admin\SendMailController;
 
 
 class AdminController extends Controller
@@ -150,13 +151,13 @@ class AdminController extends Controller
     {
     //    return $request->all();
         $validatedData = $request->validate([
-            'email' => 'required|unique:admins',
-            'nominee_email' => 'required|unique:admins',
-            'phone' => 'required|unique:admins',
-            'father_phone' => 'required|unique:admins',
-            'mother_phone' => 'required|unique:admins',
-            'nominee_phone' => 'required|unique:admins',
-            'password' => 'required',
+            'email' => 'required|email|unique:admins',
+            'nominee_email' => 'required|email|unique:admins',
+            'phone' => 'required|digits:11|unique:admins',
+            'father_phone' => 'required|digits:11|unique:admins',
+            'mother_phone' => 'required|digits:11|unique:admins',
+            'nominee_phone' => 'required|digits:11|unique:admins',
+            'password' => 'required|min:6',
             'present_address' => 'required',
             'permanent_address' => 'required',
             'parent_present_address' => 'required',
@@ -167,22 +168,20 @@ class AdminController extends Controller
             'father_name' => 'required',
             'mother_name' => 'required',
             'nominee_name' => 'required',
-            'nid' => 'required | unique:admins',
+            'nid' => 'required' ,
             'father_nid' => 'required',
             'mother_nid' => 'required',
             'agree_with_aggreement' => 'required',
             'aggreement_image' => 'required|file',
             'nominee_father_name' => 'required',
             'nominee_mother_name' => 'required',
-            'nominee_father_nid' => 'required ',
-            'nominee_mother_nid' => 'required ',
-            'nominee_father_phone' => 'required|unique:admins',
-            'nominee_mother_phone' => 'required|unique:admins',
+            'nominee_father_phone' => 'required|digits:11|unique:admins',
+            'nominee_mother_phone' => 'required|digits:11|unique:admins',
             'nominee_parent_present_address' => 'required',
             'nominee_parent_permanent_address' => 'required',
         ]);
         DB::transaction(function() use($request){
-               $admin = new Admin();
+        $admin = new Admin();
         //personal info..
         $admin->name = $request->name;
         $admin->email = $request->email;
@@ -275,6 +274,9 @@ class AdminController extends Controller
             $admin->aggreement_image = $path;
             $admin->save();
             Admin::sendWelcomeMessage($admin);
+            //send mail to member
+            $message= 'Assalamualikum,'. $admin->name . 'You are now partner of Bondhon Society Limited. Thanks a million for being with us . wishing your best success ';
+            SendMailController::sendMailToMember($admin->email,$message);
         });
 
          return response()->json([
@@ -335,10 +337,10 @@ class AdminController extends Controller
     {
         // return $request->all();
         $validatedData = $request->validate([
-            'email' => 'required|unique:admins,email,'.$id,
-            'nominee_email' => 'required|unique:admins,nominee_email,'.$id,
-            'phone' => 'required|unique:admins,phone,'.$id,
-            'nominee_phone' => 'required|unique:admins,nominee_phone,'.$id,
+            'email' => 'required|email|unique:admins,email,'.$id,
+            'nominee_email' => 'required|email|unique:admins,nominee_email,'.$id,
+            'phone' => 'required|digits:11|unique:admins,phone,'.$id,
+            'nominee_phone' => 'required|digits:11|unique:admins,nominee_phone,'.$id,
             'present_address' => 'required',
             'permanent_address' => 'required',
             'nominee_present_address' => 'required',
@@ -347,14 +349,14 @@ class AdminController extends Controller
             'nominee_name' => 'required',
             'father_name' => 'required',
             'mother_name' => 'required',
-            'father_phone' => 'required|unique:admins,father_phone,'.$id,
-            'mother_phone' => 'required|unique:admins,mother_phone,'.$id,
+            'father_phone' => 'required|digits:11|unique:admins,father_phone,'.$id,
+            'mother_phone' => 'required|digits:11|unique:admins,mother_phone,'.$id,
             'parent_present_address' => 'required',
             'parent_permanent_address' => 'required',
             'nominee_father_name' => 'required',
             'nominee_mother_name' => 'required',
-            'nominee_father_phone' => 'required|unique:admins,nominee_father_phone,'.$id,
-            'nominee_mother_phone' => 'required|unique:admins,nominee_mother_phone,'.$id,
+            'nominee_father_phone' => 'required|digits:11|unique:admins,nominee_father_phone,'.$id,
+            'nominee_mother_phone' => 'required|digits:11|unique:admins,nominee_mother_phone,'.$id,
             'nominee_parent_present_address' => 'required',
             'nominee_parent_permanent_address' => 'required',
         ]);

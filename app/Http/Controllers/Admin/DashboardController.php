@@ -51,20 +51,21 @@ class DashboardController extends Controller
        //company all cost for substract from asset
        $total_bill_paid = BillPaidStatement::sum('amount');
        $total_salary_paid = EmployeeSalary::sum('amount');
-       $toal_member_profit= AdminProfit::sum('amount');
-       $toal_investor_profit= InvestorProfitPaid::sum('amount');
-       $toal_other_debit_cost= Debit::where('purpose','Debit Others')->sum('amount');
-       $company_total_cost= ( intval($total_bill_paid) + intval($total_salary_paid) + intval($toal_member_profit) +  intval($toal_investor_profit) + intval($toal_other_debit_cost) ) ;
+       $total_member_profit= AdminProfit::sum('amount');
+       $total_investor_profit= InvestorProfitPaid::sum('amount');
+       $total_other_debit_cost= Debit::where('purpose','Debit Others')->sum('amount');
+       $company_total_cost= ( intval($total_bill_paid) + intval($total_salary_paid) + intval($total_member_profit) + 
+                             intval($total_investor_profit) + intval($total_other_debit_cost) ) ;
       //addition value
        $total_members_money=AdminAccount::sum('amount');
        $total_project_profit=ProjectProfit::sum('amount');
        $company_total_credit_money= ( intval($total_members_money) + intval($total_project_profit) ) ;
        // company current assets
-       $company_value = $company_total_credit_money - $company_total_cost ;
-       $analysis['company_value'] = $company_value ;
-       $total_member=Admin::where('admin_role',2)->count() ?? 1;
+       $companyValue = $company_total_credit_money - $company_total_cost ;
+       $analysis['company_value'] = $companyValue ;
+       $total_member=Admin::where('admin_role',2)->count() ;
 
-       $analysis['share_value'] = ( $company_value  / $total_member ) ;
+       $analysis['share_value'] = ( $companyValue  / $total_member ) ;
 
         //balance analysis
         $balnce=Credit::Balance();

@@ -287,6 +287,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getMemberInformation();
@@ -334,7 +335,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.nid_image[data-v-1ccefd24] {\r\n      height: 150px;\r\n      width: 300px;\n}\n.download_icon[data-v-1ccefd24]{\r\n   cursor: pointer;\r\n    font-size: 29px;\r\n    position: absolute;\r\n    margin: 4px -30px;\r\n    color: green;\n}\n.aggreement_container[data-v-1ccefd24] {\r\n   height: 400px;\r\n   overflow-y: scroll;\n}\np[data-v-1ccefd24] {\r\n    font-size: 16px;\r\n    line-height: 17px;\n}\n.profile_img[data-v-1ccefd24] {\r\n  width: 150px;\r\n  height: 150px;\r\n  border-radius: 50%;\r\n  border: 3px solid #161745;\r\n  padding: 3px;\r\n  line-height: 0;\n}\n.aggreement_image[data-v-1ccefd24]{\r\n    width:90%;\r\n    height: 320px;\r\n    border:1px solid #161745 ;\n}\n.aggreement_info[data-v-1ccefd24]{\r\n    overflow-y: scroll;\n}\n.custom_row[data-v-1ccefd24] {\r\n  margin-left: -30px !important;\r\n  margin-right: 0px !important;\n}\n.m_l[data-v-1ccefd24] {\r\n    margin-left: 30px;\n}\n@media screen  and(max-width:450px){\n.custom_row[data-v-1ccefd24] {\r\n      margin-left: -9px!important;\r\n      margin-right: -22px !important;\n}\n.nid_image[data-v-1ccefd24] {\r\n      height: 150px;\r\n      width: 250px;\n}\n}\r\n\r\n\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n.nid_image[data-v-1ccefd24] {\r\n      height: 150px;\r\n      width: 300px;\n}\n.download_icon[data-v-1ccefd24]{\r\n   cursor: pointer;\r\n    font-size: 29px;\r\n    position: absolute;\r\n    margin: 4px -30px;\r\n    color: green;\n}\n.aggreement_container[data-v-1ccefd24] {\r\n   height: 400px;\r\n   overflow-y: scroll;\n}\np[data-v-1ccefd24] {\r\n    font-size: 16px;\r\n    line-height: 17px;\n}\n.profile_img[data-v-1ccefd24] {\r\n  width: 150px;\r\n  height: 150px;\r\n  border-radius: 50%;\r\n  border: 3px solid #161745;\r\n  padding: 3px;\r\n  line-height: 0;\n}\n.aggreement_image[data-v-1ccefd24]{\r\n    width:90%;\r\n    height: 320px;\r\n    border:1px solid #161745 ;\n}\n.aggreement_info[data-v-1ccefd24]{\r\n    overflow-y: scroll;\n}\n.custom_row[data-v-1ccefd24] {\r\n  margin-left: -30px !important;\r\n  margin-right: 0px !important;\n}\n.m_l[data-v-1ccefd24] {\r\n    margin-left: 30px;\n}\n@media screen  and(max-width:450px){\n.custom_row[data-v-1ccefd24] {\r\n      margin-left: -9px!important;\r\n      margin-right: -22px !important;\n}\n.nid_image[data-v-1ccefd24] {\r\n      height: 150px;\r\n      width: 250px;\n}\n.aggreement_container[data-v-1ccefd24] {\r\n     overflow-y: scroll;\n}\n}\n.box[data-v-1ccefd24]{\r\n  min-height: 400px;\n}\n@media screen and (max-width:450px) {\n.row[data-v-1ccefd24] {\r\n    margin-right: -30px !important;\r\n    margin-left: -30px !important;\n}\n.col-xs-12[data-v-1ccefd24] {\r\n    width: 100% !important;\n}\n.table_container[data-v-1ccefd24] {\r\n    overflow-x:scroll;\n}\n.item_displayer[data-v-1ccefd24]{\r\n    margin-left:10px;\n}\n}\np[data-v-1ccefd24] {padding:10px}\r\n\r\n", ""]);
 
 // exports
 
@@ -887,6 +888,7 @@ var render = function() {
                         [
                           _c("img", {
                             staticClass: "aggreement_image",
+                            staticStyle: { "margin-left": "10px" },
                             attrs: {
                               src: _vm.admin.aggreement_image
                                 ? _vm.basePath + _vm.admin.aggreement_image

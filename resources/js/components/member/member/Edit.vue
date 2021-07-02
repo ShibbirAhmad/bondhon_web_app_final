@@ -4,7 +4,7 @@
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-          <router-link :to="{ name: 'admin' }" class="btn btn-primary"
+          <router-link :to="{ name: 'member_dashboard' }" class="btn btn-primary"
             ><i class="fa fa-arrow-left"></i
           ></router-link>
         </h1>

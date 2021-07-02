@@ -25,6 +25,7 @@
                 </div>
 
                 <div class="box-body">
+                   <div class="table_container col-lg-12 col-md-12 col-xs-12">
                   <table class="table table-striped text-center table-borderd">
                     <tr>
                       <th>#</th>
@@ -53,6 +54,7 @@
                     </tbody>
                   </table>
                 </div>
+                </div>
                 <div class="box-footer">
                   <div class="row">
                     <div class="col-sm-12">
@@ -64,7 +66,7 @@
                       </pagination>
                     </div>
                     <div class="col-sm-12">
-                      <p>
+                      <p class="item_displayer">
                         Showing
                         <strong>{{ profits.from }}</strong> to
                         <strong>{{ profits.to }}</strong> of total
@@ -125,4 +127,29 @@ export default {
 </script>
 
 <style scoped>
+
+
+.box{
+  min-height: 400px;
+}
+
+@media screen and (max-width:450px) {
+  .row {
+    margin-right: -30px !important;
+    margin-left: -30px !important;
+  }
+
+  .col-xs-12 {
+    width: 100% !important;
+  }
+
+  .table_container {
+    overflow-x:scroll;
+  }
+
+  .item_displayer{
+    margin-left:10px;
+  }
+
+}
 </style>

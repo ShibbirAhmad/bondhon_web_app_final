@@ -6,7 +6,7 @@
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-          <router-link :to="{ name: 'admin' }" class="btn btn-primary"
+          <router-link :to="{ name: 'bondhon_member' }" class="btn btn-primary"
             ><i class="fa fa-arrow-left"></i
           ></router-link>
         </h1>
@@ -211,9 +211,7 @@
                             Phone : <span class="m_l"> {{ admin.mother_phone }} </span>
                           </p>
                         </li>
-                        <li>
-                          <p>NID: <span class="m_l"> {{ admin.mother_nid }} </span> </p>
-                        </li>
+                      
                         <li>
                           <p>Present Address :  {{ admin.parent_present_address }}</p>
                         </li>
@@ -441,6 +439,7 @@ export default {
 .nid_image {
       height: 150px;
       width: 300px;
+      margin-left: 36%;
 }
 .download_icon{
    cursor: pointer;

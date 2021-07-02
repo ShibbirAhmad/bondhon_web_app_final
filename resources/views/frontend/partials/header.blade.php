@@ -5,41 +5,35 @@
             <div class="top-bar">
                 <div class="container-fluid">
                     <div class="row align-items-center">
-                        <div class="col-lg-1 col-md-6">
+                        <div class="col-lg-1 col-md-1">
                             <div class="logo">
                                 <a href="{{ route('home') }}">
                                     <img src="{{ asset('frontend/img/logo.jpg ') }}" alt="logo">
                                 </a>
                             </div>
                         </div>
-                        <div class="col-lg-5 col-md-6">
+                        <div class="col-lg-5 col-md-5">
                                <h1 class="logo_heading">Bondhon Society </h1>
                                <span class="sub_name"> Our dreams are too large </span>
                         </div>
-                        <div class="col-lg-6 col-md-7 d-none d-lg-block">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="top-bar-item">
-                                        <div class="top-bar-icon">
-                                            <i class="flaticon-call"></i>
-                                        </div>
-                                        <div class="top-bar-text">
-                                            <h3>Call Us</h3>
-                                            <a class="h_contact" href="tel:{{ $general_info->header_contact_number }}">{{ $general_info->header_contact_number }}</a>
-                                        </div>
-                                    </div>
+                        <div class="col-lg-6 col-md-6 d-none d-lg-block">
+                            <div class="row contact_row">
+                                <div class="col-lg-6 col-md-6">
+                                    <h6 class="contact_head"><i class="fa fa-phone"></i> <a  href="tel:{{ $general_info->header_contact_number }}">{{ $general_info->header_contact_number }}</a>
+                                    </h6>
+                                    
                                 </div>
-                                <div class="col-6">
-                                    <div class="top-bar-item">
-                                        <div class="top-bar-icon">
-                                            <i class="flaticon-send-mail"></i>
-                                        </div>
-                                        <div class="top-bar-text">
-                                            <h3>Email Us</h3>
-                                            <a class="h_contact" href="mailto:mybondhonsociety2020@gmail.com">mybondhonsociety2020@gmail.com</a>
-                                        </div>
-                                    </div>
+                                <div class="col-lg-6 col-md-6">
+                                            <h6  class="contact_head"><i class="fa fa-user-secret"></i><a href="member/login" >Member</a></h6>  
+                                 </div>
+
+                                 <div class="col-lg-12 col-md-12">
+                                    <h6  class="contact_head"> <i class="fa fa-envelope"></i> <a href="mailto:mybondhonsociety2020@gmail.com">mybondhonsociety2020@gmail.com</a>  </h6>
                                 </div>
+                                
+                                
+                            </div>
+
                             </div>
                         </div>
                     </div>

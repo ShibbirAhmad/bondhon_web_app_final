@@ -427,6 +427,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MODULE_1__["HasError"].name, vform__WEBPACK_IMPORTED_MODULE_1__["HasError"]);
@@ -439,6 +480,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
       form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
         name: "",
         referance_name: "",
+        email: "",
         mobile_no: "",
         address: "",
         date: "",
@@ -451,6 +493,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         mother_phone: "",
         father_nid: "",
         mother_nid: "",
+        nid: "",
         parent_present_address: "",
         parent_permanent_address: "",
         image: ""
@@ -488,6 +531,18 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         console.log(error);
         _this.error = "some thing want to wrong";
       });
+    },
+    uploadNidImage: function uploadNidImage(e) {
+      var file = e.target.files[0];
+      this.form.nid = file;
+    },
+    uploadMotherNidImage: function uploadMotherNidImage(e) {
+      var file = e.target.files[0];
+      this.form.mother_nid = file;
+    },
+    uploadFatherNidImage: function uploadFatherNidImage(e) {
+      var file = e.target.files[0];
+      this.form.father_nid = file;
     },
     uploadInvestorProfile: function uploadInvestorProfile(e) {
       this.form.image = e.target.files[0];
@@ -630,36 +685,90 @@ var render = function() {
                         _vm._m(1),
                         _vm._v(" "),
                         _c("div", { staticClass: "box-body" }, [
-                          _c(
-                            "div",
-                            { staticClass: "form-group" },
-                            [
-                              _vm._m(2),
-                              _vm._v(" "),
-                              _c("date-picker", {
-                                class: {
-                                  "is-invalid": _vm.form.errors.has("date")
-                                },
-                                attrs: {
-                                  autocomplete: "off",
-                                  required: "",
-                                  config: _vm.options
-                                },
-                                model: {
-                                  value: _vm.form.date,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.form, "date", $$v)
-                                  },
-                                  expression: "form.date"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("has-error", {
-                                attrs: { form: _vm.form, field: "date" }
-                              })
-                            ],
-                            1
-                          ),
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _c(
+                                "div",
+                                { staticClass: "form-group" },
+                                [
+                                  _vm._m(2),
+                                  _vm._v(" "),
+                                  _c("date-picker", {
+                                    class: {
+                                      "is-invalid": _vm.form.errors.has("date")
+                                    },
+                                    attrs: {
+                                      autocomplete: "off",
+                                      required: "",
+                                      config: _vm.options
+                                    },
+                                    model: {
+                                      value: _vm.form.date,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "date", $$v)
+                                      },
+                                      expression: "form.date"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("has-error", {
+                                    attrs: { form: _vm.form, field: "date" }
+                                  })
+                                ],
+                                1
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _c(
+                                "div",
+                                { staticClass: "form-group" },
+                                [
+                                  _vm._m(3),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.email,
+                                        expression: "form.email"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    class: {
+                                      "is-invalid": _vm.form.errors.has("email")
+                                    },
+                                    attrs: {
+                                      type: "email",
+                                      name: "email",
+                                      autofocus: "",
+                                      required: "",
+                                      placeholder: "email"
+                                    },
+                                    domProps: { value: _vm.form.email },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "email",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("has-error", {
+                                    attrs: { form: _vm.form, field: "email" }
+                                  })
+                                ],
+                                1
+                              )
+                            ])
+                          ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "row" }, [
                             _c("div", { staticClass: "col-md-6" }, [
@@ -667,7 +776,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(3),
+                                  _vm._m(4),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -718,7 +827,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(4),
+                                  _vm._m(5),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -776,7 +885,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(5),
+                                  _vm._m(6),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -828,7 +937,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(6),
+                                  _vm._m(7),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -886,7 +995,7 @@ var render = function() {
                             "div",
                             { staticClass: "form-group" },
                             [
-                              _vm._m(7),
+                              _vm._m(8),
                               _vm._v(" "),
                               _c("textarea", {
                                 directives: [
@@ -930,7 +1039,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(8),
+                                  _vm._m(9),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -1031,20 +1140,43 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "form-group" }, [
-                            _vm._m(9),
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _c("div", { staticClass: "form-group" }, [
+                                _vm._m(10),
+                                _vm._v(" "),
+                                _c("input", {
+                                  staticClass: "form-control",
+                                  attrs: { type: "file", required: "" },
+                                  on: { change: _vm.uploadInvestorProfile }
+                                })
+                              ])
+                            ]),
                             _vm._v(" "),
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "file", required: "" },
-                              on: { change: _vm.uploadInvestorProfile }
-                            })
+                            _c("div", { staticClass: "col-md-6" }, [
+                              _c("div", { staticClass: "form-group" }, [
+                                _vm._m(11),
+                                _vm._v(" "),
+                                _c("input", {
+                                  staticClass: "form-control",
+                                  class: {
+                                    "is-invalid": _vm.form.errors.has("nid")
+                                  },
+                                  attrs: {
+                                    required: "",
+                                    type: "file",
+                                    name: "nid"
+                                  },
+                                  on: { change: _vm.uploadNidImage }
+                                })
+                              ])
+                            ])
                           ])
                         ])
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "box box-primary" }, [
-                        _vm._m(10),
+                        _vm._m(12),
                         _vm._v(" "),
                         _c("div", { staticClass: "box-body" }, [
                           _c("div", { staticClass: "row" }, [
@@ -1053,7 +1185,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(11),
+                                  _vm._m(13),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -1107,17 +1239,9 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(12),
+                                  _vm._m(14),
                                   _vm._v(" "),
                                   _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.father_nid,
-                                        expression: "form.father_nid"
-                                      }
-                                    ],
                                     staticClass: "form-control",
                                     class: {
                                       "is-invalid": _vm.form.errors.has(
@@ -1125,25 +1249,11 @@ var render = function() {
                                       )
                                     },
                                     attrs: {
-                                      type: "number",
-                                      name: "father_nid",
-                                      autofocus: "",
-                                      require: "",
-                                      placeholder: "11xxxxxxxxx"
+                                      required: "",
+                                      type: "file",
+                                      name: "father_nid"
                                     },
-                                    domProps: { value: _vm.form.father_nid },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "father_nid",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
+                                    on: { change: _vm.uploadFatherNidImage }
                                   }),
                                   _vm._v(" "),
                                   _c("has-error", {
@@ -1164,7 +1274,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(13),
+                                  _vm._m(15),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -1218,17 +1328,9 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(14),
+                                  _vm._m(16),
                                   _vm._v(" "),
                                   _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.mother_nid,
-                                        expression: "form.mother_nid"
-                                      }
-                                    ],
                                     staticClass: "form-control",
                                     class: {
                                       "is-invalid": _vm.form.errors.has(
@@ -1236,25 +1338,11 @@ var render = function() {
                                       )
                                     },
                                     attrs: {
-                                      type: "number",
-                                      name: "mother_nid",
-                                      autofocus: "",
-                                      require: "",
-                                      placeholder: "15xxxxxxxxx"
+                                      required: "",
+                                      type: "file",
+                                      name: "mother_nid"
                                     },
-                                    domProps: { value: _vm.form.mother_nid },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "mother_nid",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
+                                    on: { change: _vm.uploadMotherNidImage }
                                   }),
                                   _vm._v(" "),
                                   _c("has-error", {
@@ -1275,7 +1363,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(15),
+                                  _vm._m(17),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -1331,7 +1419,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(16),
+                                  _vm._m(18),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -1389,7 +1477,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(17),
+                                  _vm._m(19),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -1447,7 +1535,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(18),
+                                  _vm._m(20),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -1574,6 +1662,15 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", [
+      _vm._v("Email"),
+      _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [
       _vm._v("Name "),
       _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
@@ -1636,6 +1733,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("label", [
+      _vm._v("NID/Birth Registration NO"),
+      _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box-header with-border text-center" }, [
       _c("h3", { staticClass: "box-title" }, [
         _vm._v("Investor Family Information")
@@ -1674,7 +1780,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", [
-      _vm._v("Mother/Wife NID NO"),
+      _vm._v("Mother/Wife NID"),
       _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },

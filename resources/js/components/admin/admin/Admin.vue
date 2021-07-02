@@ -18,7 +18,7 @@
       <section class="content">
         <div class="container">
           <div class="row ">
-            <div class="col-lg-11">
+            <div class="col-lg-11 col-md-11">
               <div class="box box-primary">
                 <div class="box-header with-border text-center">
                   <h3 class="box-title">Bondhon Admin </h3>

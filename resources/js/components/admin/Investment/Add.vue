@@ -33,7 +33,9 @@
                 <h3 class="box-title">Investor Basic Information </h3>
               </div>
               <div class="box-body">
-                  <div class="form-group">
+                 <div class="row">
+                   <div class="col-md-6">
+                     <div class="form-group">
                     <label>Date  <b class="text-danger">*</b>  </label>
 
                     <date-picker
@@ -46,6 +48,25 @@
 
                     <has-error :form="form" field="date"></has-error>
                   </div>
+                     </div>
+                   <div class="col-md-6">
+                          <div class="form-group">
+                        <label>Email<b class="text-danger">*</b></label>
+                        <input
+                          v-model="form.email"
+                          type="email"
+                          name="email"
+                          class="form-control"
+                          :class="{ 'is-invalid': form.errors.has('email') }"
+                          autofocus
+                          required
+                          placeholder="email"
+                        />
+                        <has-error :form="form" field="email"></has-error>
+                      </div>
+
+                      </div>
+                 </div>
 
                   <div class="row">
                     <div class="col-md-6">
@@ -180,17 +201,40 @@
                   </div>
 
 
-                <div class="form-group">
-                    <label
-                      >Manager photo <b class="text-danger">*</b>
-                    </label>
-                        <input
-                          @change="uploadInvestorProfile"
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                        <label
+                          >Manager photo <b class="text-danger">*</b>
+                        </label>
+                            <input
+                              @change="uploadInvestorProfile"
+                              class="form-control"
+                              type="file"
+                              required
+                            />
+                          </div>
+                      </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <label
+                          >NID/Birth Registration NO<b class="text-danger"
+                            >*</b
+                          ></label
+                        >
+                      <input
                           class="form-control"
-                          type="file"
                           required
-                        />
-                 </div>
+                          :class="{ 'is-invalid': form.errors.has('nid') }"
+                          type="file"
+                            @change="uploadNidImage"
+                          name="nid"
+                         />
+                   </div>
+                  </div>
+                </div>
+
+
 
               </div>
             </div>
@@ -220,20 +264,19 @@
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Father/Husband NID<b class="text-danger">*</b></label>
-                        <input
-                          v-model="form.father_nid"
-                          type="number"
-                          name="father_nid"
+                        <div class="form-group">
+                        <label
+                          >Father/Husband NID<b class="text-danger"
+                            >*</b
+                          ></label >
+                         <input
                           class="form-control"
-                          :class="{
-                            'is-invalid': form.errors.has('father_nid'),
-                          }"
-                          autofocus
-                          require
-                          placeholder="11xxxxxxxxx"
-                        />
+                          required
+                          :class="{ 'is-invalid': form.errors.has('father_nid') }"
+                          type="file"
+                            @change="uploadFatherNidImage"
+                          name="father_nid"
+                         />
                         <has-error :form="form" field="father_nid"></has-error>
                       </div>
                     </div>
@@ -260,22 +303,20 @@
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-group">
+                         <div class="form-group">
                         <label
-                          >Mother/Wife NID NO<b class="text-danger">*</b></label
+                          >Mother/Wife NID<b class="text-danger"
+                            >*</b
+                          ></label
                         >
                         <input
-                          v-model="form.mother_nid"
-                          type="number"
-                          name="mother_nid"
                           class="form-control"
-                          :class="{
-                            'is-invalid': form.errors.has('mother_nid'),
-                          }"
-                          autofocus
-                          require
-                          placeholder="15xxxxxxxxx"
-                        />
+                          required
+                          :class="{ 'is-invalid': form.errors.has('mother_nid') }"
+                          type="file"
+                            @change="uploadMotherNidImage"
+                          name="mother_nid"
+                         />
                         <has-error :form="form" field="mother_nid"></has-error>
                       </div>
                     </div>
@@ -426,6 +467,7 @@ export default {
       form: new Form({
         name: "",
         referance_name: "",
+        email: "",
         mobile_no: "",
         address:"",
         date:"",
@@ -438,6 +480,7 @@ export default {
         mother_phone: "",
         father_nid: "",
         mother_nid: "",
+        nid: "",
         parent_present_address: "",
         parent_permanent_address: "",
         image:"",
@@ -475,6 +518,24 @@ export default {
         });
     },
 
+
+
+   uploadNidImage(e) {
+      const file = e.target.files[0];
+      this.form.nid = file;
+    },
+
+    uploadMotherNidImage(e) {
+      const file = e.target.files[0];
+      this.form.mother_nid = file;
+    },
+
+   uploadFatherNidImage(e) {
+      const file = e.target.files[0];
+      this.form.father_nid = file;
+    },
+
+
     uploadInvestorProfile(e) {
       this.form.image = e.target.files[0];
     },
@@ -498,6 +559,13 @@ export default {
 
       this.loading = false;
     },
+
+
+
+
+
+
+
   },
 };
 </script>
