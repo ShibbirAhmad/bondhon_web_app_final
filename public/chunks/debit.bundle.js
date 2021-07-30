@@ -391,7 +391,7 @@ var render = function() {
         _c("section", { staticClass: "content" }, [
           _c("div", { staticClass: "container" }, [
             _c("div", { staticClass: "row justify-content-center" }, [
-              _c("div", { staticClass: "col-lg-11" }, [
+              _c("div", { staticClass: "col-lg-11 col-md-11 col-sm-11" }, [
                 _c("div", { staticClass: "box box-primary" }, [
                   _c("div", { staticClass: "box-header with-border" }, [
                     _c("div", { staticClass: "row" }, [
@@ -538,99 +538,115 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "box-body" }, [
-                    _c("table", { staticClass: "table" }, [
-                      _vm._m(2),
-                      _vm._v(" "),
-                      _c(
-                        "tbody",
-                        [
-                          _vm.loading
-                            ? _c("h1", { staticClass: "text-center" }, [
-                                _c("i", {
-                                  staticClass: "fa fa-spin fa-spinner"
-                                })
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm._l(_vm.debits.data, function(debit, index) {
-                            return _c("tr", { key: index }, [
-                              _c("td", { attrs: { scope: "row" } }, [
-                                _vm._v(_vm._s(index + 1))
-                              ]),
-                              _vm._v(" "),
-                              _c("td", { staticStyle: { width: "90px" } }, [
-                                _vm._v(_vm._s(_vm.formatDate(debit.date)))
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s("DB-" + debit.id))]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(" " + _vm._s(debit.purpose) + " ")
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(
-                                  _vm._s(
-                                    debit.debit_from
-                                      ? debit.debit_from
-                                      : "Not Recorded"
+                    _c(
+                      "table",
+                      {
+                        staticClass:
+                          "table table-hover table-bordered table-striped"
+                      },
+                      [
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          [
+                            _vm.loading
+                              ? _c("h1", { staticClass: "text-center" }, [
+                                  _c("i", {
+                                    staticClass: "fa fa-spin fa-spinner"
+                                  })
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm._l(_vm.debits.data, function(debit, index) {
+                              return _c("tr", { key: index }, [
+                                _c("td", { attrs: { scope: "row" } }, [
+                                  _vm._v(_vm._s(index + 1))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", { staticStyle: { width: "90px" } }, [
+                                  _vm._v(_vm._s(_vm.formatDate(debit.date)))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s("DB-" + debit.id))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(" " + _vm._s(debit.purpose) + " ")
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(
+                                      debit.debit_from
+                                        ? debit.debit_from
+                                        : "Not Recorded"
+                                    )
                                   )
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(debit.amount))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(debit.comment))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(debit.admin.name))]),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  [
+                                    _vm.$can("edit debit")
+                                      ? _c(
+                                          "router-link",
+                                          {
+                                            staticClass:
+                                              "btn btn-success btn-sm",
+                                            attrs: {
+                                              to: {
+                                                name: "debitEdit",
+                                                params: { id: debit.id }
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fa fa-edit"
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.current_date == debit.date &&
+                                    _vm.$can("delete debit")
+                                      ? _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "btn btn-sm btn-danger",
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.trash(
+                                                  debit.id,
+                                                  index
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fa fa-trash"
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ],
+                                  1
                                 )
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(debit.amount))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(debit.comment))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(debit.admin.name))]),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _vm.$can("edit debit")
-                                    ? _c(
-                                        "router-link",
-                                        {
-                                          staticClass: "btn btn-success btn-sm",
-                                          attrs: {
-                                            to: {
-                                              name: "debitEdit",
-                                              params: { id: debit.id }
-                                            }
-                                          }
-                                        },
-                                        [_c("i", { staticClass: "fa fa-edit" })]
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.current_date == debit.date &&
-                                  _vm.$can("delete debit")
-                                    ? _c(
-                                        "a",
-                                        {
-                                          staticClass: "btn btn-sm btn-danger",
-                                          on: {
-                                            click: function($event) {
-                                              return _vm.trash(debit.id, index)
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass: "fa fa-trash"
-                                          })
-                                        ]
-                                      )
-                                    : _vm._e()
-                                ],
-                                1
-                              )
-                            ])
-                          })
-                        ],
-                        2
-                      )
-                    ])
+                              ])
+                            })
+                          ],
+                          2
+                        )
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "box-footer" }, [

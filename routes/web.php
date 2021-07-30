@@ -191,6 +191,8 @@ Route::group([
     Route::get('active/slider/{id}', 'SliderController@active');
     Route::get('deActive/slider/{id}', 'SliderController@deActive');
     Route::get('delete/slider/{id}', 'SliderController@destroy');
+    Route::get('api/get/feature/banner', 'SliderController@FeatureBanner');
+    Route::post('api/edit/banner/{id}', 'SliderController@updateFeatureBanner');
 
 
 
@@ -302,6 +304,8 @@ Route::group([
     //company ivestment route is here
     Route::get('api/company/investor','InvestmentController@get_ivestors');
     Route::post('api/company/investor/add','InvestmentController@store');
+    Route::get('api/get/company/investor/info/{id}','InvestmentController@edit');
+    Route::post('api/company/investor/edit/info/{id}','InvestmentController@update');
     Route::get('api/company/investor/details/{id}','InvestmentController@get_ivestor_details');
     Route::get('api/add/more/invest/{id}','InvestmentController@add_more_invest');
     Route::get('api/company/investor/list','InvestmentController@investor_list');

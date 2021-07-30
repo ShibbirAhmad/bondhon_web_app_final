@@ -538,97 +538,113 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "box-body" }, [
-                    _c("table", { staticClass: "table" }, [
-                      _vm._m(2),
-                      _vm._v(" "),
-                      _c(
-                        "tbody",
-                        [
-                          _vm.loading
-                            ? _c("h1", { staticClass: "text-center" }, [
-                                _c("i", {
-                                  staticClass: "fa fa-spin fa-spinner"
-                                })
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm._l(_vm.credits.data, function(credit, index) {
-                            return _c("tr", { key: index }, [
-                              _c("td", { attrs: { scope: "row" } }, [
-                                _vm._v(_vm._s(index + 1))
-                              ]),
-                              _vm._v(" "),
-                              _c("td", { staticStyle: { width: "90px" } }, [
-                                _vm._v(_vm._s(_vm.formatDate(credit.date)))
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s("CR-" + credit.id))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(credit.purpose))]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(
-                                  _vm._s(
-                                    credit.credit_in
-                                      ? credit.credit_in
-                                      : "Not Recorded"
+                    _c(
+                      "table",
+                      {
+                        staticClass:
+                          "table table-hover table-bordered table-striped"
+                      },
+                      [
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          [
+                            _vm.loading
+                              ? _c("h1", { staticClass: "text-center" }, [
+                                  _c("i", {
+                                    staticClass: "fa fa-spin fa-spinner"
+                                  })
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm._l(_vm.credits.data, function(credit, index) {
+                              return _c("tr", { key: index }, [
+                                _c("td", { attrs: { scope: "row" } }, [
+                                  _vm._v(_vm._s(index + 1))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", { staticStyle: { width: "90px" } }, [
+                                  _vm._v(_vm._s(_vm.formatDate(credit.date)))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s("CR-" + credit.id))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(credit.purpose))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(
+                                      credit.credit_in
+                                        ? credit.credit_in
+                                        : "Not Recorded"
+                                    )
                                   )
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(credit.amount))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(credit.comment))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(credit.admin.name))]),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  [
+                                    _vm.$can("edit credit")
+                                      ? _c(
+                                          "router-link",
+                                          {
+                                            staticClass:
+                                              "btn btn-success btn-sm",
+                                            attrs: {
+                                              to: {
+                                                name: "creditEdit",
+                                                params: { id: credit.id }
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fa fa-edit"
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.current_date == credit.date &&
+                                    _vm.$can("delete credit")
+                                      ? _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "btn btn-sm btn-danger",
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.trash(
+                                                  credit.id,
+                                                  index
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fa fa-trash"
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ],
+                                  1
                                 )
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(credit.amount))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(credit.comment))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(credit.admin.name))]),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _vm.$can("edit credit")
-                                    ? _c(
-                                        "router-link",
-                                        {
-                                          staticClass: "btn btn-success btn-sm",
-                                          attrs: {
-                                            to: {
-                                              name: "creditEdit",
-                                              params: { id: credit.id }
-                                            }
-                                          }
-                                        },
-                                        [_c("i", { staticClass: "fa fa-edit" })]
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.current_date == credit.date &&
-                                  _vm.$can("delete credit")
-                                    ? _c(
-                                        "a",
-                                        {
-                                          staticClass: "btn btn-sm btn-danger",
-                                          on: {
-                                            click: function($event) {
-                                              return _vm.trash(credit.id, index)
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass: "fa fa-trash"
-                                          })
-                                        ]
-                                      )
-                                    : _vm._e()
-                                ],
-                                1
-                              )
-                            ])
-                          })
-                        ],
-                        2
-                      )
-                    ])
+                              ])
+                            })
+                          ],
+                          2
+                        )
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "box-footer" }, [

@@ -12,6 +12,9 @@ class Project extends Model
 
 
 
+ public  function costs(){
+        return $this->hasMany("App\Models\ProjectCost",'project_id') ;
+    }
 
 
 

@@ -378,7 +378,7 @@ class AccountController extends Controller
                 $debit->save();
                 Investor::SendMessageToInvestor($investor, $investor_profit_paid->amount, $request->month);
                 //send mail to member
-                $message= 'Assalamualikum,'. $investor->name . ' Your profit has been paid '. $request->amount .'/BDT' ;
+                $message= 'Assalamualikum,'. $investor->name . ' Your profit has been paid '. $request->amount .'/BDT  Thanks for being with us.' ;
                 SendMailController::sendMailToMember($investor->email,$message);
 
 

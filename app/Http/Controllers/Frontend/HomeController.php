@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Models\Project;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\ProjectImage;
-use App\Models\Slider;
-use App\Models\OtpVerification;
-use App\Models\Admin;
-use App\Models\Team;
 use App\User;
 use Exception;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use App\Models\GeneralSetting;
-use App\Models\FooterSetting;
-use App\Models\AboutAndContact;
+use Carbon\Carbon;
+use App\Models\Team;
+use App\Models\Admin;
+use App\Models\Banner;
+use App\Models\Slider;
+use App\Models\Project;
 use App\Models\Investor;
+use App\Models\ProjectImage;
+use Illuminate\Http\Request;
+use App\Models\FooterSetting;
+use App\Models\GeneralSetting;
+use App\Models\AboutAndContact;
+use App\Models\OtpVerification;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\OrderShipmentAndReturnPolicy;
 
 class HomeController extends Controller
@@ -36,8 +37,10 @@ class HomeController extends Controller
           $total_member=Admin::count();
           $total_investor=Investor::count();
           $sliders = Slider::where('status',1)->get();
+          $feature_banner = Banner::latest()->first();
 
           return view('frontend.index',compact([
+                        'feature_banner',
                         'implemented_projects',
                         'planned_projects',
                         'members',

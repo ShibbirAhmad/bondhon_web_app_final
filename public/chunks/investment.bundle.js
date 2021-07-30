@@ -120,6 +120,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     this.getinvestments();
@@ -376,8 +377,6 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(items.invest_amount))]),
                                 _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(items.profit_margin))]),
-                                _vm._v(" "),
                                 _c("td", [
                                   _vm._v(_vm._s(items.profit_paid_amount))
                                 ]),
@@ -386,7 +385,27 @@ var render = function() {
                                   _vm._v(
                                     " " + _vm._s(items.invest_return) + " "
                                   )
-                                ])
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  [
+                                    _c(
+                                      "router-link",
+                                      {
+                                        staticClass: "btn btn-success btn-sm",
+                                        attrs: {
+                                          to: {
+                                            name: "edit_investor",
+                                            params: { id: items.id }
+                                          }
+                                        }
+                                      },
+                                      [_c("i", { staticClass: "fa fa-edit" })]
+                                    )
+                                  ],
+                                  1
+                                )
                               ])
                             })
                           ],
@@ -467,7 +486,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box-header with-border text-center" }, [
       _c("h3", { staticClass: "box-title heading" }, [
-        _vm._v("Investment Table")
+        _vm._v("Investors Table")
       ])
     ])
   },
@@ -504,11 +523,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Invested ")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Profit Margin")]),
-        _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Profit Paid ")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Return ")])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Return ")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Action ")])
       ])
     ])
   }

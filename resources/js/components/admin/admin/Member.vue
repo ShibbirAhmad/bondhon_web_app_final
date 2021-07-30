@@ -56,8 +56,9 @@
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Phone</th>
+                        <th scope="col">phone</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Amount</th>
                         <th scope="col">Image</th>
                         <th scope="col">Address</th>
                         <th scope="col">Status</th>
@@ -76,6 +77,7 @@
                         <td> <router-link style="color:blue ; font-size:14px" :to="{name:'bondhon_member_details',params:{id:admin.id}}"> {{ admin.name }} </router-link> </td>
                         <td>{{ admin.phone }}</td>
                         <td>{{ admin.email }}</td>
+                        <td>  <span class="badge badge-success"> &#2547; {{ collectionTotal(admin.collections) }}</span> </td>
                         <td>
                           <img
                             v-if="admin.image"
@@ -224,6 +226,14 @@ export default {
           }
         })
         .catch();
+    },
+
+    collectionTotal(data){
+      let amount = 0 ;
+      data.forEach(element => {
+          amount += element.amount ;
+      });
+      return amount ;
     },
 
     deActive(admin) {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Banner;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -85,37 +86,6 @@ class SliderController extends Controller
 
     }
 
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $slider = Slider::find($id);
@@ -157,6 +127,58 @@ class SliderController extends Controller
             }
         }
     }
+
+
+
+
+    public function FeatureBanner(){
+
+        $banner = Banner::latest()->first();
+        if ($banner) {
+            return response()->json([
+                "status" => "OK",
+                "banner" => $banner ,
+            ]);
+        }
+
+    }
+
+
+
+ public function updateFeatureBanner(Request $request,$id){
+        // return $request->all();
+        $banner = Banner::findOrFail($id);
+        $banner->url_1=$request->url_1;
+        $banner->url_2=$request->url_2;
+        $banner->url_3=$request->url_3;
+        $banner->status=$request->status;
+        if ($request->hasFile('banner_1') ) {
+            $banner_path = $request->file('banner_1')->store('images/feature_banner', 'public');
+            $banner->banner_1 = $banner_path;
+        }
+
+      if ($request->hasFile('banner_2') ) {
+            $banner_path = $request->file('banner_2')->store('images/feature_banner', 'public');
+            $banner->banner_2 = $banner_path;
+        }
+
+        if ($request->hasFile('banner_3') ) {
+            $banner_path = $request->file('banner_3')->store('images/feature_banner', 'public');
+            $banner->banner_3 = $banner_path;
+        }
+
+        if ($banner->save()) {
+            return response()->json([
+                'status' => 'SUCCESS',
+                'message' => 'updated successfully',
+            ]);
+        }
+
+    }
+
+
+
+
 
 
 

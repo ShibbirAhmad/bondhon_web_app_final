@@ -46,7 +46,7 @@
 
            <div v-if="$can('project_and_profit')" class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
               <div  class="boxs  blue">
-                <h3> <span class="person_counter"> {{ analysis.total_project }} </span> Project Profit  </h3>
+                <h3> <span class="person_counter"> {{ analysis.number_of_profit_project }} </span> Project Profit  </h3>
             
               <h4>   {{ analysis.total_project_profit  }} &#2547;  </h4>
                <router-link :to="{ name: 'project' }" class="small-boxs-footer"
@@ -60,7 +60,7 @@
 
           <div v-if="$can('project_and_cost')" class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
               <div  class="boxs  red">
-                <h3> <span class="person_counter"> {{ analysis.total_project }}  </span>  Project Cost</h3>
+                <h3> <span class="person_counter"> {{ analysis.number_of_cost_project }}  </span>  Project Cost</h3>
             
               <h4>   {{ analysis.total_project_cost  }} &#2547;  </h4>
                <router-link :to="{ name: 'project' }" class="small-boxs-footer"
@@ -127,7 +127,6 @@
          <div v-if="$can('company_assets')" class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
                         <div  class="boxs  blue">
                           <h3> Company Assets   </h3>
-                      
                         <h4>   {{ analysis.company_value }} &#2547;  </h4>
                           <img class="d_img_icon" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
                         </div>
@@ -176,7 +175,7 @@
               </div>
 
               <div class="custom-boxs-footer">
-                <h3 class="text-center text-uppercase">today credit</h3>
+                <h3 style="color:#fff"  class="text-center text-uppercase">today credit</h3>
               </div>
             </div>
           </div>
@@ -204,7 +203,7 @@
               </div>
 
               <div class="custom-boxs-footer">
-                <h3 class="text-center text-uppercase">today debit</h3>
+                <h3 style="color:#fff" class="text-center text-uppercase">today debit</h3>
               </div>
             </div>
           </div>
@@ -251,7 +250,7 @@
               </div>
 
               <div class="custom-boxs-footer">
-                <h3 class="text-center text-uppercase">total balance</h3>
+                <h3 style="color:#fff"  class="text-center text-uppercase">total balance</h3>
               </div>
             </div>
           </div>

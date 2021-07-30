@@ -211,9 +211,7 @@
                             Phone : <span class="m_l"> {{ admin.mother_phone }} </span>
                           </p>
                         </li>
-                        <li>
-                          <p>NID: <span class="m_l"> {{ admin.mother_nid }} </span> </p>
-                        </li>
+                     
                         <li>
                           <p>Present Address :  {{ admin.parent_present_address }}</p>
                         </li>
@@ -321,6 +319,7 @@ export default {
 .nid_image {
       height: 150px;
       width: 300px;
+      margin-left: 36%;
 }
 .download_icon{
    cursor: pointer;
@@ -357,39 +356,41 @@ p {
 }
 .custom_row {
   margin-left: -30px !important;
-  margin-right: 0px !important;
+  margin-right: 0px ;
 }
 
 .m_l {
-    margin-left: 30px;
-}
-
-@media screen  and(max-width:450px){
-
-  .custom_row {
-      margin-left: -9px!important;
-      margin-right: -22px !important;
-  }
-  .nid_image {
-      height: 150px;
-      width: 250px;
-    }
-
-   .aggreement_container {
-     overflow-y: scroll;
-}
-
+    margin-left: 10px;
 }
 
 .box{
   min-height: 400px;
 }
 
-@media screen and (max-width:450px) {
-  .row {
-    margin-right: -30px !important;
+
+@media only screen  and (max-width:450px){
+
+.custom_row {
     margin-left: -30px !important;
-  }
+    margin-right: -30px !important;
+}
+  .nid_image {
+      height: 150px;
+      width: 250px;
+      margin-left: 0%;
+    }
+
+    ul li {
+      overflow-x: hidden;
+      font-size: 11px;
+    }
+
+
+   .aggreement_container {
+     overflow-y: scroll;
+}
+
+ 
 
   .col-xs-12 {
     width: 100% !important;
@@ -404,7 +405,5 @@ p {
   }
 
 }
-
-p {padding:10px}
 
 </style>

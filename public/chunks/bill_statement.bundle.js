@@ -80,6 +80,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     this.getBillStatements();
@@ -95,6 +99,13 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    costTotal: function costTotal(data) {
+      var amount = 0;
+      data.forEach(function (element) {
+        amount += element.amount;
+      });
+      return amount;
+    },
     getBillStatements: function getBillStatements() {
       var _this = this;
 
@@ -272,6 +283,19 @@ var render = function() {
                                     ),
                                     _vm._v(" "),
                                     _c("td", [
+                                      _c(
+                                        "span",
+                                        { staticClass: "badge badge-success" },
+                                        [
+                                          _vm._v(
+                                            " ৳ " +
+                                              _vm._s(_vm.costTotal(items.bills))
+                                          )
+                                        ]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
                                       _vm._v(
                                         "\n                        " +
                                           _vm._s(items.company_name) +
@@ -339,6 +363,8 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v(" Bill Name")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v(" Total Bill ")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Company Name")]),
         _vm._v(" "),

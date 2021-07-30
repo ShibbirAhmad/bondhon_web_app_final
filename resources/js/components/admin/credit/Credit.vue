@@ -77,7 +77,7 @@
                   </div>
                 </div>
                 <div class="box-body">
-                  <table class="table">
+                  <table class="table table-hover table-bordered table-striped">
                     <thead>
                       <tr>
                           <th scope="col">#</th>

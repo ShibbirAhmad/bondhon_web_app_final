@@ -4,9 +4,9 @@
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-          <router-link :to="{ name: 'admin' }" class="btn btn-primary"
-            ><i class="fa fa-arrow-right"></i
-          ></router-link>
+          <a @click="goBack" class="btn btn-primary"
+            ><i class="fa fa-arrow-left"></i
+          ></a>
         </h1>
         <ol class="breadcrumb">
           <li>
@@ -138,6 +138,10 @@ export default {
             this.loading = false;
           }
         });
+    },
+
+    goBack(){
+      window.history.back();
     },
 
     update() {

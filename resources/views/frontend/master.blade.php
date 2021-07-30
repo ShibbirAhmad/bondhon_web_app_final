@@ -17,7 +17,7 @@
 <body>
         @yield('content')
         @include('frontend.partials.js')
-
+        @yield('extra_js')
 </body>
 
 </html>

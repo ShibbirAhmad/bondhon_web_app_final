@@ -14,7 +14,7 @@ class SendMailController extends Controller
 
     public Static function  sendMailToMember($email,$message){
 
-          Mail::to($email)->send(new SendMail('Bondhon Society',$message));
+          Mail::to($email)->send(new SendMail('Bondhon Society Limited ',$message));
           if(Mail::failures() != 0) {
                 return response()->json([
                       "status" => "SUCCESS",

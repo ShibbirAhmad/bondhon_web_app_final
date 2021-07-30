@@ -58,7 +58,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">project_place</th>
                         <th scope="col">project_type</th>
-                        <th scope="col">proposed_budget</th>
+                        <th scope="col">Total Cost</th>
                         <th scope="col">manager_name</th>
                         <th scope="col">manager_address</th>
                         <th scope="col">status</th>
@@ -74,7 +74,7 @@
                         <td> <router-link style="color:blue" :to="{name:'project_details',params:{id:project.id}}"> {{ project.name }} </router-link> </td>
                         <td>{{ project.place }}</td>
                         <td>{{ project.project_type }}</td>
-                        <td>{{ project.proposed_budget }}  &#2547; </td>
+                        <td> <span class="badge badge-success"> &#2547; {{ costTotal(project.costs) }}</span> </td>
                         <td>{{ project.manager_name }}</td>
                         <td>{{ project.present_address }}</td>
                         <td>
@@ -154,6 +154,14 @@ export default {
     };
   },
   methods: {
+
+     costTotal(data){
+      let amount = 0 ;
+      data.forEach(element => {
+          amount += element.amount ;
+      });
+      return amount ;
+    },
 
     projectList(page = 1) {
       axios

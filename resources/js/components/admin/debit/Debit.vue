@@ -21,7 +21,7 @@
       <section class="content">
         <div class="container">
           <div class="row justify-content-center">
-            <div class="col-lg-11">
+            <div class="col-lg-11 col-md-11 col-sm-11">
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <div class="row">
@@ -77,7 +77,7 @@
                   </div>
                 </div>
                 <div class="box-body">
-                  <table class="table">
+                  <table class="table table-hover table-bordered table-striped">
                     <thead>
                       <tr>
                         <th scope="col">#</th>

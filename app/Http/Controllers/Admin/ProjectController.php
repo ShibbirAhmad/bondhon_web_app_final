@@ -16,7 +16,7 @@ class ProjectController extends Controller
 
      public function index(Request $request){
             $item=$request->item ?? 20 ;
-            $projects=Project::orderBy('id','desc')->paginate($item);
+            $projects=Project::orderBy('id','desc')->with('costs')->paginate($item);
             return response()->json([
                 "status" => "OK",
                 "projects" => $projects ,
@@ -28,10 +28,10 @@ class ProjectController extends Controller
      public function ProjectDetaisAccount($id){
 
             $project=Project::findOrFail($id);
-            $total_cost=ProjectCost::where('id',$project->id)->orderBy('id','desc')->sum("amount");
-            $cost_records=ProjectCost::where('id',$project->id)->get();
-            $total_profit=ProjectProfit::where('id',$project->id)->sum("amount");
-            $profit_records=ProjectProfit::where('id',$project->id)->orderBy('id','desc')->get();
+            $total_cost=ProjectCost::where('project_id',$project->id)->orderBy('id','desc')->sum("amount");
+            $cost_records=ProjectCost::where('project_id',$project->id)->get();
+            $total_profit=ProjectProfit::where('project_id',$project->id)->sum("amount");
+            $profit_records=ProjectProfit::where('project_id',$project->id)->orderBy('id','desc')->get();
 
             return response()->json([
                 "status" => "OK",
@@ -63,8 +63,8 @@ class ProjectController extends Controller
             'father_name' => 'required',
             'mother_name' => 'required',
             'manager_phone' => 'required|digits:11|unique:projects',
-            'father_phone' => 'required|digits:11|unique:projects',
-            'mother_phone' => 'required|digits:11|unique:projects',
+            // 'father_phone' => 'required|digits:11|unique:projects',
+            // 'mother_phone' => 'required|digits:11|unique:projects',
         ]);
         DB::transaction(function() use($request){
 

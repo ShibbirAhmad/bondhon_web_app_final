@@ -21,7 +21,7 @@
             <div class="col-lg-11 col-lg-offset-1">
               <div class="box box-primary">
                 <div class="box-header with-border text-center">
-                  <h3 class="box-title heading">Investment Table</h3>
+                  <h3 class="box-title heading">Investors Table</h3>
                 </div>
                 <div class="box-body">
                   <div class="row total_row">
@@ -43,9 +43,9 @@
                         <th scope="col">Mobile </th>
                         <th scope="col">Address</th>
                         <th scope="col">Invested </th>
-                        <th scope="col">Profit Margin</th>
                         <th scope="col">Profit Paid </th>
                         <th scope="col">Return </th>
+                        <th scope="col">Action </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -72,9 +72,10 @@
                         <td>{{ items.address }}</td>
 
                         <td>{{ items.invest_amount }}</td>
-                        <td>{{ items.profit_margin }}</td>
+                
                         <td>{{ items.profit_paid_amount  }}</td>
                         <td> {{ items.invest_return }} </td>
+                        <td> <router-link class="btn btn-success btn-sm" :to="{name:'edit_investor',params:{id:items.id}}"><i class="fa fa-edit"></i></router-link> </td>
                       </tr>
                     </tbody>
                   </table>

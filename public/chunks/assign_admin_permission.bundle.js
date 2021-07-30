@@ -168,6 +168,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         }
       });
     },
+    goBack: function goBack() {
+      window.history.back();
+    },
     update: function update() {
       var _this2 = this;
 
@@ -283,20 +286,13 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "content-wrapper" }, [
         _c("section", { staticClass: "content-header" }, [
-          _c(
-            "h1",
-            [
-              _c(
-                "router-link",
-                {
-                  staticClass: "btn btn-primary",
-                  attrs: { to: { name: "admin" } }
-                },
-                [_c("i", { staticClass: "fa fa-arrow-right" })]
-              )
-            ],
-            1
-          ),
+          _c("h1", [
+            _c(
+              "a",
+              { staticClass: "btn btn-primary", on: { click: _vm.goBack } },
+              [_c("i", { staticClass: "fa fa-arrow-left" })]
+            )
+          ]),
           _vm._v(" "),
           _vm._m(0)
         ]),

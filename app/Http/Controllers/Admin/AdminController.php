@@ -115,7 +115,7 @@ class AdminController extends Controller
 
 
     public function memberList(){
-        $admins = Admin::where('admin_role',2)->orderby('id', 'desc')->paginate(10);
+        $admins = Admin::where('admin_role',2)->with('collections')->orderby('id', 'desc')->paginate(10);
         return response()->json([
             'admins' => $admins,
             'status' => 'SUCCESS'

@@ -45,8 +45,8 @@
             <!-- Feature Start-->
             <div class="feature wow fadeInUp" data-wow-delay="0.1s">
                 <div class="container-fluid">
-                    <div class="row align-items-center">
-                        <div class="col-lg-4 col-md-12">
+                    <div class="row feature_row align-items-center">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <a href="{{ route('about') }}">
                               <div class="feature-item">
                                 <div class="feature-icon">
@@ -60,7 +60,12 @@
                             </a>
 
                         </div>
-                        <div class="col-lg-4 col-md-12">
+                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 banner_section">
+                              <div class="banner_container">
+                                  <img src="{{ asset('storage/'.$feature_banner->banner_1) }}" alt="">
+                              </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                            <a href="{{ route('about') }}">
                                 <div class="feature-item">
                                 <div class="feature-icon">
@@ -73,7 +78,12 @@
                             </div>
                            </a>
                         </div>
-                        <div class="col-lg-4 col-md-12">
+                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 banner_section">
+                            <div class="banner_container">
+                                <img src="{{ asset('storage/'.$feature_banner->banner_2) }}" alt="">
+                            </div>
+                      </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <a href="{{ route('about') }}">
                                 <div class="feature-item">
                                 <div class="feature-icon">
@@ -86,6 +96,11 @@
                             </div>
                             </a>
                         </div>
+                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 banner_section">
+                            <div class="banner_container">
+                                <img src="{{ asset('storage/'.$feature_banner->banner_3) }}" alt="">
+                            </div>
+                      </div>
                     </div>
                 </div>
             </div>
@@ -415,3 +430,7 @@
 @endsection
 
 
+ @push('extra_js')
+
+     
+ @endpush

@@ -94,7 +94,7 @@
                       <tr v-for="(items, index) in invests" v-bind:key="index">
                         <td scope="row">{{ index + 1 }}</td>
                         <td>{{ items.date }}</td>
-                        <td>{{ items.month }}</td>
+                        <td>{{ items.month ? items.month : 'none' }}</td>
                         <td>{{ items.purpose }}</td>
                         <td>{{ items.amount }}</td>
                       </tr>
@@ -129,13 +129,13 @@
                       >
                         <td scope="row">{{ index + 1 }}</td>
                         <td>{{ investpaid.date }}</td>
-                        <td>{{ investpaid.profit_month }}</td>
+                        <td>{{ investpaid.profit_month ?  investpaid.profit_month : 'none' }}</td>
                         <td>{{ investpaid.comment }}</td>
                         <td>{{ investpaid.paid_by }}</td>
                         <td>{{ investpaid.amount }}</td>
                       </tr>
                       <tr>
-                        <td colspan="5"> Total profit paid </td>
+                        <td colspan="6"> Total profit paid </td>
                         <td>
                           <strong> ={{ totalPaidAmount() }}</strong>
                         </td>

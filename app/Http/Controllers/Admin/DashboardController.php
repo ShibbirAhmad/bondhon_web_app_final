@@ -35,8 +35,11 @@ class DashboardController extends Controller
         $analysis['total_member']=Admin::where('admin_role',2)->count();
         $analysis['total_amount_of_member']=AdminAccount::sum('amount');
         //project analysis
-        $analysis['total_project']=Project::count('id');
+        $number_of_cost_project=ProjectCost::select('project_id',DB::raw('count(*) as total'))->groupBy('project_id')->pluck('project_id');
+        $analysis['number_of_cost_project']  = count($number_of_cost_project);                              
         $analysis['total_project_cost']=ProjectCost::sum('amount');
+        $number_of_profit_project=ProjectProfit::select('project_id',DB::raw('count(*) as total'))->groupBy('project_id')->pluck('project_id');
+        $analysis['number_of_profit_project']  = count($number_of_profit_project);  
         $analysis['total_project_profit']=ProjectProfit::sum('amount');
 
         //investment analysis

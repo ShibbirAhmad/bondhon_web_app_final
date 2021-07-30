@@ -276,7 +276,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var _ref;
@@ -521,7 +520,11 @@ var render = function() {
                             _c("h3", [
                               _c("span", { staticClass: "person_counter" }, [
                                 _vm._v(
-                                  " " + _vm._s(_vm.analysis.total_project) + " "
+                                  " " +
+                                    _vm._s(
+                                      _vm.analysis.number_of_profit_project
+                                    ) +
+                                    " "
                                 )
                               ]),
                               _vm._v(" Project Profit  ")
@@ -577,7 +580,9 @@ var render = function() {
                               _c("span", { staticClass: "person_counter" }, [
                                 _vm._v(
                                   " " +
-                                    _vm._s(_vm.analysis.total_project) +
+                                    _vm._s(
+                                      _vm.analysis.number_of_cost_project
+                                    ) +
                                     "  "
                                 )
                               ]),
@@ -1102,9 +1107,14 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "custom-boxs-footer" }, [
-      _c("h3", { staticClass: "text-center text-uppercase" }, [
-        _vm._v("today credit")
-      ])
+      _c(
+        "h3",
+        {
+          staticClass: "text-center text-uppercase",
+          staticStyle: { color: "#fff" }
+        },
+        [_vm._v("today credit")]
+      )
     ])
   },
   function() {
@@ -1112,9 +1122,14 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "custom-boxs-footer" }, [
-      _c("h3", { staticClass: "text-center text-uppercase" }, [
-        _vm._v("today debit")
-      ])
+      _c(
+        "h3",
+        {
+          staticClass: "text-center text-uppercase",
+          staticStyle: { color: "#fff" }
+        },
+        [_vm._v("today debit")]
+      )
     ])
   },
   function() {
@@ -1122,9 +1137,14 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "custom-boxs-footer" }, [
-      _c("h3", { staticClass: "text-center text-uppercase" }, [
-        _vm._v("total balance")
-      ])
+      _c(
+        "h3",
+        {
+          staticClass: "text-center text-uppercase",
+          staticStyle: { color: "#fff" }
+        },
+        [_vm._v("total balance")]
+      )
     ])
   }
 ]

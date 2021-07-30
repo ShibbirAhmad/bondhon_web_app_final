@@ -119,8 +119,8 @@ const routes = [
     },
     {
         path: '/backend/company/investment/edit/:id',
-        name: 'investment_edit',
-        component: () => import(/* webpackChunkName: "investment_edit" */'./components/admin/Investment/Edit.vue'),
+        name: 'edit_investor',
+        component: () => import(/* webpackChunkName: "edit_investor" */'./components/admin/Investment/Edit.vue'),
         meta: {
             requiresAuthAdmin: true,
         }
@@ -764,11 +764,19 @@ const routes = [
             requiresAuthAdmin: true
         }
     },
-
+    {
+        path: '/backend/feature/banner',
+        component: () => import(/* webpackChunkName: "feature_banner" */'./components/admin/feature_banner/Index.vue'),
+        name: 'feature_banner',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'feature banner'
+        }
+    },
 
     {
         path: '/backend/general/setting',
-        component: () => import(/* webpackChunkName: "generl setting" */'./components/admin/general_setting/General.vue'),
+        component: () => import(/* webpackChunkName: "generl_setting" */'./components/admin/general_setting/General.vue'),
         name: 'general_setting',
         meta: {
             requiresAuthAdmin: true

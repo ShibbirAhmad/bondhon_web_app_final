@@ -30,6 +30,7 @@
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col"> Bill Name</th>
+                        <th scope="col"> Total Bill </th>
                         <th scope="col">Company Name</th>
                         <th scope="col">Phone</th>
                         <th scope="col"> Address </th>
@@ -51,6 +52,9 @@
                             }"
                             >{{ items.name }}
                           </router-link> </td>
+                           <td>
+                         <span class="badge badge-success"> &#2547; {{ costTotal(items.bills) }}</span>
+                        </td>
                         <td>
                           {{ items.company_name }}
                         </td>
@@ -85,6 +89,13 @@ export default {
     };
   },
   methods: {
+      costTotal(data){
+      let amount = 0 ;
+      data.forEach(element => {
+          amount += element.amount ;
+      });
+      return amount ;
+    },
     getBillStatements() {
       axios
         .get("/api/bill/statement/list")

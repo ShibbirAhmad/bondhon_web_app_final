@@ -15,7 +15,7 @@ class BillStatementController extends Controller
 
    public function bill_list(){
 
-            $bills=BillStatement::all();
+            $bills=BillStatement::with('bills')->get();
             return response()->json([
                    'success' => 'OK',
                    'bills' => $bills

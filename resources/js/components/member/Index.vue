@@ -20,10 +20,10 @@
          <div class="row container_row">
 
            <div class="col-lg-4 col-md-4 col-lg-12 col-md-12"> 
-              <div class="box cyan">
+              <div class="d_box cyan">
                 <h3>Total Paid</h3>
                 <h4>{{ memberData.total_collection_paid }}  <span class="money_icon"> &#2547; </span></h4>
-                <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">
+                <img class="d_icon_img" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">
                   <router-link :to="{ name: 'member_collection_history' }" class="small-box-footer"
                           >More info <i class="fa fa-arrow-circle-right"></i
                         ></router-link>
@@ -31,10 +31,10 @@
           </div>
            <div class="col-lg-4 col-md-4 col-lg-12 col-md-12">
                        
-                <div class="box cyan">
+                <div class="d_box cyan">
                   <h3> Total Profit Got</h3>
                   <h4> {{ memberData.total_profit_taken }}  <span class="money_icon"> &#2547; </span></h4>
-                  <img src="https://assets.codepen.io/2301174/icon-team-builder.svg" alt="">
+                  <img class="d_icon_img" src="https://assets.codepen.io/2301174/icon-team-builder.svg" alt="">
                           <router-link :to="{ name: 'member_profit_history' }" class="small-box-footer"
                             >More info <i class="fa fa-arrow-circle-right"></i
                           ></router-link>
@@ -44,59 +44,59 @@
 
            <div class="col-lg-4 col-md-4 col-lg-12 col-md-12"> 
 
-              <div v-if="$can('member_and_amount')" class="box  blue">
+              <div v-if="$can('member_and_amount')" class="d_box  blue">
                 <h3>  <span class="person_counter"> {{ analysis.total_member }} </span> Member  </h3>
               <h4> {{ analysis.total_amount_of_member  }} &#2547; </h4>
-                <img src="https://assets.codepen.io/2301174/icon-calculator.svg" alt="">
+                <img class="d_icon_img" src="https://assets.codepen.io/2301174/icon-calculator.svg" alt="">
               </div>
 
           </div>
            <div v-if="$can('investor_and_amount')" class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
-              <div  class="box  blue">
+              <div  class="d_box  blue">
                 <h3>  <span class="person_counter"> {{ analysis.total_investor }} </span> Investor  </h3>
             
               <h4>   {{ analysis.total_invested_amount - analysis.total_invested_return_amount  }} &#2547;  </h4>
-                <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
+                <img class="d_icon_img" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
               </div>
            </div>
 
            <div v-if="$can('project_and_profit')" class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
-              <div  class="box  blue">
+              <div  class="d_box  blue">
                 <h3> <span class="person_counter"> {{ analysis.total_project }} </span> Project Profit  </h3>
             
               <h4>   {{ analysis.total_project_profit  }} &#2547;  </h4>
-                <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
+                <img class="d_icon_img" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
               </div>
            </div>
 
 
 
           <div v-if="$can('project_and_cost')" class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
-              <div  class="box  red">
+              <div  class="d_box  red">
                 <h3> <span class="person_counter"> {{ analysis.total_project }}  </span>  Project Cost</h3>
             
               <h4>   {{ analysis.total_project_cost  }} &#2547;  </h4>
-                <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
+                <img class="d_icon_img" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
               </div>
            </div>
 
 
            <div v-if="$can('credit_this_month')" class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
-              <div  class="box  blue">
+              <div  class="d_box  blue">
                 <h3> Credit This Month  </h3>
             
               <h4>   {{ analysis.this_month_credit }} &#2547;  </h4>
-                <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
+                <img class="d_icon_img" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
               </div>
            </div>
 
 
           <div v-if="$can('credit_total')" class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
-                        <div  class="box  blue">
+                        <div  class="d_box  blue">
                           <h3> Total Credit   </h3>
                       
                         <h4>   {{ analysis.total_credit }} &#2547;  </h4>
-                          <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
+                          <img class="d_icon_img" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
                         </div>
             </div>
 
@@ -105,40 +105,40 @@
 
 
           <div v-if="$can('debit_this_month')" class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
-                        <div  class="box  red">
+                        <div  class="d_box  red">
                           <h3>  Debit This Month   </h3>
                       
                         <h4>   {{ analysis.this_month_debit }} &#2547;  </h4>
-                          <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
+                          <img class="d_icon_img" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
                         </div>
             </div>
 
           <div v-if="$can('debit_total')" class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
-                        <div  class="box  red">
+                        <div  class="d_box  red">
                           <h3> Total Debit   </h3>
                       
                         <h4>   {{ analysis.total_debit }} &#2547;  </h4>
-                          <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
+                          <img class="d_icon_img" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
                         </div>
             </div>
              
 
          <div v-if="$can('company_assets')" class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
-                        <div  class="box  blue">
+                        <div  class="d_box  blue">
                           <h3> Company Assets   </h3>
                       
                         <h4>   {{ analysis.company_value }} &#2547;  </h4>
-                          <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
+                          <img class="d_icon_img" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
                         </div>
           </div>
              
 
          <div v-if="$can('share_value')" class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
-                <div  class="box  cyan">
+                <div  class="d_box  cyan">
                   <h3> Share Value   </h3>
               
                 <h4>   {{ analysis.share_value.toFixed(2) }} &#2547;  </h4>
-                  <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
+                  <img class="d_icon_img"  src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
                 </div>
           </div>
         
@@ -208,7 +208,7 @@ export default {
   color: #1d2671;
 }
 
-.box-gradiant {
+.d_box-gradiant {
   background: -webkit-linear-gradient(to right, #c33764, #1d2671);
   background: linear-gradient(to right, #c33764, #1d2671);
 }
@@ -348,30 +348,30 @@ h1:last-of-type {
 }
 
 
-.box p {
+.d_box p {
     color: var(--grayishBlue);
 }
 
-.box {
+.d_box {
     border-radius: 5px;
     box-shadow: 0px 30px 40px -20px var(--grayishBlue);
     padding: 30px;
     margin: 20px;  
 }
 
-img {
+.d_icon_img {
     margin-top: -75px;
     float: right;
 }
 
 @media (max-width: 450px) {
-    .box {
+    .d_box {
         height: 200px;
     }
 }
 
 @media (max-width: 950px) and (min-width: 450px) {
-    .box {
+    .d_box {
         text-align: center;
         height: 180px;
     }
@@ -408,11 +408,11 @@ h3 {
         justify-content: center;
         align-items: center;
     }
-    .box-down {
+    .d_box-down {
         position: relative;
         top: 150px;
     }
-    .box {
+    .d_box {
         width: 100%;
         height: 150px;
      

@@ -529,7 +529,11 @@ var render = function() {
                                   _vm._v(" "),
                                   _c("td", [_vm._v(_vm._s(items.date))]),
                                   _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(items.month))]),
+                                  _c("td", [
+                                    _vm._v(
+                                      _vm._s(items.month ? items.month : "none")
+                                    )
+                                  ]),
                                   _vm._v(" "),
                                   _c("td", [_vm._v(_vm._s(items.purpose))]),
                                   _vm._v(" "),
@@ -584,7 +588,13 @@ var render = function() {
                                     _c("td", [_vm._v(_vm._s(investpaid.date))]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v(_vm._s(investpaid.profit_month))
+                                      _vm._v(
+                                        _vm._s(
+                                          investpaid.profit_month
+                                            ? investpaid.profit_month
+                                            : "none"
+                                        )
+                                      )
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
@@ -602,7 +612,7 @@ var render = function() {
                                 }),
                                 _vm._v(" "),
                                 _c("tr", [
-                                  _c("td", { attrs: { colspan: "5" } }, [
+                                  _c("td", { attrs: { colspan: "6" } }, [
                                     _vm._v(" Total profit paid ")
                                   ]),
                                   _vm._v(" "),

@@ -2,12 +2,12 @@
    $general_info=App\Models\GeneralSetting::latest()->first();
 ?>
 <!-- Top Bar Start -->
-            <div class="top-bar">
+            <div class="top-bar animation_row">
                 <div class="container-fluid">
                     <div class="row align-items-center">
                         <div class="col-lg-1 col-md-1">
                             <div class="logo">
-                                <a href="{{ route('home') }}">
+                                <a href="/">
                                     <img src="{{ asset('frontend/img/logo.jpg ') }}" alt="logo">
                                 </a>
                             </div>
@@ -42,33 +42,32 @@
             <!-- Top Bar End -->
 
             <!-- Nav Bar Start -->
-            <div class="nav-bar">
-                <div class="container-fluid">
+            <div class="nav-bar ">
+                <div class="container-fluid ">
                     <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
                       <div class="row">
-                          <div class="col-xs-3">
-                            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            </div>
-                          <div class="col-xs-9">
+                          <div class="col-xs-12">
                                   <div class="mobile_logo">
                                       <a href="{{ route('home') }}">
                                          <img src="{{ asset('frontend/img/logo.jpg') }}" alt="logo">
                                       </a>
+                                      <h4 class="b_heading_name">Bondhon Society </h4>
+                                      <span class="b_title"> Our dream are too large </span>
+                                      <button type="button" class="navbar-toggler nav_button" data-toggle="collapse" data-target="#navbarCollapse">
+                                        <span class="navbar-toggler-icon"></span>
+                                    </button>
                                     </div>
                                   <div class="mobile_view_call_email">
-                                        <i class="flaticon-call"></i>
-                                        <a href="tel:+88 0180005511">+88 0188 005511</a>
-                                         <br/>
-                                        <i class="flaticon-send-mail"></i>
-                                        <a href="mailto:info@bondhonsociety.com">info@bondhonsociety.com</a>
+                                        <a href="tel:0180005511"><i class="fa fa-phone"></i></a>
+                                        <a href="mailto:mybondhonsociety2020@gmail.com"> <i class="fa fa-envelope"></i> </a>
+                                        <a href="member/login"> <i class="fa fa-user-secret"></i> </a>
                                  </div>
                          </div>
+                         
                      </div>
 
 
-                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="collapse navbar-collapse justify-content-between menu_bar" id="navbarCollapse">
                             <div class="navbar-nav mr-auto">
                                 <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
                                <div class="nav-item dropdown">

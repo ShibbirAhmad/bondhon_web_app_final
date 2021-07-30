@@ -403,71 +403,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MODULE_1__["HasError"].name, vform__WEBPACK_IMPORTED_MODULE_1__["HasError"]);
@@ -483,10 +418,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         email: "",
         mobile_no: "",
         address: "",
-        date: "",
-        purpose: "write purpose details here",
-        amount: "",
-        profit_margin: "",
         father_name: "",
         mother_name: "",
         father_phone: "",
@@ -511,7 +442,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     addInvestor: function addInvestor() {
       var _this = this;
 
-      this.form.post("/api/company/investor/add").then(function (resp) {
+      this.form.post("/api/company/investor/add", {
+        transformRequest: [function (data, headers) {
+          return objectToFormData(data);
+        }]
+      }).then(function (resp) {
         console.log(resp);
 
         if (resp.data.status == "OK") {
@@ -525,11 +460,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
             duration: 4000
           });
         } else {
-          _this.error = "some thing want to wrong";
+          _this.error = "some thing went to wrong";
         }
       })["catch"](function (error) {
         console.log(error);
-        _this.error = "some thing want to wrong";
+        _this.error = "some thing went to wrong";
       });
     },
     uploadNidImage: function uploadNidImage(e) {
@@ -685,40 +620,56 @@ var render = function() {
                         _vm._m(1),
                         _vm._v(" "),
                         _c("div", { staticClass: "box-body" }, [
-                          _c("div", { staticClass: "row" }, [
-                            _c("div", { staticClass: "col-md-6" }, [
-                              _c(
-                                "div",
-                                { staticClass: "form-group" },
-                                [
-                                  _vm._m(2),
-                                  _vm._v(" "),
-                                  _c("date-picker", {
-                                    class: {
-                                      "is-invalid": _vm.form.errors.has("date")
-                                    },
-                                    attrs: {
-                                      autocomplete: "off",
-                                      required: "",
-                                      config: _vm.options
-                                    },
-                                    model: {
-                                      value: _vm.form.date,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.form, "date", $$v)
-                                      },
-                                      expression: "form.date"
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("has-error", {
-                                    attrs: { form: _vm.form, field: "date" }
-                                  })
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _vm._m(2),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.name,
+                                    expression: "form.name"
+                                  }
                                 ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
+                                staticClass: "form-control",
+                                class: {
+                                  "is-invalid": _vm.form.errors.has("name")
+                                },
+                                attrs: {
+                                  type: "text",
+                                  name: "name",
+                                  autofocus: "",
+                                  required: "",
+                                  autocomplete: "off",
+                                  placeholder: "Ex: MD Mohammad"
+                                },
+                                domProps: { value: _vm.form.name },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "name",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: { form: _vm.form, field: "name" }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "row" }, [
                             _c("div", { staticClass: "col-md-6" }, [
                               _c(
                                 "div",
@@ -767,59 +718,6 @@ var render = function() {
                                 ],
                                 1
                               )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "row" }, [
-                            _c("div", { staticClass: "col-md-6" }, [
-                              _c(
-                                "div",
-                                { staticClass: "form-group" },
-                                [
-                                  _vm._m(4),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.name,
-                                        expression: "form.name"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    class: {
-                                      "is-invalid": _vm.form.errors.has("name")
-                                    },
-                                    attrs: {
-                                      type: "text",
-                                      name: "name",
-                                      autofocus: "",
-                                      required: "",
-                                      autocomplete: "off",
-                                      placeholder: "Ex: MD Mohammad"
-                                    },
-                                    domProps: { value: _vm.form.name },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "name",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("has-error", {
-                                    attrs: { form: _vm.form, field: "name" }
-                                  })
-                                ],
-                                1
-                              )
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-6" }, [
@@ -827,7 +725,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(5),
+                                  _vm._m(4),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -885,7 +783,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(6),
+                                  _vm._m(5),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -937,7 +835,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(7),
+                                  _vm._m(6),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -991,159 +889,10 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "form-group" },
-                            [
-                              _vm._m(8),
-                              _vm._v(" "),
-                              _c("textarea", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.purpose,
-                                    expression: "form.purpose"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                class: {
-                                  "is-invalid": _vm.form.errors.has("purpose")
-                                },
-                                attrs: { name: "purpose", rows: "3" },
-                                domProps: { value: _vm.form.purpose },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "purpose",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("has-error", {
-                                attrs: { form: _vm.form, field: "purpose" }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "row" }, [
-                            _c("div", { staticClass: "col-md-6" }, [
-                              _c(
-                                "div",
-                                { staticClass: "form-group" },
-                                [
-                                  _vm._m(9),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.amount,
-                                        expression: "form.amount"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    class: {
-                                      "is-invalid": _vm.form.errors.has(
-                                        "amount"
-                                      )
-                                    },
-                                    attrs: {
-                                      type: "text",
-                                      name: "amount",
-                                      autocomplete: "off",
-                                      placeholder: "45000"
-                                    },
-                                    domProps: { value: _vm.form.amount },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "amount",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("has-error", {
-                                    attrs: { form: _vm.form, field: "amount" }
-                                  })
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-6" }, [
-                              _c(
-                                "div",
-                                { staticClass: "form-group" },
-                                [
-                                  _c("label", [_vm._v("Profit Margin ")]),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.profit_margin,
-                                        expression: "form.profit_margin"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    class: {
-                                      "is-invalid": _vm.form.errors.has(
-                                        "profit_margin"
-                                      )
-                                    },
-                                    attrs: {
-                                      type: "text",
-                                      name: "profit_margin",
-                                      autocomplete: "off",
-                                      placeholder: "25"
-                                    },
-                                    domProps: { value: _vm.form.profit_margin },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "profit_margin",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("has-error", {
-                                    attrs: {
-                                      form: _vm.form,
-                                      field: "profit_margin"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
                           _c("div", { staticClass: "row" }, [
                             _c("div", { staticClass: "col-md-6" }, [
                               _c("div", { staticClass: "form-group" }, [
-                                _vm._m(10),
+                                _vm._m(7),
                                 _vm._v(" "),
                                 _c("input", {
                                   staticClass: "form-control",
@@ -1155,7 +904,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-6" }, [
                               _c("div", { staticClass: "form-group" }, [
-                                _vm._m(11),
+                                _vm._m(8),
                                 _vm._v(" "),
                                 _c("input", {
                                   staticClass: "form-control",
@@ -1176,7 +925,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "box box-primary" }, [
-                        _vm._m(12),
+                        _vm._m(9),
                         _vm._v(" "),
                         _c("div", { staticClass: "box-body" }, [
                           _c("div", { staticClass: "row" }, [
@@ -1185,7 +934,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(13),
+                                  _vm._m(10),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -1239,7 +988,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(14),
+                                  _vm._m(11),
                                   _vm._v(" "),
                                   _c("input", {
                                     staticClass: "form-control",
@@ -1274,7 +1023,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(15),
+                                  _vm._m(12),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -1328,7 +1077,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(16),
+                                  _vm._m(13),
                                   _vm._v(" "),
                                   _c("input", {
                                     staticClass: "form-control",
@@ -1363,7 +1112,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(17),
+                                  _vm._m(14),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -1419,7 +1168,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(18),
+                                  _vm._m(15),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -1477,7 +1226,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(19),
+                                  _vm._m(16),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -1535,7 +1284,7 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _vm._m(20),
+                                  _vm._m(17),
                                   _vm._v(" "),
                                   _c("input", {
                                     directives: [
@@ -1653,7 +1402,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", [
-      _vm._v("Date  "),
+      _vm._v("Name "),
       _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -1663,15 +1412,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", [
       _vm._v("Email"),
-      _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", [
-      _vm._v("Name "),
       _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -1707,25 +1447,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", [
-      _vm._v("Purpose "),
-      _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", [
-      _vm._v("Amount "),
-      _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", [
-      _vm._v("Manager photo "),
+      _vm._v("photo "),
       _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },

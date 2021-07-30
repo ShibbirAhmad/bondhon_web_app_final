@@ -180,6 +180,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     var _this = this;
@@ -237,6 +239,13 @@ __webpack_require__.r(__webpack_exports__);
           _this4.adminList();
         }
       })["catch"]();
+    },
+    collectionTotal: function collectionTotal(data) {
+      var amount = 0;
+      data.forEach(function (element) {
+        amount += element.amount;
+      });
+      return amount;
     },
     deActive: function deActive(admin) {
       var _this5 = this;
@@ -534,6 +543,23 @@ var render = function() {
                                 _c("td", [_vm._v(_vm._s(admin.email))]),
                                 _vm._v(" "),
                                 _c("td", [
+                                  _c(
+                                    "span",
+                                    { staticClass: "badge badge-success" },
+                                    [
+                                      _vm._v(
+                                        " ৳ " +
+                                          _vm._s(
+                                            _vm.collectionTotal(
+                                              admin.collections
+                                            )
+                                          )
+                                      )
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
                                   admin.image
                                     ? _c("img", {
                                         staticClass: "img-circle small-image",
@@ -752,9 +778,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Phone")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("phone")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Amount")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Image")]),
         _vm._v(" "),

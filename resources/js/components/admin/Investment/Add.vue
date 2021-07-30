@@ -33,24 +33,27 @@
                 <h3 class="box-title">Investor Basic Information </h3>
               </div>
               <div class="box-body">
-                 <div class="row">
-                   <div class="col-md-6">
-                     <div class="form-group">
-                    <label>Date  <b class="text-danger">*</b>  </label>
+                 
+                  <div class="form-group">
+                        <label>Name <b class="text-danger">*</b>  </label>
+                        <input
+                          v-model="form.name"
+                          type="text"
+                          name="name"
+                          class="form-control"
+                          :class="{ 'is-invalid': form.errors.has('name') }"
+                          autofocus
+                          required
+                          autocomplete="off"
+                          placeholder="Ex: MD Mohammad"
+                        />
+                        <has-error :form="form" field="name"></has-error>
+                      </div>
 
-                    <date-picker
-                      autocomplete="off"
-                      required
-                      v-model="form.date"
-                      :config="options"
-                      :class="{ 'is-invalid': form.errors.has('date') }"
-                    ></date-picker>
-
-                    <has-error :form="form" field="date"></has-error>
-                  </div>
-                     </div>
-                   <div class="col-md-6">
-                          <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-6">
+                     
+                         <div class="form-group">
                         <label>Email<b class="text-danger">*</b></label>
                         <input
                           v-model="form.email"
@@ -65,27 +68,6 @@
                         <has-error :form="form" field="email"></has-error>
                       </div>
 
-                      </div>
-                 </div>
-
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Name <b class="text-danger">*</b>  </label>
-
-                        <input
-                          v-model="form.name"
-                          type="text"
-                          name="name"
-                          class="form-control"
-                          :class="{ 'is-invalid': form.errors.has('name') }"
-                          autofocus
-                          required
-                          autocomplete="off"
-                          placeholder="Ex: MD Mohammad"
-                        />
-                        <has-error :form="form" field="name"></has-error>
-                      </div>
                     </div>
 
                     <div class="col-md-6">
@@ -153,59 +135,12 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <label>Purpose <b class="text-danger">*</b> </label>
-
-                    <textarea  v-model="form.purpose"
-                      name="purpose"
-                      class="form-control"
-                      :class="{ 'is-invalid': form.errors.has('purpose') }" rows="3"></textarea>
-                    <has-error :form="form" field="purpose"></has-error>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Amount <b class="text-danger">*</b> </label>
-
-                        <input
-                          v-model="form.amount"
-                          type="text"
-                          name="amount"
-                          class="form-control"
-                          :class="{ 'is-invalid': form.errors.has('amount') }"
-                          autocomplete="off"
-                          placeholder="45000"
-                        />
-                        <has-error :form="form" field="amount"></has-error>
-                      </div>
-                    </div>
-
-                    <div class="col-md-6">
-                       <div class="form-group">
-                        <label>Profit Margin </label>
-
-                        <input
-                          v-model="form.profit_margin"
-                          type="text"
-                          name="profit_margin"
-                          class="form-control"
-                          :class="{ 'is-invalid': form.errors.has('profit_margin') }"
-                          autocomplete="off"
-                          placeholder="25"
-                        />
-                        <has-error :form="form" field="profit_margin"></has-error>
-                      </div>
-                    </div>
-
-                  </div>
-
-
+              
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                         <label
-                          >Manager photo <b class="text-danger">*</b>
+                          >photo <b class="text-danger">*</b>
                         </label>
                             <input
                               @change="uploadInvestorProfile"
@@ -470,10 +405,6 @@ export default {
         email: "",
         mobile_no: "",
         address:"",
-        date:"",
-        purpose:"write purpose details here",
-        amount:"",
-        profit_margin:"",
         father_name: "",
         mother_name: "",
         father_phone: "",
@@ -498,7 +429,13 @@ export default {
   methods: {
     addInvestor() {
       this.form
-        .post("/api/company/investor/add")
+        .post("/api/company/investor/add", {
+          transformRequest: [
+            function (data, headers) {
+              return objectToFormData(data);
+            },
+          ],
+        })
         .then((resp) => {
           console.log(resp);
           if (resp.data.status == "OK") {
@@ -509,12 +446,12 @@ export default {
               duration: 4000,
             });
           } else {
-            this.error = "some thing want to wrong";
+            this.error = "some thing went to wrong";
           }
         })
         .catch((error) => {
           console.log(error);
-          this.error = "some thing want to wrong";
+          this.error = "some thing went to wrong";
         });
     },
 

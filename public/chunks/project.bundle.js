@@ -163,6 +163,13 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    costTotal: function costTotal(data) {
+      var amount = 0;
+      data.forEach(function (element) {
+        amount += element.amount;
+      });
+      return amount;
+    },
     projectList: function projectList() {
       var _this = this;
 
@@ -472,9 +479,19 @@ var render = function() {
                                         ]),
                                         _vm._v(" "),
                                         _c("td", [
-                                          _vm._v(
-                                            _vm._s(project.proposed_budget) +
-                                              "  ৳ "
+                                          _c(
+                                            "span",
+                                            {
+                                              staticClass: "badge badge-success"
+                                            },
+                                            [
+                                              _vm._v(
+                                                " ৳ " +
+                                                  _vm._s(
+                                                    _vm.costTotal(project.costs)
+                                                  )
+                                              )
+                                            ]
                                           )
                                         ]),
                                         _vm._v(" "),
@@ -668,7 +685,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("project_type")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("proposed_budget")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Total Cost")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("manager_name")]),
         _vm._v(" "),

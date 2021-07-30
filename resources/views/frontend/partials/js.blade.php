@@ -13,3 +13,22 @@
 
         <!-- Template Javascript -->
         <script src="{{ asset('frontend/js/main.js') }}"></script>
+
+        
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
+ <script>
+    VANTA.BIRDS({
+      el: ".animation_row",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      backgroundColor: 0xffffff,
+      birdSize: 3.00,
+      quantity: 3.00,
+    })
+    </script>

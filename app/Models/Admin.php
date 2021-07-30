@@ -16,6 +16,12 @@ class Admin extends Authenticatable
     use HasRoles;
     protected $guard = 'admin';
 
+    public function collections(){
+      
+         return $this->hasMany('App\Models\AdminAccount','admin_id');
+
+    }
+
     public static function adminPermission() {
      $permissions = [];
         foreach (Permission::all() as $permission) {

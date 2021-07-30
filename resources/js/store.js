@@ -26,7 +26,7 @@ const state = {
 
     single_product: {},
 
-    image_base_link: '/../storage/',
+    image_base_link: '/../public/storage/',
 
     product_images: {},
 
