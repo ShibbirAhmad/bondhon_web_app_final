@@ -757,13 +757,25 @@ const routes = [
 
 
     {
-        path: '/backend/loan/add',
+        path: '/backend/loaner/add',
         component: () => import(/* webpackChunkName: "addLoan" */'./components/admin/loan/Add'),
-        name: 'loanAdd',
+        name: 'loaner_add',
         meta: {
-            requiresAuthAdmin: true
+            requiresAuthAdmin: true,
+            title: 'loaner add',
         }
     },
+
+    {
+        path: '/backend/loaner/edit/:id',
+        component: () => import(/* webpackChunkName: "addLoan" */'./components/admin/loan/edit'),
+        name: 'loaner_edit',
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'loaner edit',
+        }
+    },
+
     {
         path: '/backend/loan/manage',
         component: () => import(/* webpackChunkName: "Loan" */'./components/admin/loan/Loan'),

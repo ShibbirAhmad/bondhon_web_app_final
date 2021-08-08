@@ -223,6 +223,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         signature_write: false,
         admin_id: "",
         investor_id: "",
+        loaner_id: "",
         month: "",
         old_signature: "",
         bill_statement_id: "",
@@ -301,16 +302,44 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         this.billStatementList();
       } else if (value == 7) {
         this.employeeList();
+      } else if (value == 12) {
+        this.loanerList();
       } else {
         this.form.admin_id = "";
         this.form.investor_id = "";
+        this.form.loaner_id = "";
         this.form.investor_return_id = "";
         this.form.project_id = "";
         this.form.bill_statement_id = "";
       }
     },
-    projectList: function projectList() {
+    loanerList: function loanerList() {
       var _this3 = this;
+
+      axios.get("/api/loaners").then(function (resp) {
+        console.log(resp);
+        var options = {};
+        resp.data.forEach(function (element) {
+          options[element.id] = element.name + "-" + element.mobile_no;
+        });
+        Swal.fire({
+          title: "Select a Loaner",
+          input: "select",
+          inputOptions: options,
+          inputPlaceholder: "Select One",
+          showCancelButton: true
+        }).then(function (result) {
+          if (result.value) {
+            _this3.form.loaner_id = result.value;
+          } else {
+            _this3.form.purpose = "";
+            _this3.form.loaner_id = "";
+          }
+        });
+      });
+    },
+    projectList: function projectList() {
+      var _this4 = this;
 
       axios.get("/api/list/project").then(function (resp) {
         //  console.log(resp);
@@ -326,16 +355,16 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
           showCancelButton: true
         }).then(function (result) {
           if (result.value) {
-            _this3.form.project_id = result.value;
+            _this4.form.project_id = result.value;
           } else {
-            _this3.form.purpose = "";
-            _this3.form.project_id = "";
+            _this4.form.purpose = "";
+            _this4.form.project_id = "";
           }
         });
       });
     },
     bondhonMemberList: function bondhonMemberList() {
-      var _this4 = this;
+      var _this5 = this;
 
       axios.get("/api/member/list").then(function (resp) {
         console.log(resp);
@@ -351,23 +380,23 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
           showCancelButton: true
         }).then(function (result) {
           if (result.value) {
-            _this4.form.admin_id = result.value;
+            _this5.form.admin_id = result.value;
             Swal.fire({
               title: "Select Profit Month",
               input: "select",
-              inputOptions: _this4.months,
+              inputOptions: _this5.months,
               inputPlaceholder: "Select One",
               showCancelButton: true
             }).then(function (month) {
               if (month.value) {
-                _this4.form.month = month.value;
+                _this5.form.month = month.value;
               } else {
-                _this4.form.month = "";
+                _this5.form.month = "";
               }
             });
           } else {
-            _this4.form.purpose = "";
-            _this4.form.admin_id = "";
+            _this5.form.purpose = "";
+            _this5.form.admin_id = "";
           }
         });
       })["catch"](function (e) {
@@ -375,7 +404,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
       });
     },
     employeeList: function employeeList() {
-      var _this5 = this;
+      var _this6 = this;
 
       axios.get("/api/employee/list").then(function (resp) {
         console.log(resp);
@@ -391,10 +420,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
           showCancelButton: true
         }).then(function (result) {
           if (result.value) {
-            _this5.form.employee_id = result.value;
+            _this6.form.employee_id = result.value;
           } else {
-            _this5.form.purpose = "";
-            _this5.form.employee_id = "";
+            _this6.form.purpose = "";
+            _this6.form.employee_id = "";
           }
         });
       })["catch"](function (e) {
@@ -402,7 +431,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
       });
     },
     billStatementList: function billStatementList() {
-      var _this6 = this;
+      var _this7 = this;
 
       axios.get("/api/bill/statement/list").then(function (resp) {
         console.log(resp);
@@ -418,16 +447,16 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
           showCancelButton: true
         }).then(function (result) {
           if (result.value) {
-            _this6.form.bill_statement_id = result.value;
+            _this7.form.bill_statement_id = result.value;
           } else {
-            _this6.form.purpose = "";
-            _this6.form.bill_statement_id = "";
+            _this7.form.purpose = "";
+            _this7.form.bill_statement_id = "";
           }
         });
       });
     },
     addDebit: function addDebit() {
-      var _this7 = this;
+      var _this8 = this;
 
       if (!this.old_signature) {
         this.save();
@@ -438,22 +467,22 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         console.log(resp);
 
         if (resp.data.status == "SUCCESS") {
-          _this7.$router.push({
+          _this8.$router.push({
             name: "debit"
           });
 
-          _this7.$toasted.show(resp.data.message, {
+          _this8.$toasted.show(resp.data.message, {
             type: "success",
             position: "top-center",
             duration: 2000
           });
         } else {
-          _this7.error = "some thing went to wrong";
+          _this8.error = "some thing went to wrong";
         }
       });
     },
     investorList: function investorList() {
-      var _this8 = this;
+      var _this9 = this;
 
       axios.get("/api/company/investor/list").then(function (resp) {
         console.log(resp);
@@ -469,23 +498,23 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
           showCancelButton: true
         }).then(function (result) {
           if (result.value) {
-            _this8.form.investor_id = result.value;
+            _this9.form.investor_id = result.value;
             Swal.fire({
               title: "Select Profit Month",
               input: "select",
-              inputOptions: _this8.months,
+              inputOptions: _this9.months,
               inputPlaceholder: "Select One",
               showCancelButton: true
             }).then(function (month) {
               if (month.value) {
-                _this8.form.month = month.value;
+                _this9.form.month = month.value;
               } else {
-                _this8.form.month = "";
+                _this9.form.month = "";
               }
             });
           } else {
-            _this8.form.purpose = "";
-            _this8.form.investor_id = "";
+            _this9.form.purpose = "";
+            _this9.form.investor_id = "";
           }
         });
       })["catch"](function (e) {
@@ -493,7 +522,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
       });
     },
     returnInvestorList: function returnInvestorList() {
-      var _this9 = this;
+      var _this10 = this;
 
       axios.get("/api/company/investor/list").then(function (resp) {
         console.log(resp);
@@ -509,10 +538,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
           showCancelButton: true
         }).then(function (result) {
           if (result.value) {
-            _this9.form.investor_return_id = result.value;
+            _this10.form.investor_return_id = result.value;
           } else {
-            _this9.form.purpose = "";
-            _this9.form.investor_return_id = "";
+            _this10.form.purpose = "";
+            _this10.form.investor_return_id = "";
           }
         });
       })["catch"](function (e) {

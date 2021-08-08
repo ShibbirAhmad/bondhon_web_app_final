@@ -222,6 +222,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         signature_write: false,
         admin_id: "",
         investor_id: "",
+        loaner_id: "",
         month: "",
         old_signature: ""
       }),
@@ -292,6 +293,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         this.bondhonMemberList();
       } else if (value == 10) {
         this.investorList();
+      } else if (value == 13) {
+        this.loanerList();
       } else {
         this.form.admin_id = "";
         this.form.investor_id = "";
@@ -319,6 +322,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
           } else {
             _this3.form.purpose = "";
             _this3.form.project_id = "";
+            _this3.form.loaner_id = "";
+            _this3.form.investor_id = "";
           }
         });
       });
@@ -425,8 +430,31 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
             _this6.form.investor_id = "";
           }
         });
-      })["catch"](function (e) {
-        console.log(e);
+      });
+    },
+    loanerList: function loanerList() {
+      var _this7 = this;
+
+      axios.get("/api/loaners").then(function (resp) {
+        console.log(resp);
+        var options = {};
+        resp.data.forEach(function (element) {
+          options[element.id] = element.name + "-" + element.mobile_no;
+        });
+        Swal.fire({
+          title: "Select a Loaner",
+          input: "select",
+          inputOptions: options,
+          inputPlaceholder: "Select One",
+          showCancelButton: true
+        }).then(function (result) {
+          if (result.value) {
+            _this7.form.loaner_id = result.value;
+          } else {
+            _this7.form.purpose = "";
+            _this7.form.loaner_id = "";
+          }
+        });
       });
     },
     //method initial for  get current date

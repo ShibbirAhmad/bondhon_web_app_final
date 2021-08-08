@@ -209,6 +209,7 @@ export default {
         signature_write: false,
         admin_id: "",
         investor_id: "",
+        loaner_id: "",
         month: "",
         old_signature: "",
         bill_statement_id:"",
@@ -288,14 +289,47 @@ export default {
       else if(value == 7){
         this.employeeList();
       }
+      else if(value == 12){
+        this.loanerList();
+      }
       else {
         this.form.admin_id="";
         this.form.investor_id="";
+        this.form.loaner_id="";
         this.form.investor_return_id="";
         this.form.project_id="";
         this.form.bill_statement_id="" ;
       }
     },
+
+     loanerList() {
+        axios
+          .get("/api/loaners")
+          .then((resp) => {
+            console.log(resp);
+            let options = {};
+            resp.data.forEach((element) => {
+              options[element.id] = element.name + "-" + element.mobile_no;
+            });
+            Swal.fire({
+              title: "Select a Loaner",
+              input: "select",
+              inputOptions: options,
+              inputPlaceholder: "Select One",
+              showCancelButton: true,
+            }).then((result) => {
+              if (result.value) {
+                this.form.loaner_id = result.value;
+              } else {
+                this.form.purpose = "";
+                this.form.loaner_id = "";
+              }
+            });
+          })
+        
+      },
+
+
      projectList() {
       axios
         .get("/api/list/project")

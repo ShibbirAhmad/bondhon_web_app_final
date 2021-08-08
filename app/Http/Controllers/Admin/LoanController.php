@@ -25,7 +25,7 @@ class LoanController extends Controller
     {
 
 
-        $items=$request->item ?? 10;
+        $items=$request->item ?? 20;
         $loan=Loaner::orderBy('id','DESC')->paginate($items);
         $total_loan= DB::table('loans')->sum('amount');
         $total_loan_paid= DB::table('loan_paids')->sum('amount');
@@ -50,113 +50,76 @@ class LoanController extends Controller
     }
 
 
-    public function create()
-
-    {
-
-    }
-
 
     public function store(Request $request)
     {
 
         $validatedData = $request->validate([
-
             'name' => 'required',
-            'address' => 'required|digits:11',
-            'date'=>"required",
-            'purpose'=>"required",
-            'amount'=>"required",
+            'mobile_no' => 'required|digits:11|unique:loaners',
+            'email'=> 'required|email|unique:loaners',
             'address'=>"required",
-
           ]);
 
-
           //first find the loaner
+            $loaner=new Loaner();
+            $loaner->name=$request->name;
+            $loaner->email=$request->email;
+            $loaner->mobile_no=$request->mobile_no;
+            $loaner->address=$request->address;
+            $loaner->save();
 
-           $loaner=Loaner::where('mobile_no',$request->mobile_no)->first();
-          if(empty($loaner)){
-
-                $loaner=new Loaner();
-                $loaner->name=$request->name;
-                $loaner->mobile_no=$request->mobile_no;
-                $loaner->address=$request->address;
-                $loaner->save();
-          }
-
-          $loan=new Loan();
-          $loan->loaner_id=$loaner->id;
-          $loan->purpose=$request->purpose;
-          $loan->amount=$request->amount;
-          $loan->date=$request->date;
-          if( $loan->save()){
-
-            $credit = new Credit();
-            $credit->purpose = "Loan From ". $request->name;
-            $credit->amount = $request->amount;
-            $credit->comment = $request->purpose ?? null;
-            $credit->date = $request->date;
-            $credit->balance_id= 9 ;
-            $credit->insert_admin_id=session()->get('admin')['id'];
-            $credit->save();
               return \response()->json([
-
                  'success'=>'OK',
-                 'message'=>'Loan Add Successfully'
+                 'message'=>'Loaner Successfully'
 
             ]);
-          }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    
+
+    public function editLoanerInfo(Request $request,$id)
     {
-        //
+
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'mobile_no' => 'required|digits:11|unique:loaners,mobile_no,'.$id,
+            'email'=> 'required|email|unique:loaners,email,'.$id,
+            'address'=>"required",
+          ]);
+
+          //first find the loaner
+            $loaner= Loaner::findOrFail($id);
+            $loaner->name=$request->name;
+            $loaner->email=$request->email;
+            $loaner->mobile_no=$request->mobile_no;
+            $loaner->address=$request->address;
+            $loaner->save();
+
+              return \response()->json([
+                 'success'=>'OK',
+                 'message'=>'updated successfully'
+
+            ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+
+    public function getLoaner($id){
+        $loaner=Loaner::findOrFail($id);
+        return response()->json([
+            'status' => 'OK',
+            'loaner' => $loaner,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 
     public function loaners(){
         $loaners=Loaner::all();
         return \response()->json($loaners);
     }
+
+
 
     public function loanersdetails($id){
         $loans=Loan::where('loaner_id',$id)->get();
@@ -165,32 +128,6 @@ class LoanController extends Controller
             'loans'=>$loans,
             'loanPaid'=>$loanPaid
         ]);
-    }
-
-    public function storeloan(Request $request, $id){
-
-
-        $loaner=Loaner::find($id);
-        $loan=new Loan();
-        $loan->loaner_id=$loaner->id;
-        $loan->purpose=$request->purpose;
-        $loan->amount=$request->amount;
-        $loan->date=date('Y-m-d');
-        if( $loan->save()){
-        $credit = new Credit();
-          $credit->purpose = "Loan From ". $loaner->name;
-          $credit->amount = $request->amount;
-          $credit->comment = $request->purpose ?? null;
-          $credit->date = date('Y-m-d');
-          $credit->balance_id= 9 ;
-          $credit->insert_admin_id=session()->get('admin')['id'];
-          $credit->save();
-            return \response()->json([
-              'success'=>'OK',
-              'message'=>'Loan Add Successully'
-          ]);
-        }
-
     }
 
 

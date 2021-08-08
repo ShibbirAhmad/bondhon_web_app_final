@@ -37,7 +37,7 @@
                 <h3>  <span class="person_counter"> {{ analysis.total_investor }} </span> Investor  </h3>
             
               <h4>   {{ analysis.total_invested_amount - analysis.total_invested_return_amount  }} &#2547;  </h4>
-                <router-link :to="{ name: 'project' }" class="small-boxs-footer"
+                <router-link :to="{ name: 'investment' }" class="small-boxs-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
               ></router-link>
                 <img class="d_img_icon" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        

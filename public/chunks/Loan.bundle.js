@@ -206,6 +206,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     this.getLoans();
@@ -292,7 +295,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.box-primary[data-v-0ef03114]{\n\n    margin-left: -100px;\n    overflow-x: scroll;\n}\n.total_style[data-v-0ef03114]{\n\n    border: 2px solid #ddd;\n    padding: 4px 15px;\n}\n.total_row[data-v-0ef03114]{\n   padding-bottom: 20px;\n}\n.borderBottom[data-v-0ef03114] {\n  border-bottom: 2px solid red;\n  border-radius: 5px;\n}\n\n", ""]);
+exports.push([module.i, "\n.total_style[data-v-0ef03114]{\n\n    border: 2px solid #ddd;\n    padding: 4px 15px;\n}\n.total_row[data-v-0ef03114]{\n   padding-bottom: 20px;\n}\n.borderBottom[data-v-0ef03114] {\n  border-bottom: 2px solid red;\n  border-radius: 5px;\n}\n\n", ""]);
 
 // exports
 
@@ -358,7 +361,7 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "btn btn-primary",
-                  attrs: { to: { name: "loanAdd" } }
+                  attrs: { to: { name: "loaner_add" } }
                 },
                 [_c("i", { staticClass: "fa fa-plus" })]
               )
@@ -372,7 +375,7 @@ var render = function() {
         _c("section", { staticClass: "content" }, [
           _c("div", { staticClass: "container" }, [
             _c("div", { staticClass: "row justify-content-center" }, [
-              _c("div", { staticClass: "col-lg-10 col-lg-offset-1" }, [
+              _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12 " }, [
                 _c("div", { staticClass: "box box-primary" }, [
                   _vm._m(1),
                   _vm._v(" "),
@@ -518,7 +521,32 @@ var render = function() {
                                           ) +
                                           " "
                                       )
-                                    ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      [
+                                        _c(
+                                          "router-link",
+                                          {
+                                            staticClass:
+                                              "btn btn-sm btn-success",
+                                            attrs: {
+                                              to: {
+                                                name: "loaner_edit",
+                                                params: { id: items.id }
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fa fa-edit"
+                                            })
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    )
                                   ])
                                 }),
                                 0
@@ -791,7 +819,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Paid Amount")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Due Amount ")])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Due Amount ")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v(" Action ")])
       ])
     ])
   },

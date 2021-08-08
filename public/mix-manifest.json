@@ -90,5 +90,9 @@
     "/chunks/Loan.bundle.js": "/chunks/Loan.bundle.js",
     "/chunks/addLoan.bundle.js": "/chunks/addLoan.bundle.js",
     "/chunks/vendors~AccountReport~Loan~LoanDetails~OrderProfite~SaleProfite~accoun_purpose_edit~account_purpose_~7b45eb4b.bundle.js": "/chunks/vendors~AccountReport~Loan~LoanDetails~OrderProfite~SaleProfite~accoun_purpose_edit~account_purpose_~7b45eb4b.bundle.js",
-    "/chunks/vendors~AccountReport~OrderProfite~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose~0223e454.bundle.js": "/chunks/vendors~AccountReport~OrderProfite~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose~0223e454.bundle.js"
+    "/chunks/vendors~AccountReport~OrderProfite~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose~0223e454.bundle.js": "/chunks/vendors~AccountReport~OrderProfite~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose~0223e454.bundle.js",
+    "/chunks/vendors~AccountReport~LoanDetails~OrderProfite~SaleProfite~accoun_purpose_edit~account_purpose_add~a~fd6ebab0.bundle.js": "/chunks/vendors~AccountReport~LoanDetails~OrderProfite~SaleProfite~accoun_purpose_edit~account_purpose_add~a~fd6ebab0.bundle.js",
+    "/chunks/vendors~AccountReport~Loan~LoanDetails~OrderProfite~SaleProfite~accoun_purpose_edit~account_purpose_~2861a54b.bundle.js": "/chunks/vendors~AccountReport~Loan~LoanDetails~OrderProfite~SaleProfite~accoun_purpose_edit~account_purpose_~2861a54b.bundle.js",
+    "/chunks/vendors~AccountReport~OrderProfite~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose~367aee55.bundle.js": "/chunks/vendors~AccountReport~OrderProfite~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose~367aee55.bundle.js",
+    "/chunks/vendors~creditAdd.bundle.js": "/chunks/vendors~creditAdd.bundle.js"
 }

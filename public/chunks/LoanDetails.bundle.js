@@ -180,31 +180,6 @@ __webpack_require__.r(__webpack_exports__);
         total += parseInt(element.amount);
       });
       return total;
-    },
-    addMore: function addMore() {
-      var _this2 = this;
-
-      var amount = prompt("Enter Amount: ");
-
-      if (parseInt(amount) > 0) {
-        var purpose = prompt("Enter purpose: ");
-        axios.get('/api/loan/store/' + this.$route.params.id, {
-          params: {
-            amount: amount,
-            purpose: purpose
-          }
-        }).then(function (resp) {
-          if (resp.data.success == "OK") {
-            alert('Loan added successfully');
-
-            _this2.getLoans();
-          } else {
-            alert('Error Found');
-          }
-        })["catch"](function (e) {
-          console.log(e);
-        });
-      }
     }
   }
 });
@@ -282,21 +257,20 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "content-wrapper" }, [
         _c("section", { staticClass: "content-header" }, [
-          _c("h1", [
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-primary",
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.addMore($event)
-                  }
-                }
-              },
-              [_c("i", { staticClass: "fa fa-plus" })]
-            )
-          ]),
+          _c(
+            "h1",
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { to: { name: "loan" } }
+                },
+                [_c("i", { staticClass: "fa fa-arrow-left" })]
+              )
+            ],
+            1
+          ),
           _vm._v(" "),
           _vm._m(0)
         ]),

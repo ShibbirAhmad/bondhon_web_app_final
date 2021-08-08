@@ -483,7 +483,7 @@ var render = function() {
                               "router-link",
                               {
                                 staticClass: "small-boxs-footer",
-                                attrs: { to: { name: "project" } }
+                                attrs: { to: { name: "investment" } }
                               },
                               [
                                 _vm._v("More info "),

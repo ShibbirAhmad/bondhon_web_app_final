@@ -390,8 +390,8 @@ var render = function() {
         _vm._v(" "),
         _c("section", { staticClass: "content" }, [
           _c("div", { staticClass: "container" }, [
-            _c("div", { staticClass: "row justify-content-center" }, [
-              _c("div", { staticClass: "col-lg-11" }, [
+            _c("div", { staticClass: "row " }, [
+              _c("div", { staticClass: "col-lg-12 col-md-12 col-sm-12" }, [
                 _c("div", { staticClass: "box box-primary" }, [
                   _c("div", { staticClass: "box-header with-border" }, [
                     _c("div", { staticClass: "row" }, [

@@ -4,7 +4,7 @@
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-          <router-link :to="{ name: 'loanAdd' }" class="btn btn-primary"
+          <router-link :to="{ name: 'loaner_add' }" class="btn btn-primary"
             ><i class="fa fa-plus"></i
           ></router-link>
         </h1>
@@ -19,7 +19,7 @@
         <div class="container">
 
           <div class="row justify-content-center">
-            <div class="col-lg-10 col-lg-offset-1">
+            <div class="col-lg-12 col-md-12 col-sm-12 ">
               <div class="box box-primary">
                 <div class="box-header with-border text-center">
                   <h3 class="box-title heading">Loan Table</h3>
@@ -51,6 +51,7 @@
                         <th scope="col">Taken Amount</th>
                         <th scope="col">Paid Amount</th>
                         <th scope="col">Due Amount </th>
+                        <th scope="col"> Action </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -75,6 +76,8 @@
                        <td>{{ items.taken_amount }}</td>
                         <td>{{ items.paid_amount }}</td>
                         <td> {{ items.taken_amount - items.paid_amount  }} </td>
+
+                        <td> <router-link class="btn btn-sm btn-success" :to="{name:'loaner_edit',params:{'id':items.id}}"> <i class="fa fa-edit"></i> </router-link> </td>
                       </tr>
 
                     </tbody>
@@ -277,11 +280,6 @@ export default {
 
 <style scoped>
 
- .box-primary{
-
-    margin-left: -100px;
-    overflow-x: scroll;
- }
 
  .total_style{
 

@@ -63280,8 +63280,7 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("span", { staticClass: "logo-lg" }, [
-        _c("b", [_vm._v("Bondhon")]),
-        _vm._v("Society")
+        _c("b", [_vm._v("Bondhon Society Limited ")])
       ])
     ])
   },
@@ -63696,8 +63695,7 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("span", { staticClass: "logo-lg" }, [
-        _c("b", [_vm._v("Bondhon")]),
-        _vm._v("Society")
+        _c("b", [_vm._v("Bondhon Society Limited ")])
       ])
     ])
   },
@@ -81653,13 +81651,24 @@ var routes = [{
     requiresAuthAdmin: true
   }
 }, {
-  path: '/backend/loan/add',
+  path: '/backend/loaner/add',
   component: function component() {
     return Promise.all(/*! import() | addLoan */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~OrderProfite~SaleProfite~accoun_purpose_edit~account_purpose_~7b45eb4b"), __webpack_require__.e("vendors~AccountReport~OrderProfite~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose~0223e454"), __webpack_require__.e("addLoan")]).then(__webpack_require__.bind(null, /*! ./components/admin/loan/Add */ "./resources/js/components/admin/loan/Add.vue"));
   },
-  name: 'loanAdd',
+  name: 'loaner_add',
   meta: {
-    requiresAuthAdmin: true
+    requiresAuthAdmin: true,
+    title: 'loaner add'
+  }
+}, {
+  path: '/backend/loaner/edit/:id',
+  component: function component() {
+    return Promise.all(/*! import() | addLoan */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~OrderProfite~SaleProfite~accoun_purpose_edit~account_purpose_~7b45eb4b"), __webpack_require__.e("vendors~AccountReport~OrderProfite~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose~0223e454"), __webpack_require__.e("addLoan")]).then(__webpack_require__.bind(null, /*! ./components/admin/loan/edit */ "./resources/js/components/admin/loan/edit.vue"));
+  },
+  name: 'loaner_edit',
+  meta: {
+    requiresAuthAdmin: true,
+    title: 'loaner edit'
   }
 }, {
   path: '/backend/loan/manage',

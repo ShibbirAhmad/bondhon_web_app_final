@@ -208,6 +208,7 @@ export default {
         signature_write: false,
         admin_id: "",
         investor_id: "",
+        loaner_id: "",
         month: "",
         old_signature: "",
       }),
@@ -277,6 +278,8 @@ export default {
         this.bondhonMemberList();
       }else if( value == 10){
          this.investorList();
+      }else if( value == 13){
+         this.loanerList();
       }else {
         this.form.admin_id="";
         this.form.investor_id="";
@@ -304,6 +307,8 @@ export default {
             } else {
               this.form.purpose = "";
               this.form.project_id = "";
+              this.form.loaner_id = "";
+              this.form.investor_id = "";
             }
           });
         })
@@ -415,11 +420,35 @@ export default {
             }
           });
         })
-        .catch((e) => {
-          console.log(e);
-        });
+       
     },
 
+    loanerList() {
+        axios
+          .get("/api/loaners")
+          .then((resp) => {
+            console.log(resp);
+            let options = {};
+            resp.data.forEach((element) => {
+              options[element.id] = element.name + "-" + element.mobile_no;
+            });
+            Swal.fire({
+              title: "Select a Loaner",
+              input: "select",
+              inputOptions: options,
+              inputPlaceholder: "Select One",
+              showCancelButton: true,
+            }).then((result) => {
+              if (result.value) {
+                this.form.loaner_id = result.value;
+              } else {
+                this.form.purpose = "";
+                this.form.loaner_id = "";
+              }
+            });
+          })
+        
+      },
 
     //method initial for  get current date
     pDate() {

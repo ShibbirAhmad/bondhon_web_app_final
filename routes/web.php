@@ -351,10 +351,11 @@ Route::group([
  
     //start the loan route
      Route::get('api/loan','LoanController@index');
-     Route::post('api/loand/store','LoanController@store');
+     Route::post('api/loaner/store','LoanController@store');
+     Route::get('api/get/loaner/{id}','LoanController@getLoaner');
+     Route::post('api/update/loaner/info/{id}','LoanController@editLoanerInfo');
      Route::get('api/loaners','LoanController@loaners');
      Route::get('api/loaners/details/{id}','LoanController@loanersdetails');
-     Route::get('api/loan/store/{id}','LoanController@storeloan');
      Route::get('api/download/all/loan/pdf','LoanController@download_all_record');
      Route::get('api/loan/history/download/pdf/{id}','LoanController@download_loan_history');
      Route::get('api/loand/paid/history/download/pdf/{id}','LoanController@download_loan_paid_history');

@@ -275,7 +275,7 @@ class AdminController extends Controller
             $admin->save();
             Admin::sendWelcomeMessage($admin);
             //send mail to member
-            $message= 'Assalamualikum,'. $admin->name . 'You are now partner of Bondhon Society Limited. Thanks a million for being with us . wishing your best success ';
+            $message= 'Assalamualikum,'. $admin->name . ' You are now partner of Bondhon Society Limited. Thanks a million for being with us . wishing your best success ';
             SendMailController::sendMailToMember($admin->email,$message);
         });
 

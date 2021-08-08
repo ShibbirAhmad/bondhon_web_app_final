@@ -4,9 +4,9 @@
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-          <a @click.prevent="addMore" class="btn btn-primary"
-            ><i class="fa fa-plus"></i
-          ></a>
+          <router-link :to="{ name: 'loan' }" class="btn btn-primary"
+            ><i class="fa fa-arrow-left"></i
+          ></router-link>
         </h1>
         <ol class="breadcrumb">
           <li>
@@ -178,34 +178,7 @@ export default {
       return total;
     },
 
-    addMore(){
-      let amount=prompt("Enter Amount: ");
-
-      if(parseInt(amount)>0){
-
-        let purpose=prompt("Enter purpose: ");
-
-
-        axios.get('/api/loan/store/'+this.$route.params.id,{
-          params:{
-           amount,
-           purpose
-
-          }
-        })
-        .then(resp=>{
-         if(resp.data.success=="OK"){
-           alert('Loan added successfully');
-           this.getLoans();
-         }else{
-           alert('Error Found')
-         }
-        })
-        .catch(e=>{
-          console.log(e);
-        })
-      }
-    }
+   
   },
 };
 </script>

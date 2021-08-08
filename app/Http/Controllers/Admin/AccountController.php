@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Loan;
 use App\Models\Team;
 use App\Models\Debit;
 use App\Models\Admin ;
 use App\Models\Credit;
+use App\Models\Loaner;
 use App\Models\Project;
 use App\Models\Investor;
+use App\Models\LoanPaid;
 use App\Models\Investment;
 use App\Models\AdminProfit;
 use App\Models\ProjectCost;
 use App\Models\AdminAccount;
 use Illuminate\Http\Request;
-use App\AccountCreditPurpose;
 use App\Exports\DebitExport ;
 use App\Models\ProjectProfit;
 use App\Exports\CreditExport ;
@@ -160,6 +162,29 @@ class AccountController extends Controller
                  //send mail to member
                 $message= 'Assalamualikum, '. $investor->name . ' You have invested  '. $request->amount .' /BDT on your investoment of bondhon society limited.' ;
                 SendMailController::sendMailToMember($investor->email,$message);
+
+            }
+
+
+             //loaner loan inserting
+             if(!empty($request->loaner_id)){
+                $loaner=Loaner::where('id',$request->loaner_id)->first();
+                $loan_add=new Loan();
+                $loan_add->loaner_id=$loaner->id;
+                $loan_add->amount=  $request->amount;
+                $loan_add->date= $request->date;
+                $loan_add->purpose=$request->comment;
+                $loan_add->save();
+                $credit->comment = $credit->comment.'('. $loaner->name .')';
+                $credit->save();
+                Loaner::sendMessageToLoanerForNewLoan($loaner,$credit->amount);
+                
+                //send mail to member
+                $loans=Loan::where('loaner_id',$loaner->id)->sum('amount');
+                $loanPaid=LoanPaid::where('loaner_id',$loaner->id)->sum('amount');
+                $due_amount=$loans-$loanPaid;
+                $message= 'Assalamualaikum, Dear '.$loaner->name. ' Bondhon Society has taken '.number_format($request->amount).'/=BDT as a loan from you. Total amount is '.number_format($loans).'/=BDT, and due amount is '.number_format($due_amount).'/=BDT';   
+                SendMailController::sendMailToMember($loaner->email,$message);
 
             }
 
@@ -351,16 +376,18 @@ class AccountController extends Controller
 
                 // if salary paid
                 if(!empty($request->employee_id)){
-                    $emplye=Team::where('id',$request->employee_id)->first();
+                    $employee=Team::where('id',$request->employee_id)->first();
                     $employee_salary=new EmployeeSalary();
-                    $employee_salary->employee_id=$emplye->id;
+                    $employee_salary->employee_id=$employee->id;
                     $employee_salary->amount=$request->amount;
+                    $employee_salary->paid_by=$request->debit_from;
+                    $employee_salary->comment=$request->comment;
                     $employee_salary->date=$request->date;
                     $employee_salary->save();
                     //update debit comment
-                    $debit->purpose = $debit->purpose.'('. $emplye->name .')';
+                    $debit->purpose = $debit->purpose.'('. $employee->name .')';
                     $debit->save();
-                    Team::sendMessageToEmployeer($emplye,$request->amount);
+                    Team::sendMessageToEmployeer($employee,$request->amount);
                 }
 
                 //investor payment inserting
@@ -383,6 +410,29 @@ class AccountController extends Controller
 
 
             }
+
+            
+           if(!empty($request->loaner_id)){
+             $loaner=Loaner::where('id',$request->loaner_id)->first();
+             $loan_paid=new LoanPaid();
+             $loan_paid->loaner_id=$loaner->id;
+             $loan_paid->amount=  $debit->amount;
+             $loan_paid->date= $debit->date;
+             $loan_paid->comment=$debit->comment;
+             $loan_paid->paid_by=$debit->debit_from;
+             $loan_paid->save();
+             //send message ot loaner 
+            $debit->comment = $debit->comment.'('. $loaner->name .')';
+            $debit->save();
+            Loaner::SendMessageToLoaner($loaner,$loan_paid->amount);
+            //send mail to member
+            $loans=Loan::where('loaner_id',$loaner->id)->sum('amount');
+            $loanPaid=LoanPaid::where('loaner_id',$loaner->id)->sum('amount');
+            $due_amount=$loans-$loanPaid;
+            $message= 'Assalamualaikum, Dear '.$loaner->name.' Thank you for the recent payment of '.number_format($request->amount).'/=BDT, You have received from the Bondhon Society Limited'.' and your due amount is '.number_format($due_amount).'/=BDT'; 
+            SendMailController::sendMailToMember($loaner->email,$message);
+
+        }
 
 
             //investor payment return
@@ -587,12 +637,6 @@ class AccountController extends Controller
 
         return Excel::download(new DebitExport(),'debit.xlsx') ;
     }
-
-
-
-
-
-
 
 
 
