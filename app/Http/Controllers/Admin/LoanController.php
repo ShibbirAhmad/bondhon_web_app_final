@@ -8,9 +8,14 @@ use App\Models\Credit;
 use App\Models\Loan;
 use App\Models\Loaner;
 use App\Models\LoanPaid;
+use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class LoanController extends Controller
 {
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -18,32 +23,45 @@ class LoanController extends Controller
      */
     public function index( Request $request)
     {
+
+
         $items=$request->item ?? 10;
         $loan=Loaner::orderBy('id','DESC')->paginate($items);
+        $total_loan= DB::table('loans')->sum('amount');
+        $total_loan_paid= DB::table('loan_paids')->sum('amount');
+        $due_amount= intval($total_loan) - intval($total_loan_paid);
 
         foreach($loan as $item){
+
             $item->{'taken_amount'}=Loan::where('loaner_id',$item->id)->sum('amount');
-            $item->{'paid_amount'}=LoanPaid::where('loaner_id',$item->id)->sum('amount');    
-    
+            $item->{'paid_amount'}=LoanPaid::where('loaner_id',$item->id)->sum('amount');
         }
-     return \response()->json([
+
+
+       return \response()->json([
+
             'success'=>'OK',
-            'loan'=>$loan
+            'loan'=>$loan,
+            'total_loan' => number_format($total_loan),
+            'total_loan_paid' => number_format($total_loan_paid),
+            'due_amount' => number_format($due_amount) ,
         ]);
 
     }
 
-  
+
     public function create()
+
     {
-        //
+
     }
 
-    
+
     public function store(Request $request)
     {
 
         $validatedData = $request->validate([
+
             'name' => 'required',
             'address' => 'required|digits:11',
             'date'=>"required",
@@ -58,6 +76,7 @@ class LoanController extends Controller
 
            $loaner=Loaner::where('mobile_no',$request->mobile_no)->first();
           if(empty($loaner)){
+
                 $loaner=new Loaner();
                 $loaner->name=$request->name;
                 $loaner->mobile_no=$request->mobile_no;
@@ -77,12 +96,14 @@ class LoanController extends Controller
             $credit->amount = $request->amount;
             $credit->comment = $request->purpose ?? null;
             $credit->date = $request->date;
-            $credit->credit_in="Cash";
+            $credit->balance_id= 9 ;
             $credit->insert_admin_id=session()->get('admin')['id'];
             $credit->save();
               return \response()->json([
-                'success'=>'OK',
-                'message'=>'Loan Add Successully'
+
+                 'success'=>'OK',
+                 'message'=>'Loan Add Successfully'
+
             ]);
           }
     }
@@ -161,7 +182,7 @@ class LoanController extends Controller
           $credit->amount = $request->amount;
           $credit->comment = $request->purpose ?? null;
           $credit->date = date('Y-m-d');
-          $credit->credit_in="Cash";
+          $credit->balance_id= 9 ;
           $credit->insert_admin_id=session()->get('admin')['id'];
           $credit->save();
             return \response()->json([
@@ -171,4 +192,57 @@ class LoanController extends Controller
         }
 
     }
+
+
+
+
+     public  function download_all_record(){
+
+        $loans=Loaner::orderBy('id','DESC')->get();
+        $total_loan= DB::table('loans')->sum('amount');
+        $total_loan_paid= DB::table('loan_paids')->sum('amount');
+        $due_amount= intval($total_loan) - intval($total_loan_paid);
+
+        foreach($loans as $item){
+
+            $item->{'taken_amount'}=Loan::where('loaner_id',$item->id)->sum('amount');
+            $item->{'paid_amount'}=LoanPaid::where('loaner_id',$item->id)->sum('amount');
+
+        }
+
+            $pdf=PDF::loadView('admin.pdf.all_loan_record',compact('loans','total_loan_paid','total_loan','due_amount'));
+            return $pdf->stream();
+
+      }
+
+
+     // function for download loaner loan history
+      public function download_loan_history($id){
+
+            $loaner = Loaner::findOrFail($id);
+            $loaner->{'taken_amount'}=Loan::where('loaner_id',$loaner->id)->get();
+            $total_loan=Loan::where('loaner_id',$loaner->id)->sum('amount');
+            $pdf=PDF::loadView('admin.pdf.loaner_loan_record',compact('loaner','total_loan'));
+            return $pdf->stream();
+
+
+       }
+
+
+    // function for download loaner loan paid history
+      public function download_loan_paid_history($id){
+
+            $loaner = Loaner::findOrFail($id);
+            $loaner->{'paid_amount'}=LoanPaid::where('loaner_id',$loaner->id)->get();
+            $total_loan_paid=LoanPaid::where('loaner_id',$loaner->id)->sum('amount');
+            // return $loaner ;
+            $pdf=PDF::loadView('admin.pdf.loaner_loan_paid_record',compact('loaner','total_loan_paid'));
+            return $pdf->stream();
+
+
+       }
+
+
+
+
 }

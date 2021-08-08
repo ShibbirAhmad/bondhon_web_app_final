@@ -7,7 +7,6 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
       <p class="login-box-msg">Sign in to start your session</p>
-
       <form @submit.prevent="login">
         <div class="alert alert-danger" v-if="error">{{ error }}</div>
 

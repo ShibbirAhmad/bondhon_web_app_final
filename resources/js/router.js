@@ -757,6 +757,22 @@ const routes = [
 
 
     {
+        path: '/backend/loan/add',
+        component: () => import(/* webpackChunkName: "addLoan" */'./components/admin/loan/Add'),
+        name: 'loanAdd',
+        meta: {
+            requiresAuthAdmin: true
+        }
+    },
+    {
+        path: '/backend/loan/manage',
+        component: () => import(/* webpackChunkName: "Loan" */'./components/admin/loan/Loan'),
+        name: 'loan',
+        meta: {
+            requiresAuthAdmin: true
+        }
+    },
+    {
         path: '/backend/loaner/detaials/:id',
         component: () => import(/* webpackChunkName: "LoanDetails" */'./components/admin/loan/LoanerDetails'),
         name: 'LoanerDetails',
@@ -764,6 +780,9 @@ const routes = [
             requiresAuthAdmin: true
         }
     },
+    
+
+    
     {
         path: '/backend/feature/banner',
         component: () => import(/* webpackChunkName: "feature_banner" */'./components/admin/feature_banner/Index.vue'),

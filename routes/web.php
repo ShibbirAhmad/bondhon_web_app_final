@@ -343,7 +343,22 @@ Route::group([
     Route::get('api/get/site/footer/info','FooterSettingController@get_footer_info');
     Route::post('api/edit/site/footer/info/{id}','FooterSettingController@edit_footer_info');
 
-
+    
+     //loaner
+     Route::post('api/loaner/store','LoanerController@store');
+     Route::get('api/loaner','LoanerController@index');
+     Route::post('api/loan/store','LoanerController@storeLoan');
+ 
+    //start the loan route
+     Route::get('api/loan','LoanController@index');
+     Route::post('api/loand/store','LoanController@store');
+     Route::get('api/loaners','LoanController@loaners');
+     Route::get('api/loaners/details/{id}','LoanController@loanersdetails');
+     Route::get('api/loan/store/{id}','LoanController@storeloan');
+     Route::get('api/download/all/loan/pdf','LoanController@download_all_record');
+     Route::get('api/loan/history/download/pdf/{id}','LoanController@download_loan_history');
+     Route::get('api/loand/paid/history/download/pdf/{id}','LoanController@download_loan_paid_history');
+ 
 
 });
 

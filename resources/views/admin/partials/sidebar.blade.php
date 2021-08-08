@@ -118,6 +118,21 @@ $admin = session()->get('admin');
                         </li>
                     </ul>
                 </li>
+               
+                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-money"></i> <span>Loan</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-left pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li>
+                                            <router-link :to="{ name: 'loan'}"><i class="fa fa-eye"></i>Manage Loan</router-link>
+                                         </li>
+                                    </ul>
+                                </li>
+                
             @endif
 
 
