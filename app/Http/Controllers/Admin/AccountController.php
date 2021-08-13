@@ -24,6 +24,7 @@ use App\Models\EmployeeSalary;
 use App\Models\Account_purpose;
 use App\Models\InvestmentReturn;
 use App\Models\BillPaidStatement;
+use App\Models\ProjectFundReturn;
 use App\Models\InvestorProfitPaid;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -126,6 +127,25 @@ class AccountController extends Controller
                 $credit->save();
             }
 
+
+
+             //project fund return inserting
+             if(!empty($request->project_fund_return_id)){
+                $project=Project::where('id',$request->project_fund_return_id)->first();
+                $project_fund_return=new ProjectFundReturn();
+                $project_fund_return->project_id=$project->id;
+                $project_fund_return->amount=  $credit->amount;
+                $project_fund_return->paid_by=  $credit->credit_in;
+                $project_fund_return->date= $credit->date;
+                $project_fund_return->comment=$credit->comment;
+                $project_fund_return->save();
+                $credit->comment = $credit->comment.'('.$project->name .')';
+                $credit->save();
+                //send message to manager 
+                Project::refundConfirmationMessage($project,$request->amount);
+            }
+
+
             //member monthly collection inserting
             if(!empty($request->admin_id)){
                 $admin=Admin::where('id',$request->admin_id)->first();
@@ -183,10 +203,28 @@ class AccountController extends Controller
                 $loans=Loan::where('loaner_id',$loaner->id)->sum('amount');
                 $loanPaid=LoanPaid::where('loaner_id',$loaner->id)->sum('amount');
                 $due_amount=$loans-$loanPaid;
-                $message= 'Assalamualaikum, Dear '.$loaner->name. ' Bondhon Society has taken '.number_format($request->amount).'/=BDT as a loan from you. Total amount is '.number_format($loans).'/=BDT, and due amount is '.number_format($due_amount).'/=BDT';   
+                $message= 'Assalamualaikum, Dear '.$loaner->name. ' Bondhon Society Limited has taken '.number_format($request->amount).'/=BDT as a loan from you. Total amount is '.number_format($loans).'/=BDT, and due amount is '.number_format($due_amount).'/=BDT';   
                 SendMailController::sendMailToMember($loaner->email,$message);
 
             }
+
+
+
+            //storing bill statement payment
+            if(!empty($request->bill_statement_id)){
+                $bill=BillStatement::where('id',$request->bill_statement_id)->first();
+                $bill_paid=new BillPaidStatement();
+                $bill_paid->bill_statement_id=$bill->id;
+                $bill_paid->amount=  $credit->amount;
+                $bill_paid->date= $credit->date;
+                $bill_paid->comment=$credit->comment;
+                $bill_paid->paid_by=$credit->credit_in;
+                $bill_paid->save();
+                $credit->comment = $credit->comment.'('.$bill->name.')';
+                $credit->save();
+            }
+
+
 
 
         });
@@ -348,7 +386,7 @@ class AccountController extends Controller
                 $project_cost->paid_by=$debit->debit_from;
                 $project_cost->save();
                 //send message to project manager
-                Admin::sendCostConfimationMessage($project,$request->amount);
+                Project::sendCostConfirmationMessage($project,$request->amount);
                 $debit->comment = $debit->comment.'('.$project->name .')';
                 $debit->save();
                 }

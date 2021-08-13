@@ -845,30 +845,44 @@ const routes = [
       },
 
 
-      {
-        path: '/backend/bill/statement',
-        name: 'bill_statement',
-        component: () => import(/*webpackChunkName: "bill_statement" */'./components/admin/bill_statement/Index.vue'),
+    {
+        path: '/backend/debit/statement',
+        name: 'debit_statement',
+        component: () => import(/*webpackChunkName: "debit_statement" */'./components/admin/bill_statement/debit_statement.vue'),
         meta: {
             requiresAuthAdmin: true,
+            title: 'debit statements'
+        }
+    },
+
+    
+    {
+        path: '/backend/credit/statement',
+        name: 'credit_statement',
+        component: () => import(/*webpackChunkName: "credit_statement" */'./components/admin/bill_statement/credit_statement.vue'),
+        meta: {
+            requiresAuthAdmin: true,
+            title: 'credit statements'
         }
     },
 
     {
         path: '/backend/bill/statement/add',
-        name: 'bill_statement_add',
-        component: () => import(/*webpackChunkName: "bill_statement_add" */'./components/admin/bill_statement/Add.vue'),
+        name: 'statement_add',
+        component: () => import(/*webpackChunkName: "statement_add" */'./components/admin/bill_statement/Add.vue'),
         meta: {
             requiresAuthAdmin: true,
+            title: 'credit or debit statement add'
         }
     },
 
     {
         path: '/backend/bill/statement/details/:id',
-        name: 'bill_statement_details',
-        component: () => import(/*webpackChunkName:"bill_statement_details"*/'./components/admin/bill_statement/BillDetails.vue'),
+        name: 'statement_details',
+        component: () => import(/*webpackChunkName:"statement_details"*/'./components/admin/bill_statement/statement_details.vue'),
         meta: {
             requiresAuthAdmin: true,
+            title: ' statement details'
         }
     },
 

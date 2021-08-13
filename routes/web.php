@@ -315,7 +315,8 @@ Route::group([
 
 
     //company bill statements route is here
-    Route::get('api/bill/statement/list','BillStatementController@bill_list');
+    Route::get('api/bill/statement/list/type/credit','BillStatementController@credit_statement_list');
+    Route::get('api/bill/statement/list/type/debit','BillStatementController@debit_statement_list');
     Route::post('api/bll/statement/add','BillStatementController@store');
     Route::get('api/bll/per/month/add','BillStatementController@store_bill_per_month');
     Route::get('api/bll/statement/details/{id}','BillStatementController@bill_statement_details');

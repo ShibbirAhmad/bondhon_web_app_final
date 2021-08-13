@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["bill_statement_details"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["statement_details"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/bill_statement/statement_details.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************************************!*\
@@ -267,6 +267,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         console.log(error);
       });
     },
+    goBack: function goBack() {
+      window.history.back();
+    },
     addPerMonthBill: function addPerMonthBill() {
       var _params,
           _this2 = this;
@@ -401,20 +404,13 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "content-wrapper" }, [
         _c("section", { staticClass: "content-header" }, [
-          _c(
-            "h1",
-            [
-              _c(
-                "router-link",
-                {
-                  staticClass: "btn btn-primary",
-                  attrs: { to: { name: "bill_statement" } }
-                },
-                [_c("i", { staticClass: "fa fa-arrow-left" })]
-              )
-            ],
-            1
-          ),
+          _c("h1", [
+            _c(
+              "a",
+              { staticClass: "btn btn-primary", on: { click: _vm.goBack } },
+              [_c("i", { staticClass: "fa fa-arrow-left" })]
+            )
+          ]),
           _vm._v(" "),
           _vm._m(0)
         ]),

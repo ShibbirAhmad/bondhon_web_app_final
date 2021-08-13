@@ -250,12 +250,17 @@ $admin = session()->get('admin');
                 </li>
             @endif
 
-            @if ($admin->can('manage user'))
-                <li class="treeview">
-                    <router-link :to="{ name: 'user'}"> <i class="fa fa-user-circle"></i>Users</router-link>
-                </li>
-            @endif
+        
+               
+            <li class="treeview">
+                <router-link :to="{ name: 'debit_statement'}"> <i class="fa fa-list-alt"></i>Bill Statements
+                </router-link>
+            </li>
 
+            <li class="treeview">
+                <router-link :to="{ name: 'credit_statement'}"> <i class="fa fa-list-alt"></i>Credit Statements
+                </router-link>
+            </li>
 
                 @if ($admin->can('manage set up'))
 
@@ -298,8 +303,8 @@ $admin = session()->get('admin');
                             </router-link>
                         </li>
 
-                         <li>
-                            <router-link :to="{ name: 'bill_statement'}"> <i class="fa fa-list-alt"></i> Manage Bill
+                        <li>
+                            <router-link :to="{ name: 'statement_add'}"> <i class="fa fa-list-alt"></i> Debit/Credit Statement
                             </router-link>
                         </li>
 

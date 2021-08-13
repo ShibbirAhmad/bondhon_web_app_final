@@ -218,10 +218,12 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         comment: "",
         credit_in: "Cash",
         project_id: "",
+        project_fund_return_id: "",
         signature: null,
         signature_write: false,
         admin_id: "",
         investor_id: "",
+        bill_statement_id: "",
         loaner_id: "",
         month: "",
         old_signature: ""
@@ -295,10 +297,17 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         this.investorList();
       } else if (value == 13) {
         this.loanerList();
+      } else if (value == 14) {
+        this.billStatementList();
+      } else if (value == 15) {
+        this.projectFundReturnList();
       } else {
         this.form.admin_id = "";
+        this.form.loaner_id = "";
         this.form.investor_id = "";
         this.form.project_id = "";
+        this.form.bill_statement_id = "";
+        this.form.project_fund_return_id = "";
       }
     },
     projectList: function projectList() {
@@ -322,14 +331,62 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
           } else {
             _this3.form.purpose = "";
             _this3.form.project_id = "";
-            _this3.form.loaner_id = "";
-            _this3.form.investor_id = "";
+          }
+        });
+      });
+    },
+    projectFundReturnList: function projectFundReturnList() {
+      var _this4 = this;
+
+      axios.get("/api/list/project").then(function (resp) {
+        //  console.log(resp);
+        var options = {};
+        resp.data.projects.data.forEach(function (element) {
+          options[element.id] = element.name + "-" + element.place;
+        });
+        Swal.fire({
+          title: "Select a project",
+          input: "select",
+          inputOptions: options,
+          inputPlaceholder: "Select One",
+          showCancelButton: true
+        }).then(function (result) {
+          if (result.value) {
+            _this4.form.project_fund_return_id = result.value;
+          } else {
+            _this4.form.purpose = "";
+            _this4.form.project_fund_return_id = "";
+          }
+        });
+      });
+    },
+    billStatementList: function billStatementList() {
+      var _this5 = this;
+
+      axios.get("/api/bill/statement/list/type/credit").then(function (resp) {
+        console.log(resp);
+        var options = {};
+        resp.data.bills.forEach(function (element) {
+          options[element.id] = element.name;
+        });
+        Swal.fire({
+          title: "Select ",
+          input: "select",
+          inputOptions: options,
+          inputPlaceholder: "Select One",
+          showCancelButton: true
+        }).then(function (result) {
+          if (result.value) {
+            _this5.form.bill_statement_id = result.value;
+          } else {
+            _this5.form.purpose = "";
+            _this5.form.bill_statement_id = "";
           }
         });
       });
     },
     bondhonMemberList: function bondhonMemberList() {
-      var _this4 = this;
+      var _this6 = this;
 
       axios.get("/api/member/list").then(function (resp) {
         console.log(resp);
@@ -345,23 +402,23 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
           showCancelButton: true
         }).then(function (result) {
           if (result.value) {
-            _this4.form.admin_id = result.value;
+            _this6.form.admin_id = result.value;
             Swal.fire({
               title: "Select Month",
               input: "select",
-              inputOptions: _this4.months,
+              inputOptions: _this6.months,
               inputPlaceholder: "Select One",
               showCancelButton: true
             }).then(function (month) {
               if (month.value) {
-                _this4.form.month = month.value;
+                _this6.form.month = month.value;
               } else {
-                _this4.form.month = "";
+                _this6.form.month = "";
               }
             });
           } else {
-            _this4.form.purpose = "";
-            _this4.form.admin_id = "";
+            _this6.form.purpose = "";
+            _this6.form.admin_id = "";
           }
         });
       })["catch"](function (e) {
@@ -369,7 +426,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
       });
     },
     addCredit: function addCredit() {
-      var _this5 = this;
+      var _this7 = this;
 
       if (!this.old_signature) {
         this.save();
@@ -380,22 +437,22 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         console.log(resp);
 
         if (resp.data.status == "SUCCESS") {
-          _this5.$router.push({
+          _this7.$router.push({
             name: "credit"
           });
 
-          _this5.$toasted.show(resp.data.message, {
+          _this7.$toasted.show(resp.data.message, {
             type: "success",
             position: "top-center",
             duration: 2000
           });
         } else {
-          _this5.error = "some thing went to wrong";
+          _this7.error = "some thing went to wrong";
         }
       });
     },
     investorList: function investorList() {
-      var _this6 = this;
+      var _this8 = this;
 
       axios.get("/api/company/investor/list").then(function (resp) {
         console.log(resp);
@@ -411,29 +468,29 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
           showCancelButton: true
         }).then(function (result) {
           if (result.value) {
-            _this6.form.investor_id = result.value;
+            _this8.form.investor_id = result.value;
             Swal.fire({
               title: "Select  Month",
               input: "select",
-              inputOptions: _this6.months,
+              inputOptions: _this8.months,
               inputPlaceholder: "Select One",
               showCancelButton: true
             }).then(function (month) {
               if (month.value) {
-                _this6.form.month = month.value;
+                _this8.form.month = month.value;
               } else {
-                _this6.form.month = "";
+                _this8.form.month = "";
               }
             });
           } else {
-            _this6.form.purpose = "";
-            _this6.form.investor_id = "";
+            _this8.form.purpose = "";
+            _this8.form.investor_id = "";
           }
         });
       });
     },
     loanerList: function loanerList() {
-      var _this7 = this;
+      var _this9 = this;
 
       axios.get("/api/loaners").then(function (resp) {
         console.log(resp);
@@ -449,10 +506,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
           showCancelButton: true
         }).then(function (result) {
           if (result.value) {
-            _this7.form.loaner_id = result.value;
+            _this9.form.loaner_id = result.value;
           } else {
-            _this7.form.purpose = "";
-            _this7.form.loaner_id = "";
+            _this9.form.purpose = "";
+            _this9.form.loaner_id = "";
           }
         });
       });

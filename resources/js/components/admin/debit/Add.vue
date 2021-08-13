@@ -429,7 +429,7 @@ export default {
     },
     billStatementList() {
       axios
-        .get("/api/bill/statement/list")
+        .get("/api/bill/statement/list/type/debit")
         .then((resp) => {
           console.log(resp)
           let options = {};

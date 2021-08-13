@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Debit ;
 use App\Models\Project ;
 use App\Models\ProjectCost ;
+use App\Models\ProjectFundReturn;
 use App\Models\ProjectProfit ;
 use App\Models\ProjectImage ;
 use Illuminate\Support\Facades\DB;
@@ -30,16 +31,22 @@ class ProjectController extends Controller
             $project=Project::findOrFail($id);
             $total_cost=ProjectCost::where('project_id',$project->id)->orderBy('id','desc')->sum("amount");
             $cost_records=ProjectCost::where('project_id',$project->id)->get();
+           
             $total_profit=ProjectProfit::where('project_id',$project->id)->sum("amount");
             $profit_records=ProjectProfit::where('project_id',$project->id)->orderBy('id','desc')->get();
+
+            $total_fund_return=ProjectFundReturn::where('project_id',$project->id)->sum("amount");
+            $fund_return_records=ProjectFundReturn::where('project_id',$project->id)->orderBy('id','desc')->get();
 
             return response()->json([
                 "status" => "OK",
                 "project" => $project ,
-                "total_cost" => number_format($total_cost) ,
+                "total_cost" => $total_cost ,
                 "cost_records" => $cost_records ,
-                "total_profit" => number_format($total_profit) ,
+                "total_profit" => $total_profit ,
                 "profit_records" => $profit_records ,
+                "total_fund_return" => $total_fund_return ,
+                "fund_return_records" => $fund_return_records ,
             ]);
      }
 

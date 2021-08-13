@@ -433,7 +433,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     billStatementList: function billStatementList() {
       var _this7 = this;
 
-      axios.get("/api/bill/statement/list").then(function (resp) {
+      axios.get("/api/bill/statement/list/type/debit").then(function (resp) {
         console.log(resp);
         var options = {};
         resp.data.bills.forEach(function (element) {

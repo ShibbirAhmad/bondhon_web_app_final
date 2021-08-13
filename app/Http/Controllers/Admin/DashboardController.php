@@ -20,6 +20,7 @@ use App\Models\BillPaidStatement;
 use App\Models\InvestorProfitPaid;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\ProjectFundReturn;
 use Illuminate\Support\Facades\Hash;
 
 class DashboardController extends Controller
@@ -62,7 +63,8 @@ class DashboardController extends Controller
       //addition value
        $total_members_money=AdminAccount::sum('amount');
        $total_project_profit=ProjectProfit::sum('amount');
-       $company_total_credit_money= ( intval($total_members_money) + intval($total_project_profit) ) ;
+       $total_project_fund_return=ProjectFundReturn::sum('amount');
+       $company_total_credit_money= ( intval($total_members_money) + intval($total_project_fund_return) + intval($total_project_profit) ) ;
        // company current assets
        $companyValue = $company_total_credit_money - $company_total_cost ;
        $analysis['company_value'] = $companyValue ;
@@ -80,7 +82,16 @@ class DashboardController extends Controller
         $analysis['this_month_debit']=Debit::where('created_at','>=',Carbon::today()->subDays('30')->startOfDay())
                           ->where('created_at','<=', Carbon::today()->endOfDay())
                           ->sum('amount');
+                          
+        //monthly profit and cost analysis
+        $analysis['this_weeck_credit']=Credit::where('created_at','>=',Carbon::today()->subDays('7')->startOfDay())
+                          ->where('created_at','<=', Carbon::today()->endOfDay())
+                          ->sum('amount');
 
+        $analysis['this_weeck_debit']=Debit::where('created_at','>=',Carbon::today()->subDays('7')->startOfDay())
+                          ->where('created_at','<=', Carbon::today()->endOfDay())
+                          ->sum('amount');
+                          
         //member dasboard analysis
         $member_id=session()->get('member')['id'];
         $memberData=[];

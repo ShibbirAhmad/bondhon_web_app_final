@@ -70,6 +70,18 @@
               </div>
            </div>
 
+           <div  class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
+              <div  class="boxs  blue">
+                <h3> Credit This Weeck  </h3>
+            
+              <h4>   {{ analysis.this_weeck_credit }} &#2547;  </h4>
+                   <router-link :to="{ name: 'credit' }" class="small-boxs-footer"
+                >More info <i class="fa fa-arrow-circle-right"></i
+              ></router-link>
+                <img class="d_img_icon" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
+              </div>
+           </div>
+
 
            <div v-if="$can('credit_this_month')" class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
               <div  class="boxs  blue">
@@ -97,7 +109,19 @@
             </div>
 
 
-             
+            
+
+          <div class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
+                        <div  class="boxs  red">
+                          <h3>  Debit This Weeck   </h3>
+                      
+                        <h4>   {{ analysis.this_weeck_debit }} &#2547;  </h4>
+                                     <router-link :to="{ name: 'debit' }" class="small-boxs-footer"
+                >More info <i class="fa fa-arrow-circle-right"></i
+              ></router-link>
+                          <img class="d_img_icon" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
+                        </div>
+            </div> 
 
 
           <div v-if="$can('debit_this_month')" class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
@@ -111,6 +135,8 @@
                           <img class="d_img_icon" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
                         </div>
             </div>
+
+
 
           <div v-if="$can('debit_total')" class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
                         <div  class="boxs  red">
@@ -314,7 +340,7 @@ export default {
 }
 
 .person_counter {
-  padding-right: 10%;
+  padding-right: 5%;
   color: #1d2671;
 }
 

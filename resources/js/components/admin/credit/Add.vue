@@ -204,10 +204,12 @@ export default {
         comment: "",
         credit_in: "Cash",
         project_id:"",
+        project_fund_return_id:"",
         signature: null,
         signature_write: false,
         admin_id: "",
         investor_id: "",
+        bill_statement_id: "",
         loaner_id: "",
         month: "",
         old_signature: "",
@@ -280,10 +282,19 @@ export default {
          this.investorList();
       }else if( value == 13){
          this.loanerList();
-      }else {
+      }
+      else if( value == 14){
+         this.billStatementList();
+      }else if( value == 15){
+         this.projectFundReturnList();
+      }
+      else {
         this.form.admin_id="";
+        this.form.loaner_id="";
         this.form.investor_id="";
         this.form.project_id="";
+        this.form.bill_statement_id="";
+        this.form.project_fund_return_id="";
       }
     },
      projectList() {
@@ -307,11 +318,63 @@ export default {
             } else {
               this.form.purpose = "";
               this.form.project_id = "";
-              this.form.loaner_id = "";
-              this.form.investor_id = "";
             }
           });
         })
+    },
+
+    projectFundReturnList() {
+        axios
+          .get("/api/list/project")
+          .then((resp) => {
+          //  console.log(resp);
+            let options = {};
+            resp.data.projects.data.forEach((element) => {
+              options[element.id] = element.name + "-" + element.place;
+            });
+            Swal.fire({
+              title: "Select a project",
+              input: "select",
+              inputOptions: options,
+              inputPlaceholder: "Select One",
+              showCancelButton: true,
+            }).then((result) => {
+              if (result.value) {
+                this.form.project_fund_return_id = result.value;
+              } else {
+                this.form.purpose = "";
+                this.form.project_fund_return_id = "";
+              }
+            });
+          })
+      },
+
+
+     billStatementList() {
+      axios
+        .get("/api/bill/statement/list/type/credit")
+        .then((resp) => {
+          console.log(resp)
+          let options = {};
+          resp.data.bills.forEach((element) => {
+            options[element.id] = element.name;
+          });
+          Swal.fire({
+            title: "Select ",
+            input: "select",
+            inputOptions: options,
+            inputPlaceholder: "Select One",
+            showCancelButton: true,
+          }).then((result) => {
+            if (result.value) {
+              this.form.bill_statement_id = result.value;
+            } else {
+              this.form.purpose = "";
+              this.form.bill_statement_id = "";
+            }
+          });
+        })
+
     },
 
       bondhonMemberList() {

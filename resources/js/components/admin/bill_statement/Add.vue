@@ -4,15 +4,15 @@
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-          <router-link :to="{ name: 'bill_statement' }" class="btn btn-primary"
+          <a  @click="goBack()" class="btn btn-primary"
             ><i class="fa fa-arrow-left"></i
-          ></router-link>
+          ></a>
         </h1>
         <ol class="breadcrumb">
           <li>
             <a href="#"><i class="fa fa-dashboard"></i>Dashboard</a>
           </li>
-          <li class="active">Bill </li>
+          <li class="active">debit credit statement </li>
         </ol>
       </section>
       <section class="content">
@@ -20,11 +20,11 @@
           <div class="col-lg-6 col-lg-offset-2">
             <div class="box box-primary">
               <div class="box-header with-border text-center">
-                <h3 class="box-title">Add Bill Statement </h3>
+                <h3 class="box-title">Add  Statement </h3>
               </div>
               <div class="box-body">
                 <form
-                  @submit.prevent="addPrintHouse"
+                  @submit.prevent="addStatement"
                   @keydown="form.onKeydown($event)"
                   enctype="multipart/form-data"
                 >
@@ -32,7 +32,7 @@
                     {{ error }}
                   </div>
                     <div class="form-group">
-                        <label>Bill Name <b class="text-danger">*</b></label>
+                        <label> Name <b class="text-danger">*</b></label>
                         <input
                           v-model="form.name"
                           type="text"
@@ -45,6 +45,22 @@
                         />
                         <has-error :form="form" field="name"></has-error>
                       </div>
+                  
+                    <div class="form-group">
+                        <label>Statement Type </label>
+                         <select name="type" required v-model="form.type"  class="form-control"
+                          :class="{
+                            'is-invalid': form.errors.has('type'),
+                          }">
+                          <option disabled>select one</option>
+                          <option value="debit">Debit</option>
+                          <option value="credit">Credit</option>
+                          </select>
+                        <has-error
+                          :form="form"
+                          field="type"
+                        ></has-error>
+                      </div>
 
                       <div class="form-group">
                         <label>Company Name</label>
@@ -56,8 +72,6 @@
                           :class="{
                             'is-invalid': form.errors.has('company_name'),
                           }"
-                          autofocus
-                          autocomplete="off"
                           placeholder="Ex: Multi-Link "
                         />
                         <has-error
@@ -70,7 +84,6 @@
 
                   <div class="form-group">
                     <label>Mobile Number</label>
-
                     <input
                       v-model="form.mobile_no"
                       type="text"
@@ -79,7 +92,6 @@
                       :class="{
                         'is-invalid': form.errors.has('mobile_no'),
                       }"
-                      autocomplete="off"
                       placeholder="01xxxxxxxxx"
                     />
                     <has-error :form="form" field="mobile_no"></has-error>
@@ -93,7 +105,6 @@
                       name="email"
                       class="form-control"
                       :class="{ 'is-invalid': form.errors.has('address') }"
-                      autocomplete="off"
                       placeholder="address"
                     />
                     <has-error :form="form" field="address"></has-error>
@@ -131,6 +142,7 @@ export default {
     return {
       form: new Form({
         name: "",
+        type:'select one',
         company_name: "",
         mobile_no: "",
         address: "",
@@ -140,20 +152,28 @@ export default {
   },
 
   methods: {
-    addPrintHouse() {
+
+    goBack(){
+      window.history.back()
+    },
+    addStatement() {
+      if (this.form.type=='select one') {
+        alert('selecet statement type');
+        return ;
+      }
       this.form
         .post("/api/bll/statement/add")
         .then((resp) => {
           console.log(resp);
           if (resp.data.status == "OK") {
-            this.$router.push({ name: "bill_statement" });
+            window.history.back();
             this.$toasted.show(resp.data.message, {
               type: "success",
               position: "top-right",
               duration: 4000,
             });
           } else {
-            this.error = "some thing want to wrong";
+            this.error = "something went to wrong";
           }
         })
         .catch((error) => {

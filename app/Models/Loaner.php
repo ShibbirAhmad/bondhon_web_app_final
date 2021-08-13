@@ -30,7 +30,7 @@ class Loaner extends Model
             $due_amount=$loans-$loanPaid;
             $contacts = $loaner->mobile_no;
             ///send message
-            $sms =  'Assalamualaikum, Dear '.$loaner->name. ' Bondhon Society has taken '.number_format($amount).'/=BDT as a loan from you. Total amount is '.number_format($loans).'/=BDT, and due amount is '.number_format($due_amount).'/=BDT';   // put here your dynamic message text here
+            $sms =  'Assalamualaikum, Dear '.$loaner->name. ' Bondhon Society Limited has taken '.number_format($amount).'/=BDT as a loan from you. Total amount is '.number_format($loans).'/=BDT, and due amount is '.number_format($due_amount).'/=BDT';   // put here your dynamic message text here
             return self::smsApi($contacts,$sms);
         }
 

@@ -12,10 +12,22 @@ class BillStatementController extends Controller
 {
 
 
+  
 
-   public function bill_list(){
+  public function credit_statement_list(){
 
-            $bills=BillStatement::with('bills')->get();
+    $bills=BillStatement::where('type','credit')->with('bills')->get();
+    return response()->json([
+           'success' => 'OK',
+           'bills' => $bills
+        ]);
+}
+
+
+
+   public function debit_statement_list(){
+
+            $bills=BillStatement::where('type','debit')->with('bills')->get();
             return response()->json([
                    'success' => 'OK',
                    'bills' => $bills
@@ -27,12 +39,14 @@ class BillStatementController extends Controller
 
             $validatedData = $request->validate([
             'name' => 'required',
+            'type' => 'required',
           ]);
             $bill=new BillStatement();
             $bill->name=$request->name;
-            $bill->company_name=$request->company_name;
-            $bill->mobile_no=$request->mobile_no;
-            $bill->address=$request->address;
+            $bill->type=$request->type;
+            $bill->company_name=$request->company_name ?? null;
+            $bill->mobile_no=$request->mobile_no ?? null;
+            $bill->address=$request->address ?? null;
             $bill->save();
             return response()->json([
                 'status'=>'OK',

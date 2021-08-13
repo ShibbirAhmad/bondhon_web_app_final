@@ -27,14 +27,25 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-3">
                   <div class="project-box">
-                    <h4 class="c-name">Total Cost Amount  {{ total_cost }} </h4>
+                    <h4 class="c-name"> Cost  {{ total_cost }} </h4>
                   </div>
                 </div>
-                <div class="col-lg-6">
+                 <div class="col-lg-3">
                   <div class="project-box">
-                    <h4 class="c-name">Total Profit Amount {{ total_profit }} </h4>
+                    <h4 class="c-name">  Cost After Refund {{ parseInt(total_cost) - parseInt(total_fund_return) }} </h4>
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="project-box">
+                    <h4 class="c-name"> Profit  {{ total_profit }} </h4>
+                  </div>
+                </div>
+
+                 <div class="col-lg-3">
+                  <div class="project-box">
+                    <h4 class="c-name"> Fund Return {{ total_fund_return }} </h4>
                   </div>
                 </div>
 
@@ -44,8 +55,8 @@
                 <div class="col-lg-12">
                   <div class="tab-menu-list">
                     <li
-                      @click="payment_history_show = true"
-                      :class="[{ active: payment_history_show }]"
+                      @click="i_mode"
+                      :class="{ active: investMode }"
                     >
                       Cost  History
                       <a
@@ -57,8 +68,8 @@
                     </li>
 
                     <li
-                      @click="payment_history_show = false"
-                      :class="[{ active: !payment_history_show }]"
+                       @click="r_mode"
+                      :class="{ active: !investMode && !paymentMode }"
                     >
                        Profit History
                       <a
@@ -68,13 +79,21 @@
                         PDF
                       </a>
                     </li>
+
+                     <li
+                      @click="p_mode"
+                       :class="{ active: !investMode && !receiveMode }"
+                     >
+                       Fund Return History
+                    </li>
+                    
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div
                   class="col-lg-12"
-                  v-if="payment_history_show"
+                   v-if="investMode"
                   style="background: #fff; padding: 15px 16px"
                 >
                   <h4>Cost History</h4>
@@ -123,7 +142,7 @@
                 </div>
                 <div
                   class="col-lg-12"
-                  v-if="!payment_history_show"
+                   v-if="receiveMode"
                   style="background: #fff; padding: 15px 16px"
                 >
                   <h4>Profit History</h4>
@@ -171,6 +190,56 @@
                     Profit Is Empty
                   </h4>
                 </div>
+                <div
+                  class="col-lg-12"
+                  v-if="paymentMode"
+                  style="background: #fff; padding: 15px 16px"
+                >
+                  <h4>Fund Return History</h4>
+                  <table class="table table-bordered table-hover table-striped" v-if="fund_return_records.length > 0">
+                    <thead>
+                      <tr>
+                        <td>#</td>
+                        <td>Date</td>
+                        <td>Paid By</td>
+                        <td>Comment</td>
+                        <td>Amount</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(fund, index) in fund_return_records" :key="index">
+                        <td>
+                          {{ index + 1 }}
+                        </td>
+                        <td>
+                          {{ fund.date }}
+                        </td>
+
+                        <td>
+                          {{ fund.paid_by }}
+                        </td>
+
+                        <td>
+                          {{ fund.comment }}
+                        </td>
+                       <td>
+                          {{ fund.amount }}
+                        </td>
+
+                      </tr>
+                      <tr>
+                         <td colspan="3"></td>
+                        <td >total</td>
+                        <td>
+                          <strong>= {{ total_fund_return }}</strong>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <h4 class="text-center " v-else>
+                    Fund Return  Is Empty
+                  </h4>
+                </div>
               </div>
             </div>
           </div>
@@ -193,10 +262,30 @@ export default {
       project: "",
       cost_records: "",
       profit_records: "",
-      payment_history_show: true,
+      total_fund_return: "",
+      fund_return_records: "",
+      investMode:true,
+      receiveMode:false,
+      paymentMode:false ,
     };
   },
   methods: {
+    i_mode(){
+         this.investMode=true;
+         this.receiveMode=false;
+         this.paymentMode=false ;
+    },
+    r_mode(){
+         this.receiveMode=true;
+         this.paymentMode=false ;
+         this.investMode=false;
+    },
+    p_mode(){
+         this.paymentMode=true ;
+         this.investMode=false;
+         this.receiveMode=false;
+
+    },
     projectAccount(page = 1) {
       axios
         .get("/api/project/details/account/" + this.$route.params.id)
@@ -207,6 +296,8 @@ export default {
           this.total_profit = resp.data.total_profit;
           this.cost_records = resp.data.cost_records;
           this.profit_records = resp.data.profit_records;
+          this.total_fund_return = resp.data.total_fund_return;
+          this.fund_return_records = resp.data.fund_return_records;
           this.loading = false;
         })
 

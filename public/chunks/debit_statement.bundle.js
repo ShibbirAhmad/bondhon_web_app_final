@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["bill_statement"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["debit_statement"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/bill_statement/debit_statement.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************!*\
@@ -109,7 +109,7 @@ __webpack_require__.r(__webpack_exports__);
     getBillStatements: function getBillStatements() {
       var _this = this;
 
-      axios.get("/api/bill/statement/list").then(function (resp) {
+      axios.get("/api/bill/statement/list/type/debit").then(function (resp) {
         console.log(resp);
 
         if (resp.data.success == "OK") {
@@ -215,7 +215,7 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "btn btn-primary",
-                  attrs: { to: { name: "bill_statement_add" } }
+                  attrs: { to: { name: "statement_add" } }
                 },
                 [_c("i", { staticClass: "fa fa-plus" })]
               )
@@ -264,9 +264,10 @@ var render = function() {
                                         _c(
                                           "router-link",
                                           {
+                                            staticStyle: { color: "blue" },
                                             attrs: {
                                               to: {
-                                                name: "bill_statement_details",
+                                                name: "statement_details",
                                                 params: { id: items.id }
                                               }
                                             }
