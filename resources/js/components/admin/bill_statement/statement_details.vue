@@ -23,7 +23,7 @@
                 <h4 class="heading"> {{ bill_statement.company_name }} </h4>
           </div>
           <div class="row data_table_row">
-            <div class="col-md-6 col-sm-6">
+            <div class="col-md-10 col-sm-10">
               <div class="box box-primary">
                 <div class="box-header with-border text-center">
                   <h3 class="box-title"> Paid History </h3>
@@ -73,7 +73,7 @@
               </div>
             </div>
 
-            <div class="col-md-6 col-sm-6">
+            <!-- <div class="col-md-6 col-sm-6">
                    <div class="box">
                 <div class="box-header with-border text-center">
                   <div class="row">
@@ -141,7 +141,7 @@
                   </table>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
 
           <modal name="example" :width="400" :height="380">

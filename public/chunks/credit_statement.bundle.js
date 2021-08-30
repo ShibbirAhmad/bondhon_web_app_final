@@ -103,7 +103,7 @@ __webpack_require__.r(__webpack_exports__);
     costTotal: function costTotal(data) {
       var amount = 0;
       data.forEach(function (element) {
-        amount += element.amount;
+        amount += parseInt(element.amount);
       });
       return amount;
     },
@@ -120,20 +120,8 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
-    },
-    totalAmount: function totalAmount(investment) {
-      //  console.log(typeof investment)
-      var total = 0; // investment.forEach(ele => {
-      //     total +=parseFloat(ele.amount);
-      // });
-
-      Object.keys(investment).forEach(function (key) {
-        console.log(key);
-      });
-      return total;
     }
-  },
-  computed: {}
+  }
 });
 
 /***/ }),

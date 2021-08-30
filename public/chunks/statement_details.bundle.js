@@ -431,7 +431,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row data_table_row" }, [
-                _c("div", { staticClass: "col-md-6 col-sm-6" }, [
+                _c("div", { staticClass: "col-md-10 col-sm-10" }, [
                   _c("div", { staticClass: "box box-primary" }, [
                     _vm._m(1),
                     _vm._v(" "),
@@ -509,108 +509,6 @@ var render = function() {
                           ])
                         ])
                       ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-6 col-sm-6" }, [
-                  _c("div", { staticClass: "box" }, [
-                    _c(
-                      "div",
-                      { staticClass: "box-header with-border text-center" },
-                      [
-                        _c("div", { staticClass: "row" }, [
-                          _vm._m(3),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-3" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-success",
-                                on: { click: _vm.showModal }
-                              },
-                              [
-                                _c("i", { staticClass: "fa fa-plus" }),
-                                _vm._v(" Monthly Statement\n                ")
-                              ]
-                            )
-                          ])
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "box-body" }, [
-                      _c(
-                        "table",
-                        {
-                          staticClass:
-                            "table table-striped text-center table-bordered"
-                        },
-                        [
-                          _vm._m(4),
-                          _vm._v(" "),
-                          _c(
-                            "tbody",
-                            [
-                              _vm._l(_vm.per_month_history, function(
-                                per_month,
-                                index
-                              ) {
-                                return _c("tr", { key: index }, [
-                                  _c("td", [_vm._v(_vm._s(index + 1))]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      "\n                     " +
-                                        _vm._s(per_month.date) +
-                                        "\n                   "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _c("strong", [
-                                      _vm._v(
-                                        "\n                       " +
-                                          _vm._s(per_month.month) +
-                                          "\n                    "
-                                      )
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      "\n                     " +
-                                        _vm._s(per_month.comment) +
-                                        "\n                   "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _c("strong", [
-                                      _vm._v(
-                                        "\n                       " +
-                                          _vm._s(per_month.amount) +
-                                          "\n                   "
-                                      )
-                                    ])
-                                  ])
-                                ])
-                              }),
-                              _vm._v(" "),
-                              _c("tr", [
-                                _c("td", { attrs: { colspan: "4" } }),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _c("strong", [
-                                    _vm._v(" = " + _vm._s(_vm.per_month_total))
-                                  ])
-                                ])
-                              ])
-                            ],
-                            2
-                          )
-                        ]
-                      )
                     ])
                   ])
                 ])
@@ -856,34 +754,6 @@ var staticRenderFns = [
       _c("th", [_vm._v("Comment")]),
       _vm._v(" "),
       _c("th", [_vm._v("Amount")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-7" }, [
-      _c("h3", { staticClass: "box-title" }, [
-        _vm._v("\n                  Per Month History\n                ")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("#")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Date")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Month")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Comment")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Amount")])
-      ])
     ])
   }
 ]

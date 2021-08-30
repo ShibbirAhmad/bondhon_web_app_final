@@ -92,7 +92,7 @@ export default {
       costTotal(data){
       let amount = 0 ;
       data.forEach(element => {
-          amount += element.amount ;
+          amount += parseInt(element.amount) ;
       });
       return amount ;
     },

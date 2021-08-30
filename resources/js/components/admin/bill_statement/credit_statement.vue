@@ -93,7 +93,7 @@ export default {
       costTotal(data){
       let amount = 0 ;
       data.forEach(element => {
-          amount += element.amount ;
+          amount += parseInt(element.amount) ;
       });
       return amount ;
     },
@@ -111,22 +111,9 @@ export default {
           console.log(error);
         });
     },
-    totalAmount(investment) {
-      //  console.log(typeof investment)
-
-      let total = 0;
-      // investment.forEach(ele => {
-      //     total +=parseFloat(ele.amount);
-      // });
-
-      Object.keys(investment).forEach(function (key) {
-        console.log(key);
-      });
-
-      return total;
-    },
+ 
   },
-  computed: {},
+
 };
 </script>
 

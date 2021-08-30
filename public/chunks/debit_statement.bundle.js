@@ -102,7 +102,7 @@ __webpack_require__.r(__webpack_exports__);
     costTotal: function costTotal(data) {
       var amount = 0;
       data.forEach(function (element) {
-        amount += element.amount;
+        amount += parseInt(element.amount);
       });
       return amount;
     },
