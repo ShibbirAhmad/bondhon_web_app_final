@@ -44,7 +44,7 @@
                       <option value="Cash">Cash</option>
                         <option value="Bkash(personal)">Bkash(personal)</option>
                       <option value="Bkash(merchant)">Bkash(merchant)</option>
-                      <option value="Bank(AIBL)">Bank</option>
+                      <option value="Bank">Bank</option>
 
                     </select>
                     <has-error :form="form" field="from"></has-error>

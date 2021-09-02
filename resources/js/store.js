@@ -14,7 +14,7 @@ const state = {
     //store member
     member: {},
 
-    user: {},
+    sellcenter: {},
     //store categories
     categories: '',
 
@@ -26,7 +26,7 @@ const state = {
 
     single_product: {},
 
-    image_base_link: '/../public/storage/',
+    image_base_link: '/../storage/',
 
     product_images: {},
 
@@ -46,9 +46,10 @@ const getters = {
     member(state) {
         return state.member
     },
+    
 
-    user(state) {
-        return state.user;
+    sellcenter(state) {
+        return state.sellcenter;
     },
 
     categories(state) {
@@ -82,14 +83,14 @@ const getters = {
 }
 const actions = {
 
-    //get authenticat user
-    user(context) {
-        axios.get('/api/public/userToCheck')
+    //get authenticat sellcenter
+    sellcenter(context) {
+        axios.get('/api/sellcenter/login/session/check')
             .then(resp => {
-                if (resp.data.status == 'AUTHORIZED') {
-                    context.commit('user', resp.data.user);
+                if (resp.data.session == 'running') {
+                    context.commit('sellcenter', resp.data.sellcenter);
                 } else {
-                    localStorage.removeItem('user_token')
+                    localStorage.removeItem('sell_center_token')
                 }
             })
     },
@@ -199,8 +200,8 @@ const mutations = {
         return state.member = payload
     },
 
-    user(state, payload) {
-        return state.user = payload;
+    sellcenter(state, payload) {
+        return state.sellcenter = payload;
 
     },
 

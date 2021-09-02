@@ -396,11 +396,9 @@ var render = function() {
                                     [_vm._v("Bkash(merchant)")]
                                   ),
                                   _vm._v(" "),
-                                  _c(
-                                    "option",
-                                    { attrs: { value: "Bank(AIBL)" } },
-                                    [_vm._v("Bank")]
-                                  )
+                                  _c("option", { attrs: { value: "Bank" } }, [
+                                    _vm._v("Bank")
+                                  ])
                                 ]
                               ),
                               _vm._v(" "),

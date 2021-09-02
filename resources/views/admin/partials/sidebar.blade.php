@@ -250,7 +250,22 @@ $admin = session()->get('admin');
                 </li>
             @endif
 
-        
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-hand-o-right"></i> <span>Sell Center Management</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                     <li>
+                        <router-link :to="{ name: 'sell_center'}"><i class="fa fa-list-alt"></i>Sell Center List</router-link>
+                    </li>
+                       <li>
+                        <router-link :to="{ name: 'sell_center_manager'}"><i class="fa fa-user-secret"></i>Sell Center Managers</router-link>
+                    </li>
+                </ul>
+            </li>
                
             <li class="treeview">
                 <router-link :to="{ name: 'debit_statement'}"> <i class="fa fa-list-alt"></i>Bill Statements

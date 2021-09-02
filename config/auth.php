@@ -51,9 +51,9 @@ return [
         ],
 
 
-         'merchant' => [
+         'sellcenter' => [
             'driver' => 'session',
-            'provider' => 'merchant',
+            'provider' => 'sellcenter',
         ],
 
         'api' => [
@@ -94,9 +94,9 @@ return [
             'model' => \App\Models\Reseller::class,
         ],
 
-        'merchant' => [
+        'sellcenter' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Merchant::class,
+            'model' => App\Models\SellCenter::class,
         ],
 
         // 'users' => [

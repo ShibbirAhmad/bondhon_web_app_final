@@ -291,15 +291,15 @@ Route::group([
 
 
 
-        //start role and permission route
-      Route::post('api/role/store','RoleController@store');
-      Route::get('api/roles','RoleController@index');
-      Route::get('api/permissions/edit/role/{id}','RoleController@editRolePermissons');
-      Route::post('api/permissions/update/role/{id}','RoleController@updateRolePermissons');
+      //start role and permission route
+    Route::post('api/role/store','RoleController@store');
+    Route::get('api/roles','RoleController@index');
+    Route::get('api/permissions/edit/role/{id}','RoleController@editRolePermissons');
+    Route::post('api/permissions/update/role/{id}','RoleController@updateRolePermissons');
 
 
-      Route::post('api/fond/transfer','FondTransferController@store');
-      Route::get('api/fond/transfer','FondTransferController@index');
+    Route::post('api/fond/transfer','FondTransferController@store');
+    Route::get('api/fond/transfer','FondTransferController@index');
 
     //company ivestment route is here
     Route::get('api/company/investor','InvestmentController@get_ivestors');
@@ -360,15 +360,29 @@ Route::group([
      Route::get('api/download/all/loan/pdf','LoanController@download_all_record');
      Route::get('api/loan/history/download/pdf/{id}','LoanController@download_loan_history');
      Route::get('api/loand/paid/history/download/pdf/{id}','LoanController@download_loan_paid_history');
- 
 
+
+
+
+
+    //sellcenter routes
+    Route::get('api/sellcenter/list','sellCenterController@index');
+    Route::post('api/sellcenter/add','sellCenterController@addSellCenter');
+    Route::get('api/admin/access/to/sell/center/{id}','sellCenterController@adminAccessSellCenter');
+    Route::get('api/sellcenter/edit/item/{id}','sellCenterController@sellcenterItem');
+    Route::post('api/sellcenter/update/{id}','sellCenterController@updateSellCenter');
+    //sellcenter manager routes
+    Route::get('api/sellcenter/manager/list','sellCenterController@managers');
+    Route::post('api/sellcenter/manager/add','sellCenterController@addManager');
+    Route::get('api/sellcenter/manager/edit/item/{id}','sellCenterController@getManager');
+    Route::get('api/sellcenter/manager/delete/{id}','sellCenterController@removeManager');
+    Route::post('api/sellcenter/manager/update/{id}','sellCenterController@updateManager');
+   
 });
 
 Route::post('/admin/login', 'Admin\LoginController@login');
-
 Route::get('check/session/admin', 'Admin\LoginController@adminSessionCheck');
 Route::get('check/session/member', 'Admin\LoginController@memberSessionCheck');
-
 Route::get('/resller', 'Reseller\HomeController@home');
 
 
@@ -382,7 +396,7 @@ Route::get('/verify/otp/code', 'Frontend\HomeController@verifyCodeOtp');
 
 
 
- Route::get('login/google', 'Frontend\Social\GoogleLoginController@redirectToProvider');
+Route::get('login/google', 'Frontend\Social\GoogleLoginController@redirectToProvider');
 Route::get('callback/google', 'Frontend\Social\GoogleLoginController@handleProviderCallback');
 
 
@@ -392,7 +406,7 @@ Route::get('callback/google', 'Frontend\Social\GoogleLoginController@handleProvi
 // then laravel router transfer  to vue-routing
 
 Route::get('/backend/{any}', function () {
-     return view('admin.master');
+      return view('admin.master');
 })->where('any', '^(?!api\/)[\/\w\.\,-]*');
 
 
@@ -403,7 +417,15 @@ Route::get('/backend/{any}', function () {
 
   Route::get('/member/{any}', function () {
 
-      return view('member.master');
+         return view('member.master');
 
   })->where('any', '^(?!api\/)[\/\w\.\,-]*');
+
+
+  // sell center mix routes 
+    Route::get('/sell/center/{any}', function () {
+
+           return view('sellcenter.app');
+
+    })->where('any', '^(?!api\/)[\/\w\.\,-]*');
 

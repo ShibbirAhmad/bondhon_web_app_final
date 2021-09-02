@@ -888,6 +888,226 @@ const routes = [
 
 
 
+    {
+        path: '/backend/sell/center',
+        name: 'sell_center',
+        component: () => import(/* webpackChunkName: "sell_center" */'./components/admin/sell_center/Index.vue'),
+        meta: {
+            requiresAuthAdmin: true,
+            title : 'sell center'
+        }
+    },
+
+
+     {
+        path: '/backend/sell/center/add',
+        name: 'sell_center_add',
+        component: () => import(/* webpackChunkName: "sell_center_add" */'./components/admin/sell_center/Add.vue'),
+        meta: {
+            requiresAuthAdmin: true,
+            title : 'sell center add'
+        }
+    },
+
+    {
+        path: '/backend/sell/center/edit/:id',
+        name: 'sell_center_edit',
+        component: () => import(/* webpackChunkName: "sell_center_edit" */'./components/admin/sell_center/Edit.vue'),
+        meta: {
+            requiresAuthAdmin: true,
+            title : 'sell center edit'
+        }
+    },
+
+    {
+        path: '/backend/sell/center/manager',
+        name: 'sell_center_manager',
+        component: () => import(/* webpackChunkName: "sell_center_manager" */'./components/admin/sell_center_manager/Index.vue'),
+        meta: {
+            requiresAuthAdmin: true,
+            title : 'sell center manager'
+        }
+    },
+
+
+     {
+        path: '/backend/sell/center/manager/add',
+        name: 'sell_center_manager_add',
+        component: () => import(/* webpackChunkName: "sell_center_manager_add" */'./components/admin/sell_center_manager/Add.vue'),
+        meta: {
+            requiresAuthAdmin: true,
+            title : 'sell center manager add'
+        }
+    },
+
+    {
+        path: '/backend/sell/center/manager/edit/:id',
+        name: 'sell_center_manager_edit',
+        component: () => import(/* webpackChunkName: "sell_center_manager_edit" */'./components/admin/sell_center_manager/Edit.vue'),
+        meta: {
+            requiresAuthAdmin: true,
+            title : 'sell center manager edit'
+        }
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+    {
+        path: '/sell/center/login',
+        component: () => import(/* webpackChunkName: "merchnat_login" */'./components/sellcenter/Login'),
+        name: 'sell_center_login',
+        meta: {
+            title: 'Sell Center|Login'
+        }
+    },
+
+
+    {
+        path: '/sell/center/password/reset',
+        component: () => import(/* webpackChunkName: "sell_center_password_reset" */'./components/sellcenter/PasswordReset'),
+        name: 'sell_center_password_reset',
+        meta: {
+            title: 'Sell Center Password Reset'
+        }
+    },
+    {
+        path: '/sell/center/code/verify/:phone',
+        component: () => import(/* webpackChunkName: "sell_center_code_verified" */'./components/sellcenter/CodeVerified'),
+        name: 'sell_center_code_verified',
+        meta: {
+            title: 'Sell Center Password Reset'
+        }
+    },
+
+    {
+        path: '/sell/center/reset/new/password/:phone',
+        component: () => import(/* webpackChunkName: "new_password_sellcenter" */'./components/sellcenter/NewPassword'),
+        name: 'new_password_sellcenter',
+        meta: {
+            title: 'Update Sell Center Password'
+        }
+
+    },
+
+
+    {
+        path: '/sell/center/dashboard',
+        component: () => import(/* webpackChunkName: "sell_center_dashboard" */'./components/sellcenter/Dashboard'),
+        name: 'sell_center_dashboard',
+        meta: {
+            title: 'Sell Center|Dashboard',
+            authSellCenter: true ,
+        }
+
+    },
+
+    {
+        path: '/sell/center/product/manage',
+        component: () => import(/* webpackChunkName: "merchnat_product_manage" */'./components/sellcenter/product/Menage'),
+        name: 'sell_center_product_manage',
+        meta: {
+            title: 'Product|Manage',
+            authSellCenter: true ,
+        }
+    },
+
+    {
+        path: '/sell/center/product/add',
+        component: () => import(/* webpackChunkName: "sell_center_product_add" */'./components/sellcenter/product/Add'),
+        name: 'sell_center_product_add',
+        meta: {
+            title: ' Product | Add ',
+            authSellCenter: true ,
+        }
+
+    },
+
+
+    {
+        path: '/sell/center/product/edit/:id',
+        component: () => import(/* webpackChunkName: "sell_center_product_edit" */'./components/sellcenter/product/Edit'),
+        name: 'sell_center_product_edit',
+        meta: {
+            title: ' Product | Edit ',
+            authSellCenter: true ,
+        }
+
+    },
+
+    {
+        path: '/sell/center/order',
+        component: () => import(/* webpackChunkName: "sell_center_order" */'./components/sellcenter/order/Index'),
+        name: 'sell_center_order',
+        meta: {
+            title: 'Order Info',
+            authSellCenter: true ,
+        }
+    },
+
+    {
+        path: '/sell/center/order/view/:id',
+        component: () => import(/* webpackChunkName: "sell_center_order_view" */'./components/sellcenter/order/View'),
+        name: 'sell_center_order_view',
+        meta: {
+            title: 'order details info ',
+            authSellCenter: true ,
+        }
+
+    },
+    {
+        path: '/sell/center/profile',
+        component: () => import(/* webpackChunkName: "sell_center_profile" */'./components/sellcenter/profile/Profile'),
+        name: 'sell_center_profile',
+        meta: {
+            title: ' Profile info ',
+            authSellCenter: true ,
+        }
+    },
+
+    {
+        path: '/sell/center/profile/edit',
+        component: () => import(/* webpackChunkName: "sell_center_profile_edit" */'./components/sellcenter/profile/Change_profile.vue'),
+        name: 'sell_center_profile_edit',
+        meta: {
+            title: ' Profile info | Edit ',
+            authSellCenter: true ,
+        }
+
+    },
+
+    {
+        path: '/sell/center/security/edit',
+        component: () => import(/* webpackChunkName: "sell_center_password_edit" */'./components/sellcenter/profile/Change_password.vue'),
+        name: 'sell_center_password_edit',
+        meta: {
+            title: ' Password | Edit ',
+            authSellCenter: true ,
+        }
+
+    },
+
+
+
+
+
+
 
 
 
@@ -921,6 +1141,20 @@ router.beforeEach((to, from, next) => {
     else {
         next()
     }
+
+
+
+    if (to.matched.some(record => record.meta.authSellCenter)) {
+        if (localStorage.getItem('sell_center_token')) {
+            next()
+            return
+        }
+        next('/sell/center/login')
+    }
+    else {
+        next()
+    }
+
 
 
 })
