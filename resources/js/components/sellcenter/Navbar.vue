@@ -89,7 +89,6 @@ export default {
   },
   data() {
     return {
-      sellcenter: {},
       base_url: this.$store.state.image_base_link ,
     };
   },

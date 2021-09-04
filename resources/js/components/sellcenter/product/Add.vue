@@ -5,7 +5,7 @@
       <section class="content-header">
         <h1>
           <router-link
-            :to="{ name: 'merchant_product_menage' }"
+            :to="{ name: 'sell_center_product_manage' }"
             class="btn btn-primary"
           >
             <i class="fa fa-arrow-left"></i>
@@ -13,18 +13,15 @@
         </h1>
         <ol class="breadcrumb">
           <li>
-            <a href="#"> <i class="fa fa-dashboard"></i> merchant </a>
+            <a href="#"> <i class="fa fa-dashboard"></i> sell center </a>
           </li>
           <li class="active">add product</li>
         </ol>
       </section>
       <section class="content">
-        <h1 v-if="loading" style="text-align: center; font-size: 50px">
-          <i class="fa fa-spinner fa-spin"></i>
-        </h1>
+  
 
         <form
-          v-else
           @submit.prevent="addProduct"
           @keydown="form.onKeydown($event)"
           enctype="multipart/form-data"
@@ -34,6 +31,7 @@
             v-if="error"
             role="alert"
           >
+        
             {{ error }}
             <span
               aria-hidden="true"
@@ -45,16 +43,15 @@
             >
           </div>
           <div class="row justify-content-center">
-            <div class="col-lg-4">
+            <div class="col-lg-5 col-md-5 col-xs-12">
               <div class="box box-primary height">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Basic Information</h3>
+                  <h3 class="box-title">Product Name & Price</h3>
                 </div>
                 <div class="box-body">
                   <div class="form-group">
                     <label>
                       Name
-
                       <b class="text-danger">*</b>
                     </label>
                     <input
@@ -70,101 +67,22 @@
                     <has-error :form="form" field="name"></has-error>
                   </div>
 
-                  <div class="form-group">
+                   <div class="form-group">
                     <label>
-                      Category
-                      <b class="text-danger">*</b>
-                    </label>
-                    <select
-                      class="form-control"
-                      name="category"
-                      v-model="form.category"
-                      :class="{ 'is-invalid': form.errors.has('category') }"
-                      @change="categoryWiseSubCategory()"
-                    >
-                      <option value>select category</option>
-                      <option
-                        v-for="category in categories"
-                        :value="category.id"
-                      >
-                        {{ category.name }}
-                      </option>
-                    </select>
-                    <has-error :form="form" field="category"></has-error>
-                  </div>
-                  <div class="form-group">
-                    <label>
-                      sub category
-
-                      <b class="text-danger">*</b>
-                    </label>
-                    <select
-                      class="form-control"
-                      v-model="form.sub_category"
-                      name="sub_category"
-                      :class="{ 'is-invalid': form.errors.has('sub_category') }"
-                      @change="subCategoryWiseSubSUbCategory()"
-                    >
-                      <option value>select sub category</option>
-                      <option
-                        v-for="subcategory in subcategories"
-                        v-if="subcategories"
-                        :value="subcategory.id"
-                      >
-                        {{ subcategory.name }}
-                      </option>
-                    </select>
-                    <has-error :form="form" field="sub_category"></has-error>
-                  </div>
-                  <div class="form-group">
-                    <label>sub sub category</label>
-                    <select
-                      class="form-control"
-                      name="'sub_sub_category"
-                      :class="{
-                        'is-invalid': form.errors.has('sub_sub_category'),
-                      }"
-                      v-model="form.sub_sub_category"
-                    >
-                      <option value>select sub sub category</option>
-                      <option
-                        v-for="subSubCategory in subSubCategories"
-                        v-if="subSubCategories"
-                        :value="subSubCategory.id"
-                      >
-                        {{ subSubCategory.name }}
-                      </option>
-                    </select>
-                    <has-error
-                      :form="form"
-                      field="sub_sub_category"
-                    ></has-error>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="box box-success height">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Price & Quantity</h3>
-                </div>
-                <div class="box-body">
-                  <div class="form-group">
-                    <label>
-                      sale_price
+                      price
                       <b class="text-danger">*</b>
                     </label>
                     <input
-                      v-model="form.sale_price"
+                      v-model="form.price"
                       type="text"
-                      name="sale_price"
+                      name="price"
                       class="form-control"
-                      :class="{ 'is-invalid': form.errors.has('sale_price') }"
+                      :class="{ 'is-invalid': form.errors.has('price') }"
                       autocomplete="off"
-                      placeholder="sale_price"
+                      placeholder="price"
                       @keyup="salePrice()"
                     />
-                    <has-error :form="form" field="sale_price"></has-error>
+                    <has-error :form="form" field="price"></has-error>
                   </div>
                   <div class="form-group">
                     <label>Discount (BDT)</label>
@@ -181,91 +99,47 @@
                     <has-error :form="form" field="discount"></has-error>
                   </div>
                   <div class="form-group">
-                    <label>price</label>
+                    <label>sale price</label>
                     <input
-                      v-model="form.price"
+                      v-model="form.sale_price"
                       type="text"
-                      name="price"
+                      name="sale_price"
                       class="form-control"
-                      :class="{ 'is-invalid': form.errors.has('price') }"
-                      autocomplete="off"
-                      placeholder="price"
+                      :class="{ 'is-invalid': form.errors.has('sale_price') }"
                       readonly
                     />
-                    <has-error :form="form" field="price"></has-error>
+                    <has-error :form="form" field="sale_price"></has-error>
                   </div>
 
-                   <div class="form-group">
-                    <label>quantity</label>
-                    <input
-                      v-model="form.quantity"
-                      type="text"
-                      name="quantity"
-                      class="form-control"
-                      :class="{ 'is-invalid': form.errors.has('quantity') }"
-                      autocomplete="off"
-                      placeholder="quantity"
 
-                    />
-                    <has-error :form="form" field="quantity"></has-error>
-                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-4">
-              <div class="box box-primary height">
+
+              <div class="col-lg-7 col-md-7 col-xs-12">
+              <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Attribute & variant</h3>
+                  <h3 class="box-title">
+                    Product Details
+                  </h3>
                 </div>
-                <div class="box-body">
-                  <div class="form-group">
-                    <label>
-                      attribute
-                      <b class="text-danger">*</b>
-                    </label>
-                    <select
-                      class="form-control"
-                      name="attribute"
-                      v-model="form.attribute"
-                      @change="attributeWiseVariants()"
-                    >
-                      <option value >select attribute</option>
-                      <option
-                        v-for="attribute in attributes"
-                        :value="attribute.id"
-                      >
-                        {{ attribute.name }}
-                      </option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label>
-                      variant
-                      <b class="text-danger">*</b>
-                    </label>
-                    <select
-                      class="form-control"
-                      name="variant[]"
-                      multiple
-                      v-model="form.variant"
-                    >
-                      <option value disabled>select variant</option>
-                      <option
-                        v-for="variant in variants"
-                        v-if="variants"
-                        :value="variant.id"
-                      >
-                        {{ variant.name }}
-                      </option>
-                    </select>
-                  </div>
-                  <br />
+                <div style="margin-top:30px;" class="box-body">
+                  <ckeditor
+                    :editor="editor"
+                    name="details"
+                    :class="{ 'is-invalid': form.errors.has('details') }"
+                    v-model="form.details"
+                    :config="editorConfig"
+                  ></ckeditor>
+                  <has-error :form="form" field="details"></has-error>
                 </div>
+                <br>
               </div>
             </div>
+         
           </div>
           <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-12 col-xs-12 col-md-12">
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <h3 class="box-title">
@@ -322,26 +196,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="box box-primary">
-                <div class="box-header with-border">
-                  <h3 class="box-title">
-                    Product Details
-                    <b class="text-danger">*</b>
-                  </h3>
-                </div>
-                <div class="box-body">
-                  <ckeditor
-                    :editor="editor"
-                    name="details"
-                    :class="{ 'is-invalid': form.errors.has('details') }"
-                    v-model="form.details"
-                    :config="editorConfig"
-                  ></ckeditor>
-                  <has-error :form="form" field="details"></has-error>
-                </div>
-              </div>
-            </div>
+          
           </div>
 
           <div class="form-group text-center">
@@ -362,41 +217,18 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 Vue.component(HasError.name, HasError);
 export default {
   name: "Add",
-  created() {
-    this.others();
-    setTimeout(() => {
-      this.loading = false;
-    }, 500);
-  },
   data() {
     return {
       form: new Form({
         name: "",
-        merchant: "",
-        category: "",
-        sub_category: "",
-        sub_sub_category: "",
-        quantity: "",
-        alert_quantity: 1,
-        purchase_price: "",
         sale_price: "",
         discount: "",
         price: "",
         details: "",
-        attribute: "",
-        variant: [],
         image: [],
         files: [],
-        quantity:""
       }),
-      loading: true,
       error: "",
-      categories: "",
-      subcategories: "",
-      subSubCategories: "",
-      merchants: "",
-      attributes: "",
-      variants: null,
       editor: ClassicEditor,
       editorConfig: {},
       isDraging: false,
@@ -411,14 +243,14 @@ export default {
       window.scrollTo(0, 0);
       this.$Progress.start();
 
-      this.form .post("/api/merchant/product/store", {
+      this.form .post("/api/sellcenter/product/store", {
           transformRequest: [
             function (data, headers) {
               return objectToFormData(data);
             },
           ],
           onUploadProgress: (e) => {
-            // Do whatever you want with the progress event
+            // Do whatever you went with the progress event
             console.log(e);
           },
         })
@@ -427,14 +259,14 @@ export default {
           this.$Progress.finish();
 
           if (resp.data.status == "SUCCESS") {
-            this.$router.push({ name: "merchant_product_menage" });
+            this.$router.push({ name: "sell_center_product_manage" });
             this.$toasted.show(resp.data.message, {
               type: "success",
               position: "top-center",
               duration: 4000,
             });
           } else {
-            this.error = "some thing want to wrong";
+            this.error = "something went to wrong";
           }
         })
         .catch((error) => {
@@ -442,99 +274,21 @@ export default {
           console.log(error);
           this.$Progress.finish();
 
-          this.error = "some thing want to wrong";
+          this.error = "something went to wrong";
         });
     },
-    others() {
-      axios
-        .get("/api/product/others")
-        .then((resp) => {
-          // console.log(resp)
-          if (resp.data.status == "SUCCESS") {
-            this.categories = resp.data.categories;
-            this.merchants = resp.data.merchants;
-            this.attributes = resp.data.attributes;
-          } else {
-            this.error = "some thing want to wrong";
-          }
-        })
-        .catch((error) => {
-          // console.log(error)
-          this.error = "some thing want to wrong";
-        });
-    },
-    categoryWiseSubCategory() {
-      axios
-        .get("/api/category/wise/subCategory/" + this.form.category)
-        .then((resp) => {
-          // console.log(resp)
-          if (resp.data.status == "SUCCESS") {
-            if (resp.data.subCategories.length > 0) {
-              this.subcategories = resp.data.subCategories;
-            } else {
-              this.subcategories = "";
-            }
-          } else {
-            console.log("error");
-            this.subcategories = "";
-          }
-        })
-        .catch((error) => {
-          this.error = "some thing want wrong";
-        });
-    },
-    subCategoryWiseSubSUbCategory() {
-      axios
-        .get("/api/subCategory/wise/subSubCategory/" + this.form.sub_category)
-        .then((resp) => {
-          // console.log(resp.data.subsubcategories);
-          if (resp.data.status == "SUCCESS") {
-            if (resp.data.subsubcategories.length > 0) {
-              this.subSubCategories = resp.data.subsubcategories;
-            } else {
-              this.subSubCategories = "";
-            }
-          } else {
-            console.log("error");
-            this.subSubCategories = "";
-          }
-        })
-        .catch((error) => {
-          this.error = "some thing want wrong";
-        });
-    },
-    attributeWiseVariants() {
-      axios
-        .get("/api/attribute/wise/variant/" + this.form.attribute)
-        .then((resp) => {
-          // console.log(resp);
-          if (resp.data.status == "SUCCESS") {
-            this.variants = resp.data.variants;
-            // let length = resp.data.variants.length;
-            // let i = 0;
-            // for (i; i < length; i++) {
-            //   this.variants.push(resp.data.variants[i]);
-            // }
-          } else {
-            console.log("error");
-          }
-        })
-        .catch((error) => {
-          // console.log(error);
-          this.error = "some thing want wrong";
-        });
-    },
+
     salePrice() {
-      this.form.price = this.form.sale_price;
+      this.form.sale_price = this.form.price;
     },
     discount() {
-      let price = this.form.sale_price - this.form.discount;
+      let price = this.form.price - this.form.discount;
       if (price < 0) {
         alert("discount can not be greater then sale_price");
-        this.form.price = this.form.sale_price;
+        this.form.price = this.form.price;
         this.form.discount = "";
       } else {
-        this.form.price = price;
+        this.form.sale_price = price;
       }
     },
     uploadImage(e) {

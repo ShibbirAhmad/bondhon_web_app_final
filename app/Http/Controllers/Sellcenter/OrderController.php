@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Merchant;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Merchant ;
 use App\Models\Order ;
 use App\Models\Product ;
 use App\Models\OrderItem ;

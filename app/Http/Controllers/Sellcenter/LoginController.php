@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SellCenter;
+namespace App\Http\Controllers\Sellcenter;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -82,10 +82,9 @@ class LoginController extends Controller
     }
 
 
-    public function check_session(){
-
-          if (Session::has('sellcenter')) {
-
+    public function checkSellCenterSession(){
+          $sellcenter = Session::has('sellcenter') ;
+          if (!empty($sellcenter)) {
                 return response()->json([
                     "session" => "running",
                     "sellcenter" => session()->get('sellcenter') ,

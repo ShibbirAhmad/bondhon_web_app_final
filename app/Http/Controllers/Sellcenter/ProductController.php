@@ -1,23 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Merchant;
+namespace App\Http\Controllers\Sellcenter;
 
-use App\Models\Product;
-use App\Models\ProductAttribute;
-use App\Models\ProductBarcode;
-use App\Models\ProductImage;
-use App\Models\ProductVariant;
-use App\Models\Variant;
+
+use Picqer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Models\SellCenterProduct;
 use App\Http\Controllers\Controller;
-use App\Models\Customer;
-use App\Models\Purchaseitem;
-use DB;
-use Illuminate\Validation\Rule;
-use Picqer;
-use Barryvdh\DomPDF\Facade as PDF;
-use App\Models\Order;
 use Illuminate\Support\Facades\Session ;
 
 class ProductController extends Controller
@@ -30,10 +20,10 @@ class ProductController extends Controller
         $paginate = $request->item ?? 20;
 
         if($request->status=="all"){
-            $products = Product::where('merchant_id',session()->get('merchant')['id'])->orderBy('id', 'DESC')->with(['productImage', 'productBarcode'])->paginate($paginate);
+            $products = SellCenterProduct::where('sell_center_id',session()->get('sellcenter')['id'])->orderBy('id', 'DESC')->with(['purchaseItems'])->paginate($paginate);
 
         }else{
-            $products = Product::where('merchant_id',session()->get('merchant')['id'])->orderBy('id', 'DESC')->with(['productImage', 'productBarcode'])->where('status',$request->status)->paginate($paginate);
+            $products = SellCenterProduct::where('sell_center_id',session()->get('sellcenter')['id'])->orderBy('id', 'DESC')->with(['purchaseItems'])->where('status',$request->status)->paginate($paginate);
 
         }
         return response()->json([
@@ -54,90 +44,43 @@ class ProductController extends Controller
     }
 
 
-    public function store_product(Request $request)
-    {
+    public function storeProduct(Request $request){
+
         $validatedData = $request->validate([
-          'name' => 'required ',
-           'category' => 'required',
-            'quantity' => 'required',
-            //  'alert_quantity' => 'required',
-            //  'purchase_price' => 'required',
+            'name' => 'required ',
             'sale_price' => 'required',
             'price' => 'required',
-            'details' => 'required',
-            'image' => 'required',
         ]);
 
         //get products tables max id
-        $id = Product::max('id') ?? 0;
+        $id = SellCenterProduct::max('id') ?? 0;
         $product_code = 1001 + $id;
         //save product data
-        $product = new Product();
+        $product = new SellCenterProduct();
+        $product->sell_center_id= session()->get('sellcenter')['id'] ;
         $product->name = $request->name;
-        $product->category_id = $request->category;
-        $product->merchant_id= session()->get('merchant')['id'] ;
-        $product->sub_category_id = $request->sub_category ?? null;
-        $product->sub_sub_category_id = $request->sub_sub_category ?? null;
-        $product->product_code = $product_code;
-        $product->slug = $product->slug = $this->slugCreator(strtolower($request->name)).'-'.$product_code;
-        $product->stock = $request->quantity;
+        $product->code = $product_code;
+        $product->slug = $this->slugCreator(strtolower($request->name)).'-'.$product_code;
         $product->sale_price = $request->sale_price;
         $product->price = $request->price;
-        $product->discount = $request->discount ?? null;
-        $product->status = 2;
-        $product->details = $request->details;
-        $product->product_placement = $request->product_placement ?? 0;
-        $product->product_position = $request->product_position ?? 0;
-
-        if ($product->save()) {
-
-            //if product save then generate product barcode
-            $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
-            $barcode = $generator->getBarcode($product->product_code, $generator::TYPE_CODE_128);
-            $product_barcode = new ProductBarcode();
-            $product_barcode->product_id = $product->id;
-            $product_barcode->barcode = $barcode;
-            $product_barcode->barcode_number = $product->product_code;
-            $product_barcode->save();
-
-            //save product multiple image in store directory
-            if ($request->hasFile('image')) {
-                $files = $request->file('image');
-                foreach ($files as $file) {
-                    $product_image = new ProductImage();
-                    $product_image->product_id = $product->id;
-                    $path = $file->store('images/products', 'public');
-                    $product_image->product_image = $path;
-                    $product_image->save();
-                }
+        $product->discount = $request->discount ?? 0;
+        $product->status = 1;
+        $product->details = $request->details ?? null;
+        //save product multiple image in store directory
+        if ($request->hasFile('image')) {
+            $files = $request->file('image');
+            foreach ($files as $file) {
+                $path = $file->store('images/products', 'public');
+                $product->image = $path;
             }
-            //save the product properties
-            if (isset($request->attribute) && !empty($request->attribute)) {
-                $product_attribute = new ProductAttribute();
-                $product_attribute->product_id = $product->id;
-                $product_attribute->attribute_id = $request->attribute;
-                $product_attribute->save();
-            }
-            if (isset($request->variant) && !empty($request->variant)) {
-                foreach ($request->variant as $item) {
-                    $product_variant = new ProductVariant();
-                    $product_variant->product_id = $product->id;
-                    $product_variant->variant_id = $item;
-                    $product_variant->save();
-                }
-
-            }
-            //return success message
-            return response()->json([
-                'status' => 'SUCCESS',
-                'message' => 'product added successfully'
-            ]);
-        } else {
-            return response()->json([
-                'status' => 'FAILED',
-                'message' => 'product upload fail'
-            ]);
         }
+        $product->save();
+        //return success message
+        return response()->json([
+            'status' => 'SUCCESS',
+            'message' => 'product added successfully'
+        ]);
+    
 
     }
 
@@ -145,7 +88,7 @@ class ProductController extends Controller
 
     public function get_edit_product($id){
 
-          $product = Product::where('merchant_id',session()->get('merchant')['id'])->where('id',$id)->with(['productImage','productAttribute'])->first();
+          $product = SellCenterProduct::findOrFail($id);
                     return response()->json([
                         "status" => "OK",
                         "product" => $product ,
@@ -156,123 +99,66 @@ class ProductController extends Controller
 
 
     public function edit_product(Request $request , $id){
-
         $validatedData = $request->validate([
             'name' => 'required ',
-            'category' => 'required',
-              'quantity' => 'required',
-            //  'alert_quantity' => 'required',
-            // 'purchase_price' => 'required',
             'sale_price' => 'required',
             'price' => 'required',
-            'details' => 'required',
-            'image' => 'required',
-
-
-        ]);
-
+        ]); 
         //save product data
-        $product=Product::where('merchant_id',session()->get('merchant')['id'])->where('id',$id)->first() ;
+        $product = SellCenterProduct::findOrFail($id);
         $product->name = $request->name;
-        $product->category_id = $request->category;
-        $product->merchant_id= session()->get('merchant')['id'] ;
-        $product->sub_category_id = $request->sub_category ?? null;
-        $product->sub_sub_category_id = $request->sub_sub_category ?? null;
-        $product->stock = $request->quantity;
+        $product->slug = $this->slugCreator(strtolower($request->name)).'-'.$product->code;
         $product->sale_price = $request->sale_price;
         $product->price = $request->price;
-        $product->discount = $request->discount ?? null;
+        $product->discount = $request->discount ?? 0;
         $product->details = $request->details;
-
-
-        if ($product->save()) {
-
-            //save product multiple image in store directory
-            if ($request->hasFile('image')) {
-                ProductImage::where('product_id',$id)->delete();
-                $files = $request->file('image');
-                foreach ($files as $file) {
-                    $product_image= new ProductImage () ;
-                    $product_image->product_id=$id ;
-                    $path = $file->store('images/products', 'public');
-                    $product_image->product_image = $path;
-                    $product_image->save();
-                }
+        //save product multiple image in store directory
+        if ($request->hasFile('image')) {
+            $files = $request->file('image');
+            foreach ($files as $file) {
+                $path = $file->store('images/products', 'public');
+                $product->image = $path;
             }
-            //save the product properties
-            if (isset($request->attribute) && !empty($request->attribute)) {
-                    ProductAttribute::whereIn('product_id',[$id])->delete();
-                    $product_attribute=new ProductAttribute () ;
-                    $product_attribute->product_id = $product->id;
-                    $product_attribute->attribute_id = $request->attribute;
-                    $product_attribute->save();
-
-
-            }
-            if (isset($request->variant) && !empty($request->variant)) {
-                    ProductVariant::whereIn('product_id',[$id])->delete();
-                foreach ($request->variant as $item) {
-                    $product_variant= new ProductVariant() ;
-                    $product_variant->product_id = $product->id;
-                    $product_variant->variant_id = $item;
-                    $product_variant->save();
-                }
-
-            }
-            //return success message
-            return response()->json([
-                'status' => 'SUCCESS',
-                'message' => 'product updated successfully'
-            ]);
-        } else {
-            return response()->json([
-                'status' => 'Failed',
-                'message' => 'product updating fail '
-            ]);
         }
+        $product->save();
+        //return success message
+        return response()->json([
+            'status' => 'SUCCESS',
+            'message' => 'updated successfully'
+        ]);
+    
     }
 
 
+   public function delete_product_image($id){
 
-    public function search_products($search)
-    {
-          $merchant_product = Product::where('merchant_id',session()->get('merchant')['id'])
-                                        ->Where('product_code',$search)
-                                        ->with(['productImage', 'productBarcode'])->paginate(20);
-
-
-
-                return response()->json([
-                    'status' => 'SUCCESS',
-                    'products' => $merchant_product
-                ]);
-
-
-    }
-
-
-   public function delete_product_image(Request $request , $id){
-
-        $product_image=ProductImage::where('product_id',$id)->get();
-        if ($product_image[$request->index]->delete()){
+        $product=SellCenterProduct::findOrFail($id);
+        $product->image = '' ;
+        $product->save();
             return response()->json([
                 'status'=>'SUCCESS',
-                'message'=>'product image was deleted'
+                'message'=>'product image  deleted'
             ]);
-        }
+        
    }
 
 
-    public function delete_product($id){
+    public function productStatus($id){
 
-        // $merchant_product = Product::where('merchant_id',session()->get('merchant')['id'])->get();
-        // $product_want_delete = $merchant_product->where('id',$id)->where('status',2)->first();
-        // if ($product_want_delete->delete()) {
-        //     return response()->json([
-        //         "success"  => "OK",
-        //         "message"  => "product has deleted from your store"
-        //     ]);
-        // }
+        $product = SellCenterProduct::findOrFail($id);
+        if ($product->status == 1) {
+            $product->status= 0 ;
+            $product->save();
+        }else{
+            $product->status= 1 ;
+            $product->save(); 
+        }
+    
+            return response()->json([
+                "status"  => "SUCCESS",
+                "message"  => "status changed"
+            ]);
+        
     }
 
 

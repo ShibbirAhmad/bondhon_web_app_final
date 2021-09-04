@@ -85,8 +85,9 @@ const actions = {
 
     //get authenticat sellcenter
     sellcenter(context) {
-        axios.get('/api/sellcenter/login/session/check')
+        axios.get('/api/sellcenter/session/check')
             .then(resp => {
+                console.log(resp);
                 if (resp.data.session == 'running') {
                     context.commit('sellcenter', resp.data.sellcenter);
                 } else {
@@ -175,7 +176,7 @@ const actions = {
        general_setting(context){
         axios.get("/api/public/general/setting")
         .then(resp => {
-            // console.log(resp);
+         //   console.log(resp);
             context.commit('general_setting', resp.data.general_setting);
         })
     },

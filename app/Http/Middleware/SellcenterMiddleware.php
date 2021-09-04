@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
  
-class MerchantMiddleware
+class SellcenterMiddleware
 {
     /**
      * Handle an incoming request.

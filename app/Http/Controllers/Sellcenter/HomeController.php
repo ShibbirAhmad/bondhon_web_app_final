@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Merchant;
+namespace App\Http\Controllers\Sellcenter;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

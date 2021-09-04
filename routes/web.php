@@ -23,69 +23,19 @@ Route::group([
 
    //setting route is here
     Route::get('footer/setting','HomeController@get_footer_setting');
-    Route::get('general/setting','HomeController@get_general_setting');
-
+    Route::get('api/public/general/setting','HomeController@get_general_setting');
     // public carrier route
     Route::get('carrier/list','CarrierController@index');
     Route::get('carrier/details/{id}','CarrierController@carrier_details');
     Route::post('api/carrier/apply/by/job/{id}','CarrierController@job_apply');
-
     //route for get team
     Route::get('team/members','HomeController@get_team_members');
-
-
     //route for subscirber and contact
     Route::post('add/subscriber','SubscriberController@addSubscriber');
-    Route::post('customer/contact','ContactController@contactCustomer');
-
-
-    Route::get('search/products/{search}', 'HomeController@SearchProduct');
-    Route::get('search/products/{search}', 'HomeController@SearchProduct');
-    Route::get('product/images/{slug}', 'HomeController@productImage');
-
-
-    //user authentication route
-    Route::post('userToRegister','AuthController@register');
-
-    Route::post('userToLogin','AuthController@login');
-    Route::get('userToCheck','AuthController@chekAuthUser');
-    Route::post('api/user/password/reset/send/code','AuthController@resetCode');
-    Route::post('api/user/password/verify/code/{mobile_no}','AuthController@codeVerify');
-  Route::post('api/user/password/reset/{mobile_no}','AuthController@ResetPassword');
-
-
-
-
-    Route::post('send/code/forgotten/user','AuthController@send_password_reset_code')->middleware(['guest']);
-
-    //chekout route
+  
 
 
 });
-
-
-
-//:::::authnticate user router::::::
-
-Route::group([
-     'middleware' => 'auth',
-    'namespace' => 'Frontend',
-    'prefix' => 'api/public/'
-], function () {
-
-     //user profile update
-    Route::post('update/user/profile', 'AuthController@userProfileUpdate');
-    Route::post('user/password/update', 'AuthController@updatePassword');
-    //logout route
-     Route::get('user/logout', 'AuthController@logout');
-     Route::post('user/set/new/password', 'AuthController@user_set_new_password');
-
-
-
-});
-
-//others route
-Route::get('_public/others', 'Admin\OthersController@others')->middleware('auth');
 
 
 //:::::start the backend route::::::
@@ -105,13 +55,7 @@ Route::group([
     Route::get('api/member/profile/info', 'DashboardController@memberProfile');
     Route::post('api/edit/member/profile/info/{id}', 'DashboardController@memberProfileUpdate');
 
-    //started user
-    Route::get('list/user/all','UserController@getUser');
-    Route::get('user/search/{data}','UserController@search_user');
-    Route::get('api/export/users','UserController@export_users');
-    Route::get('deactive/user/{id}','UserController@deActiveUser');
-    Route::get('active/user/{id}','UserController@activeUser');
-    //end user
+
 
    //send message url is here
    Route::post('api/send/message/to/customer','MessageController@send_message');
@@ -423,9 +367,9 @@ Route::get('/backend/{any}', function () {
 
 
   // sell center mix routes 
-    Route::get('/sell/center/{any}', function () {
+  Route::get('/sell/center/{any}', function () {
 
-           return view('sellcenter.app');
+          return view('sellcenter.app');
 
-    })->where('any', '^(?!api\/)[\/\w\.\,-]*');
+  })->where('any', '^(?!api\/)[\/\w\.\,-]*');
 

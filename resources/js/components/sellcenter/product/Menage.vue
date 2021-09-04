@@ -5,7 +5,7 @@
       <section class="content-header">
         <h1>
           <router-link
-            :to="{ name: 'merchant_product_add' }"
+            :to="{ name: 'sell_center_product_add' }"
             class="btn btn-primary"
           >
             <i class="fa fa-plus"></i>
@@ -21,7 +21,7 @@
       <section class="content">
         <div class="container">
           <div class="row">
-            <div class="col-lg-11">
+            <div class="col-lg-11 col-md-11 ">
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <div class="row">
@@ -38,11 +38,11 @@
                         <option value="200">200</option>
                       </select>
                     </div>
-                    <div class="col-lg-4"></div>
+                    <div class="col-lg-4 text-center"> <h4> Products Table</h4></div>
                     <div class="col-lg-4">
                       <input
                         class="form-control"
-                        placeholder="search with product code "
+                        placeholder="search with product code or name "
                         v-model="search"
                         @keyup="productSearch()"
                       />
@@ -62,17 +62,17 @@
                   </div>
                 </div>
                 <div class="box-body">
-                  <table class="table table-striped table-hover table-bordered">
+                  <table class="table table-striped text-center table-hover table-bordered">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Barcode</th>
                         <th scope="col">Image</th>
-                        <th scope="col">price</th>
+                        <th scope="col">Price</th>
                         <th scope="col">Discount</th>
-                        <th scope="col">sale price</th>
-                        <th scope="col">stock</th>
+                        <th scope="col">Purchase Price</th>
+                        <th scope="col">Sale price</th>
+                        <th scope="col">Stock</th>
                         <th scope="col">status</th>
                         <th scope="col">Action</th>
                       </tr>
@@ -89,30 +89,21 @@
                       >
                         <td scope="row">{{ index + 1 }}</td>
                         <td>{{ product.name }}</td>
-                        <td style="width: 100px">
-                          <p
-                            v-html="product.product_barcode.barcode"
-                            class="barcode"
-                          ></p>
-                          <span class="barcode-number">{{
-                            product.product_barcode.barcode_number
-                          }}</span>
-                        </td>
                            <td>
                           <img
-                          v-if="product.product_image.length>0"
-                            :src="basePath+product.product_image[0].product_image"
-                            class="table-image"
+                            :src="product.image ? basePath+product.image :basePath+ 'images/no_image.jpg'"
+                             width="50px" height="50px"
                             alt="product image"
                           />
                         </td>
-                        <td>{{ product.sale_price }}</td>
+                        <td>{{ product.price }}</td>
                         <td>
                           <span class="badge badge-warning">{{
-                            product.discount ? product.discount : "0"
+                             product.discount
                           }}</span>
                         </td>
-                        <td>{{ product.price }}</td>
+                        <td>{{ purchasePrice(product.purchase_items) }}</td>
+                        <td>{{ product.sale_price }}</td>
 
                         <td>
                           <span
@@ -132,7 +123,7 @@
                           >
                           <span
                             class="badge badge-primary"
-                            v-else-if="product.status == 2"
+                            v-else-if="product.status == 0"
                             >Pending</span
                           >
                           <span class="badge badge-warning" v-else>Deny</span>
@@ -140,11 +131,25 @@
                         <td>
                             <router-link
                               :to="{
-                                name: 'merchant_product_edit',
+                                name: 'sell_center_product_edit',
                                 params: { id: product.id },
                               }"
                               class="btn btn-sm btn-success "
-                              > <i class="fa fa-edit"> </i> Edit</router-link>
+                              > <i class="fa fa-edit"> </i></router-link>
+                                                       <a
+                            class="btn btn-warning btn-sm"
+                            title="De-active"
+                            @click="deActive(product.id)"
+                            v-if="product.status == 1"
+                            ><i class="fa fa-ban"></i
+                          ></a>
+                          <a
+                            class="btn btn-primary btn-sm"
+                            title="active"
+                            @click="active(product.id)"
+                            v-else
+                            ><i class="fa fa-check"></i
+                          ></a>
                         </td>
                       </tr>
                     </tbody>
@@ -209,14 +214,14 @@ export default {
     productList(page = 1) {
       this.$Progress.start();
       axios
-        .get("/api/merchant/products?page=" + page, {
+        .get("/api/sellcenter/products?page=" + page, {
           params: {
             status: this.status,
             item: this.item,
           },
         })
         .then((resp) => {
-          console.log(resp);
+          // console.log(resp);
 
           this.products = resp.data.products;
           this.$Progress.finish();
@@ -232,9 +237,9 @@ export default {
         this.$Progress.start();
         this.loading = true;
         axios
-          .get("/api/merchant/search/product/"+this.search)
+          .get("/api/sellcenter/search/product/"+this.search)
           .then((resp) => {
-            console.log(resp);
+           // console.log(resp);
             if (resp.data.status == "SUCCESS") {
               this.products = resp.data.products;
               this.loading = false;
@@ -249,14 +254,105 @@ export default {
       }
     },
 
-    // delete_product(product_id) {
-    //      axios.get('/api/merchant/delete/product/'+product_id)
-    //      .then(resp =>{
-    //        if (resp.data.success == "OK") {
+   purchasePrice(items){
 
-    //        }
-    //      })
-    // },
+       let price = 0 ;
+       items.forEach(item => {
+           price += parseInt(item.price) ;
+       });
+       return price ;
+   },
+
+    deActive(id) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You wan't de-active this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes!",
+      }).then((result) => {
+        if (result.value) {
+          axios
+            .get("/api/active/deactive/sellcenter/product/" +id)
+            .then((resp) => {
+              if (resp.data.status == "SUCCESS") {
+                this.productList();
+                this.$toasted.show(resp.data.message, {
+                  position: "top-center",
+                  type: "success",
+                  duration: 4000,
+                });
+              } else {
+                this.$toasted.show("something went to wrong", {
+                  position: "top-center",
+                  type: "error",
+                  duration: 4000,
+                });
+              }
+            })
+            .catch((error) => {
+              this.$toasted.show("something went to wrong", {
+                position: "top-center",
+                type: "error",
+                duration: 4000,
+              });
+            });
+        } else {
+          this.$toasted.show("OK ! no action here", {
+            position: "top-center",
+            type: "info",
+            duration: 3000,
+          });
+        }
+      });
+    },
+    active(id) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You wan't active this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes!",
+      }).then((result) => {
+        if (result.value) {
+          axios
+            .get("/api/active/deactive/sellcenter/product/"+id)
+            .then((resp) => {
+              if (resp.data.status == "SUCCESS") {
+                this.productList();
+                this.$toasted.show(resp.data.message, {
+                  position: "top-center",
+                  type: "success",
+                  duration: 4000,
+                });
+              } else {
+                this.$toasted.show("something went to wrong", {
+                  position: "top-center",
+                  type: "error",
+                  duration: 4000,
+                });
+              }
+            })
+            .catch((error) => {
+              this.$toasted.show("something went to wrong", {
+                position: "top-center",
+                type: "error",
+                duration: 4000,
+              });
+            });
+        } else {
+          this.$toasted.show("Ok ! no action here", {
+            position: "top-center",
+            type: "info",
+            duration: 3000,
+          });
+        }
+      });
+    },
 
 
   },

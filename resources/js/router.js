@@ -1104,6 +1104,86 @@ const routes = [
     },
 
 
+    {
+        path: '/sell/center/supplier',
+        component: () => import(/* webpackChunkName: "supplier" */'./components/sellcenter/supplier/Supplier'),
+        name: 'supplier',
+        meta: {
+            authSellCenter: true,
+            title: 'suppler'
+        }
+
+    },
+
+    {
+        path: '/sell/center/supplier/amount/:id',
+        component: () => import(/* webpackChunkName: "SupplierAmount" */'./components/sellcenter/supplier/Amount.vue'),
+        name: 'SupplierAmount',
+        meta: {
+            authSellCenter: true,
+            title: 'suppler'
+        }
+
+    },
+
+    {
+        path: '/sell/center/Supplier/Add',
+        component: () => import(/* webpackChunkName: "supplierAdd" */'./components/sellcenter/supplier/Add.vue'),
+        name: 'supllierAdd',
+        meta: {
+            authSellCenter: true,
+            title: 'add|suppleir'
+        }
+    },
+    {
+
+        path: '/sell/center/edit/supplier/:id',
+        component: () => import(/* webpackChunkName: "supplierEdit" */'./components/sellcenter/supplier/Edit.vue'),
+        name: 'supplierEdit',
+        meta: {
+            authSellCenter: true,
+            title: 'Edit| Supplier'
+        }
+    },
+
+
+    
+    {
+        path: '/sell/center/purchase',
+        component: () => import(/* webpackChunkName: "purchase" */'./components/sellcenter/purchase/Purchase.vue'),
+        name: 'purchase',
+        meta: {
+            authSellCenter: true,
+            title: 'Purchase'
+        }
+
+    },
+    {
+        path: '/sell/center/addPurchase',
+        component: () => import(/* webpackChunkName: "addPurchase" */'./components/sellcenter/purchase/Add.vue'),
+        name: 'addPurchase',
+        meta: {
+            authSellCenter: true,
+            title: 'purchase || add'
+        }
+    },
+
+
+    {
+        path: '/sell/center/purchase/edit/:id',
+        component: () => import(/* webpackChunkName: "purchaseEdit" */'./components/sellcenter/purchase/Edit.vue'),
+        name: 'purchaseEdit',
+        meta: {
+            authSellCenter: true,
+            title: 'purchase edit'
+        }
+    },
+
+
+
+   
+
+
 
 
 

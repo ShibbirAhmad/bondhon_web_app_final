@@ -98,7 +98,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      sellcenter: {},
       base_url: this.$store.state.image_base_link
     };
   },
@@ -155,153 +154,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ckeditor/ckeditor5-build-classic */ "./node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js");
 /* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_3__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -520,42 +372,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MODULE_2__["HasError"].name, vform__WEBPACK_IMPORTED_MODULE_2__["HasError"]);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Add",
-  created: function created() {
-    var _this = this;
-
-    this.others();
-    setTimeout(function () {
-      _this.loading = false;
-    }, 500);
-  },
   data: function data() {
     return {
-      form: new vform__WEBPACK_IMPORTED_MODULE_2__["Form"](_defineProperty({
+      form: new vform__WEBPACK_IMPORTED_MODULE_2__["Form"]({
         name: "",
-        merchant: "",
-        category: "",
-        sub_category: "",
-        sub_sub_category: "",
-        quantity: "",
-        alert_quantity: 1,
-        purchase_price: "",
         sale_price: "",
         discount: "",
         price: "",
         details: "",
-        attribute: "",
-        variant: [],
         image: [],
         files: []
-      }, "quantity", "")),
-      loading: true,
+      }),
       error: "",
-      categories: "",
-      subcategories: "",
-      subSubCategories: "",
-      merchants: "",
-      attributes: "",
-      variants: null,
       editor: _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_3___default.a,
       editorConfig: {},
       isDraging: false,
@@ -566,139 +394,65 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
   },
   methods: {
     addProduct: function addProduct() {
-      var _this2 = this;
+      var _this = this;
 
       window.scrollTo(0, 0);
       this.$Progress.start();
-      this.form.post("/api/merchant/product/store", {
+      this.form.post("/api/sellcenter/product/store", {
         transformRequest: [function (data, headers) {
           return objectToFormData(data);
         }],
         onUploadProgress: function onUploadProgress(e) {
-          // Do whatever you want with the progress event
+          // Do whatever you went with the progress event
           console.log(e);
         }
       }).then(function (resp) {
         console.log(resp);
 
-        _this2.$Progress.finish();
+        _this.$Progress.finish();
 
         if (resp.data.status == "SUCCESS") {
-          _this2.$router.push({
-            name: "merchant_product_menage"
+          _this.$router.push({
+            name: "sell_center_product_manage"
           });
 
-          _this2.$toasted.show(resp.data.message, {
+          _this.$toasted.show(resp.data.message, {
             type: "success",
             position: "top-center",
             duration: 4000
           });
         } else {
-          _this2.error = "some thing want to wrong";
+          _this.error = "something went to wrong";
         }
       })["catch"](function (error) {
         console.log(error);
         console.log(error);
 
-        _this2.$Progress.finish();
+        _this.$Progress.finish();
 
-        _this2.error = "some thing want to wrong";
-      });
-    },
-    others: function others() {
-      var _this3 = this;
-
-      axios.get("/api/product/others").then(function (resp) {
-        // console.log(resp)
-        if (resp.data.status == "SUCCESS") {
-          _this3.categories = resp.data.categories;
-          _this3.merchants = resp.data.merchants;
-          _this3.attributes = resp.data.attributes;
-        } else {
-          _this3.error = "some thing want to wrong";
-        }
-      })["catch"](function (error) {
-        // console.log(error)
-        _this3.error = "some thing want to wrong";
-      });
-    },
-    categoryWiseSubCategory: function categoryWiseSubCategory() {
-      var _this4 = this;
-
-      axios.get("/api/category/wise/subCategory/" + this.form.category).then(function (resp) {
-        // console.log(resp)
-        if (resp.data.status == "SUCCESS") {
-          if (resp.data.subCategories.length > 0) {
-            _this4.subcategories = resp.data.subCategories;
-          } else {
-            _this4.subcategories = "";
-          }
-        } else {
-          console.log("error");
-          _this4.subcategories = "";
-        }
-      })["catch"](function (error) {
-        _this4.error = "some thing want wrong";
-      });
-    },
-    subCategoryWiseSubSUbCategory: function subCategoryWiseSubSUbCategory() {
-      var _this5 = this;
-
-      axios.get("/api/subCategory/wise/subSubCategory/" + this.form.sub_category).then(function (resp) {
-        // console.log(resp.data.subsubcategories);
-        if (resp.data.status == "SUCCESS") {
-          if (resp.data.subsubcategories.length > 0) {
-            _this5.subSubCategories = resp.data.subsubcategories;
-          } else {
-            _this5.subSubCategories = "";
-          }
-        } else {
-          console.log("error");
-          _this5.subSubCategories = "";
-        }
-      })["catch"](function (error) {
-        _this5.error = "some thing want wrong";
-      });
-    },
-    attributeWiseVariants: function attributeWiseVariants() {
-      var _this6 = this;
-
-      axios.get("/api/attribute/wise/variant/" + this.form.attribute).then(function (resp) {
-        // console.log(resp);
-        if (resp.data.status == "SUCCESS") {
-          _this6.variants = resp.data.variants; // let length = resp.data.variants.length;
-          // let i = 0;
-          // for (i; i < length; i++) {
-          //   this.variants.push(resp.data.variants[i]);
-          // }
-        } else {
-          console.log("error");
-        }
-      })["catch"](function (error) {
-        // console.log(error);
-        _this6.error = "some thing want wrong";
+        _this.error = "something went to wrong";
       });
     },
     salePrice: function salePrice() {
-      this.form.price = this.form.sale_price;
+      this.form.sale_price = this.form.price;
     },
     discount: function discount() {
-      var price = this.form.sale_price - this.form.discount;
+      var price = this.form.price - this.form.discount;
 
       if (price < 0) {
         alert("discount can not be greater then sale_price");
-        this.form.price = this.form.sale_price;
+        this.form.price = this.form.price;
         this.form.discount = "";
       } else {
-        this.form.price = price;
+        this.form.sale_price = price;
       }
     },
     uploadImage: function uploadImage(e) {
-      var _this7 = this;
+      var _this2 = this;
 
       var file = e.target.files;
       Array.from(file).forEach(function (file) {
-        return _this7.addImage(file);
+        return _this2.addImage(file);
       });
     },
     onDragEnter: function onDragEnter(e) {
@@ -715,18 +469,18 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
       }
     },
     drop: function drop(e) {
-      var _this8 = this;
+      var _this3 = this;
 
       e.preventDefault();
       e.stopPropagation();
       this.isDraging = false;
       var files = e.dataTransfer;
       Array.from(files).forEach(function (file) {
-        return _this8.addImage(file);
+        return _this3.addImage(file);
       });
     },
     addImage: function addImage(file) {
-      var _this9 = this;
+      var _this4 = this;
 
       //  console.log(file);
       if (!file.type.match("image.*")) {
@@ -750,13 +504,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
 
         img.onload = function () {
           if (img.width <= 1200 && img.height <= 1200) {
-            _this9.form.image.push(file);
+            _this4.form.image.push(file);
 
-            _this9.form.files.push(evt.target.result);
+            _this4.form.files.push(evt.target.result);
 
             return;
           } else {
-            _this9.disabled = true;
+            _this4.disabled = true;
             alert("Image maximu size 1200*1200px.But Upload image size" + img.width + "*" + img.height + "px");
             return;
           }
@@ -1010,7 +764,7 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "btn btn-primary",
-                  attrs: { to: { name: "merchant_product_menage" } }
+                  attrs: { to: { name: "sell_center_product_manage" } }
                 },
                 [_c("i", { staticClass: "fa fa-arrow-left" })]
               )
@@ -1022,898 +776,432 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("section", { staticClass: "content" }, [
-          _vm.loading
-            ? _c(
-                "h1",
-                {
-                  staticStyle: { "text-align": "center", "font-size": "50px" }
+          _c(
+            "form",
+            {
+              attrs: { enctype: "multipart/form-data" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.addProduct($event)
                 },
-                [_c("i", { staticClass: "fa fa-spinner fa-spin" })]
-              )
-            : _c(
-                "form",
-                {
-                  attrs: { enctype: "multipart/form-data" },
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.addProduct($event)
+                keydown: function($event) {
+                  return _vm.form.onKeydown($event)
+                }
+              }
+            },
+            [
+              _vm.error
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "alert alert-danger alert-dismissible",
+                      attrs: { role: "alert" }
                     },
-                    keydown: function($event) {
-                      return _vm.form.onKeydown($event)
-                    }
-                  }
-                },
-                [
-                  _vm.error
-                    ? _c(
+                    [
+                      _vm._v(
+                        "\n      \n          " +
+                          _vm._s(_vm.error) +
+                          "\n          "
+                      ),
+                      _c(
+                        "span",
+                        {
+                          staticClass: "close",
+                          staticStyle: { color: "#fff" },
+                          attrs: {
+                            "aria-hidden": "true",
+                            "data-dismiss": "alert",
+                            "aria-label": "Close"
+                          }
+                        },
+                        [_vm._v("×")]
+                      )
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "row justify-content-center" }, [
+                _c("div", { staticClass: "col-lg-5 col-md-5 col-xs-12" }, [
+                  _c("div", { staticClass: "box box-primary height" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "box-body" }, [
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _vm._m(2),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.name,
+                                expression: "form.name"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "is-invalid": _vm.form.errors.has("name")
+                            },
+                            attrs: {
+                              type: "text",
+                              name: "name",
+                              autofocus: "",
+                              autocomplete: "off",
+                              placeholder: "Ex:jean's pents"
+                            },
+                            domProps: { value: _vm.form.name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.form, "name", $event.target.value)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("has-error", {
+                            attrs: { form: _vm.form, field: "name" }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _vm._m(3),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.price,
+                                expression: "form.price"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "is-invalid": _vm.form.errors.has("price")
+                            },
+                            attrs: {
+                              type: "text",
+                              name: "price",
+                              autocomplete: "off",
+                              placeholder: "price"
+                            },
+                            domProps: { value: _vm.form.price },
+                            on: {
+                              keyup: function($event) {
+                                return _vm.salePrice()
+                              },
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.form, "price", $event.target.value)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("has-error", {
+                            attrs: { form: _vm.form, field: "price" }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _c("label", [_vm._v("Discount (BDT)")]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.discount,
+                                expression: "form.discount"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "is-invalid": _vm.form.errors.has("discount")
+                            },
+                            attrs: {
+                              type: "text",
+                              name: "discount",
+                              autocomplete: "off",
+                              placeholder: "discount"
+                            },
+                            domProps: { value: _vm.form.discount },
+                            on: {
+                              keyup: function($event) {
+                                return _vm.discount()
+                              },
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.form,
+                                  "discount",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("has-error", {
+                            attrs: { form: _vm.form, field: "discount" }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _c("label", [_vm._v("sale price")]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.sale_price,
+                                expression: "form.sale_price"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "is-invalid": _vm.form.errors.has("sale_price")
+                            },
+                            attrs: {
+                              type: "text",
+                              name: "sale_price",
+                              readonly: ""
+                            },
+                            domProps: { value: _vm.form.sale_price },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.form,
+                                  "sale_price",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("has-error", {
+                            attrs: { form: _vm.form, field: "sale_price" }
+                          })
+                        ],
+                        1
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-7 col-md-7 col-xs-12" }, [
+                  _c("div", { staticClass: "box box-primary" }, [
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "box-body",
+                        staticStyle: { "margin-top": "30px" }
+                      },
+                      [
+                        _c("ckeditor", {
+                          class: {
+                            "is-invalid": _vm.form.errors.has("details")
+                          },
+                          attrs: {
+                            editor: _vm.editor,
+                            name: "details",
+                            config: _vm.editorConfig
+                          },
+                          model: {
+                            value: _vm.form.details,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "details", $$v)
+                            },
+                            expression: "form.details"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.form, field: "details" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("br")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-lg-12 col-xs-12 col-md-12" }, [
+                  _c("div", { staticClass: "box box-primary" }, [
+                    _vm._m(5),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "box-body" }, [
+                      _c(
                         "div",
                         {
-                          staticClass: "alert alert-danger alert-dismissible",
-                          attrs: { role: "alert" }
+                          staticClass: "uploader",
+                          class: { draging: _vm.isDraging },
+                          on: {
+                            dragenter: _vm.onDragEnter,
+                            dragleave: _vm.onDragLeave,
+                            dragover: function($event) {
+                              $event.preventDefault()
+                            },
+                            drop: _vm.drop
+                          }
                         },
                         [
-                          _vm._v(
-                            "\n          " + _vm._s(_vm.error) + "\n          "
-                          ),
                           _c(
-                            "span",
+                            "div",
                             {
-                              staticClass: "close",
-                              staticStyle: { color: "#fff" },
-                              attrs: {
-                                "aria-hidden": "true",
-                                "data-dismiss": "alert",
-                                "aria-label": "Close"
-                              }
-                            },
-                            [_vm._v("×")]
-                          )
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row justify-content-center" }, [
-                    _c("div", { staticClass: "col-lg-4" }, [
-                      _c("div", { staticClass: "box box-primary height" }, [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "box-body" }, [
-                          _c(
-                            "div",
-                            { staticClass: "form-group" },
-                            [
-                              _vm._m(2),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.name,
-                                    expression: "form.name"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                class: {
-                                  "is-invalid": _vm.form.errors.has("name")
-                                },
-                                attrs: {
-                                  type: "text",
-                                  name: "name",
-                                  autofocus: "",
-                                  autocomplete: "off",
-                                  placeholder: "Ex:jean's pents"
-                                },
-                                domProps: { value: _vm.form.name },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "name",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("has-error", {
-                                attrs: { form: _vm.form, field: "name" }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "form-group" },
-                            [
-                              _vm._m(3),
-                              _vm._v(" "),
-                              _c(
-                                "select",
+                              directives: [
                                 {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.category,
-                                      expression: "form.category"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  class: {
-                                    "is-invalid": _vm.form.errors.has(
-                                      "category"
-                                    )
-                                  },
-                                  attrs: { name: "category" },
-                                  on: {
-                                    change: [
-                                      function($event) {
-                                        var $$selectedVal = Array.prototype.filter
-                                          .call($event.target.options, function(
-                                            o
-                                          ) {
-                                            return o.selected
-                                          })
-                                          .map(function(o) {
-                                            var val =
-                                              "_value" in o ? o._value : o.value
-                                            return val
-                                          })
-                                        _vm.$set(
-                                          _vm.form,
-                                          "category",
-                                          $event.target.multiple
-                                            ? $$selectedVal
-                                            : $$selectedVal[0]
-                                        )
-                                      },
-                                      function($event) {
-                                        return _vm.categoryWiseSubCategory()
-                                      }
-                                    ]
-                                  }
-                                },
-                                [
-                                  _c("option", { attrs: { value: "" } }, [
-                                    _vm._v("select category")
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm._l(_vm.categories, function(category) {
-                                    return _c(
-                                      "option",
-                                      { domProps: { value: category.id } },
-                                      [
-                                        _vm._v(
-                                          "\n                      " +
-                                            _vm._s(category.name) +
-                                            "\n                    "
-                                        )
-                                      ]
-                                    )
-                                  })
-                                ],
-                                2
-                              ),
-                              _vm._v(" "),
-                              _c("has-error", {
-                                attrs: { form: _vm.form, field: "category" }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "form-group" },
-                            [
-                              _vm._m(4),
-                              _vm._v(" "),
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.sub_category,
-                                      expression: "form.sub_category"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  class: {
-                                    "is-invalid": _vm.form.errors.has(
-                                      "sub_category"
-                                    )
-                                  },
-                                  attrs: { name: "sub_category" },
-                                  on: {
-                                    change: [
-                                      function($event) {
-                                        var $$selectedVal = Array.prototype.filter
-                                          .call($event.target.options, function(
-                                            o
-                                          ) {
-                                            return o.selected
-                                          })
-                                          .map(function(o) {
-                                            var val =
-                                              "_value" in o ? o._value : o.value
-                                            return val
-                                          })
-                                        _vm.$set(
-                                          _vm.form,
-                                          "sub_category",
-                                          $event.target.multiple
-                                            ? $$selectedVal
-                                            : $$selectedVal[0]
-                                        )
-                                      },
-                                      function($event) {
-                                        return _vm.subCategoryWiseSubSUbCategory()
-                                      }
-                                    ]
-                                  }
-                                },
-                                [
-                                  _c("option", { attrs: { value: "" } }, [
-                                    _vm._v("select sub category")
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm._l(_vm.subcategories, function(
-                                    subcategory
-                                  ) {
-                                    return _vm.subcategories
-                                      ? _c(
-                                          "option",
-                                          {
-                                            domProps: { value: subcategory.id }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                      " +
-                                                _vm._s(subcategory.name) +
-                                                "\n                    "
-                                            )
-                                          ]
-                                        )
-                                      : _vm._e()
-                                  })
-                                ],
-                                2
-                              ),
-                              _vm._v(" "),
-                              _c("has-error", {
-                                attrs: { form: _vm.form, field: "sub_category" }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "form-group" },
-                            [
-                              _c("label", [_vm._v("sub sub category")]),
-                              _vm._v(" "),
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.sub_sub_category,
-                                      expression: "form.sub_sub_category"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  class: {
-                                    "is-invalid": _vm.form.errors.has(
-                                      "sub_sub_category"
-                                    )
-                                  },
-                                  attrs: { name: "'sub_sub_category" },
-                                  on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
-                                        _vm.form,
-                                        "sub_sub_category",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      )
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("option", { attrs: { value: "" } }, [
-                                    _vm._v("select sub sub category")
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm._l(_vm.subSubCategories, function(
-                                    subSubCategory
-                                  ) {
-                                    return _vm.subSubCategories
-                                      ? _c(
-                                          "option",
-                                          {
-                                            domProps: {
-                                              value: subSubCategory.id
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                      " +
-                                                _vm._s(subSubCategory.name) +
-                                                "\n                    "
-                                            )
-                                          ]
-                                        )
-                                      : _vm._e()
-                                  })
-                                ],
-                                2
-                              ),
-                              _vm._v(" "),
-                              _c("has-error", {
-                                attrs: {
-                                  form: _vm.form,
-                                  field: "sub_sub_category"
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.form.files.length,
+                                  expression: "form.files.length"
                                 }
-                              })
-                            ],
-                            1
-                          )
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-lg-4" }, [
-                      _c("div", { staticClass: "box box-success height" }, [
-                        _vm._m(5),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "box-body" }, [
-                          _c(
-                            "div",
-                            { staticClass: "form-group" },
-                            [
-                              _vm._m(6),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.sale_price,
-                                    expression: "form.sale_price"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                class: {
-                                  "is-invalid": _vm.form.errors.has(
-                                    "sale_price"
-                                  )
-                                },
-                                attrs: {
-                                  type: "text",
-                                  name: "sale_price",
-                                  autocomplete: "off",
-                                  placeholder: "sale_price"
-                                },
-                                domProps: { value: _vm.form.sale_price },
-                                on: {
-                                  keyup: function($event) {
-                                    return _vm.salePrice()
-                                  },
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "sale_price",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("has-error", {
-                                attrs: { form: _vm.form, field: "sale_price" }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "form-group" },
-                            [
-                              _c("label", [_vm._v("Discount (BDT)")]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.discount,
-                                    expression: "form.discount"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                class: {
-                                  "is-invalid": _vm.form.errors.has("discount")
-                                },
-                                attrs: {
-                                  type: "text",
-                                  name: "discount",
-                                  autocomplete: "off",
-                                  placeholder: "discount"
-                                },
-                                domProps: { value: _vm.form.discount },
-                                on: {
-                                  keyup: function($event) {
-                                    return _vm.discount()
-                                  },
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "discount",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("has-error", {
-                                attrs: { form: _vm.form, field: "discount" }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "form-group" },
-                            [
-                              _c("label", [_vm._v("price")]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.price,
-                                    expression: "form.price"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                class: {
-                                  "is-invalid": _vm.form.errors.has("price")
-                                },
-                                attrs: {
-                                  type: "text",
-                                  name: "price",
-                                  autocomplete: "off",
-                                  placeholder: "price",
-                                  readonly: ""
-                                },
-                                domProps: { value: _vm.form.price },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "price",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("has-error", {
-                                attrs: { form: _vm.form, field: "price" }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "form-group" },
-                            [
-                              _c("label", [_vm._v("quantity")]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.quantity,
-                                    expression: "form.quantity"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                class: {
-                                  "is-invalid": _vm.form.errors.has("quantity")
-                                },
-                                attrs: {
-                                  type: "text",
-                                  name: "quantity",
-                                  autocomplete: "off",
-                                  placeholder: "quantity"
-                                },
-                                domProps: { value: _vm.form.quantity },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "quantity",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("has-error", {
-                                attrs: { form: _vm.form, field: "quantity" }
-                              })
-                            ],
-                            1
-                          )
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-lg-4" }, [
-                      _c("div", { staticClass: "box box-primary height" }, [
-                        _vm._m(7),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "box-body" }, [
-                          _c("div", { staticClass: "form-group" }, [
-                            _vm._m(8),
-                            _vm._v(" "),
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.attribute,
-                                    expression: "form.attribute"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: { name: "attribute" },
-                                on: {
-                                  change: [
-                                    function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
-                                        _vm.form,
-                                        "attribute",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      )
-                                    },
-                                    function($event) {
-                                      return _vm.attributeWiseVariants()
-                                    }
-                                  ]
-                                }
-                              },
-                              [
-                                _c("option", { attrs: { value: "" } }, [
-                                  _vm._v("select attribute")
-                                ]),
-                                _vm._v(" "),
-                                _vm._l(_vm.attributes, function(attribute) {
-                                  return _c(
-                                    "option",
-                                    { domProps: { value: attribute.id } },
-                                    [
-                                      _vm._v(
-                                        "\n                      " +
-                                          _vm._s(attribute.name) +
-                                          "\n                    "
-                                      )
-                                    ]
-                                  )
-                                })
                               ],
-                              2
-                            )
-                          ]),
+                              staticClass: "upload-control"
+                            },
+                            [
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "label",
+                                  attrs: { for: "file" }
+                                },
+                                [_vm._v("Select a file")]
+                              )
+                            ]
+                          ),
                           _vm._v(" "),
-                          _c("div", { staticClass: "form-group" }, [
-                            _vm._m(9),
-                            _vm._v(" "),
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.variant,
-                                    expression: "form.variant"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: { name: "variant[]", multiple: "" },
-                                on: {
-                                  change: function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.$set(
-                                      _vm.form,
-                                      "variant",
-                                      $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    )
-                                  }
+                          _c(
+                            "div",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: !_vm.form.files.length,
+                                  expression: "!form.files.length"
                                 }
-                              },
-                              [
+                              ]
+                            },
+                            [
+                              _c("i", { staticClass: "fa fa-cloud-upload" }),
+                              _vm._v(" "),
+                              _c("p", [_vm._v("Drag your file here")]),
+                              _vm._v(" "),
+                              _c("div", [_vm._v("or")]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "file-input" }, [
                                 _c(
-                                  "option",
-                                  { attrs: { value: "", disabled: "" } },
-                                  [_vm._v("select variant")]
+                                  "label",
+                                  {
+                                    staticClass: "label",
+                                    attrs: { for: "file" }
+                                  },
+                                  [_vm._v("select a file")]
                                 ),
                                 _vm._v(" "),
-                                _vm._l(_vm.variants, function(variant) {
-                                  return _vm.variants
-                                    ? _c(
-                                        "option",
-                                        { domProps: { value: variant.id } },
-                                        [
-                                          _vm._v(
-                                            "\n                      " +
-                                              _vm._s(variant.name) +
-                                              "\n                    "
-                                          )
-                                        ]
-                                      )
-                                    : _vm._e()
+                                _c("input", {
+                                  attrs: {
+                                    type: "file",
+                                    name: "image",
+                                    id: "file",
+                                    multiple: ""
+                                  },
+                                  on: { change: _vm.uploadImage }
                                 })
-                              ],
-                              2
-                            )
-                          ]),
+                              ])
+                            ]
+                          ),
                           _vm._v(" "),
-                          _c("br")
-                        ])
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-lg-6" }, [
-                      _c("div", { staticClass: "box box-primary" }, [
-                        _vm._m(10),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "box-body" }, [
                           _c(
                             "div",
                             {
-                              staticClass: "uploader",
-                              class: { draging: _vm.isDraging },
-                              on: {
-                                dragenter: _vm.onDragEnter,
-                                dragleave: _vm.onDragLeave,
-                                dragover: function($event) {
-                                  $event.preventDefault()
-                                },
-                                drop: _vm.drop
-                              }
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.form.files.length,
+                                  expression: "form.files.length"
+                                }
+                              ],
+                              staticClass: "images-preview"
                             },
-                            [
-                              _c(
+                            _vm._l(_vm.form.files, function(image, index) {
+                              return _c(
                                 "div",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.form.files.length,
-                                      expression: "form.files.length"
-                                    }
-                                  ],
-                                  staticClass: "upload-control"
-                                },
+                                { key: index, staticClass: "img-wrapper" },
                                 [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass: "label",
-                                      attrs: { for: "file" }
-                                    },
-                                    [_vm._v("Select a file")]
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: !_vm.form.files.length,
-                                      expression: "!form.files.length"
+                                  _c("img", {
+                                    attrs: {
+                                      src: image,
+                                      alt: "Image Uplaoder " + index
                                     }
-                                  ]
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass: "fa fa-cloud-upload"
                                   }),
                                   _vm._v(" "),
-                                  _c("p", [_vm._v("Drag your file here")]),
-                                  _vm._v(" "),
-                                  _c("div", [_vm._v("or")]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "file-input" }, [
-                                    _c(
-                                      "label",
-                                      {
-                                        staticClass: "label",
-                                        attrs: { for: "file" }
-                                      },
-                                      [_vm._v("select a file")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      attrs: {
-                                        type: "file",
-                                        name: "image",
-                                        id: "file",
-                                        multiple: ""
-                                      },
-                                      on: { change: _vm.uploadImage }
-                                    })
-                                  ])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.form.files.length,
-                                      expression: "form.files.length"
-                                    }
-                                  ],
-                                  staticClass: "images-preview"
-                                },
-                                _vm._l(_vm.form.files, function(image, index) {
-                                  return _c(
+                                  _c(
                                     "div",
-                                    { key: index, staticClass: "img-wrapper" },
-                                    [
-                                      _c("img", {
-                                        attrs: {
-                                          src: image,
-                                          alt: "Image Uplaoder " + index
+                                    {
+                                      staticClass: "cancel",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.cancel(index)
                                         }
-                                      }),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass: "cancel",
-                                          on: {
-                                            click: function($event) {
-                                              return _vm.cancel(index)
-                                            }
-                                          }
-                                        },
-                                        [_c("span", [_vm._v("X")])]
-                                      )
-                                    ]
+                                      }
+                                    },
+                                    [_c("span", [_vm._v("X")])]
                                   )
-                                }),
-                                0
-                              ),
-                              _vm._v(" "),
-                              _c("has-error", {
-                                attrs: { form: _vm.form, field: "image" }
-                              })
-                            ],
-                            1
-                          )
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-lg-6" }, [
-                      _c("div", { staticClass: "box box-primary" }, [
-                        _vm._m(11),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "box-body" },
-                          [
-                            _c("ckeditor", {
-                              class: {
-                                "is-invalid": _vm.form.errors.has("details")
-                              },
-                              attrs: {
-                                editor: _vm.editor,
-                                name: "details",
-                                config: _vm.editorConfig
-                              },
-                              model: {
-                                value: _vm.form.details,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.form, "details", $$v)
-                                },
-                                expression: "form.details"
-                              }
+                                ]
+                              )
                             }),
-                            _vm._v(" "),
-                            _c("has-error", {
-                              attrs: { form: _vm.form, field: "details" }
-                            })
-                          ],
-                          1
-                        )
-                      ])
+                            0
+                          ),
+                          _vm._v(" "),
+                          _c("has-error", {
+                            attrs: { form: _vm.form, field: "image" }
+                          })
+                        ],
+                        1
+                      )
                     ])
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(12)
-                ]
-              )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(6)
+            ]
+          )
         ])
       ])
     ],
@@ -1929,7 +1217,7 @@ var staticRenderFns = [
       _c("li", [
         _c("a", { attrs: { href: "#" } }, [
           _c("i", { staticClass: "fa fa-dashboard" }),
-          _vm._v(" merchant ")
+          _vm._v(" sell center ")
         ])
       ]),
       _vm._v(" "),
@@ -1941,7 +1229,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box-header with-border" }, [
-      _c("h3", { staticClass: "box-title" }, [_vm._v("Basic Information")])
+      _c("h3", { staticClass: "box-title" }, [_vm._v("Product Name & Price")])
     ])
   },
   function() {
@@ -1949,7 +1237,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", [
-      _vm._v("\n                    Name\n\n                    "),
+      _vm._v("\n                    Name\n                    "),
       _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -1958,16 +1246,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", [
-      _vm._v("\n                    Category\n                    "),
-      _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", [
-      _vm._v("\n                    sub category\n\n                    "),
+      _vm._v("\n                    price\n                    "),
       _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -1976,42 +1255,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box-header with-border" }, [
-      _c("h3", { staticClass: "box-title" }, [_vm._v("Price & Quantity")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", [
-      _vm._v("\n                    sale_price\n                    "),
-      _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box-header with-border" }, [
-      _c("h3", { staticClass: "box-title" }, [_vm._v("Attribute & variant")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", [
-      _vm._v("\n                    attribute\n                    "),
-      _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", [
-      _vm._v("\n                    variant\n                    "),
-      _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
+      _c("h3", { staticClass: "box-title" }, [
+        _vm._v("\n                  Product Details\n                ")
+      ])
     ])
   },
   function() {
@@ -2028,17 +1274,6 @@ var staticRenderFns = [
             ])
           ])
         ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box-header with-border" }, [
-      _c("h3", { staticClass: "box-title" }, [
-        _vm._v("\n                  Product Details\n                  "),
-        _c("b", { staticClass: "text-danger" }, [_vm._v("*")])
       ])
     ])
   },
