@@ -5,9 +5,9 @@
       <section class="content-header">
         <h1>
           <router-link
-            :to="{ name: 'merchant_dashboard' }"
+            :to="{ name: 'sell_center_dashboard' }"
             class="btn btn-primary"
-            ><i class="fa fa-arrow-right"></i
+            ><i class="fa fa-arrow-left"></i
           ></router-link>
         </h1>
         <ol class="breadcrumb">
@@ -66,14 +66,16 @@
                     <has-error :form="form" field="new_password"></has-error>
                   </div>
 
-                  <br />
-                  <button
+                <div class="form-group text-center">
+                    <button
                     :disabled="form.busy"
                     type="submit"
                     class="btn btn-primary"
                   >
                     <i class="fa fa-spin fa-spinner" v-if="form.busy"></i>update
                   </button>
+                </div>
+                
                 </form>
               </div>
             </div>
@@ -112,16 +114,12 @@ export default {
   methods: {
     updatePassword() {
       this.form
-        .post("/api/get/single/merchant/password/update", {
+        .post("/api/sellcenter/password/update", {
           transformRequest: [
             function (data, headers) {
               return objectToFormData(data);
             },
           ],
-          onUploadProgress: (e) => {
-            // Do whatever you want with the progress event
-            console.log(e);
-          },
         })
         .then((resp) => {
           
@@ -130,7 +128,7 @@ export default {
               type: "info",
               text: resp.data.message,
             });
-            this.$router.push({ name : 'merchant_dashboard'});
+            this.$router.push({ name : 'sell_center_dashboard'});
           }else{
               Swal.fire({
               type: "error",
@@ -144,7 +142,6 @@ export default {
         });
     },
   },
-  computed: {},
   components: {
     navbar,
   },

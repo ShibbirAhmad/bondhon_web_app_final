@@ -1,6 +1,6 @@
 <template>
   <div>
-    <admin-main></admin-main>
+      <navbar></navbar>
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
@@ -19,20 +19,19 @@
         <div class="row justify-content-center">
           <div class="col-lg-10 col-lg-offset-1">
             <div class="box box-primary">
-              <div class="box-header with-border">
+              <div class="box-header with-border text-center">
                 <h3 class="box-title">Add Purchase</h3>
               </div>
               <div class="box-body">
                 <h1 v-if="loading">
                   <i class="fa fa-spin fa-spinner"></i>
                 </h1>
-                <!--                                <form @submit.prevent="add" v-else @keydown="form.onKeydown($event)"-->
-                <!--                                      enctype="multipart/form-data">-->
+
                 <div class="alert-danger alert" v-if="error">{{ error }}</div>
                 <div class="row">
                   <div class="col-lg-3">
                     <div class="form-group">
-                      <label>Purchase_date</label>
+                      <label>Purchase Date</label>
                       <date-picker
                         autocomplete="off"
                         v-model="purchase_date"
@@ -42,7 +41,7 @@
                   </div>
                   <div class="col-lg-3">
                     <div class="form-group">
-                      <label>Invoice_no</label>
+                      <label>Invoice No</label>
                       <input
                         class="form-control"
                         v-model="invoice_no"
@@ -67,7 +66,7 @@
                           :value="supplier.id"
                           :key="supplier.id"
                         >
-                          {{ supplier.company_name }}
+                          {{ supplier.name }}-{{supplier.phone}}
                         </option>
                       </select>
                     </div>
@@ -83,7 +82,7 @@
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <label>Product_code</label>
+                        <label>Product Code</label>
                         <input
                           class="form-control"
                           autocomplete="off"
@@ -100,7 +99,7 @@
                               v-for="productItem in productItems"
                               @click="selectedProduct(productItem)"
                             >
-                              {{ productItem.product_code + "-" + productItem.name }}
+                              {{ productItem.code + "-" + productItem.name }}
                             </li>
                           </ul>
                         </div>
@@ -108,7 +107,7 @@
                     </div>
                     <div class="col-lg-2">
                       <div class="form-group">
-                        <label>Purchase_price</label>
+                        <label>Purchase Price</label>
                         <input
                           v-model="preview_products.price"
                           type="text"
@@ -175,9 +174,9 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="(product, index) in products.slice().reverse()" >
-                        <td>{{ index + 1 }}</td>
-                        <td>{{ product.product_code + "-" + product.product_name }}</td>
+                      <tr v-for="(product, index) in products" :key="index" >
+                        <td>{{ index  }}</td>
+                        <td>{{ product.code + "-" + product.product_name }}</td>
                         <td>{{ product.price }}</td>
                         <td>{{ product.quantity }}</td>
                         <td>{{ product.total }}</td>
@@ -185,16 +184,7 @@
                           <i class="fa fa-trash"></i>
                         </td>
                       </tr>
-                      <tr>
-                        <td colspan="3"></td>
-                        <td>purchase_type</td>
-                        <td>
-                          <select class="form-control" v-model="purchase_type">
-                            <option value="1">FOB</option>
-                            <option value="2">CM</option>
-                          </select>
-                        </td>
-                      </tr>
+
                       <tr>
                         <td colspan="3"></td>
                         <td>Total Amount</td>
@@ -225,9 +215,7 @@
                             <option value="Cash">Cash</option>
                             <option value="Bkash(personal)">Bkash(personal)</option>
                             <option value="Bkash(merchant)">Bkash(merchant)</option>
-                            <option value="Bank(AIBL)">Bank(AIBL)</option>
-                            
-                            <option value="Bank(SIBL)">Bank(SIBL)</option>
+                            <option value="Bank">Bank</option>
                           </select>
                         </td>
                       </tr>
@@ -240,8 +228,8 @@
                   </table>
                 </div>
 
-                <br />
-                <button
+              <div class="form-group text-center">
+                 <button
                   :disabled="submitValidation"
                   type="submit"
                   @click="add()"
@@ -249,8 +237,8 @@
                 >
                   Submit
                 </button>
-
-                <!--                                </form>-->
+              </div>
+               
               </div>
             </div>
           </div>
@@ -264,7 +252,7 @@
 import Vue from "vue";
 import { Form, HasError, AlertError } from "vform";
 import datePicker from "vue-bootstrap-datetimepicker";
-
+import navbar from "../Navbar.vue"
 Vue.component(HasError.name, HasError);
 
 export default {
@@ -278,7 +266,6 @@ export default {
       purchase_date: "",
       error: "",
       loading: true,
-      status: 1,
       options: {
         format: "YYYY-MM-DD",
         useCurrent: false,
@@ -295,16 +282,14 @@ export default {
       preview_products: {
         product_name: "",
         product_id: "",
-        product_code: "",
+        code: "",
         price: "",
         quantity: "",
         total: "",
-        alert_quantity: "",
       },
       AmountTotal: 0,
       paid: 0,
       due: 0,
-      purchase_type: 1,
       paid_by: "Cash",
       memo:""
     };
@@ -321,7 +306,6 @@ export default {
           paid: this.paid,
           invoice_no: this.invoice_no,
           products: this.products,
-          status: this.status,
           paid_by: this.paid_by,
           memo:this.memo
         })
@@ -343,59 +327,43 @@ export default {
         .catch((error) => {
           this.$Progress.finish();
           console.log(error);
-          this.error = "some thing want to wrong";
+          this.error = "something want to wrong";
         });
     },
     supplierList() {
       axios
-        .get("/others", {
-          params: {
-            type: 1,
-          },
-        })
-
+        .get("/api/supplier/list")
         .then((resp) => {
-          console.log(resp);
-          if (resp.data.status == "SUCCESS") {
-            this.suppliers = resp.data.suppliers;
+        //  console.log(resp);
+            this.suppliers = resp.data;
             this.loading = false;
-          }
         })
-        .catch((error) => {
-          console.log(error);
-        });
+
     },
+    
     autocompleteSearh() {
-      let length = this.search.length;
       this.validation();
-
-      if (length >= 2) {
-        axios
-          .get("/search/product/" + this.search)
-
+      if (this.search.length > 3) {
+        axios.get("/api/search/product/by/code/" + this.search)
           .then((resp) => {
             if (resp.data.status == "SUCCESS") {
-              let x = resp.data.products.data.length;
+              let x = resp.data.products.length;
               let i = 0;
-
               if (x >= 1) {
                 this.productItems = [];
                 for (i; i < x; i++) {
-                  this.productItems.push(resp.data.products.data[i]);
+                  this.productItems.push(resp.data.products[i]);
                 }
               } else {
                 let no_found = {
                   name: "No product found",
-                  product_code: "404",
+                  code: "404",
                 };
                 this.productItems = [];
                 this.productItems.push(no_found);
               }
             }
           })
-          .catch((error) => {
-            console.log(error);
-          });
         this.automcomplete = true;
       } else {
         this.automcomplete = false;
@@ -410,8 +378,8 @@ export default {
         this.automcomplete = false;
         this.preview_products.product_name = productItem.name;
         this.preview_products.product_id = productItem.id;
-        this.preview_products.product_code = productItem.product_code;
-        this.search = productItem.product_code + "-" + productItem.name;
+        this.preview_products.code = productItem.code;
+        this.search = productItem.name + "-" + productItem.code;
         this.validation();
       }
     },
@@ -441,12 +409,11 @@ export default {
       this.products.push(this.preview_products);
       this.preview_products = {
         product_id: "",
-        product_code: "",
+        code: "",
         product_name: "",
         price: "",
         total: "",
         quantity: "",
-        alert_quantity: "",
       };
       this.search = "";
       this.totalAmount();
@@ -468,7 +435,7 @@ export default {
         this.validationPreview = true;
         // this.submitValidation=true;
       }
-      if (this.products.length > 0 && this.invoice_no.length > 0 && this.supplier_id &&  this.memo.length > 0) {
+      if (this.products.length > 0 && this.invoice_no.length > 0 && this.supplier_id ) {
         this.submitValidation = false;
       } else {
         this.submitValidation = true;
@@ -536,34 +503,11 @@ export default {
      
     },
   },
-  computed: {},
   components: {
     datePicker,
+    navbar
   },
-  watch: {
-    purchase_type: function (value) {
-      if (value == 2) {
-        Swal.fire({
-          title: "Enter CM Rate 1/pieces",
-          input: "text",
-        }).then((result) => {
-          if (result.value) {
-            let quantity = 0;
-            console.log(this.products);
-            console.log(this.products.length);
-            if (this.products.length > 0) {
-              this.products.forEach((element) => {
-                quantity += parseInt(element.quantity);
-                //console.log(element.quantity)
-              });
-            }
-            this.AmountTotal = parseInt(quantity) * parseInt(result.value);
-            this.due = parseInt(quantity) * parseInt(result.value) - parseInt(this.paid);
-          }
-        });
-      }
-    },
-  },
+
 };
 //Date picker
 </script>

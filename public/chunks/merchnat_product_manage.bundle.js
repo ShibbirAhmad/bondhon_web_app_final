@@ -397,8 +397,6 @@ __webpack_require__.r(__webpack_exports__);
 
             _this3.$Progress.finish();
           }
-        })["catch"](function (error) {
-          console.log(error);
         });
       } else {
         this.productList();
@@ -933,7 +931,13 @@ var render = function() {
                                       _vm._v(_vm._s(index + 1))
                                     ]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(product.name))]),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(product.name) +
+                                          "-" +
+                                          _vm._s(product.code)
+                                      )
+                                    ]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _c("img", {
@@ -949,7 +953,9 @@ var render = function() {
                                       })
                                     ]),
                                     _vm._v(" "),
-                                    _c("td", [_vm._v(_vm._s(product.price))]),
+                                    _c("td", [
+                                      _vm._v("৳" + _vm._s(product.price))
+                                    ]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _c(
@@ -961,16 +967,17 @@ var render = function() {
                                     _vm._v(" "),
                                     _c("td", [
                                       _vm._v(
-                                        _vm._s(
-                                          _vm.purchasePrice(
-                                            product.purchase_items
+                                        "৳" +
+                                          _vm._s(
+                                            _vm.purchasePrice(
+                                              product.purchase_items
+                                            )
                                           )
-                                        )
                                       )
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v(_vm._s(product.sale_price))
+                                      _vm._v("৳" + _vm._s(product.sale_price))
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [

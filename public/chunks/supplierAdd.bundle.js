@@ -244,10 +244,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     return {
       form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
         name: "",
-        company_name: '',
         address: '',
-        phone: "",
-        opening_balance: ''
+        phone: ""
       }),
       loading: true,
       error: ''
@@ -260,11 +258,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
       this.form.post('/api/supplier/add', {
         transformRequest: [function (data, headers) {
           return objectToFormData(data);
-        }],
-        onUploadProgress: function onUploadProgress(e) {
-          // Do whatever you want with the progress event
-          console.log(e);
-        }
+        }]
       }).then(function (resp) {
         //   console.log(resp)
         if (resp.data.status == 'SUCCESS') {
@@ -280,9 +274,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         } else {
           _this2.error = 'some thing want to wrong';
         }
-      })["catch"](function (error) {
-        //  console.log(error)
-        _this2.error = 'some thing want to wrong';
       });
     }
   }

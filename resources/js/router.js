@@ -1159,7 +1159,7 @@ const routes = [
 
     },
     {
-        path: '/sell/center/addPurchase',
+        path: '/sell/center/add/purchase',
         component: () => import(/* webpackChunkName: "addPurchase" */'./components/sellcenter/purchase/Add.vue'),
         name: 'addPurchase',
         meta: {
@@ -1168,25 +1168,15 @@ const routes = [
         }
     },
 
-
     {
-        path: '/sell/center/purchase/edit/:id',
-        component: () => import(/* webpackChunkName: "purchaseEdit" */'./components/sellcenter/purchase/Edit.vue'),
-        name: 'purchaseEdit',
-        meta: {
-            authSellCenter: true,
-            title: 'purchase edit'
-        }
-    },
-
-
-
-   
-
-
-
-
-
+            path: '/sell/center/purchase/:id',
+            component: () => import(/* webpackChunkName: "purchaseView" */'./components/sellcenter/purchase/View.vue'),
+            name: 'purchaseView',
+            meta: {
+                authSellCenter: true,
+                title: 'purchase || Details'
+            }
+        },
 
 
 

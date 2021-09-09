@@ -24,10 +24,9 @@ Route::group([
 
         //start the others  route . to load other data of products
         Route::get('api/product/others', 'OthersController@others');
-
-   
         //route for search product, edit product and delete product if it pending situation
         Route::get('api/sellcenter/search/product/{search}','ProductController@searchProducts');
+        Route::get('api/search/product/by/code/{search}','ProductController@searchByCode');
         Route::get('api/active/deactive/sellcenter/product/{id}','ProductController@productStatus');
         Route::get('api/sellcenter/get/edit/product/{id}','ProductController@get_edit_product');
         Route::post('api/sellcenter/edit/product/{id}','ProductController@edit_product');
@@ -40,8 +39,8 @@ Route::group([
 
         //sellcenter profile route
         Route::get('api/get/single/sellcenter','HomeController@get_current_sellcenter') ;
-        Route::post('api/get/single/sellcenter/update','HomeController@current_sellcenter_update') ;
-        Route::post('api/get/single/sellcenter/password/update','LoginController@current_sellcenter_password_update') ;
+        Route::post('api/sellcenter/update','HomeController@current_sellcenter_update') ;
+        Route::post('api/sellcenter/password/update','LoginController@current_sellcenter_password_update') ;
 
 
 

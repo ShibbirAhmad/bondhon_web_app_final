@@ -87,7 +87,7 @@ const actions = {
     sellcenter(context) {
         axios.get('/api/sellcenter/session/check')
             .then(resp => {
-                console.log(resp);
+                // console.log(resp);
                 if (resp.data.session == 'running') {
                     context.commit('sellcenter', resp.data.sellcenter);
                 } else {

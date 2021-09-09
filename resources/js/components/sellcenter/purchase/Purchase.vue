@@ -18,9 +18,9 @@
       <section class="content">
         <div class="container">
           <div class="row justify-content-center">
-            <div class="col-lg-8 col-lg-offset-1">
+            <div class="col-lg-11 col-md-11 ">
               <div class="box box-primary">
-                <div class="box-header with-border">
+                <div class="box-header with-border text-center">
                   <h3 class="box-title">Purchase table</h3>
                   <div style="margin-top: 10px" class="row">
                     <div class="col-lg-4">
@@ -71,16 +71,15 @@
                 </div>
 
                 <div class="box-body">
-                  <table class="table">
+                  <table class="table table-striped table-hover table-bordered">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
+                         <th scope="col">#</th>
                          <th scope="col">Date</th>
-                          <th scope="col">Supplier</th>
-
-                        <th scope="col">Invoice_no</th>
-                        <th scope="col">Total_amount</th>
-                        <th scope="col">Action</th>
+                         <th scope="col">Supplier</th>
+                         <th scope="col">Invoice</th>
+                         <th scope="col">Amount</th>
+                         <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -94,7 +93,7 @@
                       >
                         <td scope="row">{{ index + 1 }}</td>
                         <td>{{formatDate(purchase.purchase_date) }}</td>
-                        <td>{{ purchase.supplier.company_name }}</td>
+                        <td>{{ purchase.supplier.name }}</td>
 
                         <td>{{ purchase.invoice_no }}</td>
                         <td>
@@ -110,9 +109,7 @@
                             ><i class="fa fa-eye"></i
                           ></router-link>
 
-                          <!-- <a href="#" v-if="!purchase.file" @click.prevent="memoUpload(purchase.id)" class="btn btn-sn btn-success"><i class="fa fa-file"></i></a>
-                          <a :href="basePath+purchase.file"  v-else  download class="btn btn-sn btn-success"><i class="fa fa-file"></i></a> -->
-
+                   
                         </td>
 
                       

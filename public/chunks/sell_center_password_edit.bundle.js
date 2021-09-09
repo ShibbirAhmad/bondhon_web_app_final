@@ -239,6 +239,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -266,14 +268,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     updatePassword: function updatePassword() {
       var _this2 = this;
 
-      this.form.post("/api/get/single/merchant/password/update", {
+      this.form.post("/api/sellcenter/password/update", {
         transformRequest: [function (data, headers) {
           return objectToFormData(data);
-        }],
-        onUploadProgress: function onUploadProgress(e) {
-          // Do whatever you want with the progress event
-          console.log(e);
-        }
+        }]
       }).then(function (resp) {
         if (resp.data.success == "OK") {
           Swal.fire({
@@ -282,7 +280,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
           });
 
           _this2.$router.push({
-            name: 'merchant_dashboard'
+            name: 'sell_center_dashboard'
           });
         } else {
           Swal.fire({
@@ -296,7 +294,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
       });
     }
   },
-  computed: {},
   components: {
     navbar: _Navbar__WEBPACK_IMPORTED_MODULE_2__["default"]
   }
@@ -537,9 +534,9 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "btn btn-primary",
-                  attrs: { to: { name: "merchant_dashboard" } }
+                  attrs: { to: { name: "sell_center_dashboard" } }
                 },
-                [_c("i", { staticClass: "fa fa-arrow-right" })]
+                [_c("i", { staticClass: "fa fa-arrow-left" })]
               )
             ],
             1
@@ -684,23 +681,26 @@ var render = function() {
                             1
                           ),
                           _vm._v(" "),
-                          _c("br"),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-primary",
-                              attrs: { disabled: _vm.form.busy, type: "submit" }
-                            },
-                            [
-                              _vm.form.busy
-                                ? _c("i", {
-                                    staticClass: "fa fa-spin fa-spinner"
-                                  })
-                                : _vm._e(),
-                              _vm._v("update\n                ")
-                            ]
-                          )
+                          _c("div", { staticClass: "form-group text-center" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: {
+                                  disabled: _vm.form.busy,
+                                  type: "submit"
+                                }
+                              },
+                              [
+                                _vm.form.busy
+                                  ? _c("i", {
+                                      staticClass: "fa fa-spin fa-spinner"
+                                    })
+                                  : _vm._e(),
+                                _vm._v("update\n                ")
+                              ]
+                            )
+                          ])
                         ]
                       )
                 ])

@@ -226,11 +226,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -247,7 +242,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     return {
       form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
         name: "",
-        company_name: '',
         address: '',
         phone: ""
       }),
@@ -260,14 +254,14 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
       var _this = this;
 
       axios.get('/edit/supplier/' + this.$route.params.id).then(function (resp) {
+        //   console.log(resp);
         if (resp.data.status == 'SUCCESS') {
-          _this.form.name = resp.data.merchant.name;
-          _this.form.phone = resp.data.merchant.phone;
-          _this.form.address = resp.data.merchant.address;
-          _this.form.company_name = resp.data.merchant.company_name;
+          _this.form.name = resp.data.supplier.name;
+          _this.form.phone = resp.data.supplier.phone;
+          _this.form.address = resp.data.supplier.address;
           _this.loading = false;
         } else {
-          _this.$toasted.show('some thing want to wrong', {
+          _this.$toasted.show('something went to wrong', {
             type: "error",
             position: "top-center",
             duration: 5000
@@ -276,7 +270,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
       })["catch"](function (error) {
         console.log(error);
 
-        _this.$toasted.show('some thing want to wrong', {
+        _this.$toasted.show('something went to wrong', {
           type: "error",
           position: "top-center",
           duration: 5000
@@ -289,11 +283,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
       this.form.post('/update/supplier/' + this.$route.params.id, {
         transformRequest: [function (data, headers) {
           return objectToFormData(data);
-        }],
-        onUploadProgress: function onUploadProgress(e) {
-          // Do whatever you want with the progress event
-          console.log(e);
-        }
+        }]
       }).then(function (resp) {
         if (resp.data.status == 'SUCCESS') {
           _this2.$router.push({
@@ -306,14 +296,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
             duration: 4000
           });
         } else {
-          _this2.error = 'some thing want to wrong';
+          _this2.error = 'something went to wrong';
         }
-      })["catch"](function (error) {
-        _this2.error = 'some thing want to wrong';
       });
     }
-  },
-  computed: {}
+  }
 });
 
 /***/ }),
@@ -601,55 +588,6 @@ var render = function() {
                             "div",
                             { staticClass: "form-group" },
                             [
-                              _c("label", [_vm._v("Company_name")]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.company_name,
-                                    expression: "form.company_name"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                class: {
-                                  "is-invalid": _vm.form.errors.has(
-                                    "company_name"
-                                  )
-                                },
-                                attrs: {
-                                  type: "text",
-                                  name: "company_name",
-                                  autocomplete: "off",
-                                  placeholder: "company_name"
-                                },
-                                domProps: { value: _vm.form.company_name },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "company_name",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("has-error", {
-                                attrs: { form: _vm.form, field: "company_name" }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "form-group" },
-                            [
                               _c("label", [_vm._v("Phone")]),
                               _vm._v(" "),
                               _c("input", {
@@ -743,23 +681,28 @@ var render = function() {
                             1
                           ),
                           _vm._v(" "),
-                          _c("br"),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-primary",
-                              attrs: { disabled: _vm.form.busy, type: "submit" }
-                            },
-                            [
-                              _vm.form.busy
-                                ? _c("i", {
-                                    staticClass: "fa fa-spin fa-spinner"
-                                  })
-                                : _vm._e(),
-                              _vm._v("Submit\n                                ")
-                            ]
-                          )
+                          _c("div", { staticClass: "form-group text-center" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: {
+                                  disabled: _vm.form.busy,
+                                  type: "submit"
+                                }
+                              },
+                              [
+                                _vm.form.busy
+                                  ? _c("i", {
+                                      staticClass: "fa fa-spin fa-spinner"
+                                    })
+                                  : _vm._e(),
+                                _vm._v(
+                                  "Save\n                                   "
+                                )
+                              ]
+                            )
+                          ])
                         ]
                       )
                 ])
@@ -792,7 +735,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box-header with-border" }, [
+    return _c("div", { staticClass: "box-header with-border text-center" }, [
       _c("h3", { staticClass: "box-title" }, [_vm._v("Edit Supplier")])
     ])
   }

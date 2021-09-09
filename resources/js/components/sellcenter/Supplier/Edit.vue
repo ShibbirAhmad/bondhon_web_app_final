@@ -15,7 +15,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6 col-lg-offset-2">
                         <div class="box box-primary">
-                            <div class="box-header with-border">
+                            <div class="box-header with-border text-center">
                                 <h3 class="box-title">Edit Supplier</h3>
                             </div>
                             <div class="box-body">
@@ -34,15 +34,7 @@
                                         <has-error :form="form" field="name"></has-error>
 
                                     </div>
-                                    <div class="form-group">
-                                        <label>Company_name</label>
-                                        <input v-model="form.company_name" type="text" name="company_name"
-                                               class="form-control"
-                                               :class="{ 'is-invalid': form.errors.has('company_name') }"
-                                               autocomplete="off" placeholder="company_name">
-                                        <has-error :form="form" field="company_name"></has-error>
-
-                                    </div>
+    
                                     <div class="form-group">
                                         <label>Phone</label>
                                         <input v-model="form.phone" type="text" minlength="11" maxlength="11"
@@ -60,10 +52,13 @@
                                                type="text" placeholder="address" name="address" autocomplete="off">
                                         <has-error :form="form" field="address"></has-error>
                                     </div>
-                                    <br/>
-                                    <button :disabled="form.busy" type="submit" class="btn btn-primary"><i
-                                        class="fa fa-spin fa-spinner" v-if="form.busy"></i>Submit
-                                    </button>
+                                    
+                                    <div class="form-group text-center">
+                                        <button :disabled="form.busy" type="submit" class="btn btn-primary"><i
+                                            class="fa fa-spin fa-spinner" v-if="form.busy"></i>Save
+                                       </button>
+                                    </div>
+                                    
                                 </form>
                             </div>
                         </div>
@@ -94,7 +89,6 @@
             return {
                 form: new Form({
                     name: "",
-                    company_name: '',
                     address: '',
                     phone: "",
 
@@ -111,16 +105,14 @@
             getSupplier() {
                 axios.get('/edit/supplier/' + this.$route.params.id)
                     .then((resp) => {
-
+                     //   console.log(resp);
                         if (resp.data.status == 'SUCCESS') {
-                            this.form.name = resp.data.merchant.name;
-                            this.form.phone = resp.data.merchant.phone;
-                            this.form.address = resp.data.merchant.address;
-                            this.form.company_name = resp.data.merchant.company_name;
+                            this.form.name = resp.data.supplier.name;
+                            this.form.phone = resp.data.supplier.phone;
+                            this.form.address = resp.data.supplier.address;
                             this.loading=false;
-
                         } else {
-                            this.$toasted.show('some thing want to wrong', {
+                            this.$toasted.show('something went to wrong', {
                                 type: "error",
                                 position: "top-center",
                                 duration: 5000
@@ -130,7 +122,7 @@
                     })
                     .catch((error) => {
                         console.log(error)
-                        this.$toasted.show('some thing want to wrong', {
+                        this.$toasted.show('something went to wrong', {
                             type: "error",
                             position: "top-center",
                             duration: 5000
@@ -138,18 +130,12 @@
                     })
             },
             update() {
-
                 this.form.post('/update/supplier/' + this.$route.params.id, {
                     transformRequest: [function (data, headers) {
                         return objectToFormData(data)
                     }],
-                    onUploadProgress: e => {
-                        // Do whatever you want with the progress event
-                        console.log(e)
-                    }
                 })
-                    .then((resp) => {
-
+                .then((resp) => {
                         if (resp.data.status == 'SUCCESS') {
                             this.$router.push({name: 'supplier'});
                             this.$toasted.show(resp.data.message, {
@@ -158,17 +144,14 @@
                                 duration: 4000
                             });
                         } else {
-                            this.error = 'some thing want to wrong';
+                            this.error = 'something went to wrong';
                         }
 
-                    })
-                    .catch((error) => {
-                        this.error = 'some thing want to wrong';
                     })
             },
 
         },
-        computed: {}
+ 
     }
 </script>
 

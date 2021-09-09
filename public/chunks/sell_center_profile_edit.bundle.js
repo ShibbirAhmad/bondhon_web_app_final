@@ -300,30 +300,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -335,17 +311,16 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     setTimeout(function () {
       _this.loading = false;
     }, 500);
-    this.getmerchant();
+    this.getSellCenter();
   },
   data: function data() {
     return {
       form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
         name: "",
-        email: "",
         phone: "",
-        company_name: "",
+        licience: "",
         address: "",
-        image: ""
+        logo: ""
       }),
       base_url: this.$store.state.image_base_link,
       loading: true,
@@ -354,44 +329,36 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     };
   },
   methods: {
-    updateMerchant: function updateMerchant() {
+    getSellCenter: function getSellCenter() {
       var _this2 = this;
 
-      this.form.post("/api/get/single/merchant/update", {
+      axios.get('/api/get/single/sellcenter').then(function (resp) {
+        _this2.form.name = resp.data.sellcenter.name;
+        _this2.form.phone = resp.data.sellcenter.phone;
+        _this2.form.licience = resp.data.sellcenter.licience;
+        _this2.form.address = resp.data.sellcenter.address;
+        _this2.form.logo = resp.data.sellcenter.logo;
+      });
+    },
+    updateSellcenter: function updateSellcenter() {
+      var _this3 = this;
+
+      this.form.post("/api/sellcenter/update", {
         transformRequest: [function (data, headers) {
           return objectToFormData(data);
         }]
       }).then(function (resp) {
-        console.log(resp);
-
+        // console.log(resp);
         if (resp.data.success == "OK") {
-          _this2.$router.push({
-            name: "merchant_dashboard"
+          _this3.$router.push({
+            name: "sell_center_dashboard"
           });
 
-          _this2.$toasted.show(resp.data.message, {
+          _this3.$toasted.show(resp.data.message, {
             type: "success",
             position: "top-center",
             duration: 4000
           });
-        }
-      })["catch"](function (e) {
-        _this2.errors = [];
-
-        _this2.errors.push(e.response.data.errors);
-      });
-    },
-    getmerchant: function getmerchant() {
-      var _this3 = this;
-
-      axios.get("/api/get/single/merchant").then(function (resp) {
-        if (resp.data.status == "OK") {
-          _this3.form.name = resp.data.merchant.name;
-          _this3.form.email = resp.data.merchant.email;
-          _this3.form.phone = resp.data.merchant.phone;
-          _this3.form.company_name = resp.data.merchant.company_name;
-          _this3.form.address = resp.data.merchant.address;
-          _this3.form.image = resp.data.merchant.image;
         }
       });
     },
@@ -412,11 +379,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
 
         img.src = evt.target.result;
         _this4.preview_image = evt.target.result;
-        _this4.form.image = file;
+        _this4.form.logo = file;
       };
     }
   },
-  computed: {},
   components: {
     navbar: _Navbar__WEBPACK_IMPORTED_MODULE_2__["default"]
   }
@@ -657,7 +623,7 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "btn btn-primary",
-                  attrs: { to: { name: "merchant_dashboard" } }
+                  attrs: { to: { name: "sellcenter_dashboard" } }
                 },
                 [_c("i", { staticClass: "fa fa-arrow-left" })]
               )
@@ -686,7 +652,7 @@ var render = function() {
                           on: {
                             submit: function($event) {
                               $event.preventDefault()
-                              return _vm.updateMerchant($event)
+                              return _vm.updateSellcenter($event)
                             },
                             keydown: function($event) {
                               return _vm.form.onKeydown($event)
@@ -774,118 +740,8 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group" },
                                 [
-                                  _c(
-                                    "label",
-                                    { attrs: { for: "company_name" } },
-                                    [_vm._v("Compnay Name ")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.company_name,
-                                        expression: "form.company_name"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    class: {
-                                      "is-invalid": _vm.form.errors.has(
-                                        "company_name"
-                                      )
-                                    },
-                                    attrs: {
-                                      type: "text",
-                                      autocomplete: "off",
-                                      autofocus: "",
-                                      name: "company_name"
-                                    },
-                                    domProps: { value: _vm.form.company_name },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "company_name",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("has-error", {
-                                    attrs: {
-                                      form: _vm.form,
-                                      field: "company_name"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "row" }, [
-                            _c("div", { staticClass: "col-md-6" }, [
-                              _c(
-                                "div",
-                                { staticClass: "form-group" },
-                                [
-                                  _c("label", [_vm._v("Email")]),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.email,
-                                        expression: "form.email"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    class: {
-                                      "is-invalid": _vm.form.errors.has("email")
-                                    },
-                                    attrs: {
-                                      type: "email",
-                                      name: "email",
-                                      autofocus: "",
-                                      autocomplete: "off",
-                                      placeholder: "email"
-                                    },
-                                    domProps: { value: _vm.form.email },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "email",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("has-error", {
-                                    attrs: { form: _vm.form, field: "email" }
-                                  })
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-6" }, [
-                              _c(
-                                "div",
-                                { staticClass: "form-group" },
-                                [
-                                  _c("label", { attrs: { for: "phone" } }, [
-                                    _vm._v("Phone")
+                                  _c("label", { attrs: { for: "licience" } }, [
+                                    _vm._v(" Licience ")
                                   ]),
                                   _vm._v(" "),
                                   _c("input", {
@@ -893,22 +749,18 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.form.phone,
-                                        expression: "form.phone"
+                                        value: _vm.form.licience,
+                                        expression: "form.licience"
                                       }
                                     ],
                                     staticClass: "form-control",
                                     class: {
-                                      "is-invalid": _vm.form.errors.has("phone")
+                                      "is-invalid": _vm.form.errors.has(
+                                        "licience"
+                                      )
                                     },
-                                    attrs: {
-                                      type: "text",
-                                      autocomplete: "off",
-                                      autofocus: "",
-                                      name: "phone",
-                                      id: ""
-                                    },
-                                    domProps: { value: _vm.form.phone },
+                                    attrs: { type: "text", name: "licience" },
+                                    domProps: { value: _vm.form.licience },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
@@ -916,7 +768,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "phone",
+                                          "licience",
                                           $event.target.value
                                         )
                                       }
@@ -924,13 +776,62 @@ var render = function() {
                                   }),
                                   _vm._v(" "),
                                   _c("has-error", {
-                                    attrs: { form: _vm.form, field: "phone" }
+                                    attrs: { form: _vm.form, field: "licience" }
                                   })
                                 ],
                                 1
                               )
                             ])
                           ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c("label", { attrs: { for: "phone" } }, [
+                                _vm._v("Phone")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.phone,
+                                    expression: "form.phone"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                class: {
+                                  "is-invalid": _vm.form.errors.has("phone")
+                                },
+                                attrs: {
+                                  type: "text",
+                                  autocomplete: "off",
+                                  autofocus: "",
+                                  name: "phone"
+                                },
+                                domProps: { value: _vm.form.phone },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "phone",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: { form: _vm.form, field: "phone" }
+                              })
+                            ],
+                            1
+                          ),
                           _vm._v(" "),
                           _c(
                             "div",
@@ -953,12 +854,7 @@ var render = function() {
                                 class: {
                                   "is-invalid": _vm.form.errors.has("address")
                                 },
-                                attrs: {
-                                  placeholder:
-                                    "write title about this merchant",
-                                  name: "address",
-                                  rows: "3"
-                                },
+                                attrs: { name: "address", rows: "3" },
                                 domProps: { value: _vm.form.address },
                                 on: {
                                   input: function($event) {
@@ -1070,7 +966,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box-header with-border text-center" }, [
-      _c("h3", { staticClass: "box-title" }, [_vm._v("Edit Your Information")])
+      _c("h3", { staticClass: "box-title" }, [
+        _vm._v("Edit Sell Center Information")
+      ])
     ])
   }
 ]

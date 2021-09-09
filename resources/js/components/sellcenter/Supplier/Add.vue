@@ -88,30 +88,20 @@
             return {
                 form: new Form({
                     name: "",
-                    company_name: '',
                     address: '',
                     phone: "",
-                    opening_balance:''
-
                 }),
-
                 loading: true,
                 error: ''
             }
         },
 
         methods: {
-
             add() {
-
                 this.form.post('/api/supplier/add', {
                     transformRequest: [function (data, headers) {
                         return objectToFormData(data)
                     }],
-                    onUploadProgress: e => {
-                        // Do whatever you want with the progress event
-                        console.log(e)
-                    }
                 })
                     .then((resp) => {
                      //   console.log(resp)
@@ -127,10 +117,7 @@
                         }
 
                     })
-                    .catch((error) => {
-                      //  console.log(error)
-                        this.error = 'some thing want to wrong';
-                    })
+                  
             },
       },
 

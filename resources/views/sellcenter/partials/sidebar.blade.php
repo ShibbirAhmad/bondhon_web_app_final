@@ -34,20 +34,20 @@
     
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-cogs"></i> <span>product purchase</span>
+            <i class="fa fa-list-alt"></i> <span>product purchase</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li>   <router-link :to="{ name : 'sell_center_product_add'}"><i class="fa fa-plus "></i> Add </router-link></li>
-            <li>   <router-link :to="{ name : 'sell_center_product_manage'}"><i class="fa fa-list "></i> Manage </router-link></li>
+            <li>   <router-link :to="{ name : 'addPurchase'}"><i class="fa fa-plus "></i> Add </router-link></li>
+            <li>   <router-link :to="{ name : 'purchase'}"><i class="fa fa-list "></i> Manage </router-link></li>
           </ul>
         </li>
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-cogs"></i> <span>Suppliers</span>
+            <i class="fa fa-users"></i> <span>Suppliers</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -58,7 +58,41 @@
           </ul>
         </li>
 
+        <li class="treeview">
+          <a href="#">
+              <i class="fa fa-money"></i> <span>Accounts</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+                  <li>
+                      <router-link :to="{ name: 'credit'}"><i class="fa fa-eye"></i> Credit</router-link>
+                  </li>
+    
+                  <li>
+                      <router-link :to="{ name: 'debit'}"><i class="fa fa-eye"></i>Debit</router-link>
+                  </li>
+          </ul>
+        </li>
 
+        <li class="treeview">
+          <a href="#">
+              <i class="fa fa-money"></i> <span>Fund Transfer</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+              <li>
+                  <router-link :to="{ name: 'fondtransferAdd'}"><i class="fa fa-eye"></i>Add</router-link>
+              </li>
+              <li>
+                  <router-link :to="{ name: 'fondtransfer'}"><i class="fa fa-eye"></i>Manage</router-link>
+              </li>
+
+          </ul>
+        </li>
         
         <li class="treeview">
           <a href="#">

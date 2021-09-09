@@ -14,26 +14,23 @@
                     <div class="invoice-header">
                       <img
                         class="invoice-logo"
-                        :src="'/./frontend/image/logo.png'"
-                        title="MarketShop"
-                        alt="MarketShop"
+                        :src="base_url+sellcenter.logo"
                       />
                       <div class="address">
-                        <p>Office: House:36,Road:06,Banaroshi Polli,Mirpur-10,Dhaka-1216.</p>
-                        <p>EmaiL:support@madinafashionbd.com</p>
-                        <p>Mobile:+88 01715-900066</p>
+                         <p>{{ sellcenter.name }}</p>
+                        <p>Address:{{ sellcenter.address }}</p>
+                        <p>Mobile:{{ sellcenter.phone }}</p>
                         <h3><strong>Purchase Invoice</strong></h3>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-lg-4 invoice-body" style="margin-left:27px;">
-                      <p class="text-bold">Suplier_name: {{merchant.name}}</p>
-                       <p class="text-bold">Suplier_company: {{merchant.company_name}}</p>
-                      <p class="text-bold">Suplier_phone: {{merchant.phone}}</p>
+                      <p class="text-bold">Suplier_name: {{supplier.name}}</p>
+                      <p class="text-bold">Suplier_phone: {{supplier.phone}}</p>
                       <p
                         class="text-bold"
-                      >Address: {{ merchant.address }}</p>
+                      >Address: {{ supplier.address }}</p>
                       <p class="text-bold">
                         Invoice_no:
                         <strong>{{purchase.invoice_no}}</strong>
@@ -65,10 +62,10 @@
                               {{ item.product.name}}
                            
                             </td>
-                            <td>{{ item.product.product_code }}</td>
-                            <td>{{item.insert_quantity}}</td>
+                            <td>{{ item.product.code }}</td>
+                            <td>{{item.quantity}}</td>
                             <td>{{item.price}}</td>
-                            <td>{{item.insert_quantity*item.price}}</td>
+                            <td>{{item.quantity*item.price}}</td>
                           </tr>
 
                         <tr>
@@ -151,6 +148,7 @@ export default {
   name: "Purchase",
   created() {
     this.purchaseDetails();
+    this.$store.dispatch('sellcenter');
     },
   data() {
     return {
@@ -158,7 +156,7 @@ export default {
       details: "",
       error: "",
       loading: true,
-      merchant: "",
+      supplier: "",
       base_url: this.$store.state.image_base_link,
 
     };
@@ -173,7 +171,7 @@ export default {
           if (resp.data.status == "SUCCESS") {
             this.purchase = resp.data.purchase;
             this.details = resp.data.details;
-            this.merchant = resp.data.merchant;
+            this.supplier = resp.data.supplier;
 
             this.loading = false;
           } else {
@@ -205,7 +203,7 @@ export default {
       console.log(details)
     let total=0;
       details.forEach(element => {
-          total+=parseInt(element.insert_quantity)
+          total+=parseInt(element.quantity)
       });
       return total;
     }
@@ -214,6 +212,11 @@ export default {
   components: {
     navbar 
   },
+  computed:{
+    sellcenter(){
+      return this.$store.getters.sellcenter ;
+    }
+  }
 };
 </script>
 

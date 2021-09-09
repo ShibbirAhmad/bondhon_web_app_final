@@ -88,7 +88,7 @@
                         :key="index"
                       >
                         <td scope="row">{{ index + 1 }}</td>
-                        <td>{{ product.name }}</td>
+                        <td>{{ product.name }}-{{ product.code }}</td>
                            <td>
                           <img
                             :src="product.image ? basePath+product.image :basePath+ 'images/no_image.jpg'"
@@ -96,14 +96,14 @@
                             alt="product image"
                           />
                         </td>
-                        <td>{{ product.price }}</td>
+                        <td>&#2547;{{ product.price }}</td>
                         <td>
                           <span class="badge badge-warning">{{
                              product.discount
                           }}</span>
                         </td>
-                        <td>{{ purchasePrice(product.purchase_items) }}</td>
-                        <td>{{ product.sale_price }}</td>
+                        <td>&#2547;{{ purchasePrice(product.purchase_items) }}</td>
+                        <td>&#2547;{{ product.sale_price }}</td>
 
                         <td>
                           <span
@@ -246,9 +246,7 @@ export default {
               this.$Progress.finish();
             }
           })
-          .catch((error) => {
-            console.log(error);
-          });
+
       } else {
         this.productList();
       }
@@ -275,7 +273,7 @@ export default {
       }).then((result) => {
         if (result.value) {
           axios
-            .get("/api/active/deactive/sellcenter/product/" +id)
+            .get("/api/active/deactive/sellcenter/product/"+id)
             .then((resp) => {
               if (resp.data.status == "SUCCESS") {
                 this.productList();

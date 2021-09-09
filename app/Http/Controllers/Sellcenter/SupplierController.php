@@ -71,7 +71,7 @@ class SupplierController extends Controller
 
     public function edit($id)
     {
-        $supplier = Supplier::find($id);
+        $supplier = Supplier::findOrFail($id);
         if ($supplier) {
             return response()->json([
                 'status' => 'SUCCESS',
@@ -98,7 +98,7 @@ class SupplierController extends Controller
             if ($supplier->save()) {
                 return response()->json([
                     'status' => 'SUCCESS',
-                    'message' => 'supplier update successfully'
+                    'message' => 'supplier updated successfully'
                 ]);
             }
         }

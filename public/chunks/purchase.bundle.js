@@ -298,9 +298,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -647,242 +644,258 @@ var render = function() {
         _c("section", { staticClass: "content" }, [
           _c("div", { staticClass: "container" }, [
             _c("div", { staticClass: "row justify-content-center" }, [
-              _c("div", { staticClass: "col-lg-8 col-lg-offset-1" }, [
+              _c("div", { staticClass: "col-lg-11 col-md-11 " }, [
                 _c("div", { staticClass: "box box-primary" }, [
-                  _c("div", { staticClass: "box-header with-border" }, [
-                    _c("h3", { staticClass: "box-title" }, [
-                      _vm._v("Purchase table")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "row",
-                        staticStyle: { "margin-top": "10px" }
-                      },
-                      [
-                        _c("div", { staticClass: "col-lg-4" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.data_search,
-                                expression: "data_search"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { placeholder: "enter invoice_no " },
-                            domProps: { value: _vm.data_search },
-                            on: {
-                              keyup: _vm.purchaseSearch,
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.data_search = $event.target.value
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-lg-6" }, [
-                          _c(
-                            "form",
-                            {
-                              on: {
-                                submit: function($event) {
-                                  $event.preventDefault()
-                                  return _vm.filterPurchase($event)
-                                }
-                              }
-                            },
-                            [
-                              _c("div", { staticClass: "row" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "col-lg-5" },
-                                  [
-                                    _c("date-picker", {
-                                      attrs: {
-                                        autocomplete: "off",
-                                        placeholder: "start-date",
-                                        config: _vm.options
-                                      },
-                                      model: {
-                                        value: _vm.start_date,
-                                        callback: function($$v) {
-                                          _vm.start_date = $$v
-                                        },
-                                        expression: "start_date"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "col-lg-5",
-                                    staticStyle: { "margin-left": "-20px" }
-                                  },
-                                  [
-                                    _c("date-picker", {
-                                      attrs: {
-                                        autocomplete: "off",
-                                        placeholder: "end-date",
-                                        config: _vm.options
-                                      },
-                                      model: {
-                                        value: _vm.end_date,
-                                        callback: function($$v) {
-                                          _vm.end_date = $$v
-                                        },
-                                        expression: "end_date"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-lg-2" }, [
-                          _c(
-                            "select",
-                            {
+                  _c(
+                    "div",
+                    { staticClass: "box-header with-border text-center" },
+                    [
+                      _c("h3", { staticClass: "box-title" }, [
+                        _vm._v("Purchase table")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "row",
+                          staticStyle: { "margin-top": "10px" }
+                        },
+                        [
+                          _c("div", { staticClass: "col-lg-4" }, [
+                            _c("input", {
                               directives: [
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.item,
-                                  expression: "item"
+                                  value: _vm.data_search,
+                                  expression: "data_search"
                                 }
                               ],
                               staticClass: "form-control",
+                              attrs: { placeholder: "enter invoice_no " },
+                              domProps: { value: _vm.data_search },
                               on: {
-                                change: [
-                                  function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.item = $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  },
-                                  _vm.purchaseList
-                                ]
+                                keyup: _vm.purchaseSearch,
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.data_search = $event.target.value
+                                }
                               }
-                            },
-                            [
-                              _c("option", { attrs: { value: "10" } }, [
-                                _vm._v("10")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "20" } }, [
-                                _vm._v("20")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "30" } }, [
-                                _vm._v("30")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "40" } }, [
-                                _vm._v("40")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "50" } }, [
-                                _vm._v("50")
-                              ])
-                            ]
-                          )
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "box-body" }, [
-                    _c("table", { staticClass: "table" }, [
-                      _vm._m(1),
-                      _vm._v(" "),
-                      _c(
-                        "tbody",
-                        [
-                          _vm.loading
-                            ? _c("h1", [
-                                _c("i", {
-                                  staticClass: "fa fa-spin fa-spinner"
-                                })
-                              ])
-                            : _vm._l(_vm.purchases.data, function(
-                                purchase,
-                                index
-                              ) {
-                                return _c("tr", { key: purchase.id }, [
-                                  _c("td", { attrs: { scope: "row" } }, [
-                                    _vm._v(_vm._s(index + 1))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm.formatDate(purchase.purchase_date)
-                                      )
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      _vm._s(purchase.supplier.company_name)
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(purchase.invoice_no))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      "\n                        " +
-                                        _vm._s(purchase.total) +
-                                        "\n                      "
-                                    )
-                                  ]),
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-lg-6" }, [
+                            _c(
+                              "form",
+                              {
+                                on: {
+                                  submit: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.filterPurchase($event)
+                                  }
+                                }
+                              },
+                              [
+                                _c("div", { staticClass: "row" }, [
+                                  _c(
+                                    "div",
+                                    { staticClass: "col-lg-5" },
+                                    [
+                                      _c("date-picker", {
+                                        attrs: {
+                                          autocomplete: "off",
+                                          placeholder: "start-date",
+                                          config: _vm.options
+                                        },
+                                        model: {
+                                          value: _vm.start_date,
+                                          callback: function($$v) {
+                                            _vm.start_date = $$v
+                                          },
+                                          expression: "start_date"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
                                   _vm._v(" "),
                                   _c(
-                                    "td",
+                                    "div",
+                                    {
+                                      staticClass: "col-lg-5",
+                                      staticStyle: { "margin-left": "-20px" }
+                                    },
                                     [
-                                      _c(
-                                        "router-link",
-                                        {
-                                          staticClass: "btn btn-primary btn-sm",
-                                          attrs: {
-                                            to: {
-                                              name: "purchaseView",
-                                              params: { id: purchase.id }
-                                            }
-                                          }
+                                      _c("date-picker", {
+                                        attrs: {
+                                          autocomplete: "off",
+                                          placeholder: "end-date",
+                                          config: _vm.options
                                         },
-                                        [_c("i", { staticClass: "fa fa-eye" })]
-                                      )
+                                        model: {
+                                          value: _vm.end_date,
+                                          callback: function($$v) {
+                                            _vm.end_date = $$v
+                                          },
+                                          expression: "end_date"
+                                        }
+                                      })
                                     ],
                                     1
                                   )
                                 ])
-                              })
-                        ],
-                        2
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-lg-2" }, [
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.item,
+                                    expression: "item"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.item = $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    },
+                                    _vm.purchaseList
+                                  ]
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "10" } }, [
+                                  _vm._v("10")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "20" } }, [
+                                  _vm._v("20")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "30" } }, [
+                                  _vm._v("30")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "40" } }, [
+                                  _vm._v("40")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "50" } }, [
+                                  _vm._v("50")
+                                ])
+                              ]
+                            )
+                          ])
+                        ]
                       )
-                    ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "box-body" }, [
+                    _c(
+                      "table",
+                      {
+                        staticClass:
+                          "table table-striped table-hover table-bordered"
+                      },
+                      [
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          [
+                            _vm.loading
+                              ? _c("h1", [
+                                  _c("i", {
+                                    staticClass: "fa fa-spin fa-spinner"
+                                  })
+                                ])
+                              : _vm._l(_vm.purchases.data, function(
+                                  purchase,
+                                  index
+                                ) {
+                                  return _c("tr", { key: purchase.id }, [
+                                    _c("td", { attrs: { scope: "row" } }, [
+                                      _vm._v(_vm._s(index + 1))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.formatDate(purchase.purchase_date)
+                                        )
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(purchase.supplier.name))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(purchase.invoice_no))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        "\n                        " +
+                                          _vm._s(purchase.total) +
+                                          "\n                      "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      [
+                                        _c(
+                                          "router-link",
+                                          {
+                                            staticClass:
+                                              "btn btn-primary btn-sm",
+                                            attrs: {
+                                              to: {
+                                                name: "purchaseView",
+                                                params: { id: purchase.id }
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fa fa-eye"
+                                            })
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ])
+                                })
+                          ],
+                          2
+                        )
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "box-footer" }, [
@@ -960,9 +973,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Supplier")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Invoice_no")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Invoice")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Total_amount")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Amount")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Action")])
       ])

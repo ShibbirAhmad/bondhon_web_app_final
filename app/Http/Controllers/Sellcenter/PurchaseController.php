@@ -2,240 +2,175 @@
 
 namespace App\Http\Controllers\Sellcenter;
 
-use App\Models\Product;
 use App\Models\Purchase;
+use App\Models\Supplier;
 use App\Models\PurchaseItem;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Debit;
-use App\Models\Supplier;
+use App\Models\SellCenterDebit;
 use App\Models\SupplierPayment;
-use Intervention\Image\Facades\Image;
+use App\Models\SellCenterProduct;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+
 class PurchaseController extends Controller
 {
 
-    public function index(Request $request)
-    {
+    public function index(Request $request){
         $paginate = $request->item ?? 10;
-        $status=$request->status ?? 1;
-        $purchases = Purchase::orderBy('id', 'DESC')->with('supplier')->where('status',$status)->paginate($paginate);
-        if ($purchases) {
+        $purchases = Purchase::where('sell_center_id',session()->get('sellcenter')['id'])
+                              ->orderBy('id', 'DESC')->with('supplier')->paginate($paginate);
+
             return response()->json([
                 'status' => 'SUCCESS',
                 'purchases' => $purchases
             ]);
-        }
-
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
-     // return $request->all();
-
-    //   if($request->hasFile('memo')){
-    //     return "yes";
-    //   }else{
-    //       return "no";
-    //   }
-
+ 
+    public function store(Request $request){
         $this->validate($request, [
-            'supplier_id' => 'required|',
-            'invoice_no' => 'required|',
-          'memo' => 'required',
-          //  'AmountTotal' => 'required|numeric',
-
+            'supplier_id' => 'required',
+            'invoice_no' => 'required',
+            'total' => 'required|numeric',
         ]);
 
         //first save the purchase information
-        $purchase = new Purchase();
-        $purchase->supplier_id = $request->supplier_id;
-        $purchase->invoice_no = $request->invoice_no;
-        $purchase->total = $request->total;
-        $purchase->paid = $request->paid ?? 0;
-        $purchase->status=$request->status;
-        $purchase->purchase_date = $request->purchase_date;
+        DB::transaction(function() use($request){
+            $purchase = new Purchase();
+            $purchase->sell_center_id = session()->get('sellcenter')['id'];
+            $purchase->supplier_id = $request->supplier_id;
+            $purchase->invoice_no = $request->invoice_no;
+            $purchase->total = $request->total;
+            $purchase->paid = $request->paid ?? 0;
+            $purchase->purchase_date = $request->purchase_date;
+            if($request->hasFile('memo')){
+                $path=$request->file('memo')->store('file/memo', 'public');
+                $purchase->file=$path;
+            }
+            $purchase->save();
 
-        if($request->hasFile('memo')){
-            $path=$request->file('memo')->store('file/memo', 'public');
-            $purchase->file=$path;
-        }
+            if(!empty($request->products)){
+            //save the purchase item
+            foreach ($request->products as $item) {
+                $product = SellCenterProduct::where('id', $item['product_id'])->first();
+                $product->stock = $product->stock + $item['quantity'];
+                $product->save();
+                $p_item = new PurchaseItem();
+                $p_item->purchase_id = $purchase->id;
+                $p_item->sell_center_product_id = $item['product_id'];
+                $p_item->price = $item['price'];
+                $p_item->quantity = $item['quantity'];
+                $p_item->save();
 
-        $purchase_memo='memo-'.time().'.jpg';
+             }
+            }
 
-     //   return $purchase_memo;
-        Image::make(file_get_contents($request->memo))->save(public_path('storage/images/purchase_memo/').$purchase_memo);
-        $purchase->file='images/purchase_memo/'.$purchase_memo;
-        $purchase->save();
+            //save a supplier paid amount
+            if($purchase->paid>0){
+                    $supplier_payment=new SupplierPayment();
+                    $supplier_payment->supplier_id=$request->supplier_id;
+                    $supplier_payment->amount=$request->paid;
+                    $supplier_payment->date=$request->purchase_date;
+                    $supplier_payment->paid_by=$request->paid_by;
+                    $supplier_payment->save();
+            }
 
-        if(!empty($request->products)){
-
-        //save the purchase item
-        foreach ($request->products as $item) {
-
-            $product = Product::where('id', $item['product_id'])->first();
-            $product->stock = $product->stock + $item['quantity'];
-            $product->save();
-            $p_item = new Purchaseitem();
-            $p_item->purchase_id = $purchase->id;
-            $p_item->product_id = $item['product_id'];
-            $p_item->price = $item['price'];
-            $p_item->insert_quantity = $item['quantity'];
-            $p_item->stock = $item['quantity'];
-            $p_item->save();
-
-
-        }
-        }
-
-       //save a supplier paid amount
-       if($purchase->paid>0){
-         $supplier_payment=new SupplierPayment();
-         $supplier_payment->supplier_id=$request->supplier_id;
-         $supplier_payment->amount=$request->paid;
-         $supplier_payment->date=$request->purchase_date;
-         $supplier_payment->paid_by=$request->paid_by;
-         $supplier_payment->save();
-       }
-
-
-       //create a debit
-
-       if($request->paid>0){
-           $comment="Product Purchase";
-           if(empty($request->products)){
-            $comment="Fabrics Purchase";
-           }
-           $debit = new Debit();
-            $debit->purpose =9;
-            $debit->debit_from=$request->paid_by;
-            $debit->amount = $request->paid;
-            $debit->comment = "'$comment'.Paid Amount '$request->paid'";
-            $debit->date = $request->purchase_date;
-            $debit->insert_admin_id=session()->get('admin')['id'];
-            $debit->save();
-       }
-
+            //create a debit
+            if($request->paid>0){
+                    $debit = new SellCenterDebit();
+                    $debit->sell_center_id = session()->get('sellcenter')['id'];
+                    $debit->purpose ="product purchase";
+                    $debit->debit_from=$request->paid_by;
+                    $debit->amount = $request->paid;
+                    $debit->comment = "product purchase paid Amount'$request->paid'";
+                    $debit->date = $request->purchase_date;
+                    $debit->save();
+            }
+        });
        //send message to supplier
-       $supplier = Supplier::findOrFail($request->supplier_id);
-       Supplier::sendNewPurchaseMessage($supplier,$request->total,$request->invoice_no) ;
+    //    $supplier = Supplier::findOrFail($request->supplier_id);
+    //    Supplier::sendNewPurchaseMessage($supplier,$request->total,$request->invoice_no) ;
 
       return response()->json([
             'status' => 'SUCCESS',
-            'message' => 'new purchase was added'
+            'message' => 'new purchase  added'
         ]);
 
     }
 
 
-    public function show($id)
-    {
-
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
-    public function destroy($id)
-    {
-        //
-    }
-
     public function details($id){
         $purchase=Purchase::find($id);
-        $details=Purchaseitem::where('purchase_id',$id)->with(['product'])->get();
+        $details=PurchaseItem::where('purchase_id',$id)->with(['product'])->get();
          return response()->json([
             'status'=>'SUCCESS',
             'purchase'=>$purchase,
             'details'=>$details,
-            'merchant'=>Supplier::where('id',$purchase->supplier_id)->first(),
+            'supplier'=>Supplier::where('id',$purchase->supplier_id)->first(),
         ]);
- }
-
-
-
-
- public function  search_according_data($search){
-
-    $purchases = Purchase::where('invoice_no','like', '%' . $search . '%')
-                    ->orderBy('id', 'DESC')->with('supplier')
-                    ->paginate(10);
-
-    return response()->json([
-        'status'=>'OK',
-        'purchases'=>$purchases
-     ]);
-}
-
-
-
-
-public function  according_date_wise(Request $request){
-
-    $purchases='';
-    $paginate=$request->item??10;
-    if(!empty($request->start_date) && empty($request->end_date)){
-
-            $purchases=Purchase::whereDate('created_at','=',$request->start_date)->with('supplier')
-                         ->paginate($paginate);
-
     }
-    elseif(!empty($request->end_date) && !empty($request->start_date)){
 
-            $purchases=Purchase::whereDate('created_at', '>=', $request->start_date)
-                            ->whereDate('created_at', '<=', $request->end_date)->with('supplier')
+
+
+
+    public function  search_according_data($search){
+
+        $purchases = Purchase::where('sell_center_id',session()->get('sellcenter')['id'])->where('invoice_no','like', '%' . $search . '%')
+                        ->orderBy('id', 'DESC')->with('supplier')
+                        ->paginate(10);
+
+        return response()->json([
+            'status'=>'OK',
+            'purchases'=>$purchases
+        ]);
+    }
+
+
+
+
+    public function  according_date_wise(Request $request){
+
+        $purchases='';
+        $paginate=$request->item??10;
+        if(!empty($request->start_date) && empty($request->end_date)){
+
+                $purchases=Purchase::where('sell_center_id',session()->get('sellcenter')['id'])->whereDate('created_at','=',$request->start_date)->with('supplier')
                             ->paginate($paginate);
-     }else{
 
-        $purchases=Purchase::whereDate('created_at','=',$request->end_date)->with('supplier')
-                 ->paginate($paginate);
+        }
+        elseif(!empty($request->end_date) && !empty($request->start_date)){
 
-     }
-         return response()->json([
-                    'status'=>'OK',
-                    'purchases'=>$purchases
+                $purchases=Purchase::where('sell_center_id',session()->get('sellcenter')['id'])->whereDate('created_at', '>=', $request->start_date)
+                                ->whereDate('created_at', '<=', $request->end_date)->with('supplier')
+                                ->paginate($paginate);
+        }else{
 
-  ]);
+            $purchases=Purchase::where('sell_center_id',session()->get('sellcenter')['id'])->whereDate('created_at','=',$request->end_date)->with('supplier')
+                    ->paginate($paginate);
+
+        }
+            return response()->json([
+                        'status'=>'OK',
+                        'purchases'=>$purchases
+
+    ]);
 
 
-}
+    }
 
-public function uploadFile(Request $request){
+    public function uploadFile(Request $request){
 
-    $purchase=Purchase::where('id',$request->id)->first();
-    if($request->hasFile('file')){
-        $path=$request->file('file')->store('file/memo','public');
-        $purchase->file=$path;
-        $purchase->save();
-        return response()->json('ok');
+        $purchase=Purchase::where('id',$request->id)->first();
+        if($request->hasFile('file')){
+            $path=$request->file('file')->store('file/memo','public');
+            $purchase->file=$path;
+            $purchase->save();
+            return response()->json('ok');
+        }
+
     }
 
 
-}
 
 }

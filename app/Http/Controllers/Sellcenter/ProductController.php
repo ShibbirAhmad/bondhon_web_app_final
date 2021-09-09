@@ -143,6 +143,72 @@ class ProductController extends Controller
    }
 
 
+    public function searchByCode($search){
+       $products = SellCenterProduct::where('sell_center_id',session()->get('sellcenter')['id'])
+                                     ->where('code',$search)
+                                     ->get();
+       return response()->json([
+           'status' => 'SUCCESS',
+           'products' => $products
+       ]);
+   }
+
+   public function searchProducts($search){
+
+       $products = SellCenterProduct::where('sell_center_id',session()->get('sellcenter')['id'])
+                                     ->where('code',$search)
+                                     ->orWhere('name','like','%'.$search.'%')
+                                     ->with(['purchaseItems'])
+                                     ->paginate(10);
+       return response()->json([
+           'status' => 'SUCCESS',
+           'products' => $products
+       ]);
+   }
+
+   public function approved($id) {
+       $product = SellCenterProduct::findOrFail($id);
+       if ($product) {
+           $product->status = 1;
+           if ($product->save()) {
+               return response()->json([
+                   'status' => 'SUCCESS',
+                   'message' => 'product approved successfully'
+               ]);
+           }
+       }
+   }
+
+   public function pending($id){
+       $product = SellCenterProduct::find($id);
+       if ($product) {
+           $product->status = 2;
+           if ($product->save()) {
+               return response()->json([
+                   'status' => 'SUCCESS',
+                   'message' => 'product pending successfully'
+               ]);
+           }
+       }
+   }
+
+
+   
+
+   public function deny($id) {
+       $product = SellCenterProduct::findorFail($id);
+       if ($product) {
+           $product->status = 3;
+           if ($product->save()) {
+               return response()->json([
+                   'status' => 'SUCCESS',
+                   'message' => 'product deny successfully'
+               ]);
+           }
+       }
+   }
+
+
     public function productStatus($id){
 
         $product = SellCenterProduct::findOrFail($id);
