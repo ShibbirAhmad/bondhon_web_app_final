@@ -67,32 +67,15 @@
           </a>
           <ul class="treeview-menu">
                   <li>
-                      <router-link :to="{ name: 'credit'}"><i class="fa fa-eye"></i> Credit</router-link>
+                      <router-link :to="{ name: 'sell_center_credit'}"><i class="fa fa-eye"></i> Credit</router-link>
                   </li>
     
                   <li>
-                      <router-link :to="{ name: 'debit'}"><i class="fa fa-eye"></i>Debit</router-link>
+                      <router-link :to="{ name: 'sell_center_debit'}"><i class="fa fa-eye"></i>Debit</router-link>
                   </li>
           </ul>
         </li>
 
-        <li class="treeview">
-          <a href="#">
-              <i class="fa fa-money"></i> <span>Fund Transfer</span>
-              <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-              <li>
-                  <router-link :to="{ name: 'fondtransferAdd'}"><i class="fa fa-eye"></i>Add</router-link>
-              </li>
-              <li>
-                  <router-link :to="{ name: 'fondtransfer'}"><i class="fa fa-eye"></i>Manage</router-link>
-              </li>
-
-          </ul>
-        </li>
         
         <li class="treeview">
           <a href="#">

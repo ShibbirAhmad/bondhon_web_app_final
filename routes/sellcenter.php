@@ -72,7 +72,31 @@ Route::group([
         Route::post('api/purchase/memo/upload','PurchaseController@uploadFile');
     
  
- 
+
+        //start credit route
+        Route::get('api/sellcenter/credits', 'AccountController@get_credit');
+        Route::post('api/sellcenter/credit/store', 'AccountController@store_credit');
+        Route::get('api/sellcenter/credit/edit/{id}', 'AccountController@edit_credit');
+        Route::post('api/sellcenter/credit/update/{id}', 'AccountController@update_credit');
+        Route::get('api/sellcenter/credit/destroy/{id}', 'AccountController@destroy_credit');
+        Route::get('api/sellcenter/export/credit', 'AccountController@export_credit');
+        Route::get('api/sellcenter/credit/purpose/list', 'AccountController@credit_purpose_list');
+        Route::get('api/sellcenter/debit/purpose/list', 'AccountController@debit_purpose_list');
+
+        //credit due route......
+        Route::get('api/sellcenter/credit/due', 'CreditDueController@index');
+        Route::get('api/sellcenter/due/to/paid/{id}', 'CreditDueController@duePaid');
+
+        //start debit route
+        Route::get('api/sellcenter/debits', 'AccountController@get_debit');
+        Route::post('/api/sellcenter/debit/store', 'AccountController@store_debit');
+        Route::get('api/sellcenter/debit/edit/{id}', 'AccountController@edit_debit');
+        Route::get('api/sellcenter/export/debit', 'AccountController@export_debit');
+        Route::post('api/sellcenter/debit/update/{id}', 'AccountController@update_debit');
+        Route::get('api/sellcenter/debit/destroy/{id}', 'AccountController@destroy_debit');
+        Route::get('api/sellcenter/account/purpose', 'AccountController@accountPurpose');
+        Route::get('api/sellcenter/employee/list', 'AccountController@employeeList');
+
 
 
 

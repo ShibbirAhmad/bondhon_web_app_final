@@ -1176,10 +1176,73 @@ const routes = [
                 authSellCenter: true,
                 title: 'purchase || Details'
             }
-        },
+    },
 
 
+    {
+        path: '/sell/center/credit',
+        component: () => import(/* webpackChunkName: "sell_center_credit" */'./components/sellcenter/credit/Credit.vue'),
+        name: 'sell_center_credit',
+        meta: {
+            authSellCenter: true,
+            title: 'Credit'
+        }
 
+    },
+ 
+    {
+        path: '/sell/center/credit/add',
+        component: () => import(/* webpackChunkName: "sell_center_credit_add" */'./components/sellcenter/credit/Add.vue'),
+        name: 'sell_center_credit_add',
+        meta: {
+            authSellCenter: true,
+            title: 'add|credit'
+        }
+
+    },
+
+    {
+        path: '/sell/center/credit/edit/:id',
+        component: () => import(/* webpackChunkName: "sell_center_credit_edit" */'./components/sellcenter/credit/Edit.vue'),
+        name: 'sell_center_credit_edit',
+        meta: {
+            authSellCenter: true,
+            title: 'Edit credit'
+        }
+
+    },
+
+    {
+        path: '/sell/center/debit',
+        component: () => import(/* webpackChunkName: "sell_center_debit" */'./components/sellcenter/debit/Debit.vue'),
+        name: 'sell_center_debit',
+        meta: {
+            authSellCenter: true,
+            title: 'Debit'
+        }
+
+    },
+    {
+        path: '/sell/center/debit/add',
+        component: () => import(/* webpackChunkName: "sell_center_debit_add" */'./components/sellcenter/debit/Add.vue'),
+        name: 'sell_center_debit_add',
+        meta: {
+            authSellCenter: true,
+            title: 'add|debit'
+        }
+
+    },
+
+    {
+        path: '/sell/center/debit/edit/:id',
+        component: () => import(/* webpackChunkName: "sell_center_debit_edit" */'./components/sellcenter/debit/Edit.vue'),
+        name: 'sell_center_debit_edit',
+        meta: {
+            authSellCenter: true,
+            title: 'Edit|Debit'
+        }
+
+    },
 
 ]
 

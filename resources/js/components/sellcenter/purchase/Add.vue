@@ -212,10 +212,10 @@
                             class="form-control"
                             v-model="paid_by"
                           >
-                            <option value="Cash">Cash</option>
-                            <option value="Bkash(personal)">Bkash(personal)</option>
-                            <option value="Bkash(merchant)">Bkash(merchant)</option>
-                            <option value="Bank">Bank</option>
+                          <option value="Cash">Cash</option>
+                          <option value="Bkash">Bkash </option>
+                          <option value="Nagad">Nagad</option>
+                          <option value="Bank">Bank</option>
                           </select>
                         </td>
                       </tr>

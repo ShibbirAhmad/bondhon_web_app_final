@@ -1406,14 +1406,14 @@ var render = function() {
                                       _vm._v(" "),
                                       _c(
                                         "option",
-                                        { attrs: { value: "Bkash(personal)" } },
-                                        [_vm._v("Bkash(personal)")]
+                                        { attrs: { value: "Bkash" } },
+                                        [_vm._v("Bkash ")]
                                       ),
                                       _vm._v(" "),
                                       _c(
                                         "option",
-                                        { attrs: { value: "Bkash(merchant)" } },
-                                        [_vm._v("Bkash(merchant)")]
+                                        { attrs: { value: "Nagad" } },
+                                        [_vm._v("Nagad")]
                                       ),
                                       _vm._v(" "),
                                       _c(
