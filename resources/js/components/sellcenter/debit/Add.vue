@@ -7,6 +7,7 @@
           <router-link :to="{ name: 'sell_center_debit' }" class="btn btn-primary"
             ><i class="fa fa-arrow-left"></i
           ></router-link>
+
         </h1>
         <ol class="breadcrumb">
           <li>
@@ -23,9 +24,7 @@
                 <h3 class="box-title">Add Debit</h3>
               </div>
               <div class="box-body">
-                <h1 v-if="loading"><i class="fa fa-spinner fa-spin"></i></h1>
                 <form
-                  v-else
                   @submit.prevent="addDebit"
                   @keydown="form.onKeydown($event)"
                   enctype="multipart/form-data"
@@ -181,7 +180,6 @@ export default {
         bill_statement_id:"",
         investor_return_id:"",
       }),
-      loading: true,
       error: "",
       purposes: "",
       //fo date picker

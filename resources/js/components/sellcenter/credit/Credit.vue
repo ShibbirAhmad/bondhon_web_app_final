@@ -224,7 +224,7 @@ export default {
                   duration: 200,
                 });
               } else {
-                this.$toasted.show("some thing want to wrong", {
+                this.$toasted.show("some thing went to wrong", {
                   position: "top-center",
                   type: "error",
                   duration: 4000,

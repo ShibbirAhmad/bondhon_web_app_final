@@ -154,7 +154,7 @@ export default {
           }
           //other wise success resp
           else {
-            this.error = "some thing want to wrong";
+            this.error = "some thing went to wrong";
           }
         })
         .catch((error) => {
@@ -176,12 +176,12 @@ export default {
               duration: 2000,
             });
           } else {
-            this.error = "some thing want to wrong";
+            this.error = "some thing went to wrong";
           }
         })
         .catch((error) => {
           //  console.log(error)
-          this.error = "some thing want to wrong";
+          this.error = "some thing went to wrong";
         });
     },
   },

@@ -330,7 +330,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
           _this2.form.credit_in = resp.data.credit.credit_in;
         } //other wise success resp
         else {
-            _this2.error = "something want to wrong";
+            _this2.error = "something went to wrong";
           }
       });
     },
@@ -351,7 +351,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
             duration: 2000
           });
         } else {
-          _this3.error = "something want to wrong";
+          _this3.error = "something went to wrong";
         }
       });
     }
@@ -596,7 +596,7 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "btn btn-primary",
-                  attrs: { to: { name: "credit" } }
+                  attrs: { to: { name: "sell_center_credit" } }
                 },
                 [_c("i", { staticClass: "fa fa-arrow-left" })]
               )

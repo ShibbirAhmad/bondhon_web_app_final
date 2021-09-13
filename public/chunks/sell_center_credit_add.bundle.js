@@ -612,7 +612,7 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "btn btn-primary",
-                  attrs: { to: { name: "debit" } }
+                  attrs: { to: { name: "sell_center_credit" } }
                 },
                 [_c("i", { staticClass: "fa fa-arrow-left" })]
               )

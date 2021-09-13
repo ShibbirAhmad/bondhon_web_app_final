@@ -585,15 +585,6 @@ const routes = [
             title: 'Profite Report'
         }
     },
-    {
-        path: '/backend/order/profite/report',
-        component: () => import(/* webpackChunkName: "OrderProfite" */'./components/admin/Report/OrderProfite'),
-        name: 'OrderProfite',
-        meta: {
-            requiresAuthAdmin: true,
-            title: 'Profite Report'
-        }
-    },
 
     {
         path: '/backend/account/report',
@@ -1051,22 +1042,35 @@ const routes = [
 
     },
 
+
+
     {
-        path: '/sell/center/order',
-        component: () => import(/* webpackChunkName: "sell_center_order" */'./components/sellcenter/order/Index'),
-        name: 'sell_center_order',
+        path: '/sell/center/sales',
+        component: () => import(/* webpackChunkName: "sell_center_sale" */'./components/sellcenter/sale/Index.vue'),
+        name: 'sell_center_sale',
         meta: {
-            title: 'Order Info',
+            title: 'Sale Info',
             authSellCenter: true ,
         }
     },
 
     {
-        path: '/sell/center/order/view/:id',
-        component: () => import(/* webpackChunkName: "sell_center_order_view" */'./components/sellcenter/order/View'),
-        name: 'sell_center_order_view',
+        path: '/sell/center/sale/add',
+        component: () => import(/* webpackChunkName: "sell_center_sale_add" */'./components/sellcenter/sale/Add.vue'),
+        name: 'sell_center_sale_add',
         meta: {
-            title: 'order details info ',
+            title: 'Sale Info',
+            authSellCenter: true ,
+        }
+    },
+
+    
+    {
+        path: '/sell/center/sale/view/:id',
+        component: () => import(/* webpackChunkName: "sell_center_sale_view" */'./components/sellcenter/sale/View.vue'),
+        name: 'sell_center_sale_view',
+        meta: {
+            title: 'sale details info ',
             authSellCenter: true ,
         }
 

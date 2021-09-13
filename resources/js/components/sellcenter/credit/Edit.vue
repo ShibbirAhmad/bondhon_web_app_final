@@ -4,7 +4,7 @@
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-          <router-link :to="{ name: 'credit' }" class="btn btn-primary"
+          <router-link :to="{ name: 'sell_center_credit' }" class="btn btn-primary"
             ><i class="fa fa-arrow-left"></i
           ></router-link>
         </h1>
@@ -179,7 +179,7 @@ export default {
           }
           //other wise success resp
           else {
-            this.error = "something want to wrong";
+            this.error = "something went to wrong";
           }
         })
 
@@ -199,7 +199,7 @@ export default {
               duration: 2000,
             });
           } else {
-            this.error = "something want to wrong";
+            this.error = "something went to wrong";
           }
         })
     },

@@ -304,7 +304,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
           _this2.form.amount = resp.data.debit.amount;
         } //other wise success resp
         else {
-            _this2.error = "some thing want to wrong";
+            _this2.error = "some thing went to wrong";
           }
       })["catch"](function (error) {
         console.log(error);
@@ -327,11 +327,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
             duration: 2000
           });
         } else {
-          _this3.error = "some thing want to wrong";
+          _this3.error = "some thing went to wrong";
         }
       })["catch"](function (error) {
         //  console.log(error)
-        _this3.error = "some thing want to wrong";
+        _this3.error = "some thing went to wrong";
       });
     }
   },

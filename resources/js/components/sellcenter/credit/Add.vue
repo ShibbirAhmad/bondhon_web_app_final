@@ -4,7 +4,7 @@
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-          <router-link :to="{ name: 'debit' }" class="btn btn-primary"
+          <router-link :to="{ name: 'sell_center_credit' }" class="btn btn-primary"
             ><i class="fa fa-arrow-left"></i
           ></router-link>
         </h1>

@@ -377,7 +377,7 @@ __webpack_require__.r(__webpack_exports__);
                 duration: 200
               });
             } else {
-              _this2.$toasted.show("some thing want to wrong", {
+              _this2.$toasted.show("some thing went to wrong", {
                 position: "top-center",
                 type: "error",
                 duration: 4000

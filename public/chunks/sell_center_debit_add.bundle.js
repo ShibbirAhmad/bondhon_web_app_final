@@ -306,7 +306,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -333,7 +332,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         bill_statement_id: "",
         investor_return_id: ""
       }),
-      loading: true,
       error: "",
       purposes: "",
       //fo date picker
@@ -898,343 +896,187 @@ var render = function() {
                 _vm._m(1),
                 _vm._v(" "),
                 _c("div", { staticClass: "box-body" }, [
-                  _vm.loading
-                    ? _c("h1", [
-                        _c("i", { staticClass: "fa fa-spinner fa-spin" })
-                      ])
-                    : _c(
-                        "form",
-                        {
-                          attrs: { enctype: "multipart/form-data" },
-                          on: {
-                            submit: function($event) {
-                              $event.preventDefault()
-                              return _vm.addDebit($event)
-                            },
-                            keydown: function($event) {
-                              return _vm.form.onKeydown($event)
-                            }
-                          }
+                  _c(
+                    "form",
+                    {
+                      attrs: { enctype: "multipart/form-data" },
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.addDebit($event)
                         },
-                        [
-                          _vm.error
-                            ? _c("div", { staticClass: "alert-danger alert" }, [
-                                _vm._v(
-                                  "\n                  " +
-                                    _vm._s(_vm.error) +
-                                    "\n                "
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "row" }, [
-                            _c("div", { staticClass: "col-md-6" }, [
-                              _c(
-                                "div",
-                                { staticClass: "form-group" },
-                                [
-                                  _c("label", [_vm._v("Date")]),
-                                  _vm._v(" "),
-                                  _c("date-picker", {
-                                    class: {
-                                      "is-invalid": _vm.form.errors.has("date")
-                                    },
-                                    attrs: {
-                                      autocomplete: "off",
-                                      config: _vm.options
-                                    },
-                                    model: {
-                                      value: _vm.form.date,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.form, "date", $$v)
-                                      },
-                                      expression: "form.date"
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("has-error", {
-                                    attrs: { form: _vm.form, field: "date" }
-                                  })
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-6" }, [
-                              _c(
-                                "div",
-                                { staticClass: "form-group" },
-                                [
-                                  _c("label", [_vm._v("Purpose")]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.form.purpose,
-                                          expression: "form.purpose"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      class: {
-                                        "is-invalid": _vm.form.errors.has(
-                                          "purpose"
-                                        )
-                                      },
-                                      attrs: { name: "purpose", required: "" },
-                                      on: {
-                                        change: [
-                                          function($event) {
-                                            var $$selectedVal = Array.prototype.filter
-                                              .call(
-                                                $event.target.options,
-                                                function(o) {
-                                                  return o.selected
-                                                }
-                                              )
-                                              .map(function(o) {
-                                                var val =
-                                                  "_value" in o
-                                                    ? o._value
-                                                    : o.value
-                                                return val
-                                              })
-                                            _vm.$set(
-                                              _vm.form,
-                                              "purpose",
-                                              $event.target.multiple
-                                                ? $$selectedVal
-                                                : $$selectedVal[0]
-                                            )
-                                          },
-                                          _vm.selectPurpose
-                                        ]
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        {
-                                          attrs: {
-                                            value: "",
-                                            selected: "",
-                                            disabled: ""
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                          Select Purpose\n                        "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._l(_vm.purposes, function(purpose) {
-                                        return _c(
-                                          "option",
-                                          {
-                                            key: purpose.id,
-                                            domProps: { value: purpose.id }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                          " +
-                                                _vm._s(purpose.text) +
-                                                "\n                        "
-                                            )
-                                          ]
-                                        )
-                                      })
-                                    ],
-                                    2
-                                  ),
-                                  _vm._v(" "),
-                                  _c("has-error", {
-                                    attrs: { form: _vm.form, field: "purpose" }
-                                  })
-                                ],
-                                1
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "row" }, [
-                            _c("div", { staticClass: "col-md-6" }, [
-                              _c(
-                                "div",
-                                { staticClass: "form-group" },
-                                [
-                                  _c("label", [_vm._v("Amount")]),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.amount,
-                                        expression: "form.amount"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    class: {
-                                      "is-invalid": _vm.form.errors.has(
-                                        "amount"
-                                      )
-                                    },
-                                    attrs: {
-                                      type: "text",
-                                      name: "amount",
-                                      required: "",
-                                      autocomplete: "off"
-                                    },
-                                    domProps: { value: _vm.form.amount },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "amount",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("has-error", {
-                                    attrs: { form: _vm.form, field: "amount" }
-                                  })
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-6" }, [
-                              _c(
-                                "div",
-                                { staticClass: "form-group" },
-                                [
-                                  _c("label", [_vm._v("Debit From")]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.form.debit_from,
-                                          expression: "form.debit_from"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      class: {
-                                        "is-invalid": _vm.form.errors.has(
-                                          "debit_from"
-                                        )
-                                      },
-                                      attrs: { name: "debit_from", id: "" },
-                                      on: {
-                                        change: function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                          _vm.$set(
-                                            _vm.form,
-                                            "debit_from",
-                                            $event.target.multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        { attrs: { value: "Cash" } },
-                                        [_vm._v("Cash")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "option",
-                                        { attrs: { value: "Bkash" } },
-                                        [
-                                          _vm._v(
-                                            "\n                          Bkash\n                        "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "option",
-                                        { attrs: { value: "Nagad" } },
-                                        [
-                                          _vm._v(
-                                            "\n                          Nagad\n                        "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "option",
-                                        { attrs: { value: "Bank" } },
-                                        [_vm._v("Bank")]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("has-error", {
-                                    attrs: {
-                                      form: _vm.form,
-                                      field: "debit_from"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
+                        keydown: function($event) {
+                          return _vm.form.onKeydown($event)
+                        }
+                      }
+                    },
+                    [
+                      _vm.error
+                        ? _c("div", { staticClass: "alert-danger alert" }, [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(_vm.error) +
+                                "\n                "
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
                           _c(
                             "div",
                             { staticClass: "form-group" },
                             [
-                              _c("label", [_vm._v("Comment")]),
+                              _c("label", [_vm._v("Date")]),
+                              _vm._v(" "),
+                              _c("date-picker", {
+                                class: {
+                                  "is-invalid": _vm.form.errors.has("date")
+                                },
+                                attrs: {
+                                  autocomplete: "off",
+                                  config: _vm.options
+                                },
+                                model: {
+                                  value: _vm.form.date,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "date", $$v)
+                                  },
+                                  expression: "form.date"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: { form: _vm.form, field: "date" }
+                              })
+                            ],
+                            1
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c("label", [_vm._v("Purpose")]),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.purpose,
+                                      expression: "form.purpose"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  class: {
+                                    "is-invalid": _vm.form.errors.has("purpose")
+                                  },
+                                  attrs: { name: "purpose", required: "" },
+                                  on: {
+                                    change: [
+                                      function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.form,
+                                          "purpose",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      },
+                                      _vm.selectPurpose
+                                    ]
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "option",
+                                    {
+                                      attrs: {
+                                        value: "",
+                                        selected: "",
+                                        disabled: ""
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                          Select Purpose\n                        "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.purposes, function(purpose) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: purpose.id,
+                                        domProps: { value: purpose.id }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                          " +
+                                            _vm._s(purpose.text) +
+                                            "\n                        "
+                                        )
+                                      ]
+                                    )
+                                  })
+                                ],
+                                2
+                              ),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: { form: _vm.form, field: "purpose" }
+                              })
+                            ],
+                            1
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c("label", [_vm._v("Amount")]),
                               _vm._v(" "),
                               _c("input", {
                                 directives: [
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.form.comment,
-                                    expression: "form.comment"
+                                    value: _vm.form.amount,
+                                    expression: "form.amount"
                                   }
                                 ],
                                 staticClass: "form-control",
                                 class: {
-                                  "is-invalid": _vm.form.errors.has("comment")
+                                  "is-invalid": _vm.form.errors.has("amount")
                                 },
                                 attrs: {
                                   type: "text",
-                                  name: "comment",
+                                  name: "amount",
+                                  required: "",
                                   autocomplete: "off"
                                 },
-                                domProps: { value: _vm.form.comment },
+                                domProps: { value: _vm.form.amount },
                                 on: {
                                   input: function($event) {
                                     if ($event.target.composing) {
@@ -1242,7 +1084,7 @@ var render = function() {
                                     }
                                     _vm.$set(
                                       _vm.form,
-                                      "comment",
+                                      "amount",
                                       $event.target.value
                                     )
                                   }
@@ -1250,34 +1092,158 @@ var render = function() {
                               }),
                               _vm._v(" "),
                               _c("has-error", {
-                                attrs: { form: _vm.form, field: "comment" }
+                                attrs: { form: _vm.form, field: "amount" }
                               })
                             ],
                             1
-                          ),
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c("label", [_vm._v("Debit From")]),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.debit_from,
+                                      expression: "form.debit_from"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  class: {
+                                    "is-invalid": _vm.form.errors.has(
+                                      "debit_from"
+                                    )
+                                  },
+                                  attrs: { name: "debit_from", id: "" },
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.form,
+                                        "debit_from",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("option", { attrs: { value: "Cash" } }, [
+                                    _vm._v("Cash")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "Bkash" } }, [
+                                    _vm._v(
+                                      "\n                          Bkash\n                        "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "Nagad" } }, [
+                                    _vm._v(
+                                      "\n                          Nagad\n                        "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "Bank" } }, [
+                                    _vm._v("Bank")
+                                  ])
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: { form: _vm.form, field: "debit_from" }
+                              })
+                            ],
+                            1
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _c("label", [_vm._v("Comment")]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "form-group text-center" }, [
-                            _c(
-                              "button",
+                          _c("input", {
+                            directives: [
                               {
-                                staticClass: "btn btn-primary",
-                                attrs: {
-                                  disabled: _vm.form.busy,
-                                  type: "submit"
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.comment,
+                                expression: "form.comment"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            class: {
+                              "is-invalid": _vm.form.errors.has("comment")
+                            },
+                            attrs: {
+                              type: "text",
+                              name: "comment",
+                              autocomplete: "off"
+                            },
+                            domProps: { value: _vm.form.comment },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
                                 }
-                              },
-                              [
-                                _vm.form.busy
-                                  ? _c("i", {
-                                      staticClass: "fa fa-spin fa-spinner"
-                                    })
-                                  : _vm._e(),
-                                _vm._v("Submit\n                  ")
-                              ]
-                            )
-                          ])
-                        ]
-                      )
+                                _vm.$set(
+                                  _vm.form,
+                                  "comment",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("has-error", {
+                            attrs: { form: _vm.form, field: "comment" }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group text-center" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary",
+                            attrs: { disabled: _vm.form.busy, type: "submit" }
+                          },
+                          [
+                            _vm.form.busy
+                              ? _c("i", {
+                                  staticClass: "fa fa-spin fa-spinner"
+                                })
+                              : _vm._e(),
+                            _vm._v("Submit\n                  ")
+                          ]
+                        )
+                      ])
+                    ]
+                  )
                 ])
               ])
             ])
