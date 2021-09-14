@@ -1,70 +1,69 @@
 <template>
+  <div class="login_container" >
   <div class="login-box" v-if="!isLoading">
     <div class="login-logo">
-      <a href="#"> <b> {{ general_setting.title }}  </b></a>
+      <a href="#"> <b>bondhonsociety</b>.com</a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-      <p class="login-box-msg">Sign in to start your session</p>
-
+      <p class="login-box-msg">Sign-in to start your session</p>
       <form @submit.prevent="login">
         <div class="alert alert-danger" v-if="error">{{ error }}</div>
-
+        
         <div class="form-group has-feedback">
+          <label for="phone">Phone</label>
           <input
-            type="email"
+            type="text"
             class="form-control"
-            :class="{ 'is-invalid': form.errors.has('email') }"
-            name="email"
-            v-model="form.email"
-            placeholder="Email"
-            autocomplete="off"
+            :class="{ 'is-invalid': form.errors.has('phone') }"
+            name="phone"
+            v-model="form.phone"
+            placeholder="01xxxxxxxxx"
+            maxlength="11"
             autofocus
           />
-          <has-error :form="form" field="email"></has-error>
+          <has-error :form="form" field="phone"></has-error>
         </div>
         <div class="form-group has-feedback">
+          <label for="password">Password</label>
           <input
             type="password"
             class="form-control"
             :class="{ 'is-invalid': form.errors.has('password') }"
             name="password"
             v-model="form.password"
-            placeholder="Password"
             autocomplete="off"
           />
           <has-error :form="form" field="password"></has-error>
         </div>
         <button
-          href="#"
           :disabled="form.busy"
           class="btn btn-block btn-primary"
           type="submit"
         >
           <i class="fa fa-spinner fa-spin" v-if="form.busy"></i>LOGIN
         </button>
-        <router-link class="span password_reset_button" :to="{name : 'merchant_password_reset'}">Forgotten Password</router-link>
-        <a href="/public/merchant/register" class="btn btn-info btn-block" :to="{ name : 'merchant_register'}">Register</a>
       </form>
-
     </div>
     <!-- /.login-box-body -->
   </div>
   <div class="loading" v-else>
     <h2>Loading............</h2>
   </div>
+
+  </div>
 </template>
 
 <script>
 import Vue from "vue";
 import { Form, HasError } from "vform";
-import LoginVue from "../public/Login.vue";
+
 
 Vue.component(HasError.name, HasError);
 export default {
   created() {
     this.removeClass();
-    this.$store.dispatch('general_setting');
+
     setTimeout(() => {
       this.isLoading = false;
     }, 1000);
@@ -73,7 +72,7 @@ export default {
   data() {
     return {
       form: new Form({
-        email: "",
+        phone: "",
         password: "",
       }),
       error: "",
@@ -84,19 +83,16 @@ export default {
   methods: {
     login() {
       this.form
-        .post("/api/merchant/login")
+        .post("/api/sellcenter/login")
         .then((resp) => {
-          console.log(resp) ;
-
+          console.log(resp);
           if (resp.data.status == "SUCCESS") {
-            localStorage.setItem("merchant_token", resp.data.merchant_token);
-            this.$store.commit("merchant", resp.data.merchant);
-            this.$router.push({ name: "merchant_dashboard" });
-
-            setTimeout(()=>{
-                location.reload();
-             },1500)
-
+            localStorage.setItem("sell_center_token", resp.data.sell_center_token);
+            this.$store.commit("sellcenter", resp.data.sellcenter);
+            this.$router.push({ name: "sell_center_dashboard" });
+            setTimeout(() =>{
+              location.reload();
+            },1000)
 
             this.addClass();
             this.$toasted.show(resp.data.message, {
@@ -110,7 +106,7 @@ export default {
           }
         })
         .catch((error) => {
-          this.error = "Some thing want to wrong. please try again";
+          this.error = "Something went to wrong. please try again";
         });
     },
 
@@ -141,32 +137,37 @@ export default {
       footer.classList.remove("none");
     },
   },
-    computed:{
-       general_setting() {
-      return this.$store.getters.general_setting;
-    },
-    }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  let sidebar = document.getElementsByClassName("main-sidebar")[0];
-  let footer = document.getElementsByClassName("main-footer")[0];
-  if (window.location.href == "http://127.0.0.1:8000/merchant/backend/login") {
-    sidebar.classList.add("none");
-    footer.classList.add("none");
-  }
-});
 </script>
 <style >
+
+
+.login_container{
+    position: fixed;
+    background: url(https://static.vecteezy.com/system/resources/previews/001/777/747/non_2x/abstract-technology-background-security-system-concept-with-fingerprint-letter-p-sign-illustration-vector.jpg);
+    width: 100%;
+    height: 1000px;
+    margin-top: -200px;
+}
+
+.login-logo a {
+  color:#fff;
+}
+.login-box {
+  margin: 20% auto ;
+}
+
+
 .none {
   display: none !important;
 }
 
-.password_reset_button{
 
-    color: #ee6a18;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    display: flex;
-}
+@media screen and (max-width: 768px){
+      .login-box, .register-box {
+          width: 90%;
+          margin:77% auto ;
+      }
+   }
 </style>

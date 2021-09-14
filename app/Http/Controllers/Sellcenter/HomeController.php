@@ -6,6 +6,8 @@ use Carbon\Carbon;
 use App\Models\Order ;
 use App\Models\OrderItem ;
 use Illuminate\Http\Request;
+use App\Models\SellCenterDebit;
+use App\Models\SellCenterCredit;
 use App\Models\SellCenterProduct;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\session;
@@ -62,38 +64,40 @@ class HomeController extends Controller
 
  
 
-      public function  get_dashboard_highlight_info(){
+      public function DashboardHighlightInfo(){
 
-              $sellcenter_id = session()->get('sellcenter')['id'];
-              $products=array();
-              $products['product_total']=SellCenterProduct::where('sellcenter_id',$sellcenter_id)->count() ;
-              $products['product_approved']=SellCenterProduct::where('sellcenter_id',$sellcenter_id)->where('status',1)->count() ;
-              $products['product_pending']=SellCenterProduct::where('sellcenter_id',$sellcenter_id)->where('status',2)->count() ;
-             
-              $orders=array();
-              $product_id=SellCenterProduct::where('sellcenter_id',session()->get('sellcenter')['id'])->select('id')->pluck('id');
-              $order_id=OrderItem::whereIn('product_id',$product_id)->select('order_id')->pluck('order_id');
-              //total order items counter
-              $orders['total_order_items']=$order_id->count();
-              $order = Order::whereIn('id',$order_id)->with(['customer'])->get();
-              //total order counter
-              $orders['total_order']=$order->count();
-              //today order counter
-              $orders['today_order']=$order->where('created_at', '>=', Carbon::today()->startOfDay())
-                                            ->where('created_at', '<=', Carbon::today()->endOfDay())->count();
-              //cancel order counter 
-              $orders['cancel_order']=$order->where('status',6)->count();                              
-              $orders['total_delivered_order']=$order->where('status',5)->count();
-           
+            $sellcenter_id = session()->get('sellcenter')['id'];
+                  
+            //balance analysis
+            $balnce=SellCenterCredit::Balance();
+            $analysis['total_credit']=SellCenterCredit::where('sell_center_id',$sellcenter_id)->sum('amount');
+            $analysis['total_debit']=SellCenterDebit::where('sell_center_id',$sellcenter_id)->sum('amount');
+            //monthly profit and cost analysis
+            $analysis['this_month_credit']=SellCenterCredit::where('sell_center_id',$sellcenter_id)->where('created_at','>=',Carbon::today()->subDays('30')->startOfDay())
+                              ->where('created_at','<=', Carbon::today()->endOfDay())
+                              ->sum('amount');
 
-     
-              return response()->json([
-                     "status" => "OK",
-                     'products' => $products ,
-                     'orders' => $orders ,
-              ]);
+            $analysis['this_month_debit']=SellCenterDebit::where('sell_center_id',$sellcenter_id)->where('created_at','>=',Carbon::today()->subDays('30')->startOfDay())
+                              ->where('created_at','<=', Carbon::today()->endOfDay())
+                              ->sum('amount');
+                              
+            //monthly profit and cost analysis
+            $analysis['this_weeck_credit']=SellCenterCredit::where('sell_center_id',$sellcenter_id)->where('created_at','>=',Carbon::today()->subDays('7')->startOfDay())
+                              ->where('created_at','<=', Carbon::today()->endOfDay())
+                              ->sum('amount');
 
-      }
+            $analysis['this_weeck_debit']=SellCenterDebit::where('sell_center_id',$sellcenter_id)->where('created_at','>=',Carbon::today()->subDays('7')->startOfDay())
+                              ->where('created_at','<=', Carbon::today()->endOfDay())
+                              ->sum('amount');
+            
+
+                  return response()->json([
+                        'status'=> "OK",
+                        'analysis'=>$analysis,
+                        'balance'=>$balnce,
+                  ]);
+
+            }
 
 
 

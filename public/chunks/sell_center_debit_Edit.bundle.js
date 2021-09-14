@@ -257,6 +257,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -294,8 +296,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     edit: function edit() {
       var _this2 = this;
 
-      axios.get("/debit/edit/" + this.$route.params.id).then(function (resp) {
-        console.log(resp); //onely success resp
+      axios.get("/api/sellcenter/debit/edit/" + this.$route.params.id).then(function (resp) {
+        console.log(resp);
 
         if (resp.data.status == "SUCCESS") {
           _this2.form.date = resp.data.debit.date;
@@ -304,21 +306,19 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
           _this2.form.amount = resp.data.debit.amount;
         } //other wise success resp
         else {
-            _this2.error = "some thing went to wrong";
+            _this2.error = "something went to wrong";
           }
-      })["catch"](function (error) {
-        console.log(error);
       });
     },
     //method inital for update credit
     update: function update() {
       var _this3 = this;
 
-      this.form.post("/debit/update/" + this.$route.params.id).then(function (resp) {
+      this.form.post("/api/sellcenter/debit/update/" + this.$route.params.id).then(function (resp) {
         //only success resp
         if (resp.data.status == "SUCCESS") {
           _this3.$router.push({
-            name: "debit"
+            name: "sell_center_debit"
           });
 
           _this3.$toasted.show(resp.data.message, {
@@ -327,11 +327,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
             duration: 2000
           });
         } else {
-          _this3.error = "some thing went to wrong";
+          _this3.error = "something went to wrong";
         }
-      })["catch"](function (error) {
-        //  console.log(error)
-        _this3.error = "some thing went to wrong";
       });
     }
   },
@@ -577,7 +574,7 @@ var render = function() {
                   staticClass: "btn btn-primary",
                   attrs: { to: { name: "sell_center_debit" } }
                 },
-                [_c("i", { staticClass: "fa fa-arrow-right" })]
+                [_c("i", { staticClass: "fa fa-arrow-left" })]
               )
             ],
             1
@@ -790,23 +787,26 @@ var render = function() {
                             1
                           ),
                           _vm._v(" "),
-                          _c("br"),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-primary",
-                              attrs: { disabled: _vm.form.busy, type: "submit" }
-                            },
-                            [
-                              _vm.form.busy
-                                ? _c("i", {
-                                    staticClass: "fa fa-spin fa-spinner"
-                                  })
-                                : _vm._e(),
-                              _vm._v("Submit\n                ")
-                            ]
-                          )
+                          _c("div", { staticClass: "form-group text-center" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: {
+                                  disabled: _vm.form.busy,
+                                  type: "submit"
+                                }
+                              },
+                              [
+                                _vm.form.busy
+                                  ? _c("i", {
+                                      staticClass: "fa fa-spin fa-spinner"
+                                    })
+                                  : _vm._e(),
+                                _vm._v("Submit\n                  ")
+                              ]
+                            )
+                          ])
                         ]
                       )
                 ])
@@ -839,7 +839,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box-header with-border" }, [
+    return _c("div", { staticClass: "box-header with-border text-center" }, [
       _c("h3", { staticClass: "box-title" }, [_vm._v("Edit Debit")])
     ])
   }

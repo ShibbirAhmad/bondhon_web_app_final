@@ -431,7 +431,7 @@ __webpack_require__.r(__webpack_exports__);
     productQty: function productQty(items) {
       var total = 0;
       items.forEach(function (ele) {
-        total += parseInt(ele.stock);
+        total += parseInt(ele.quantity);
       });
       return total;
     },
@@ -439,7 +439,7 @@ __webpack_require__.r(__webpack_exports__);
       var total = 0;
       this.purchase_items.forEach(function (ele) {
         ele.purchase_items.forEach(function (element) {
-          total += parseInt(element.stock);
+          total += parseInt(element.quantity);
         });
       });
       return total;
@@ -1173,7 +1173,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("td", [_vm._v("Date")]),
         _vm._v(" "),
-        _c("td", [_vm._v("Invoice_no")]),
+        _c("td", [_vm._v("Invoice")]),
         _vm._v(" "),
         _c("td", [_vm._v("Product Qty")]),
         _vm._v(" "),

@@ -2,7 +2,6 @@
 
 //route for sellcenter login and registration and authorizatoin
 Route::post('api/sellcenter/login','Sellcenter\LoginController@check_login') ;
-Route::post('api/sellcenter/register','Sellcenter\LoginController@register_sellcenter')->name('sellcenter.register');
 
 Route::post('api/sellcenter/password/reset/send/code','Sellcenter\LoginController@send_reset_code');
 Route::post('api/sellcenter/verify/reset/code/{phone}','Sellcenter\LoginController@sellcenter_reset_code_verified');
@@ -20,12 +19,13 @@ Route::group([
         Route::post('api/sellcenter/product/store','ProductController@storeProduct');
 
         // route for dashboard data
-         Route::get('api/get/sellcenter/dashboard/data','HomeController@get_dashboard_highlight_info');
+         Route::get('api/sellcenter/dashboard/analysis','HomeController@DashboardHighlightInfo');
 
         //start the others  route . to load other data of products
         Route::get('api/product/others', 'OthersController@others');
         //route for search product, edit product and delete product if it pending situation
         Route::get('api/sellcenter/search/product/{search}','ProductController@searchProducts');
+        Route::get('api/sellcenter/search/product/for/sale/{search}','ProductController@searchForSale');
         Route::get('api/search/product/by/code/{search}','ProductController@searchByCode');
         Route::get('api/active/deactive/sellcenter/product/{id}','ProductController@productStatus');
         Route::get('api/sellcenter/get/edit/product/{id}','ProductController@get_edit_product');
@@ -97,6 +97,12 @@ Route::group([
         Route::get('api/sellcenter/account/purpose', 'AccountController@accountPurpose');
         Route::get('api/sellcenter/employee/list', 'AccountController@employeeList');
 
+       //sales routes 
+       Route::get('api/sellcenter/sales', 'SaleController@index');
+       Route::get('api/sellcenter/sales/filter', 'SaleController@filterSales');
+       Route::get('api/sellcenter/sale/item/{id}', 'SaleController@saleItem');
+       Route::post('api/sellcenter/sale/update/{id}', 'SaleController@update');
+       Route::post('api/sellcenter/sale/add', 'SaleController@store');
 
 
 

@@ -28,63 +28,106 @@
                 <div class="form-group">
                   <label>Product Code </label>
                   <input
-                    v-model="form.product_code"
+                    v-model="search"
+                    @keyup="searchProduct"
                     type="text"
-                    name="product_code"
+                    name="search"
                     class="form-control"
                     autofocus
                     autocomplete="off"
-                    placeholder="type product code"
+                    placeholder="type product name or code"
                   />
+                </div>
+
+                <div class="search_content">
+                  <ul v-show="products.length > 0" class="list-group">
+                    <li
+                      class="list-group-item"
+                      v-for="(product, index) in products"
+                      :key="index"
+                      @click="selecetProduct(product)"
+                    >
+                      {{ product.name + "-" + product.code }}
+                    </li>
+                  </ul>
                 </div>
               </div>
 
-              <div class="box-body">
+              <div v-if="saleInfo" class="box-body sale_box">
                 <form
-                  @submit.prevent="add"
-                  @keydown="form.onKeydown($event)"
+                  @submit.prevent="addSale"
                   enctype="multipart/form-data"
                 >
                   <div class="alert-danger alert" v-if="error">
                     {{ error }}
                   </div>
 
-                  <div class="form-group">
-                    <label>Price</label>
-                    <input
-                      v-model="form.price"
-                      type="number"
-                      name="price"
-                      class="form-control"
-                      required
-                      placeholder="price"
-                    />
+                  <div class="row">
+                    <div class="col-md-6 col-xs-6">
+                      <div class="form-group">
+                        <label for="quantity_type"> Unit Type</label>
+                        <select
+                          name="quantity_type"
+                          required
+                          v-model="form.quantity_type"
+                          class="form-control"
+                        >
+                          <option value="pice">pice</option>
+                          <option value="gm">gm</option>
+                          <option value="kg">kg</option>
+                          <option value="liter">liter</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 col-xs-6">
+                      <div class="form-group">
+                        <label>Unit</label>
+                        <input
+                          v-model="form.quantity"
+                          type="numer"
+                          name="quantity"
+                          @keyup="amountCalculate"
+                          class="form-control"
+                          required
+                        />
+                      </div>
+                    </div>
                   </div>
-                   
-                  <div class="form-group">
-                     <label for="quantity_type"> Quantity Type</label>
-                     <select name="quantity_type"
-                       required
-                       v-model="form.quantity_type"
-                       class="form-control">
-                       <option  value="pice">pice</option>
-                       <option value="gm">gm</option>
-                       <option value="kg">kg</option>
-                       <option value="liter">liter</option>
-                     </select>
+
+                  <div class="row">
+                    <div class="col-md-6 col-xs-6">
+                      <div class="form-group">
+                        <label>Price</label>
+                        <input
+                          v-model="form.price"
+                          type="number"
+                          name="price"
+                          class="form-control"
+                          @keyup="amountCalculate"
+                          required
+                          placeholder="price"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 col-xs-6">
+                      <div class="form-group">
+                        <label>Discount</label>
+                        <input
+                          v-model="form.discount"
+                          type="number"
+                          name="discount"
+                          class="form-control"
+                          @keyup="amountCalculate"
+                          required
+                          placeholder="discount"
+                        />
+                      </div>
+                    </div>
                   </div>
 
                   <div class="form-group">
-                    <label>Quantity/Item</label>
-                    <input
-                      v-model="form.quantity"
-                      type="numer"
-                      name="quantity"
-                      class="form-control"
-                      required
-                    />
-                  </div>
-                   <div class="form-group">
                     <label>Amount</label>
                     <input
                       v-model="form.amount"
@@ -132,21 +175,45 @@ export default {
   data() {
     return {
       form: new Form({
-        product_code: "",
+        product_id: "",
         price: 0,
-        quantity: 0,
-        quantity_type:"pice",
+        discount: 0,
+        quantity: 1,
+        quantity_type: "pice",
         amount: 0,
       }),
+      saleInfo: false,
+      search: "",
+      products: "",
       loading: true,
       error: "",
     };
   },
 
   methods: {
-    add() {
+    searchProduct() {
+      if (this.search.length > 2) {
+        axios
+          .get("/api/sellcenter/search/product/for/sale/" + this.search)
+          .then((resp) => {
+            console.log(resp);
+            this.products = resp.data.products;
+          });
+      }
+    },
+    selecetProduct(product) {
+      this.form.product_id = product.id;
+      this.saleInfo = true;
+    },
+    amountCalculate() {
+      let price = parseFloat(this.form.price) ;
+      let qty = parseFloat(this.form.quantity) ;
+      let discount = parseFloat(this.form.discount) ;
+      this.form.amount = (price * qty) - discount;
+    },
+    addSale() {
       this.form
-        .post("/api/supplier/add", {
+        .post("/api/sellcenter/sale/add", {
           transformRequest: [
             function (data, headers) {
               return objectToFormData(data);
@@ -156,14 +223,14 @@ export default {
         .then((resp) => {
           //   console.log(resp)
           if (resp.data.status == "SUCCESS") {
-            this.$router.push({ name: "supplier" });
+            this.$router.push({ name: "sell_center_sale" });
             this.$toasted.show(resp.data.message, {
               type: "success",
               position: "top-center",
               duration: 4000,
             });
           } else {
-            this.error = "some thing want to wrong";
+            this.error = "something went to wrong";
           }
         });
     },
@@ -174,5 +241,16 @@ export default {
 <style scoped>
 .mb-2 {
   margin-bottom: 5px !important;
+}
+
+.search_content {
+  width: 95%;
+  max-height: 300px;
+  position: absolute;
+  overflow-y: auto;
+}
+
+.sale_box {
+  margin-top: 30px;
 }
 </style>

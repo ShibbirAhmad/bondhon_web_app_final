@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["merchnat_login~new_password_sellcenter~sell_center_code_verified~sell_center_password_reset"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["new_password_sellcenter~sell_center_code_verified~sell_center_password_reset"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/public/Login.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************!*\

@@ -5,7 +5,7 @@
       <section class="content-header">
         <h1>
           <router-link :to="{ name: 'sell_center_debit' }" class="btn btn-primary"
-            ><i class="fa fa-arrow-right"></i
+            ><i class="fa fa-arrow-left"></i
           ></router-link>
         </h1>
         <ol class="breadcrumb">
@@ -19,7 +19,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-6 col-lg-offset-2">
             <div class="box box-primary">
-              <div class="box-header with-border">
+              <div class="box-header with-border text-center">
                 <h3 class="box-title">Edit Debit</h3>
               </div>
               <div class="box-body">
@@ -84,14 +84,16 @@
                     <has-error :form="form" field="comment"></has-error>
                   </div>
 
-                  <br />
-                  <button
-                    :disabled="form.busy"
-                    type="submit"
-                    class="btn btn-primary"
-                  >
-                    <i class="fa fa-spin fa-spinner" v-if="form.busy"></i>Submit
-                  </button>
+                  <div class="form-group text-center">
+                     <button
+                      :disabled="form.busy"
+                      type="submit"
+                      class="btn btn-primary"
+                    >
+                      <i class="fa fa-spin fa-spinner" v-if="form.busy"></i>Submit
+                    </button>
+                  </div>
+                 
                 </form>
               </div>
             </div>
@@ -141,11 +143,9 @@ export default {
     //mehod initial for get credit data
     edit() {
       axios
-        .get("/debit/edit/" + this.$route.params.id)
+        .get("/api/sellcenter/debit/edit/" + this.$route.params.id)
         .then((resp) => {
           console.log(resp);
-
-          //onely success resp
           if (resp.data.status == "SUCCESS") {
             this.form.date = resp.data.debit.date;
             this.form.purpose = resp.data.debit.purpose;
@@ -154,35 +154,30 @@ export default {
           }
           //other wise success resp
           else {
-            this.error = "some thing went to wrong";
+            this.error = "something went to wrong";
           }
         })
-        .catch((error) => {
-          console.log(error);
-        });
+     
     },
 
     //method inital for update credit
     update() {
       this.form
-        .post("/debit/update/" + this.$route.params.id)
+        .post("/api/sellcenter/debit/update/" + this.$route.params.id)
         .then((resp) => {
           //only success resp
           if (resp.data.status == "SUCCESS") {
-            this.$router.push({ name: "debit" });
+            this.$router.push({ name: "sell_center_debit" });
             this.$toasted.show(resp.data.message, {
               type: "success",
               position: "top-center",
               duration: 2000,
             });
           } else {
-            this.error = "some thing went to wrong";
+            this.error = "something went to wrong";
           }
         })
-        .catch((error) => {
-          //  console.log(error)
-          this.error = "some thing went to wrong";
-        });
+       
     },
   },
   mounted() {

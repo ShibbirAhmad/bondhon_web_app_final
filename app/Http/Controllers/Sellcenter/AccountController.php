@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Sellcenter;
 
-
 use App\Models\Team;
-use App\Models\Investor;
 use Illuminate\Http\Request;
 use App\Exports\DebitExport ;
 use App\Exports\CreditExport ;
@@ -14,12 +12,10 @@ use App\Models\Account_purpose;
 use App\Models\SellCenterDebit;
 use App\Models\SellCenterCredit;
 use App\Models\BillPaidStatement;
-use App\Models\InvestorProfitPaid;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Intervention\Image\Facades\Image;
 use Maatwebsite\Excel\Facades\Excel ;
-use App\Http\Controllers\Admin\SendMailController;
+
 
 class AccountController extends Controller
 {
@@ -191,76 +187,24 @@ class AccountController extends Controller
           'purpose' => 'required',
           'amount' => 'required',
           'debit_from'=>'required',
-        //   'signature'=>'required'
         ]);
 
         DB::transaction(function() use($request){
-                
-                //inserting debit
-                $debit = new SellCenterDebit();
-                $debit->purpose = $request->purpose;
-                $debit->debit_from=$request->debit_from;
-                $debit->amount = $request->amount;
-                $debit->comment = $request->comment ?? null;
-                $debit->date = $request->date;
-                $debit->save();
-
-      
-
-                // if salary paid
-                if(!empty($request->employee_id)){
-                    $employee=Team::where('id',$request->employee_id)->first();
-                    $employee_salary=new EmployeeSalary();
-                    $employee_salary->employee_id=$employee->id;
-                    $employee_salary->amount=$request->amount;
-                    $employee_salary->paid_by=$request->debit_from;
-                    $employee_salary->comment=$request->comment;
-                    $employee_salary->date=$request->date;
-                    $employee_salary->save();
-                    //update debit comment
-                    $debit->purpose = $debit->purpose.'('. $employee->name .')';
-                    $debit->save();
-                    Team::sendMessageToEmployeer($employee,$request->amount);
-                }
-
-                //investor payment inserting
-            if(!empty($request->investor_id)){
-                $investor=Investor::where('id',$request->investor_id)->first();
-                $investor_profit_paid=new InvestorProfitPaid();
-                $investor_profit_paid->investor_id=$investor->id;
-                $investor_profit_paid->amount=  $debit->amount;
-                $investor_profit_paid->profit_month= $request->month;
-                $investor_profit_paid->date= $debit->date;
-                $investor_profit_paid->comment=$debit->comment;
-                $investor_profit_paid->paid_by=$debit->debit_from;
-                $investor_profit_paid->save();
-                $debit->comment = $debit->comment.'('. $investor->name .')';
-                $debit->save();
-                Investor::SendMessageToInvestor($investor, $investor_profit_paid->amount, $request->month);
-                //send mail to member
-                $message= 'Assalamualikum,'. $investor->name . ' Your profit has been paid '. $request->amount .'/BDT  Thanks for being with us.' ;
-                SendMailController::sendMailToMember($investor->email,$message);
-
-            }
-
-            //storing bill statement payment
-            if(!empty($request->bill_statement_id)){
-                $bill=BillStatement::where('id',$request->bill_statement_id)->first();
-                $bill_paid=new BillPaidStatement();
-                $bill_paid->bill_statement_id=$bill->id;
-                $bill_paid->amount=  $debit->amount;
-                $bill_paid->date= $debit->date;
-                $bill_paid->comment=$debit->comment;
-                $bill_paid->paid_by=$debit->debit_from;
-                $bill_paid->save();
-                $debit->comment = $debit->comment.'('.$bill->name.')';
-                $debit->save();
-            }
+            
+            //inserting debit
+            $debit = new SellCenterDebit();
+            $debit->sell_center_id = session()->get('sellcenter')['id'];
+            $debit->purpose = $request->purpose;
+            $debit->debit_from=$request->debit_from;
+            $debit->amount = $request->amount;
+            $debit->comment = $request->comment ?? null;
+            $debit->date = $request->date;
+            $debit->save();
 
         });
           return response()->json([
                 'status' => 'SUCCESS',
-                'message' => "debit successfully created",
+                'message' => "successfully created",
             ]);
     }
 

@@ -166,6 +166,19 @@ class ProductController extends Controller
        ]);
    }
 
+   
+   public function searchForSale($search){
+
+    $products = SellCenterProduct::where('sell_center_id',session()->get('sellcenter')['id'])
+                                  ->where('code',$search)
+                                  ->orWhere('name','like','%'.$search.'%')
+                                  ->get();
+        return response()->json([
+            'status' => 'SUCCESS',
+            'products' => $products
+        ]);
+    }
+
    public function approved($id) {
        $product = SellCenterProduct::findOrFail($id);
        if ($product) {

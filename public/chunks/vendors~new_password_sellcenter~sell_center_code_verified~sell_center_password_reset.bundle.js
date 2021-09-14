@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["vendors~merchnat_login~new_password_sellcenter~sell_center_code_verified~sell_center_password_reset"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["vendors~new_password_sellcenter~sell_center_code_verified~sell_center_password_reset"],{
 
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loading-overlay/dist/vue-loading.css":
 /*!***********************************************************************************************************************************************!*\

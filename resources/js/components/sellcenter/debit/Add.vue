@@ -48,28 +48,14 @@
                         <has-error :form="form" field="date"></has-error>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Purpose</label>
-                        <select
+                        <input type="text"
                           class="form-control"
                           v-model="form.purpose"
                           name="purpose"
-                          required
-                          @change="selectPurpose"
-                          :class="{ 'is-invalid': form.errors.has('purpose') }"
-                        >
-                          <option value="" selected disabled>
-                            Select Purpose
-                          </option>
-                          <option
-                            v-for="purpose in purposes"
-                            :key="purpose.id"
-                            :value="purpose.id"
-                          >
-                            {{ purpose.text }}
-                          </option>
-                        </select>
+                          required>
                         <has-error :form="form" field="purpose"></has-error>
                       </div>
                     </div>
@@ -170,15 +156,7 @@ export default {
         amount: "",
         date: "",
         comment: "",
-        employee_id: "",
         debit_from: "Cash",
-        project_id:"",
-        admin_id: "",
-        investor_id: "",
-        loaner_id: "",
-        month: "",
-        bill_statement_id:"",
-        investor_return_id:"",
       }),
       error: "",
       purposes: "",
@@ -187,306 +165,30 @@ export default {
         format: "YYYY-MM-DD",
         useCurrent: false,
       },
-      months: {
-        January: "January",
-        February: "February",
-        March: "March",
-        April: "April",
-        May: "May",
-        June: "June",
-        July: "July",
-        August: "August",
-        September: "Septembaer",
-        October: "October",
-        November: "November",
-        December: "December",
-      },
-
-      disabled: false,
-     base_link:this.$store.state.image_base_link
+  
+     disabled: false,
 
     };
   },
 
   methods: {
-    accountPurpose() {
-      axios
-        .get("/api/debit/purpose/list")
-        .then((resp) => {
-          console.log(resp);
-          if (resp.data) {
-            this.purposes = resp.data.debit_purposes;
-          }
-        })
 
-    },
-    selectPurpose() {
-     let value = this.form.purpose;
-      if (value == 1) {
-        this.projectList();
-      } else if (value == 2) {
-        this.bondhonMemberList();
-      }else if( value == 3){
-         this.investorList();
-      }else if(value == 4){
-        this.returnInvestorList();
-      }else if(value == 5){
-        this.billStatementList();
-      }
-      else if(value == 7){
-        this.employeeList();
-      }
-      else if(value == 12){
-        this.loanerList();
-      }
-      else {
-        this.form.admin_id="";
-        this.form.investor_id="";
-        this.form.loaner_id="";
-        this.form.investor_return_id="";
-        this.form.project_id="";
-        this.form.bill_statement_id="" ;
-      }
-    },
-
-     loanerList() {
-        axios
-          .get("/api/loaners")
-          .then((resp) => {
-            console.log(resp);
-            let options = {};
-            resp.data.forEach((element) => {
-              options[element.id] = element.name + "-" + element.mobile_no;
-            });
-            Swal.fire({
-              title: "Select a Loaner",
-              input: "select",
-              inputOptions: options,
-              inputPlaceholder: "Select One",
-              showCancelButton: true,
-            }).then((result) => {
-              if (result.value) {
-                this.form.loaner_id = result.value;
-              } else {
-                this.form.purpose = "";
-                this.form.loaner_id = "";
-              }
-            });
-          })
-        
-      },
-
-
-     projectList() {
-      axios
-        .get("/api/list/project")
-        .then((resp) => {
-        //  console.log(resp);
-          let options = {};
-          resp.data.projects.data.forEach((element) => {
-            options[element.id] = element.name + "-" + element.place;
-          });
-          Swal.fire({
-            title: "Select a project",
-            input: "select",
-            inputOptions: options,
-            inputPlaceholder: "Select One",
-            showCancelButton: true,
-          }).then((result) => {
-            if (result.value) {
-              this.form.project_id = result.value;
-            } else {
-              this.form.purpose = "";
-              this.form.project_id = "";
-            }
-          });
-        })
-    },
-
-      bondhonMemberList() {
-      axios
-        .get("/api/member/list")
-        .then((resp) => {
-          console.log(resp);
-          let options = {};
-          resp.data.admins.data.forEach((element) => {
-            options[element.id] = element.name + "-" + element.phone;
-          });
-          Swal.fire({
-            title: "Select Member",
-            input: "select",
-            inputOptions: options,
-            inputPlaceholder: "Select One",
-            showCancelButton: true,
-          }).then((result) => {
-            if (result.value) {
-              this.form.admin_id = result.value;
-              Swal.fire({
-                title: "Select Profit Month",
-                input: "select",
-                inputOptions: this.months,
-                inputPlaceholder: "Select One",
-                showCancelButton: true,
-              }).then((month) => {
-                if (month.value) {
-                  this.form.month = month.value;
-                } else {
-                  this.form.month = "";
-                }
-              });
-            } else {
-              this.form.purpose = "";
-              this.form.admin_id = "";
-            }
-          });
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
-
-
-    employeeList() {
-      axios
-        .get("/api/employee/list")
-        .then((resp) => {
-          console.log(resp);
-          let options = {};
-          resp.data.forEach((element) => {
-            options[element.id] = element.name + "-" + element.designation;
-          });
-          Swal.fire({
-            title: "Select a employee",
-            input: "select",
-            inputOptions: options,
-            inputPlaceholder: "Select One",
-            showCancelButton: true,
-          }).then((result) => {
-            if (result.value) {
-              this.form.employee_id = result.value;
-            } else {
-              this.form.purpose = "";
-              this.form.employee_id = "";
-            }
-          });
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
-    billStatementList() {
-      axios
-        .get("/api/bill/statement/list/type/debit")
-        .then((resp) => {
-          console.log(resp)
-          let options = {};
-          resp.data.bills.forEach((element) => {
-            options[element.id] = element.name;
-          });
-          Swal.fire({
-            title: "Select  bill",
-            input: "select",
-            inputOptions: options,
-            inputPlaceholder: "Select One",
-            showCancelButton: true,
-          }).then((result) => {
-            if (result.value) {
-              this.form.bill_statement_id = result.value;
-            } else {
-              this.form.purpose = "";
-              this.form.bill_statement_id = "";
-            }
-          });
-        })
-
-    },
 
     addDebit() {
       this.form
-        .post("/api/debit/store")
+        .post("/api/sellcenter/debit/store")
         .then((resp) => {
           console.log(resp);
           if (resp.data.status == "SUCCESS") {
-            this.$router.push({ name: "debit" });
+            this.$router.push({ name: "sell_center_debit" });
             this.$toasted.show(resp.data.message, {
               type: "success",
               position: "top-center",
               duration: 2000,
             });
           } else {
-            this.error = "some thing went to wrong";
+            this.error = "something went to wrong";
           }
-        })
-
-    },
-
-    investorList() {
-      axios
-        .get("/api/company/investor/list")
-        .then((resp) => {
-          console.log(resp);
-          let options = {};
-          resp.data.forEach((element) => {
-            options[element.id] = element.name + "-" + element.mobile_no;
-          });
-          Swal.fire({
-            title: "Select a Investor",
-            input: "select",
-            inputOptions: options,
-            inputPlaceholder: "Select One",
-            showCancelButton: true,
-          }).then((result) => {
-            if (result.value) {
-              this.form.investor_id = result.value;
-
-              Swal.fire({
-                title: "Select Profit Month",
-                input: "select",
-                inputOptions: this.months,
-                inputPlaceholder: "Select One",
-                showCancelButton: true,
-              }).then((month) => {
-                if (month.value) {
-                  this.form.month = month.value;
-                } else {
-                  this.form.month = "";
-                }
-              });
-            } else {
-              this.form.purpose = "";
-              this.form.investor_id = "";
-            }
-          });
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
-
-
-    returnInvestorList() {
-      axios
-        .get("/api/company/investor/list")
-        .then((resp) => {
-          console.log(resp)
-          let options = {};
-          resp.data.forEach((element) => {
-            options[element.id] = element.name + "-" + element.mobile_no;
-          });
-          Swal.fire({
-            title: "Select Investor",
-            input: "select",
-            inputOptions: options,
-            inputPlaceholder: "Select One",
-            showCancelButton: true,
-          }).then((result) => {
-            if (result.value) {
-              this.form.investor_return_id = result.value;
-            } else {
-              this.form.purpose = "";
-              this.form.investor_return_id = "";
-            }
-          });
         })
 
     },

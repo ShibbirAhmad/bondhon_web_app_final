@@ -12,7 +12,7 @@
           <li>
             <a href="#"><i class="fa fa-dashboard"></i>Dashboard</a>
           </li>
-          <li class="active">Sale</li>
+          <li class="active">Sales</li>
         </ol>
       </section>
       <section class="content">
@@ -20,20 +20,12 @@
           <div class="row justify-content-center">
             <div class="col-lg-11">
               <div class="box box-primary">
-                <div class="box-header with-bsale">
+                <div class="box-header with-border text-center">
                   <h3 class="box-title">Sales Records </h3>
 
-                  <div style="margin-top: 10px" class="row">
-                    <div class="col-lg-4">
-                      <input
-                        class="form-control"
-                        @keyup="saleSearch"
-                        v-model="data_search"
-                        placeholder="enter name, phone"
-                      />
-                    </div>
-                    <div class="col-lg-6">
-                      <form @submit.prevent="filterOfficeSale">
+                    <div style="margin-top: 10px" class="row">
+                    <div class="col-lg-8">
+                      <form @submit.prevent="filterSales">
                         <div class="row">
                           <div class="col-lg-5">
                             <date-picker
@@ -43,7 +35,7 @@
                               :config="options"
                             ></date-picker>
                           </div>
-                          <div class="col-lg-5" style="margin-left: -20px">
+                          <div class="col-lg-5">
                             <date-picker
                               autocomplete="off"
                               v-model="end_date"
@@ -55,26 +47,27 @@
                       </form>
                     </div>
 
-                    <div class="col-lg-2">
+                    <div class="col-lg-4">
                       <select class="form-control" v-model="item" @change="saleList">
                         <option value="10">10</option>
                         <option value="20">20</option>
                         <option value="40">40</option>
-                        <option value="60">60</option>
-                        <option value="80">80</option>
-                        <option value="100">100</option>
                       </select>
                     </div>
+ 
+
                   </div>
+
                 </div>
                 <div class="box-body">
-                  <table class="table">
+                  <table class="table text-center table-bordered table-hover table-striped ">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Invoice</th>
                         <th scope="col">Product</th>
-                        <th scope="col">Quantity</th>
+                        <th scope="col">Unit</th>
+                        <th scope="col">Price</th>
                         <th scope="col">Amount</th>
                         <th scope="col">Action</th>
                       </tr>
@@ -86,30 +79,19 @@
                       <tr v-for="(sale, index) in sales.data" :key="index" v-else>
                         <td scope="row">{{ index + 1 }}</td>
                         <td>{{ "S-" + sale.id }}</td>
-                        <td>{{ sale.name ? sale.name : "" }}</td>
+                        <td>{{ sale.product.name }}</td>
 
-                        <td>{{ sale.mobile_no ? sale.mobile_no : "" }}</td>
-                        <td>{{ sale.address ? sale.address : "" }}</td>
-                        <td>{{ sale.created_at }}</td>
-
-                        <td>
-                          Total: {{ parseInt(sale.total) - parseInt(sale.discount) }},
-                          <strong>Paid: {{ sale.paid }},</strong>
-                          Due:
-                          {{
-                            parseInt(sale.total) -
-                            parseInt(sale.paid) -
-                            parseInt(sale.discount)
-                          }}
-                        </td>
+                        <td>{{ sale.quantity+'-'+sale.quantity_type }}</td>
+                        <td>{{ sale.price }}</td>
+                        <td>{{ sale.amount }}</td>
                         <td>
                           <router-link
                             :to="{
-                              name: 'ViewSale',
+                              name: 'sell_center_sale_edit',
                               params: { id: sale.id },
                             }"
-                            class="btn btn-primary btn-sm"
-                            ><i class="fa fa-eye"></i
+                            class="btn btn-success btn-sm"
+                            ><i class="fa fa-edit"></i
                           ></router-link>
                         </td>
                       </tr>
@@ -150,7 +132,7 @@
 
 import navbar from "../Navbar.vue"
 export default {
- comments:{
+ components:{
    navbar
  },
   created() {
@@ -161,43 +143,22 @@ export default {
       sales: {},
       loading: true,
       item: 20,
-      sale_type: 1,
       start_date: "",
       end_date: "",
       data_search: "",
       //date picker options ..........
       options: {
         format: "YYYY-MM-DD",
-        useCurrent: false,
+        useCurrent: true,
       },
     };
   },
   methods: {
-    saleSearch(page = 1) {
-      if (this.data_search.length > 1) {
-        this.loading = true;
-        axios
-          .get("/api/office/sale/search/data/" + this.data_search + "?page=" + page)
-          .then((resp) => {
-            if (resp.data.status == "OK") {
-              this.sales = resp.data.sales;
-              this.loading = false;
-            }else{
-              this.saleList();
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      } else {
-        this.saleList();
-      }
-    },
 
-    filterOfficeSale(page = 1) {
+    filterSales(page = 1) {
       //fetch data
       axios
-        .get("/api/officeSale/date/wise/filter?page=" + page, {
+        .get("/api/sellcenter/sales/filter?page=" + page, {
           //send data
           params: {
             start_date: this.start_date,
@@ -207,26 +168,21 @@ export default {
         })
         .then((resp) => {
           console.log(resp);
-          if (resp.data.status == "OK") {
+          if (resp.data.status == "SUCCESS") {
             this.sales = resp.data.sales;
           }
         })
-        .catch((error) => {
-          console.log(error);
-        });
     },
 
     saleList(page = 1) {
       axios
-        .get("/api/office/sales/list?page=" + page, {
+        .get("/api/sellcenter/sales?page=" + page, {
           params: {
             item: this.item,
-            sale_type: this.sale_type,
           },
         })
         .then((resp) => {
           console.log(resp);
-          //  console.log(resp.data.admins.data)
           if (resp.data.status == "SUCCESS") {
             this.sales = resp.data.sales;
             this.loading = false;
@@ -246,48 +202,17 @@ export default {
           });
         });
     },
-    itemPerPage() {
-      this.loading = true;
-      this.$Progress.start();
-      axios
-        .get("/list/purchase", {
-          params: {
-            item: this.item,
-          },
-        })
-        .then((resp) => {
-          console.log(resp);
-          //  console.log(resp.data.admins.data)
-          if (resp.data.status == "SUCCESS") {
-            this.purchases = resp.data.purchases;
-            this.loading = false;
-            this.$Progress.finish();
-          } else {
-            this.$toasted.show("something went to wrong", {
-              type: "error",
-              position: "top-center",
-              duration: 5000,
-            });
-          }
-        })
-        .catch((error) => {
-          this.$toasted.show("something went to wrong", {
-            type: "error",
-            position: "top-center",
-            duration: 4000,
-          });
-        });
-    },
+
   },
   watch: {
     start_date: function (value) {
       if (value.length > 1) {
-        this.filterOfficeSale();
+        this.filterSales();
       }
     },
     end_date: function (value) {
       if (value.length > 1) {
-        this.filterOfficeSale();
+        this.filterSales();
       }
     },
   },

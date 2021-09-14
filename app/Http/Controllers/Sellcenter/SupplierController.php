@@ -35,8 +35,6 @@ class SupplierController extends Controller
             'name' => 'required ',
             'address' => 'required',
             'phone' => 'required|unique:suppliers|digits:11',
-
-
         ]);
         $supplier = new Supplier();
         $supplier->sell_center_id = session()->get('sellcenter')['id'];

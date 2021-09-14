@@ -1066,11 +1066,11 @@ const routes = [
 
     
     {
-        path: '/sell/center/sale/view/:id',
-        component: () => import(/* webpackChunkName: "sell_center_sale_view" */'./components/sellcenter/sale/View.vue'),
-        name: 'sell_center_sale_view',
+        path: '/sell/center/sale/edit/:id',
+        component: () => import(/* webpackChunkName: "sell_center_sale_edit" */'./components/sellcenter/sale/Edit.vue'),
+        name: 'sell_center_sale_edit',
         meta: {
-            title: 'sale details info ',
+            title: 'sale edit ',
             authSellCenter: true ,
         }
 

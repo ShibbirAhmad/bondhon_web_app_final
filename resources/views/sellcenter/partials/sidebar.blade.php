@@ -1,13 +1,32 @@
-
+<?php
+$sellcenter = null;
+if (session()->has('sellcenter')) {
+$sellcenter = session()->get('sellcenter');
+}
+?>
  <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
   
-     
+      <div class="user-panel" style="border-bottom:1px solid #ddd;">
+
+        <div class="pull-left image">
+    
+             <img src="{{ asset('storage/' . $sellcenter->logo) }}" class="img-circle" alt="Logo">
+           
+        </div>
+        <div class="pull-left info" style="top:1px;">
+            @if ($sellcenter != null)
+                <h4 class="member_name" >{{ explode(' ', trim($sellcenter->name))[0] }}</h4>
+            @endif
+            <a><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+    </div>
+    <br />
+
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
           <router-link :to="{name:'sell_center_dashboard'}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
@@ -16,7 +35,7 @@
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-cogs"></i> <span>Sales</span>
+            <i class="fa fa-list"></i> <span>Sales</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -26,6 +45,7 @@
             <li>   <router-link :to="{ name : 'sell_center_sale'}"><i class="fa fa-list "></i> Manage </router-link></li>
           </ul>
         </li>
+        
         
         <li class="treeview">
           <a href="#">

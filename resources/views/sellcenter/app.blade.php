@@ -133,6 +133,14 @@
     }
 
 
+    @media only screen and (max-width:768px){
+
+        .col-lg-12,.col-md-12,.col-lg-11,.col-lg-10,.col-lg-8,.col-md-11,.col-md-10 {
+            overflow-x: auto ;
+        }
+
+    }
+
     </style>
 
 </head>

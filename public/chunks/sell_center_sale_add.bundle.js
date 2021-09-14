@@ -269,6 +269,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -288,38 +331,62 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
   data: function data() {
     return {
       form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
-        product_code: "",
+        product_id: "",
         price: 0,
-        quantity: 0,
+        discount: 0,
+        quantity: 1,
         quantity_type: "pice",
         amount: 0
       }),
+      saleInfo: false,
+      search: "",
+      products: "",
       loading: true,
       error: ""
     };
   },
   methods: {
-    add: function add() {
+    searchProduct: function searchProduct() {
       var _this2 = this;
 
-      this.form.post("/api/supplier/add", {
+      if (this.search.length > 2) {
+        axios.get("/api/sellcenter/search/product/for/sale/" + this.search).then(function (resp) {
+          console.log(resp);
+          _this2.products = resp.data.products;
+        });
+      }
+    },
+    selecetProduct: function selecetProduct(product) {
+      this.form.product_id = product.id;
+      this.saleInfo = true;
+    },
+    amountCalculate: function amountCalculate() {
+      var price = parseFloat(this.form.price);
+      var qty = parseFloat(this.form.quantity);
+      var discount = parseFloat(this.form.discount);
+      this.form.amount = price * qty - discount;
+    },
+    addSale: function addSale() {
+      var _this3 = this;
+
+      this.form.post("/api/sellcenter/sale/add", {
         transformRequest: [function (data, headers) {
           return objectToFormData(data);
         }]
       }).then(function (resp) {
         //   console.log(resp)
         if (resp.data.status == "SUCCESS") {
-          _this2.$router.push({
-            name: "supplier"
+          _this3.$router.push({
+            name: "sell_center_sale"
           });
 
-          _this2.$toasted.show(resp.data.message, {
+          _this3.$toasted.show(resp.data.message, {
             type: "success",
             position: "top-center",
             duration: 4000
           });
         } else {
-          _this2.error = "some thing want to wrong";
+          _this3.error = "something went to wrong";
         }
       });
     }
@@ -340,7 +407,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.mb-2[data-v-72e97726] {\r\n  margin-bottom: 5px !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.mb-2[data-v-72e97726] {\r\n  margin-bottom: 5px !important;\n}\n.search_content[data-v-72e97726] {\r\n  width: 95%;\r\n  max-height: 300px;\r\n  position: absolute;\r\n  overflow-y: auto;\n}\n.sale_box[data-v-72e97726] {\r\n  margin-top: 30px;\n}\r\n", ""]);
 
 // exports
 
@@ -587,230 +654,340 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.product_code,
-                          expression: "form.product_code"
+                          value: _vm.search,
+                          expression: "search"
                         }
                       ],
                       staticClass: "form-control",
                       attrs: {
                         type: "text",
-                        name: "product_code",
+                        name: "search",
                         autofocus: "",
                         autocomplete: "off",
-                        placeholder: "type product code"
+                        placeholder: "type product name or code"
                       },
-                      domProps: { value: _vm.form.product_code },
+                      domProps: { value: _vm.search },
                       on: {
+                        keyup: _vm.searchProduct,
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(
-                            _vm.form,
-                            "product_code",
-                            $event.target.value
-                          )
+                          _vm.search = $event.target.value
                         }
                       }
                     })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "search_content" }, [
+                    _c(
+                      "ul",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.products.length > 0,
+                            expression: "products.length > 0"
+                          }
+                        ],
+                        staticClass: "list-group"
+                      },
+                      _vm._l(_vm.products, function(product, index) {
+                        return _c(
+                          "li",
+                          {
+                            key: index,
+                            staticClass: "list-group-item",
+                            on: {
+                              click: function($event) {
+                                return _vm.selecetProduct(product)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                    " +
+                                _vm._s(product.name + "-" + product.code) +
+                                "\n                  "
+                            )
+                          ]
+                        )
+                      }),
+                      0
+                    )
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "box-body" }, [
-                  _c(
-                    "form",
-                    {
-                      attrs: { enctype: "multipart/form-data" },
-                      on: {
-                        submit: function($event) {
-                          $event.preventDefault()
-                          return _vm.add($event)
+                _vm.saleInfo
+                  ? _c("div", { staticClass: "box-body sale_box" }, [
+                      _c(
+                        "form",
+                        {
+                          attrs: { enctype: "multipart/form-data" },
+                          on: {
+                            submit: function($event) {
+                              $event.preventDefault()
+                              return _vm.addSale($event)
+                            }
+                          }
                         },
-                        keydown: function($event) {
-                          return _vm.form.onKeydown($event)
-                        }
-                      }
-                    },
-                    [
-                      _vm.error
-                        ? _c("div", { staticClass: "alert-danger alert" }, [
-                            _vm._v(
-                              "\n                  " +
-                                _vm._s(_vm.error) +
-                                "\n                "
+                        [
+                          _vm.error
+                            ? _c("div", { staticClass: "alert-danger alert" }, [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(_vm.error) +
+                                    "\n                "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-6 col-xs-6" }, [
+                              _c("div", { staticClass: "form-group" }, [
+                                _c(
+                                  "label",
+                                  { attrs: { for: "quantity_type" } },
+                                  [_vm._v(" Unit Type")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.quantity_type,
+                                        expression: "form.quantity_type"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      name: "quantity_type",
+                                      required: ""
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.form,
+                                          "quantity_type",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("option", { attrs: { value: "pice" } }, [
+                                      _vm._v("pice")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("option", { attrs: { value: "gm" } }, [
+                                      _vm._v("gm")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("option", { attrs: { value: "kg" } }, [
+                                      _vm._v("kg")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "option",
+                                      { attrs: { value: "liter" } },
+                                      [_vm._v("liter")]
+                                    )
+                                  ]
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-6 col-xs-6" }, [
+                              _c("div", { staticClass: "form-group" }, [
+                                _c("label", [_vm._v("Unit")]),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.quantity,
+                                      expression: "form.quantity"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "numer",
+                                    name: "quantity",
+                                    required: ""
+                                  },
+                                  domProps: { value: _vm.form.quantity },
+                                  on: {
+                                    keyup: _vm.amountCalculate,
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "quantity",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-6 col-xs-6" }, [
+                              _c("div", { staticClass: "form-group" }, [
+                                _c("label", [_vm._v("Price")]),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.price,
+                                      expression: "form.price"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "number",
+                                    name: "price",
+                                    required: "",
+                                    placeholder: "price"
+                                  },
+                                  domProps: { value: _vm.form.price },
+                                  on: {
+                                    keyup: _vm.amountCalculate,
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "price",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-6 col-xs-6" }, [
+                              _c("div", { staticClass: "form-group" }, [
+                                _c("label", [_vm._v("Discount")]),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.discount,
+                                      expression: "form.discount"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "number",
+                                    name: "discount",
+                                    required: "",
+                                    placeholder: "discount"
+                                  },
+                                  domProps: { value: _vm.form.discount },
+                                  on: {
+                                    keyup: _vm.amountCalculate,
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "discount",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("label", [_vm._v("Amount")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.amount,
+                                  expression: "form.amount"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "amount",
+                                readonly: ""
+                              },
+                              domProps: { value: _vm.form.amount },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "amount",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group text-center" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: {
+                                  disabled: _vm.form.busy,
+                                  type: "submit"
+                                }
+                              },
+                              [
+                                _vm.form.busy
+                                  ? _c("i", {
+                                      staticClass: "fa fa-spin fa-spinner"
+                                    })
+                                  : _vm._e(),
+                                _vm._v("Submit\n                  ")
+                              ]
                             )
                           ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", [_vm._v("Price")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.price,
-                              expression: "form.price"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "number",
-                            name: "price",
-                            required: "",
-                            placeholder: "price"
-                          },
-                          domProps: { value: _vm.form.price },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(_vm.form, "price", $event.target.value)
-                            }
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "quantity_type" } }, [
-                          _vm._v(" Quantity Type")
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "select",
-                          {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.quantity_type,
-                                expression: "form.quantity_type"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { name: "quantity_type", required: "" },
-                            on: {
-                              change: function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.$set(
-                                  _vm.form,
-                                  "quantity_type",
-                                  $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                )
-                              }
-                            }
-                          },
-                          [
-                            _c("option", { attrs: { value: "pice" } }, [
-                              _vm._v("pice")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "gm" } }, [
-                              _vm._v("gm")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "kg" } }, [
-                              _vm._v("kg")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "liter" } }, [
-                              _vm._v("liter")
-                            ])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", [_vm._v("Quantity/Item")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.quantity,
-                              expression: "form.quantity"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "numer",
-                            name: "quantity",
-                            required: ""
-                          },
-                          domProps: { value: _vm.form.quantity },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.form,
-                                "quantity",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", [_vm._v("Amount")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.amount,
-                              expression: "form.amount"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text", name: "amount", readonly: "" },
-                          domProps: { value: _vm.form.amount },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(_vm.form, "amount", $event.target.value)
-                            }
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group text-center" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary",
-                            attrs: { disabled: _vm.form.busy, type: "submit" }
-                          },
-                          [
-                            _vm.form.busy
-                              ? _c("i", {
-                                  staticClass: "fa fa-spin fa-spinner"
-                                })
-                              : _vm._e(),
-                            _vm._v("Submit\n                  ")
-                          ]
-                        )
-                      ])
-                    ]
-                  )
-                ])
+                        ]
+                      )
+                    ])
+                  : _vm._e()
               ])
             ])
           ])

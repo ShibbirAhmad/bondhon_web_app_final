@@ -146,7 +146,7 @@
                       <tr>
                         <td>#</td>
                         <td>Date</td>
-                        <td>Invoice_no</td>
+                        <td>Invoice</td>
                         <td>Product Qty</td>
                         <td>Amount</td>
                         <td>Paid</td>
@@ -282,7 +282,7 @@ export default {
     productQty(items) {
       let total = 0;
       items.forEach((ele) => {
-        total += parseInt(ele.stock);
+        total += parseInt(ele.quantity);
       });
 
       return total;
@@ -291,7 +291,7 @@ export default {
       let total = 0;
       this.purchase_items.forEach((ele) => {
         ele.purchase_items.forEach((element) => {
-          total += parseInt(element.stock);
+          total += parseInt(element.quantity);
         });
       });
 
