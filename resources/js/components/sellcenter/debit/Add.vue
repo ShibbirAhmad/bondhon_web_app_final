@@ -51,11 +51,17 @@
                      <div class="col-md-6">
                       <div class="form-group">
                         <label>Purpose</label>
-                        <input type="text"
-                          class="form-control"
-                          v-model="form.purpose"
-                          name="purpose"
-                          required>
+                          <select
+                              name="purpose"  
+                              v-model="form.purpose"
+                              class="form-control" 
+                              @change="selectPurpose"
+                          >
+                            <option value="others">others</option>
+                            <option value="salary">salary Pay</option>
+                            <option value="supplier">supplier Bill Pay</option>
+                            <option value="bill">Bill Pay</option>
+                          </select>
                         <has-error :form="form" field="purpose"></has-error>
                       </div>
                     </div>
@@ -152,11 +158,15 @@ export default {
   data() {
     return {
       form: new Form({
-        purpose: "",
+        purpose: "others",
         amount: "",
         date: "",
         comment: "",
         debit_from: "Cash",
+        dmin_id: "",
+        supplier_id: "",
+        bill_statement_id: "",
+        employee_id: "",
       }),
       error: "",
       purposes: "",
@@ -165,13 +175,127 @@ export default {
         format: "YYYY-MM-DD",
         useCurrent: false,
       },
-  
+        months: {
+        January: "January",
+        February: "February",
+        March: "March",
+        April: "April",
+        May: "May",
+        June: "June",
+        July: "July",
+        August: "August",
+        September: "Septembaer",
+        October: "October",
+        November: "November",
+        December: "December",
+      },
      disabled: false,
 
     };
   },
 
   methods: {
+
+    selectPurpose() {
+     let value = this.form.purpose;
+     if(value == "salary"){
+        this.employeeList();
+      }
+      else if(value == "supplier"){
+        this.supplierList();
+      }
+       else if(value == "bill"){
+        this.billStatementList();
+      }
+      else {
+        this.form.supplier_id="";
+        this.form.bill_statement_id="";
+        this.form.employee_id="";
+      }
+    },
+    
+    supplierList() {
+      axios
+        .get("/api/supplier/list")
+        .then((resp) => {
+          console.log(resp);
+          let options = {};
+          resp.data.forEach((element) => {
+            options[element.id] = element.name + "-" + element.phone;
+          });
+          Swal.fire({
+            title: "Select a Supplier",
+            input: "select",
+            inputOptions: options,
+            inputPlaceholder: "Select One",
+            showCancelButton: true,
+          }).then((result) => {
+            if (result.value) {
+              this.form.supplier_id = result.value;
+            } else {
+              this.form.purpose = "";
+              this.form.supplier_id = "";
+            }
+          });
+        })
+ 
+    },
+
+
+    employeeList() {
+      axios
+        .get("/api/sellcenter/employee/list")
+        .then((resp) => {
+          console.log(resp);
+          let options = {};
+          resp.data.forEach((element) => {
+            options[element.id] = element.name + "-" + element.designation;
+          });
+          Swal.fire({
+            title: "Select a employee",
+            input: "select",
+            inputOptions: options,
+            inputPlaceholder: "Select One",
+            showCancelButton: true,
+          }).then((result) => {
+            if (result.value) {
+              this.form.employee_id = result.value;
+            } else {
+              this.form.purpose = "";
+              this.form.employee_id = "";
+            }
+          });
+        })
+ 
+    },
+
+    billStatementList() {
+      axios
+        .get("/api/sellcenter/bill/statement/list/type/debit")
+        .then((resp) => {
+          console.log(resp)
+          let options = {};
+          resp.data.bills.forEach((element) => {
+            options[element.id] = element.name;
+          });
+          Swal.fire({
+            title: "Select  bill",
+            input: "select",
+            inputOptions: options,
+            inputPlaceholder: "Select One",
+            showCancelButton: true,
+          }).then((result) => {
+            if (result.value) {
+              this.form.bill_statement_id = result.value;
+            } else {
+              this.form.purpose = "";
+              this.form.bill_statement_id = "";
+            }
+          });
+        })
+
+    },
+
 
 
     addDebit() {

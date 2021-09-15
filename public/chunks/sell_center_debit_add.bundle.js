@@ -292,6 +292,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -304,11 +310,15 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
   data: function data() {
     return {
       form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
-        purpose: "",
+        purpose: "others",
         amount: "",
         date: "",
         comment: "",
-        debit_from: "Cash"
+        debit_from: "Cash",
+        dmin_id: "",
+        supplier_id: "",
+        bill_statement_id: "",
+        employee_id: ""
       }),
       error: "",
       purposes: "",
@@ -317,28 +327,132 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         format: "YYYY-MM-DD",
         useCurrent: false
       },
+      months: {
+        January: "January",
+        February: "February",
+        March: "March",
+        April: "April",
+        May: "May",
+        June: "June",
+        July: "July",
+        August: "August",
+        September: "Septembaer",
+        October: "October",
+        November: "November",
+        December: "December"
+      },
       disabled: false
     };
   },
   methods: {
-    addDebit: function addDebit() {
+    selectPurpose: function selectPurpose() {
+      var value = this.form.purpose;
+
+      if (value == "salary") {
+        this.employeeList();
+      } else if (value == "supplier") {
+        this.supplierList();
+      } else if (value == "bill") {
+        this.billStatementList();
+      } else {
+        this.form.supplier_id = "";
+        this.form.bill_statement_id = "";
+        this.form.employee_id = "";
+      }
+    },
+    supplierList: function supplierList() {
       var _this = this;
+
+      axios.get("/api/supplier/list").then(function (resp) {
+        console.log(resp);
+        var options = {};
+        resp.data.forEach(function (element) {
+          options[element.id] = element.name + "-" + element.phone;
+        });
+        Swal.fire({
+          title: "Select a Supplier",
+          input: "select",
+          inputOptions: options,
+          inputPlaceholder: "Select One",
+          showCancelButton: true
+        }).then(function (result) {
+          if (result.value) {
+            _this.form.supplier_id = result.value;
+          } else {
+            _this.form.purpose = "";
+            _this.form.supplier_id = "";
+          }
+        });
+      });
+    },
+    employeeList: function employeeList() {
+      var _this2 = this;
+
+      axios.get("/api/sellcenter/employee/list").then(function (resp) {
+        console.log(resp);
+        var options = {};
+        resp.data.forEach(function (element) {
+          options[element.id] = element.name + "-" + element.designation;
+        });
+        Swal.fire({
+          title: "Select a employee",
+          input: "select",
+          inputOptions: options,
+          inputPlaceholder: "Select One",
+          showCancelButton: true
+        }).then(function (result) {
+          if (result.value) {
+            _this2.form.employee_id = result.value;
+          } else {
+            _this2.form.purpose = "";
+            _this2.form.employee_id = "";
+          }
+        });
+      });
+    },
+    billStatementList: function billStatementList() {
+      var _this3 = this;
+
+      axios.get("/api/sellcenter/bill/statement/list/type/debit").then(function (resp) {
+        console.log(resp);
+        var options = {};
+        resp.data.bills.forEach(function (element) {
+          options[element.id] = element.name;
+        });
+        Swal.fire({
+          title: "Select  bill",
+          input: "select",
+          inputOptions: options,
+          inputPlaceholder: "Select One",
+          showCancelButton: true
+        }).then(function (result) {
+          if (result.value) {
+            _this3.form.bill_statement_id = result.value;
+          } else {
+            _this3.form.purpose = "";
+            _this3.form.bill_statement_id = "";
+          }
+        });
+      });
+    },
+    addDebit: function addDebit() {
+      var _this4 = this;
 
       this.form.post("/api/sellcenter/debit/store").then(function (resp) {
         console.log(resp);
 
         if (resp.data.status == "SUCCESS") {
-          _this.$router.push({
+          _this4.$router.push({
             name: "sell_center_debit"
           });
 
-          _this.$toasted.show(resp.data.message, {
+          _this4.$toasted.show(resp.data.message, {
             type: "success",
             position: "top-center",
             duration: 2000
           });
         } else {
-          _this.error = "something went to wrong";
+          _this4.error = "something went to wrong";
         }
       });
     },
@@ -680,35 +794,65 @@ var render = function() {
                             [
                               _c("label", [_vm._v("Purpose")]),
                               _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.purpose,
-                                    expression: "form.purpose"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  name: "purpose",
-                                  required: ""
-                                },
-                                domProps: { value: _vm.form.purpose },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.purpose,
+                                      expression: "form.purpose"
                                     }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "purpose",
-                                      $event.target.value
-                                    )
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { name: "purpose" },
+                                  on: {
+                                    change: [
+                                      function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.form,
+                                          "purpose",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      },
+                                      _vm.selectPurpose
+                                    ]
                                   }
-                                }
-                              }),
+                                },
+                                [
+                                  _c("option", { attrs: { value: "others" } }, [
+                                    _vm._v("others")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "salary" } }, [
+                                    _vm._v("salary Pay")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "supplier" } },
+                                    [_vm._v("supplier Bill Pay")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "bill" } }, [
+                                    _vm._v("Bill Pay")
+                                  ])
+                                ]
+                              ),
                               _vm._v(" "),
                               _c("has-error", {
                                 attrs: { form: _vm.form, field: "purpose" }

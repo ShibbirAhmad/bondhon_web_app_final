@@ -93,7 +93,6 @@ export default {
             setTimeout(() =>{
               location.reload();
             },1000)
-
             this.addClass();
             this.$toasted.show(resp.data.message, {
               type: "success",

@@ -29,6 +29,7 @@ class SellCenterController extends Controller
                 'password' => 'required|min:8',
                 'phone' => 'required|digits:11|unique:sell_centers',
             ]);
+            
             $sellcenter = new SellCenter();
             $sellcenter->name = $request->name;
             $sellcenter->address = $request->address;

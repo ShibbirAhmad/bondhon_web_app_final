@@ -106,7 +106,7 @@
                   
                         <td>
                           <router-link
-
+                            v-if="current_date == debit.date"
                             :to="{
                               name: 'sell_center_debit_edit',
                               params: { id: debit.id },

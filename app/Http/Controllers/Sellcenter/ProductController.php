@@ -170,6 +170,7 @@ class ProductController extends Controller
    public function searchForSale($search){
 
     $products = SellCenterProduct::where('sell_center_id',session()->get('sellcenter')['id'])
+                                  ->where('stock','>=',1)
                                   ->where('code',$search)
                                   ->orWhere('name','like','%'.$search.'%')
                                   ->get();

@@ -54,13 +54,13 @@ class PurchaseController extends Controller
             //save the purchase item
             foreach ($request->products as $item) {
                 $product = SellCenterProduct::where('id', $item['product_id'])->first();
-                $product->stock = $product->stock + $item['quantity'];
+                $product->stock = floatval($product->stock) + floatval($item['quantity']);
                 $product->save();
                 $p_item = new PurchaseItem();
                 $p_item->purchase_id = $purchase->id;
                 $p_item->sell_center_product_id = $item['product_id'];
                 $p_item->price = $item['price'];
-                $p_item->quantity = $item['quantity'];
+                $p_item->quantity = floatval($item['quantity']);
                 $p_item->save();
 
              }

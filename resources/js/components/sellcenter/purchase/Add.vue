@@ -395,13 +395,13 @@ export default {
         return;
       } else {
         let price = this.preview_products.price;
-        let quantity = this.preview_products.quantity;
+        let quantity = parseFloat(this.preview_products.quantity);
 
         if (quantity <= 1) {
           quantity = 1;
         }
         let total = price * quantity;
-        this.preview_products.total = total;
+        this.preview_products.total = parseFloat(total);
         this.validation();
       }
     },

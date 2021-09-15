@@ -309,6 +309,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -854,19 +855,26 @@ var render = function() {
                                 _c(
                                   "td",
                                   [
-                                    _c(
-                                      "router-link",
-                                      {
-                                        staticClass: "btn btn-success btn-sm",
-                                        attrs: {
-                                          to: {
-                                            name: "sell_center_credit_edit",
-                                            params: { id: credit.id }
-                                          }
-                                        }
-                                      },
-                                      [_c("i", { staticClass: "fa fa-edit" })]
-                                    ),
+                                    _vm.current_date == credit.date
+                                      ? _c(
+                                          "router-link",
+                                          {
+                                            staticClass:
+                                              "btn btn-success btn-sm",
+                                            attrs: {
+                                              to: {
+                                                name: "sell_center_credit_edit",
+                                                params: { id: credit.id }
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fa fa-edit"
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e(),
                                     _vm._v(" "),
                                     _vm.current_date == credit.date
                                       ? _c(

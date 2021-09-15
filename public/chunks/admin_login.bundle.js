@@ -250,6 +250,10 @@ var render = function() {
                   "div",
                   { staticClass: "form-group has-feedback" },
                   [
+                    _c("label", { attrs: { for: "email" } }, [
+                      _vm._v("Email ")
+                    ]),
+                    _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
@@ -264,8 +268,7 @@ var render = function() {
                       attrs: {
                         type: "email",
                         name: "email",
-                        placeholder: "Email",
-                        autocomplete: "off",
+                        placeholder: "example@gmail.com",
                         autofocus: ""
                       },
                       domProps: { value: _vm.form.email },
@@ -290,6 +293,10 @@ var render = function() {
                   "div",
                   { staticClass: "form-group has-feedback" },
                   [
+                    _c("label", { attrs: { for: "password" } }, [
+                      _vm._v("Password")
+                    ]),
+                    _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
@@ -304,8 +311,7 @@ var render = function() {
                       attrs: {
                         type: "password",
                         name: "password",
-                        placeholder: "Password",
-                        autocomplete: "off"
+                        placeholder: "Password"
                       },
                       domProps: { value: _vm.form.password },
                       on: {

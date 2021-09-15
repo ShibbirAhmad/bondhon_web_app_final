@@ -856,19 +856,26 @@ var render = function() {
                                 _c(
                                   "td",
                                   [
-                                    _c(
-                                      "router-link",
-                                      {
-                                        staticClass: "btn btn-success btn-sm",
-                                        attrs: {
-                                          to: {
-                                            name: "sell_center_debit_edit",
-                                            params: { id: debit.id }
-                                          }
-                                        }
-                                      },
-                                      [_c("i", { staticClass: "fa fa-edit" })]
-                                    ),
+                                    _vm.current_date == debit.date
+                                      ? _c(
+                                          "router-link",
+                                          {
+                                            staticClass:
+                                              "btn btn-success btn-sm",
+                                            attrs: {
+                                              to: {
+                                                name: "sell_center_debit_edit",
+                                                params: { id: debit.id }
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fa fa-edit"
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e(),
                                     _vm._v(" "),
                                     _vm.current_date == debit.date
                                       ? _c(

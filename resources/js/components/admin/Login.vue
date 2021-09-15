@@ -11,19 +11,20 @@
         <div class="alert alert-danger" v-if="error">{{ error }}</div>
         
         <div class="form-group has-feedback">
+            <label for="email">Email </label>
           <input
             type="email"
             class="form-control"
             :class="{ 'is-invalid': form.errors.has('email') }"
             name="email"
             v-model="form.email"
-            placeholder="Email"
-            autocomplete="off"
+            placeholder="example@gmail.com"
             autofocus
           />
           <has-error :form="form" field="email"></has-error>
         </div>
         <div class="form-group has-feedback">
+         <label for="password">Password</label>
           <input
             type="password"
             class="form-control"
@@ -31,7 +32,6 @@
             name="password"
             v-model="form.password"
             placeholder="Password"
-            autocomplete="off"
           />
           <has-error :form="form" field="password"></has-error>
         </div>

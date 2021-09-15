@@ -557,14 +557,14 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         return;
       } else {
         var price = this.preview_products.price;
-        var quantity = this.preview_products.quantity;
+        var quantity = parseFloat(this.preview_products.quantity);
 
         if (quantity <= 1) {
           quantity = 1;
         }
 
         var total = price * quantity;
-        this.preview_products.total = total;
+        this.preview_products.total = parseFloat(total);
         this.validation();
       }
     },

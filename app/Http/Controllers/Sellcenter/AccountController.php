@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Sellcenter;
 
 use App\Models\Team;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Exports\DebitExport ;
 use App\Exports\CreditExport ;
@@ -10,6 +11,7 @@ use App\Models\BillStatement ;
 use App\Models\EmployeeSalary;
 use App\Models\Account_purpose;
 use App\Models\SellCenterDebit;
+use App\Models\SupplierPayment;
 use App\Models\SellCenterCredit;
 use App\Models\BillPaidStatement;
 use Illuminate\Support\Facades\DB;
@@ -200,6 +202,28 @@ class AccountController extends Controller
             $debit->comment = $request->comment ?? null;
             $debit->date = $request->date;
             $debit->save();
+
+
+            
+           //save a supplier paid amount
+           if(!empty($request->supplier_id)){
+
+            $supplier=Supplier::where('id',$request->supplier_id)->first();
+            $supplier_payment=new SupplierPayment();
+            $supplier_payment->supplier_id=$request->supplier_id;
+            $supplier_payment->amount=$request->amount;
+            $supplier_payment->date=$request->date;
+            $supplier_payment->paid_by=$debit->debit_from . '('. $debit->comment.')';
+            $supplier_payment->save();
+            
+            //update debit comment
+            $debit->comment = $debit->comment.'('. $supplier->name .')';
+            $debit->save();
+            Supplier::SendMessageToSupplier($supplier,$supplier_payment->amount);
+
+
+         }
+         
 
         });
           return response()->json([

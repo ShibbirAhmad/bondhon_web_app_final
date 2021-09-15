@@ -82,11 +82,15 @@ class SaleController extends Controller
                 $sale->sell_center_id = session()->get('sellcenter')['id'];
                 $sale->sell_center_product_id = $product->id;
                 $sale->price = $request->price;
-                $sale->quantity = $request->quantity;
+                $sale->quantity = floatval($request->quantity);
                 $sale->quantity_type = $request->quantity_type;
                 $sale->discount = $request->discount ?? 0;
                 $sale->amount =  ( floatval($request->price) * floatval($request->quantity) ) - floatval($request->discount) ;
                 $sale->save();
+
+                //update stock
+                $product->stock= floatval($product->stock) -  floatval($request->quantity) ;
+                $product->save();
 
                 if ($sale->amount > 0) {
                     $credit = new SellCenterCredit();
@@ -129,16 +133,23 @@ class SaleController extends Controller
         //save sale data
         if ($product) {
             DB::transaction(function() use($request,$product,$id){
+
                 $sale = SellCenterSale::findOrFail($id);
+
+                //update stock 
+                $product->stock = $product->stock + $sale->quantity;
+                $product->stock = $product->stock  - floatval($request->quantity);
+                $product->save();
+
                 $sale->sell_center_id = session()->get('sellcenter')['id'];
                 $sale->sell_center_product_id = $product->id;
                 $sale->price = $request->price;
-                $sale->quantity = $request->quantity;
+                $sale->quantity = floatval($request->quantity);
                 $sale->quantity_type = $request->quantity_type;
                 $sale->discount = $request->discount ?? 0;
                 $sale->amount =  ( floatval($request->price) * floatval($request->quantity) ) - floatval($request->discount) ;
                 $sale->save();
-
+            
                 if ($sale->amount > 0) {
                     $old_credit = SellCenterCredit::where('sell_center_sale_id',$sale->id)->first();
                     $old_credit->delete();

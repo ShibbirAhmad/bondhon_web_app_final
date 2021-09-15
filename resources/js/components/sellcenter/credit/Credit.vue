@@ -107,6 +107,7 @@
 
                         <td>
                           <router-link
+                            v-if="current_date == credit.date"
                             :to="{
                               name: 'sell_center_credit_edit',
                               params: { id: credit.id },
