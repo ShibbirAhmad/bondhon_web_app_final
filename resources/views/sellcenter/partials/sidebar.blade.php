@@ -104,6 +104,37 @@ $sellcenter = session()->get('sellcenter');
           </ul>
         </li>
 
+
+
+                       
+      <li class="treeview">
+          <router-link :to="{ name: 'sell_center_debit_statement'}"> <i class="fa fa-list-alt"></i>Bill Statements
+          </router-link>
+      </li>
+
+      <li class="treeview">
+          <router-link :to="{ name: 'sell_center_credit_statement'}"> <i class="fa fa-list-alt"></i>Credit Statements
+          </router-link>
+      </li>
+
+
+      <li class="treeview">
+        <a href="#">
+            <i class="fa fa-user-circle "></i> <span>Employee</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li>
+                <router-link :to="{ name: 'add_employee_sell_center'}"><i class="fa fa-plus"></i> Add </router-link>
+             </li>
+            <li>
+                <router-link :to="{ name: 'employee_sell_center'}"><i class="fa fa-eye"></i> Manage</router-link>
+            </li>
+
+        </ul>
+      </li>
         
         <li class="treeview">
           <a href="#">
@@ -124,3 +155,5 @@ $sellcenter = session()->get('sellcenter');
     </section>
     <!-- /.sidebar -->
   </aside>
+
+

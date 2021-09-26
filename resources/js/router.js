@@ -565,7 +565,6 @@ const routes = [
     },
 
 
-
     {
         path: '/backend/profite/report',
         component: () => import(/* webpackChunkName: "profiteReport" */'./components/admin/Report/Profite'),
@@ -1247,6 +1246,94 @@ const routes = [
         }
 
     },
+
+
+    
+    {
+        path: '/sell/center/debit/statement',
+        name: 'sell_center_debit_statement',
+        component: () => import(/*webpackChunkName: "sell_center_debit_statement" */'./components/sellcenter/bill_statement/debit_statement.vue'),
+        meta: {
+            authSellCenter: true,
+            title: 'debit statements'
+        }
+    },
+
+    
+    {
+        path: '/sell/center/credit/statement',
+        name: 'sell_center_credit_statement',
+        component: () => import(/*webpackChunkName: "sell_center_credit_statement" */'./components/sellcenter/bill_statement/credit_statement.vue'),
+        meta: {
+            authSellCenter: true,
+            title: 'credit statements'
+        }
+    },
+
+    {
+        path: '/sell/center/bill/statement/add',
+        name: 'sell_center_statement_add',
+        component: () => import(/*webpackChunkName: "sell_center_statement_add" */'./components/sellcenter/bill_statement/Add.vue'),
+        meta: {
+            authSellCenter: true,
+            title: 'credit or debit statement add'
+        }
+    },
+
+    {
+        path: '/sell/center/bill/statement/details/:id',
+        name: 'sell_center_statement_details',
+        component: () => import(/*webpackChunkName:"sell_center_statement_details"*/'./components/sellcenter/bill_statement/statement_details.vue'),
+        meta: {
+            authSellCenter: true,
+            title: ' statement details'
+        }
+    },
+
+
+    
+    {
+        path: '/sell/center/employee',
+        component: () => import(/* webpackChunkName: "employee_sell_center" */'./components/sellcenter/employee/index'),
+        name: 'employee_sell_center',
+        meta: {
+            title: 'Employees',
+            authSellCenter: true,
+        }
+    },
+
+    {
+        path: '/sell/center/employee/add',
+        component: () => import(/* webpackChunkName: "add_employee_sell_center" */'./components/sellcenter/employee/Add'),
+        name: 'add_employee_sell_center',
+        meta: {
+            title: 'Add | Employee',
+            authSellCenter: true,
+        }
+    },
+
+    {
+        path: '/sell/center/employee/edit/:id',
+        component: () => import(/* webpackChunkName: "edit_employee_sell_center" */'./components/sellcenter/employee/Edit'),
+        name: 'edit_employee_sell_center',
+        meta: {
+            title: 'Edit | Employee',
+            authSellCenter: true,
+        }
+    },
+
+    {
+        path: '/sell/center/employee/salary/:id',
+        component: () => import(/* webpackChunkName: "sell_center_employee_salary" */'./components/sellcenter/employee/Salary'),
+        name: 'sell_center_employee_salary',
+        meta: {
+            title: 'Employee Salary',
+            authSellCenter: true,
+        }
+    },
+
+
+
 
 ]
 

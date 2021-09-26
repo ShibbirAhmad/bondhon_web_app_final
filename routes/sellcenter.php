@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 //route for sellcenter login and registration and authorizatoin
 Route::post('api/sellcenter/login','Sellcenter\LoginController@check_login') ;
 
@@ -94,8 +96,7 @@ Route::group([
         Route::get('api/sellcenter/export/debit', 'AccountController@export_debit');
         Route::post('api/sellcenter/debit/update/{id}', 'AccountController@update_debit');
         Route::get('api/sellcenter/debit/destroy/{id}', 'AccountController@destroy_debit');
-        Route::get('api/sellcenter/account/purpose', 'AccountController@accountPurpose');
-        Route::get('api/sellcenter/employee/list', 'AccountController@employeeList');
+       
 
        //sales routes 
        Route::get('api/sellcenter/sales', 'SaleController@index');
@@ -104,6 +105,26 @@ Route::group([
        Route::post('api/sellcenter/sale/update/{id}', 'SaleController@update');
        Route::post('api/sellcenter/sale/add', 'SaleController@store');
 
+
+
+         // start employee route here
+        Route::get('api/sellcenter/employee/list','EmployeeController@index');
+        Route::post('api/sellcenter/employee/add','EmployeeController@addEmployee');
+        Route::get('api/sellcenter/employee/edit/{id}','EmployeeController@getEditEmployee');
+        Route::post('api/sellcenter/employee/update/{id}','EmployeeController@updateEmployee');
+        Route::get('api/sellcenter/employee/trash/{id}','EmployeeController@destroyEmployee');
+        Route::get('api/api/sellcenter/employee/search/{data}','EmployeeController@search_employee');
+        Route::get('api/sellcenter/employee/salary/list/{id}','EmployeeController@salaryDetails');
+
+
+        // end employee route here
+
+            
+        //company bill statements route is here
+        Route::get('api/sellcenter/bill/statement/list/type/credit','BillStatementController@credit_statement_list');
+        Route::get('api/sellcenter/bill/statement/list/type/debit','BillStatementController@debit_statement_list');
+        Route::post('api/sellcenter/bill/statement/add','BillStatementController@store');
+        Route::get('api/sellcenter/bill/statement/details/{id}','BillStatementController@bill_statement_details');
 
 
 

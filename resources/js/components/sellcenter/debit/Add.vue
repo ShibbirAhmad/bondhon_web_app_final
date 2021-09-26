@@ -241,7 +241,6 @@ export default {
  
     },
 
-
     employeeList() {
       axios
         .get("/api/sellcenter/employee/list")
