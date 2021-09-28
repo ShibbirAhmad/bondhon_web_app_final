@@ -152,9 +152,6 @@ import navbar from "../Navbar.vue"
 Vue.component(HasError.name, HasError);
 export default {
   name: "Add",
-  created() {
-    this.accountPurpose();
-  },
   data() {
     return {
       form: new Form({
@@ -169,7 +166,6 @@ export default {
         employee_id: "",
       }),
       error: "",
-      purposes: "",
       //fo date picker
       options: {
         format: "YYYY-MM-DD",
@@ -215,8 +211,7 @@ export default {
     },
     
     supplierList() {
-      axios
-        .get("/api/supplier/list")
+      axios.get("/api/supplier/list")
         .then((resp) => {
           console.log(resp);
           let options = {};
@@ -247,7 +242,7 @@ export default {
         .then((resp) => {
           console.log(resp);
           let options = {};
-          resp.data.forEach((element) => {
+          resp.data.employees.forEach((element) => {
             options[element.id] = element.name + "-" + element.designation;
           });
           Swal.fire({

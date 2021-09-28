@@ -113,7 +113,7 @@ export default {
      if (this.collections.data) {
          let total=0 ;
          this.collections.data.forEach(element => {
-            total += element.amount ;
+            total += parseInt(element.amount) ;
             });
           return total ;
         }

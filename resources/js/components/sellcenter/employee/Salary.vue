@@ -20,22 +20,16 @@
         <div class="container">
           <div class="row">
             <div class="member-info">
-              <img
-                :src="
-                  member.avator
-                    ? basePath + member.avator
-                    : basePath + 'images/static/user2-160x160.jpg'
-                "
-                class="member-image"
-                :alt="member.name"
-              />
+               <i style="font-size:100px;" class="fa fa-user ">
+                
+               </i>
               <h3 style="line-height: 0">{{ member.name }}</h3>
               <h6>{{ member.designation }}</h6>
               <h4>Phone:{{ member.phone }}</h4>
             </div>
           </div>
           <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-10 col-md-10">
               <h1 class="text-center" v-if="loading">
                 <i class="fa fa-spin fa-spinner"></i>
               </h1>
@@ -50,6 +44,8 @@
                     <thead>
                       <tr>
                         <th scope="col">Date</th>
+                        <th scope="col">Comment</th>
+                        <th scope="col">Paid By</th>
                         <th scope="col">Amount</th>
                       </tr>
                     </thead>
@@ -58,10 +54,13 @@
                         <td>
                           {{ salary.date }}
                         </td>
+                        <td> {{ salary.comment ? salary.comment : '' }} </td>
+                        <td> {{ salary.paid_by ? salary.paid_by : '' }} </td>
+
                         <td>{{ salary.amount }}</td>
                       </tr>
                       <tr>
-                        <td></td>
+                        <td colspan="3">Total Taken Salary</td>
                         <td>
                           <b>= {{ total() }}</b>
                         </td>
@@ -83,7 +82,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-6">
+            <!-- <div class="col-lg-6">
               <div class="box">
                 <div class="box-header with-border"></div>
 
@@ -121,14 +120,14 @@
                   </button>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </section>
     </div>
 
     <modal name="example" :width="400" :height="300">
-      <div class="card">
+      <div style="padding:20px;" class="card">
         <div class="card-body">
           <div class="form-group">
             <label>Date</label>
@@ -156,7 +155,6 @@
   </div>
 </template>
 
-
 <script>
 
 import navbar from "../Navbar.vue";
@@ -164,7 +162,7 @@ export default {
   components:{
     navbar
   },
-  mounted() {
+  created() {
     this.getMemberSalary();
   },
 
@@ -188,17 +186,14 @@ export default {
   methods: {
     getMemberSalary() {
       axios
-        .get("/api/member/salary/list/" + this.$route.params.id)
+        .get("/api/sellcenter/employee/salary/list/" + this.$route.params.id)
         .then((resp) => {
           console.log(resp);
-          this.member = resp.data.member;
+          this.member = resp.data.employee;
           this.salaryList = resp.data.salary;
           this.paid_salaryies = resp.data.paid_salary;
           this.loading = false;
         })
-        .catch((e) => {
-          console.log(e);
-        });
     },
     dateFiltaring(date) {
       console.log(date);
@@ -216,6 +211,7 @@ export default {
       });
       return total;
     },
+
 
     showModal() {
       this.$modal.show("example");

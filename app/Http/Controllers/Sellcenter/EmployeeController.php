@@ -104,12 +104,12 @@ class EmployeeController extends Controller
 
     public function salaryDetails($id){
     
-            $employeeMember=SellCenterEmployee::find($id);
+            $employee=SellCenterEmployee::findOrFail($id);
             $employee_salaries=SellCenterEmployeeSalary::orderBy('date','DESC')->where('employee_id',$id)->get();
             $paid_salary=SellCenterEmployeeSalaryPerMonth::orderBy('date','DESC')->where('employee_id',$id)->get();                       
                                 
                 return response()->json([
-                    'employee'=>$employeeMember,
+                    'employee'=>$employee,
                     'salary'=>$employee_salaries,
                     'paid_salary'=>$paid_salary
                 ]);

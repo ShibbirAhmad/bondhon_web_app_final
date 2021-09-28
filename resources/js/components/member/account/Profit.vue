@@ -115,7 +115,7 @@ export default {
      if (this.profits.data) {
          let total=0 ;
          this.profits.data.forEach(element => {
-            total += element.amount ;
+            total += parseInt(element.amount) ;
             });
           return total ;
         }

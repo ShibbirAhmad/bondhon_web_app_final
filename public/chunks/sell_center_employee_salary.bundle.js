@@ -305,14 +305,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     navbar: _Navbar_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  mounted: function mounted() {
+  created: function created() {
     this.getMemberSalary();
   },
   data: function data() {
@@ -335,14 +333,12 @@ __webpack_require__.r(__webpack_exports__);
     getMemberSalary: function getMemberSalary() {
       var _this = this;
 
-      axios.get("/api/member/salary/list/" + this.$route.params.id).then(function (resp) {
+      axios.get("/api/sellcenter/employee/salary/list/" + this.$route.params.id).then(function (resp) {
         console.log(resp);
-        _this.member = resp.data.member;
+        _this.member = resp.data.employee;
         _this.salaryList = resp.data.salary;
         _this.paid_salaryies = resp.data.paid_salary;
         _this.loading = false;
-      })["catch"](function (e) {
-        console.log(e);
       });
     },
     dateFiltaring: function dateFiltaring(date) {
@@ -671,14 +667,9 @@ var render = function() {
           _c("div", { staticClass: "container" }, [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "member-info" }, [
-                _c("img", {
-                  staticClass: "member-image",
-                  attrs: {
-                    src: _vm.member.avator
-                      ? _vm.basePath + _vm.member.avator
-                      : _vm.basePath + "images/static/user2-160x160.jpg",
-                    alt: _vm.member.name
-                  }
+                _c("i", {
+                  staticClass: "fa fa-user ",
+                  staticStyle: { "font-size": "100px" }
                 }),
                 _vm._v(" "),
                 _c("h3", { staticStyle: { "line-height": "0" } }, [
@@ -692,7 +683,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-lg-5" }, [
+              _c("div", { staticClass: "col-lg-10 col-md-10" }, [
                 _vm.loading
                   ? _c("h1", { staticClass: "text-center" }, [
                       _c("i", { staticClass: "fa fa-spin fa-spinner" })
@@ -721,12 +712,38 @@ var render = function() {
                                         )
                                       ]),
                                       _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(
+                                              salary.comment
+                                                ? salary.comment
+                                                : ""
+                                            ) +
+                                            " "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(
+                                              salary.paid_by
+                                                ? salary.paid_by
+                                                : ""
+                                            ) +
+                                            " "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
                                       _c("td", [_vm._v(_vm._s(salary.amount))])
                                     ])
                                   }),
                                   _vm._v(" "),
                                   _c("tr", [
-                                    _c("td"),
+                                    _c("td", { attrs: { colspan: "3" } }, [
+                                      _vm._v("Total Taken Salary")
+                                    ]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _c("b", [
@@ -773,63 +790,6 @@ var render = function() {
                             )
                       ])
                     ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-6" }, [
-                _c("div", { staticClass: "box" }, [
-                  _c("div", { staticClass: "box-header with-border" }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "box-body" }, [
-                    _c("table", { staticClass: "table" }, [
-                      _vm._m(2),
-                      _vm._v(" "),
-                      _c(
-                        "tbody",
-                        [
-                          _vm._l(_vm.paid_salaryies, function(
-                            paid_salary,
-                            index
-                          ) {
-                            return _c("tr", { key: index }, [
-                              _c("td", [_vm._v(_vm._s(index + 1))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(paid_salary.date))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(paid_salary.amount))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(paid_salary.comment))])
-                            ])
-                          }),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", { attrs: { colspan: "2" } }),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("strong", [
-                                _vm._v(" = " + _vm._s(_vm.totalSalary()))
-                              ])
-                            ])
-                          ])
-                        ],
-                        2
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger",
-                        staticStyle: { "margin-top": "10px" },
-                        on: { click: _vm.showModal }
-                      },
-                      [
-                        _vm._v(
-                          "\n                  Add Salary\n                "
-                        )
-                      ]
-                    )
-                  ])
-                ])
               ])
             ])
           ])
@@ -837,7 +797,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("modal", { attrs: { name: "example", width: 400, height: 300 } }, [
-        _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card", staticStyle: { padding: "20px" } }, [
           _c("div", { staticClass: "card-body" }, [
             _c(
               "div",
@@ -950,23 +910,11 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
         _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Comment")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Paid By")]),
+        _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Amount")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("#")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Month")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Amount")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Comment")])
       ])
     ])
   }

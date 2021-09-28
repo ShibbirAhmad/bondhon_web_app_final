@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers\Sellcenter;
 
-use App\Models\Team;
+
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Exports\DebitExport ;
 use App\Exports\CreditExport ;
-use App\Models\BillStatement ;
-use App\Models\EmployeeSalary;
 use App\Models\Account_purpose;
 use App\Models\SellCenterDebit;
 use App\Models\SupplierPayment;
 use App\Models\SellCenterCredit;
-use App\Models\BillPaidStatement;
+use App\Models\SellCenterEmployee;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel ;
+use App\Models\SellCenterBillStatement ;
+use App\Models\SellCenterEmployeeSalary;
+use App\Models\SellCenterBillPaidStatement;
 
 
 class AccountController extends Controller
@@ -79,6 +80,21 @@ class AccountController extends Controller
             $credit->date = $request->date;
             $credit->credit_in=$request->credit_in;
             $credit->save() ;
+
+            //storing bill statement payment
+            if(!empty($request->bill_statement_id)){
+                $bill=SellCenterBillStatement::where('sell_center_id',session()->get('sellcenter')['id'])->where('id',$request->bill_statement_id)->first();
+                $credit_statement=new SellCenterBillPaidStatement();
+                $credit_statement->sell_center_id = session()->get('sellcenter')['id'];
+                $credit_statement->bill_statement_id=$bill->id;
+                $credit_statement->amount=  $credit->amount;
+                $credit_statement->date= $credit->date;
+                $credit_statement->comment=$credit->comment;
+                $credit_statement->paid_by=$credit->credit_in;
+                $credit_statement->save();
+                $credit->comment = $credit->comment.'('.$bill->name.')';
+                $credit->save();
+            }
 
         });
 
@@ -221,9 +237,40 @@ class AccountController extends Controller
             $debit->save();
             Supplier::SendMessageToSupplier($supplier,$supplier_payment->amount);
 
-
          }
+
+            // if salary paid
+            if(!empty($request->employee_id)){
+                $employee=SellCenterEmployee::where('sell_center_id',session()->get('sellcenter')['id'])->where('id',$request->employee_id)->first();
+                $employee_salary=new SellCenterEmployeeSalary();
+                $employee_salary->sell_center_id=session()->get('sellcenter')['id'];
+                $employee_salary->employee_id=$employee->id;
+                $employee_salary->amount=$request->amount;
+                $employee_salary->paid_by=$request->debit_from;
+                $employee_salary->comment=$request->comment;
+                $employee_salary->date=$request->date;
+                $employee_salary->save();
+                //update debit comment
+                $debit->purpose = $debit->purpose.'('. $employee->name .')';
+                $debit->save();
+                SellCenterEmployee::sendMessageToEmployeer($employee,$request->amount);
+            }
          
+
+            //storing bill statement payment
+            if(!empty($request->bill_statement_id)){
+                $bill=SellCenterBillStatement::where('sell_center_id',session()->get('sellcenter')['id'])->where('id',$request->bill_statement_id)->first();
+                $bill_paid=new SellCenterBillPaidStatement();
+                $bill_paid->sell_center_id=session()->get('sellcenter')['id'];
+                $bill_paid->bill_statement_id=$bill->id;
+                $bill_paid->amount=  $debit->amount;
+                $bill_paid->date= $debit->date;
+                $bill_paid->comment=$debit->comment;
+                $bill_paid->paid_by=$debit->debit_from;
+                $bill_paid->save();
+                $debit->comment = $debit->comment.'('.$bill->name.')';
+                $debit->save();
+            }
 
         });
           return response()->json([
@@ -376,11 +423,6 @@ class AccountController extends Controller
 
             $purpose=Account_purpose::all();
             return response()->json($purpose);
-    }
-
-    public function employeeList(){
-        $employeies=Team::where('status',1)->orderBy('position','ASC')->get();
-        return response()->json($employeies);
     }
 
 

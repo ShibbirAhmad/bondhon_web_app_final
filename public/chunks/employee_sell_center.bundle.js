@@ -259,12 +259,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     navbar: _Navbar_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  mounted: function mounted() {
-    var _this = this;
-
-    setTimeout(function () {
-      _this.loading = false;
-    }, 500);
+  created: function created() {
     this.getmemberList();
   },
   data: function data() {
@@ -278,27 +273,28 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     searchMember: function searchMember() {
-      var _this2 = this;
+      var _this = this;
 
       if (this.search_data.length > 2) {
         axios.get("/api/api/sellcenter/employee/search/" + this.search_data).then(function (resp) {
-          _this2.memberList = resp.data.employees;
+          _this.memberList = resp.data.employees;
         });
       } else {
         this.getmemberList();
       }
     },
     getmemberList: function getmemberList() {
-      var _this3 = this;
+      var _this2 = this;
 
       axios.get("/api/sellcenter/employee/list").then(function (resp) {
         if (resp.data.success == "OK") {
-          _this3.memberList = resp.data.employees;
+          _this2.memberList = resp.data.employees;
+          _this2.loading = false;
         }
       });
     },
     trash_member: function trash_member(member_id, index) {
-      var _this4 = this;
+      var _this3 = this;
 
       if (confirm("Are you sure to remove")) {
         axios.get("/team/members/trash/" + member_id).then(function (resp) {
@@ -307,7 +303,7 @@ __webpack_require__.r(__webpack_exports__);
           if (resp.data.success == "OK") {
             alert(resp.data.message);
 
-            _this4.memberList.data.splice(index, 1);
+            _this3.memberList.data.splice(index, 1);
           }
         });
       }

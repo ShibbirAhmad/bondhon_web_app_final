@@ -123,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.collections.data) {
         var total = 0;
         this.collections.data.forEach(function (element) {
-          total += element.amount;
+          total += parseInt(element.amount);
         });
         return total;
       }

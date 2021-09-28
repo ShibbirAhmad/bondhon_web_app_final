@@ -110,13 +110,8 @@ export default {
     components:{
     navbar
   },
-  mounted() {
-
-    setTimeout(() => {
-      this.loading = false;
-    }, 500);
+  created() {
     this.getmemberList();
-    
   },
 
   data() {
@@ -148,6 +143,7 @@ export default {
         .then((resp) => {
           if (resp.data.success == "OK") {
             this.memberList = resp.data.employees;
+            this.loading=false ;
           }
         })
        

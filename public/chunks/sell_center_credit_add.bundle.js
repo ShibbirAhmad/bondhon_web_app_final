@@ -289,29 +289,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MODULE_1__["HasError"].name, vform__WEBPACK_IMPORTED_MODULE_1__["HasError"]);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Add",
-  created: function created() {
-    this.accountPurpose();
-  },
   data: function data() {
     return {
       form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
-        purpose: "",
+        purpose: "others",
         amount: "",
         date: "",
         comment: "",
         credit_in: "Cash",
         bill_statement_id: "",
-        loaner_id: "",
         month: ""
       }),
       error: "",
-      purposes: "",
       //fo date picker
       options: {
         format: "YYYY-MM-DD",
@@ -336,24 +334,58 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     };
   },
   methods: {
-    addCredit: function addCredit() {
+    selectPurpose: function selectPurpose() {
+      var value = this.form.purpose;
+
+      if (value == "credit_statement") {
+        this.billStatementList();
+      } else {
+        this.form.bill_statement_id = "";
+      }
+    },
+    billStatementList: function billStatementList() {
       var _this = this;
+
+      axios.get("/api/sellcenter/bill/statement/list/type/credit").then(function (resp) {
+        console.log(resp);
+        var options = {};
+        resp.data.bills.forEach(function (element) {
+          options[element.id] = element.name;
+        });
+        Swal.fire({
+          title: "Select a credit ",
+          input: "select",
+          inputOptions: options,
+          inputPlaceholder: "Select One",
+          showCancelButton: true
+        }).then(function (result) {
+          if (result.value) {
+            _this.form.bill_statement_id = result.value;
+          } else {
+            _this.form.purpose = "";
+            _this.form.bill_statement_id = "";
+          }
+        });
+      });
+    },
+    addCredit: function addCredit() {
+      var _this2 = this;
 
       this.form.post("/api/sellcenter/credit/store").then(function (resp) {
         console.log(resp);
 
         if (resp.data.status == "SUCCESS") {
-          _this.$router.push({
+          _this2.$router.push({
             name: "sell_center_credit"
           });
 
-          _this.$toasted.show(resp.data.message, {
+          _this2.$toasted.show(resp.data.message, {
             type: "success",
             position: "top-center",
             duration: 2000
           });
         } else {
-          _this.error = "something went to wrong";
+          _this2.error = "something went to wrong";
         }
       });
     },
@@ -695,35 +727,57 @@ var render = function() {
                             [
                               _c("label", [_vm._v("Purpose")]),
                               _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.purpose,
-                                    expression: "form.purpose"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  name: "purpose",
-                                  required: ""
-                                },
-                                domProps: { value: _vm.form.purpose },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.purpose,
+                                      expression: "form.purpose"
                                     }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "purpose",
-                                      $event.target.value
-                                    )
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { name: "purpose" },
+                                  on: {
+                                    change: [
+                                      function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.form,
+                                          "purpose",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      },
+                                      _vm.selectPurpose
+                                    ]
                                   }
-                                }
-                              }),
+                                },
+                                [
+                                  _c("option", { attrs: { value: "others" } }, [
+                                    _vm._v("others")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "credit_statement" } },
+                                    [_vm._v("Credit Statement")]
+                                  )
+                                ]
+                              ),
                               _vm._v(" "),
                               _c("has-error", {
                                 attrs: { form: _vm.form, field: "purpose" }

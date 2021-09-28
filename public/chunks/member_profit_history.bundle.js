@@ -125,7 +125,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.profits.data) {
         var total = 0;
         this.profits.data.forEach(function (element) {
-          total += element.amount;
+          total += parseInt(element.amount);
         });
         return total;
       }

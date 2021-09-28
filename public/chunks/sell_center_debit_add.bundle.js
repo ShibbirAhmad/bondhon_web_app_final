@@ -304,9 +304,6 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MODULE_1__["HasError"].name, vform__WEBPACK_IMPORTED_MODULE_1__["HasError"]);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Add",
-  created: function created() {
-    this.accountPurpose();
-  },
   data: function data() {
     return {
       form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
@@ -321,7 +318,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         employee_id: ""
       }),
       error: "",
-      purposes: "",
       //fo date picker
       options: {
         format: "YYYY-MM-DD",
@@ -391,7 +387,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
       axios.get("/api/sellcenter/employee/list").then(function (resp) {
         console.log(resp);
         var options = {};
-        resp.data.forEach(function (element) {
+        resp.data.employees.forEach(function (element) {
           options[element.id] = element.name + "-" + element.designation;
         });
         Swal.fire({

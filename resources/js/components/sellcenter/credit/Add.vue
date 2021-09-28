@@ -48,13 +48,17 @@
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-group">
+                    <div class="form-group">
                         <label>Purpose</label>
-                        <input type="text"
-                          class="form-control"
-                          v-model="form.purpose"
-                          name="purpose"
-                          required>
+                          <select
+                              name="purpose"  
+                              v-model="form.purpose"
+                              class="form-control" 
+                              @change="selectPurpose"
+                          >
+                            <option value="others">others</option>
+                            <option value="credit_statement">Credit Statement</option>
+                          </select>
                         <has-error :form="form" field="purpose"></has-error>
                       </div>
                     </div>
@@ -141,24 +145,19 @@ import { Form, HasError, AlertError } from "vform";
 import navbar from "../Navbar.vue"
 Vue.component(HasError.name, HasError);
 export default {
-  name: "Add",
-  created() {
-    this.accountPurpose();
-  },
+
   data() {
     return {
       form: new Form({
-        purpose: "",
+        purpose: "others",
         amount: "",
         date: "",
         comment: "",
         credit_in: "Cash",
         bill_statement_id: "",
-        loaner_id: "",
         month: "",
       }),
       error: "",
-      purposes: "",
       //fo date picker
       options: {
         format: "YYYY-MM-DD",
@@ -185,10 +184,48 @@ export default {
   },
 
   methods: {
+
+  selectPurpose() {
+     let value = this.form.purpose;
+     if(value == "credit_statement"){
+        this.billStatementList();
+      }
+      else {
+        this.form.bill_statement_id="";
+      }
+    },
     
 
-    addCredit() {
+    billStatementList() {
+      axios
+        .get("/api/sellcenter/bill/statement/list/type/credit")
+        .then((resp) => {
+          console.log(resp)
+          let options = {};
+          resp.data.bills.forEach((element) => {
+            options[element.id] = element.name;
+          });
+          Swal.fire({
+            title: "Select a credit ",
+            input: "select",
+            inputOptions: options,
+            inputPlaceholder: "Select One",
+            showCancelButton: true,
+          }).then((result) => {
+            if (result.value) {
+              this.form.bill_statement_id = result.value;
+            } else {
+              this.form.purpose = "";
+              this.form.bill_statement_id = "";
+            }
+          });
+        })
 
+    },
+
+
+    
+    addCredit() {
       this.form
         .post("/api/sellcenter/credit/store")
         .then((resp) => {
