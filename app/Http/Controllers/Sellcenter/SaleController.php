@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Sellcenter;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\SellCenterSale;
 use App\Models\SellCenterCredit;
@@ -176,6 +177,78 @@ class SaleController extends Controller
     
          
      }
+
+
+    public function  profitCalculator($sales_products){
+
+            $sale_amount = 0 ;
+            $sale_quantity = 0 ;
+            $product_purchase_price = 0 ;
+            $product_purchase_qty = 0 ;
+            foreach ($sales_products as $item) {
+                $sale_amount += floatval($item->amount) ;
+                $sale_quantity += floatval($item->quantity) ;
+                $product_purchase_qty += count($item->product->purchaseItems);
+                foreach ($item->product->purchaseItems as $purchase) {
+                    $product_purchase_price += floatval($purchase->price) ;
+                }
+            } 
+            $average_purchase_price = $product_purchase_price / $product_purchase_qty ;
+            $profit =  $sale_amount - ($average_purchase_price * $sale_quantity );
+            return $profit ;
+
+    }  
+
+   
+    public function saleAnalysis(){
+
+        $total_sales_products = SellCenterSale::where('sell_center_id',session()->get('sellcenter')['id'])
+                                  ->select('amount','quantity','sell_center_product_id')
+                                  ->with('product.purchaseItems')->get();
+
+        $today_sales_products = SellCenterSale::where('created_at','>=',Carbon::today()->startOfDay())
+                                  ->where('created_at','<=',Carbon::today()->endOfDay())
+                                  ->where('sell_center_id',session()->get('sellcenter')['id'])
+                                  ->select('amount','quantity','sell_center_product_id')
+                                  ->with('product.purchaseItems')->get();
+
+                    
+        $yesterday_sales_products = SellCenterSale::where('created_at','>=',Carbon::yesterday()->startOfDay())
+                                  ->where('created_at','<=',Carbon::yesterday()->endOfDay())
+                                  ->where('sell_center_id',session()->get('sellcenter')['id'])
+                                  ->select('amount','quantity','sell_center_product_id')
+                                  ->with('product.purchaseItems')->get();
+                                                            
+               
+        $this_week_sales_products = SellCenterSale::where('created_at','>=',Carbon::today()->subDays('7')->startOfDay())
+                                  ->where('created_at','<=',Carbon::today()->endOfDay())
+                                  ->where('sell_center_id',session()->get('sellcenter')['id'])
+                                  ->select('amount','quantity','sell_center_product_id')
+                                  ->with('product.purchaseItems')->get();        
+
+        $this_month_sales_products = SellCenterSale::where('created_at','>=',Carbon::today()->subDays('30')->startOfDay())
+                                  ->where('created_at','<=',Carbon::today()->endOfDay())
+                                  ->where('sell_center_id',session()->get('sellcenter')['id'])
+                                  ->select('amount','quantity','sell_center_product_id')
+                                  ->with('product.purchaseItems')->get();   
+
+        return  response()->json([
+                'status' => 'OK',
+                'today_profit' => $this->profitCalculator($today_sales_products) ,
+                'yesterday_profit' => $this->profitCalculator($yesterday_sales_products)  ,
+                'this_week_profit' => $this->profitCalculator($this_week_sales_products) ,
+                'this_month_profit' => $this->profitCalculator($this_month_sales_products)  ,
+                'total_profit' => $this->profitCalculator($total_sales_products)  ,
+                'today_sales_products' => $today_sales_products,
+                'yesterday_sales_products' => $yesterday_sales_products,
+                'this_week_sales_products' => $this_week_sales_products,
+                'this_month_sales_products' => $this_month_sales_products,
+                'total_sales_products' => $total_sales_products,
+        ]) ;
+
+
+    }
+
 
 
 

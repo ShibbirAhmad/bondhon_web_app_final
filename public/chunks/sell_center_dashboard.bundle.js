@@ -247,6 +247,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -257,7 +302,12 @@ __webpack_require__.r(__webpack_exports__);
       loading: true,
       balance: {},
       analysis: "",
-      base_url: this.$store.state.image_base_link
+      base_url: this.$store.state.image_base_link,
+      this_month_profit: '',
+      this_week_profit: '',
+      today_profit: '',
+      yesterday_profit: '',
+      total_profit: ''
     };
   },
   created: function created() {
@@ -272,6 +322,11 @@ __webpack_require__.r(__webpack_exports__);
         console.log(resp);
         _this.analysis = resp.data.analysis;
         _this.balance = resp.data.balance;
+        _this.today_profit = resp.data.profit_analysis.original.today_profit;
+        _this.yesterday_profit = resp.data.profit_analysis.original.yesterday_profit;
+        _this.this_week_profit = resp.data.profit_analysis.original.this_week_profit;
+        _this.this_month_profit = resp.data.profit_analysis.original.this_month_profit;
+        _this.total_profit = resp.data.profit_analysis.original.total_profit;
         _this.loading = false;
       });
     }
@@ -511,6 +566,222 @@ var render = function() {
                       "div",
                       { staticClass: "boxs  blue" },
                       [
+                        _c("h3", [_vm._v(" Today Sales Profit ")]),
+                        _vm._v(" "),
+                        _c("h4", [
+                          _vm._v(
+                            "   " + _vm._s(_vm.today_profit.toFixed(2)) + " ৳  "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "small-boxs-footer",
+                            attrs: { to: { name: "today_sales_report" } }
+                          },
+                          [
+                            _vm._v("More info "),
+                            _c("i", { staticClass: "fa fa-arrow-circle-right" })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("img", {
+                          staticClass: "d_img_icon",
+                          attrs: {
+                            src:
+                              "https://assets.codepen.io/2301174/icon-supervisor.svg",
+                            alt: ""
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-4 col-md-4 col-lg-12 col-md-12" },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "boxs  blue" },
+                      [
+                        _c("h3", [_vm._v(" Yesterday Sales Profit ")]),
+                        _vm._v(" "),
+                        _c("h4", [
+                          _vm._v(
+                            "   " +
+                              _vm._s(_vm.yesterday_profit.toFixed(2)) +
+                              " ৳  "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "small-boxs-footer",
+                            attrs: { to: { name: "yesterday_sales_report" } }
+                          },
+                          [
+                            _vm._v("More info "),
+                            _c("i", { staticClass: "fa fa-arrow-circle-right" })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("img", {
+                          staticClass: "d_img_icon",
+                          attrs: {
+                            src:
+                              "https://assets.codepen.io/2301174/icon-supervisor.svg",
+                            alt: ""
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-4 col-md-4 col-lg-12 col-md-12" },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "boxs  blue" },
+                      [
+                        _c("h3", [_vm._v(" This Week Sales Profit ")]),
+                        _vm._v(" "),
+                        _c("h4", [
+                          _vm._v(
+                            "   " +
+                              _vm._s(_vm.this_week_profit.toFixed(2)) +
+                              " ৳  "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "small-boxs-footer",
+                            attrs: { to: { name: "this_week_sales_report" } }
+                          },
+                          [
+                            _vm._v("More info "),
+                            _c("i", { staticClass: "fa fa-arrow-circle-right" })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("img", {
+                          staticClass: "d_img_icon",
+                          attrs: {
+                            src:
+                              "https://assets.codepen.io/2301174/icon-supervisor.svg",
+                            alt: ""
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-4 col-md-4 col-lg-12 col-md-12" },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "boxs  blue" },
+                      [
+                        _c("h3", [_vm._v(" This Month Sales Profit ")]),
+                        _vm._v(" "),
+                        _c("h4", [
+                          _vm._v(
+                            "   " +
+                              _vm._s(_vm.this_month_profit.toFixed(2)) +
+                              " ৳  "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "small-boxs-footer",
+                            attrs: { to: { name: "this_month_sales_report" } }
+                          },
+                          [
+                            _vm._v("More info "),
+                            _c("i", { staticClass: "fa fa-arrow-circle-right" })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("img", {
+                          staticClass: "d_img_icon",
+                          attrs: {
+                            src:
+                              "https://assets.codepen.io/2301174/icon-supervisor.svg",
+                            alt: ""
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-4 col-md-4 col-lg-12 col-md-12" },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "boxs  blue" },
+                      [
+                        _c("h3", [_vm._v(" Total Sales Profit ")]),
+                        _vm._v(" "),
+                        _c("h4", [
+                          _vm._v(
+                            "   " + _vm._s(_vm.total_profit.toFixed(2)) + " ৳  "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "small-boxs-footer",
+                            attrs: { to: { name: "total_sales_report" } }
+                          },
+                          [
+                            _vm._v("More info "),
+                            _c("i", { staticClass: "fa fa-arrow-circle-right" })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("img", {
+                          staticClass: "d_img_icon",
+                          attrs: {
+                            src:
+                              "https://assets.codepen.io/2301174/icon-supervisor.svg",
+                            alt: ""
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-4 col-md-4 col-lg-12 col-md-12" },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "boxs  blue" },
+                      [
                         _c("h3", [_vm._v(" Credit This Weeck  ")]),
                         _vm._v(" "),
                         _c("h4", [
@@ -525,7 +796,7 @@ var render = function() {
                           "router-link",
                           {
                             staticClass: "small-boxs-footer",
-                            attrs: { to: { name: "credit" } }
+                            attrs: { to: { name: "sell_center_credit" } }
                           },
                           [
                             _vm._v("More info "),
@@ -569,7 +840,7 @@ var render = function() {
                           "router-link",
                           {
                             staticClass: "small-boxs-footer",
-                            attrs: { to: { name: "credit" } }
+                            attrs: { to: { name: "sell_center_credit" } }
                           },
                           [
                             _vm._v("More info "),
@@ -611,7 +882,7 @@ var render = function() {
                           "router-link",
                           {
                             staticClass: "small-boxs-footer",
-                            attrs: { to: { name: "credit" } }
+                            attrs: { to: { name: "sell_center_credit" } }
                           },
                           [
                             _vm._v("More info "),
@@ -655,7 +926,7 @@ var render = function() {
                           "router-link",
                           {
                             staticClass: "small-boxs-footer",
-                            attrs: { to: { name: "debit" } }
+                            attrs: { to: { name: "sell_center_debit" } }
                           },
                           [
                             _vm._v("More info "),
@@ -699,7 +970,7 @@ var render = function() {
                           "router-link",
                           {
                             staticClass: "small-boxs-footer",
-                            attrs: { to: { name: "debit" } }
+                            attrs: { to: { name: "sell_center_debit" } }
                           },
                           [
                             _vm._v("More info "),
@@ -741,7 +1012,7 @@ var render = function() {
                           "router-link",
                           {
                             staticClass: "small-boxs-footer",
-                            attrs: { to: { name: "debit" } }
+                            attrs: { to: { name: "sell_center_debit" } }
                           },
                           [
                             _vm._v("More info "),

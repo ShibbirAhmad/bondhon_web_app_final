@@ -1053,6 +1053,64 @@ const routes = [
         }
     },
 
+
+    
+    {
+        path: '/sell/center/sales/report/analysis/today',
+        component: () => import(/* webpackChunkName: "today_sales_report" */'./components/sellcenter/sale/TodaySaleReport.vue'),
+        name: 'today_sales_report',
+        meta: {
+            title: 'Sale Reports',
+            authSellCenter: true ,
+        }
+    },
+
+        
+    {
+        path: '/sell/center/sales/report/analysis/yesterday',
+        component: () => import(/* webpackChunkName: "yesterday_sales_report" */'./components/sellcenter/sale/YesterdaySaleReport.vue'),
+        name: 'yesterday_sales_report',
+        meta: {
+            title: 'yesterday Sales Reports',
+            authSellCenter: true ,
+        }
+    },
+
+    {
+        path: '/sell/center/sales/report/analysis/this/week',
+        component: () => import(/* webpackChunkName: "this_week_sales_report" */'./components/sellcenter/sale/ThisWeekSaleReport.vue'),
+        name: 'this_week_sales_report',
+        meta: {
+            title: 'this week Sales Reports',
+            authSellCenter: true ,
+        }
+    },
+
+
+    
+    {
+        path: '/sell/center/sales/report/analysis/this/month',
+        component: () => import(/* webpackChunkName: "this_month_sales_report" */'./components/sellcenter/sale/ThisMonthSaleReport.vue'),
+        name: 'this_month_sales_report',
+        meta: {
+            title: 'this month Sales Reports',
+            authSellCenter: true ,
+        }
+    },
+
+ 
+    {
+        path: '/sell/center/sales/report/analysis/total',
+        component: () => import(/* webpackChunkName: "total_sales_report" */'./components/sellcenter/sale/TotalSaleReport.vue'),
+        name: 'total_sales_report',
+        meta: {
+            title: 'Sales Reports total',
+            authSellCenter: true ,
+        }
+    },
+
+
+
     {
         path: '/sell/center/sale/add',
         component: () => import(/* webpackChunkName: "sell_center_sale_add" */'./components/sellcenter/sale/Add.vue'),
@@ -1258,7 +1316,6 @@ const routes = [
             title: 'debit statements'
         }
     },
-
     
     {
         path: '/sell/center/credit/statement',

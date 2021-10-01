@@ -126,11 +126,16 @@
     "/chunks/supplierEdit.bundle.js": "/chunks/supplierEdit.bundle.js",
     "/chunks/team_member.bundle.js": "/chunks/team_member.bundle.js",
     "/chunks/teamsalary.bundle.js": "/chunks/teamsalary.bundle.js",
+    "/chunks/this_month_sales_report.bundle.js": "/chunks/this_month_sales_report.bundle.js",
+    "/chunks/this_week_sales_report.bundle.js": "/chunks/this_week_sales_report.bundle.js",
+    "/chunks/today_sales_report.bundle.js": "/chunks/today_sales_report.bundle.js",
+    "/chunks/total_sales_report.bundle.js": "/chunks/total_sales_report.bundle.js",
     "/chunks/user.bundle.js": "/chunks/user.bundle.js",
     "/chunks/vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~976f7dc2.bundle.js": "/chunks/vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~976f7dc2.bundle.js",
     "/chunks/vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204.bundle.js": "/chunks/vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204.bundle.js",
     "/chunks/vendors~creditAdd~debitAdd.bundle.js": "/chunks/vendors~creditAdd~debitAdd.bundle.js",
     "/chunks/vendors~merchnat_product_manage.bundle.js": "/chunks/vendors~merchnat_product_manage.bundle.js",
     "/chunks/vendors~new_password_sellcenter~sell_center_code_verified~sell_center_password_reset.bundle.js": "/chunks/vendors~new_password_sellcenter~sell_center_code_verified~sell_center_password_reset.bundle.js",
+    "/chunks/yesterday_sales_report.bundle.js": "/chunks/yesterday_sales_report.bundle.js",
     "/chunks/vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~754fde5a.bundle.js": "/chunks/vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~754fde5a.bundle.js"
 }

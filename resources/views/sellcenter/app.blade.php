@@ -133,13 +133,90 @@
     }
 
 
+    
+
+    .order_statistic{
+        margin-left: 10px;
+    }
+
+    .statistic_item{
+        float: left;
+        background: rgb(64, 70, 151);
+        box-shadow: 0 1pt 6pt rgb(150 165 237);
+        border: none;
+        padding: 1px 40px;
+        margin: 5px;
+        width: 23.4%;
+        height: 100px;
+    }
+
+    .statistic_item h3 {
+        padding-top: 10px;
+        cursor: pointer;
+        font-size: 28px;
+        font-weight: bold;
+        font-family: serif;
+        line-height: 23px;
+        color: #fff;
+    }
+
+    .statistic_item h2 {
+        font-size: 34px;
+        font-weight: bold;
+        font-family: serif;
+        line-height: 23px;
+        color: #fff;
+    }
+
+    .statistic_item p {
+        font-size: 16px;
+        font-family: serif;
+        position: absolute;
+        line-height: 13px;
+        color: #fff;
+    }
+
+    
+    .router-link-exact-active {
+        border: 1.5px dashed  ;
+        background-color:#232452 ;
+        color: #000;
+     }
+
+
+
+
+
+    @media (max-width: 991px){ 
+    
+    .content-header>.breadcrumb {
+        position: relative;
+        margin-top: 5px;
+        top: 0;
+        right: 0;
+        float: none;
+        background: #fff !important;
+        padding-left: 10px;
+    }
+
+}
+
+
     @media only screen and (max-width:768px){
 
         .col-lg-12,.col-md-12,.col-lg-11,.col-lg-10,.col-lg-8,.col-md-11,.col-md-10 {
             overflow-x: auto ;
         }
-
+        
+        .order_statistic a {
+            width: 45%;
+            height: 100px;
+            padding: 5px 25px;
+           }
     }
+
+
+
 
     </style>
 

@@ -128,6 +128,9 @@ Route::group([
 
 
 
+        Route::get('api/sellcenter/sale/reports/analysis','SaleController@saleAnalysis');
+
+
     });
 
 

@@ -20,20 +20,65 @@
         <div class="row container_row" >
 
   
-           <!-- <div v-if="$can('investor_and_amount')" class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
+           <div  class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
               <div  class="boxs  blue">
-                <h3>  <span class="person_counter"> {{ analysis.total_investor }} </span> Investor  </h3>
+                <h3> Today Sales Profit </h3>
             
-              <h4>   {{ analysis.total_invested_amount - analysis.total_invested_return_amount  }} &#2547;  </h4>
-                <router-link :to="{ name: 'investment' }" class="small-boxs-footer"
+              <h4>   {{ today_profit.toFixed(2) }} &#2547;  </h4>
+                   <router-link :to="{ name: 'today_sales_report' }" class="small-boxs-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
               ></router-link>
                 <img class="d_img_icon" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
               </div>
-           </div> -->
+           </div>
 
+          <div  class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
+              <div  class="boxs  blue">
+                <h3> Yesterday Sales Profit </h3>
+            
+              <h4>   {{ yesterday_profit.toFixed(2) }} &#2547;  </h4>
+                   <router-link :to="{ name: 'yesterday_sales_report' }" class="small-boxs-footer"
+                >More info <i class="fa fa-arrow-circle-right"></i
+              ></router-link>
+                <img class="d_img_icon" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
+              </div>
+           </div>
 
+          <div  class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
+              <div  class="boxs  blue">
+                <h3> This Week Sales Profit </h3>
+            
+              <h4>   {{ this_week_profit.toFixed(2) }} &#2547;  </h4>
+                   <router-link :to="{ name: 'this_week_sales_report' }" class="small-boxs-footer"
+                >More info <i class="fa fa-arrow-circle-right"></i
+              ></router-link>
+                <img class="d_img_icon" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
+              </div>
+           </div>
 
+          <div  class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
+              <div  class="boxs  blue">
+                <h3> This Month Sales Profit </h3>
+            
+              <h4>   {{ this_month_profit.toFixed(2) }} &#2547;  </h4>
+                   <router-link :to="{ name: 'this_month_sales_report' }" class="small-boxs-footer"
+                >More info <i class="fa fa-arrow-circle-right"></i
+              ></router-link>
+                <img class="d_img_icon" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
+              </div>
+           </div>
+
+          <div  class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
+              <div  class="boxs  blue">
+                <h3> Total Sales Profit </h3>
+            
+              <h4>   {{ total_profit.toFixed(2) }} &#2547;  </h4>
+                   <router-link :to="{ name: 'total_sales_report' }" class="small-boxs-footer"
+                >More info <i class="fa fa-arrow-circle-right"></i
+              ></router-link>
+                <img class="d_img_icon" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
+              </div>
+           </div>
 
 
            <div  class="col-lg-4 col-md-4 col-lg-12 col-md-12">  
@@ -41,7 +86,7 @@
                 <h3> Credit This Weeck  </h3>
             
               <h4>   {{ analysis.this_weeck_credit }} &#2547;  </h4>
-                   <router-link :to="{ name: 'credit' }" class="small-boxs-footer"
+                   <router-link :to="{ name: 'sell_center_credit' }" class="small-boxs-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
               ></router-link>
                 <img class="d_img_icon" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
@@ -54,7 +99,7 @@
                 <h3> Credit This Month  </h3>
             
               <h4>   {{ analysis.this_month_credit }} &#2547;  </h4>
-                   <router-link :to="{ name: 'credit' }" class="small-boxs-footer"
+                   <router-link :to="{ name: 'sell_center_credit' }" class="small-boxs-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
               ></router-link>
                 <img class="d_img_icon" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
@@ -67,7 +112,7 @@
                           <h3> Total Credit   </h3>
                       
                         <h4>   {{ analysis.total_credit }} &#2547;  </h4>
-                        <router-link :to="{ name: 'credit' }" class="small-boxs-footer"
+                        <router-link :to="{ name: 'sell_center_credit' }" class="small-boxs-footer"
                           >More info <i class="fa fa-arrow-circle-right"></i
                         ></router-link>
                           <img class="d_img_icon" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
@@ -82,7 +127,7 @@
                           <h3>  Debit This Weeck   </h3>
                       
                         <h4>   {{ analysis.this_weeck_debit }} &#2547;  </h4>
-                                     <router-link :to="{ name: 'debit' }" class="small-boxs-footer"
+                                     <router-link :to="{ name: 'sell_center_debit' }" class="small-boxs-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
               ></router-link>
                           <img class="d_img_icon" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
@@ -95,7 +140,7 @@
                           <h3>  Debit This Month   </h3>
                       
                         <h4>   {{ analysis.this_month_debit }} &#2547;  </h4>
-                                     <router-link :to="{ name: 'debit' }" class="small-boxs-footer"
+                                     <router-link :to="{ name: 'sell_center_debit' }" class="small-boxs-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
               ></router-link>
                           <img class="d_img_icon" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
@@ -108,7 +153,7 @@
                         <div  class="boxs  red">
                           <h3> Total Debit   </h3>
                         <h4>   {{ analysis.total_debit }} &#2547;  </h4>
-                                     <router-link :to="{ name: 'debit' }" class="small-boxs-footer"
+                                     <router-link :to="{ name: 'sell_center_debit' }" class="small-boxs-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
               ></router-link>
                           <img class="d_img_icon" src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">        
@@ -249,6 +294,11 @@ export default {
       balance: {},
       analysis: "",
       base_url: this.$store.state.image_base_link,
+      this_month_profit: '',
+      this_week_profit: '',
+      today_profit: '',
+      yesterday_profit: '',
+      total_profit: '',
     };
   },
   created() {
@@ -263,6 +313,11 @@ export default {
           console.log(resp);
           this.analysis = resp.data.analysis;
           this.balance=resp.data.balance ;
+          this.today_profit = resp.data.profit_analysis.original.today_profit;
+          this.yesterday_profit = resp.data.profit_analysis.original.yesterday_profit;
+          this.this_week_profit = resp.data.profit_analysis.original.this_week_profit;
+          this.this_month_profit = resp.data.profit_analysis.original.this_month_profit;
+          this.total_profit = resp.data.profit_analysis.original.total_profit;
           this.loading = false;
         })
     },

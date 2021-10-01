@@ -252,13 +252,14 @@ export default {
       }
     },
 
-   purchasePrice(items){
 
+   purchasePrice(items){
        let price = 0 ;
        items.forEach(item => {
-           price += parseInt(item.price) ;
+           price += parseFloat(item.price) ;
        });
-       return price ;
+       let  average_price = price / items.length  ;
+       return average_price.toFixed(2)  ;
    },
 
     deActive(id) {

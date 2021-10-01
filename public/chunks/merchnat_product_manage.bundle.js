@@ -405,9 +405,10 @@ __webpack_require__.r(__webpack_exports__);
     purchasePrice: function purchasePrice(items) {
       var price = 0;
       items.forEach(function (item) {
-        price += parseInt(item.price);
+        price += parseFloat(item.price);
       });
-      return price;
+      var average_price = price / items.length;
+      return average_price.toFixed(2);
     },
     deActive: function deActive(id) {
       var _this4 = this;

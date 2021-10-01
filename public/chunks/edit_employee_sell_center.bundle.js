@@ -562,7 +562,7 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "btn btn-primary",
-                  attrs: { to: { name: "team_member" } }
+                  attrs: { to: { name: "employee_sell_center" } }
                 },
                 [_c("i", { staticClass: "fa fa-arrow-right" })]
               )

@@ -43,6 +43,7 @@ $sellcenter = session()->get('sellcenter');
           <ul class="treeview-menu">
             <li>   <router-link :to="{ name : 'sell_center_sale_add'}"><i class="fa fa-plus "></i> Add </router-link></li>
             <li>   <router-link :to="{ name : 'sell_center_sale'}"><i class="fa fa-list "></i> Manage </router-link></li>
+            <li>   <router-link :to="{ name : 'today_sales_report'}"><i class="fa fa-file "></i> Reports </router-link></li>
           </ul>
         </li>
         

@@ -90,11 +90,12 @@ class HomeController extends Controller
                               ->where('created_at','<=', Carbon::today()->endOfDay())
                               ->sum('amount');
             
-
+                 $profit_analysis =   new  SaleController() ;
                   return response()->json([
                         'status'=> "OK",
                         'analysis'=>$analysis,
                         'balance'=>$balnce,
+                        'profit_analysis' => $profit_analysis->saleAnalysis() ,
                   ]);
 
             }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class SellCenterSale extends Model
@@ -11,4 +12,9 @@ class SellCenterSale extends Model
           return $this->belongsTo('App\Models\SellCenterProduct','sell_center_product_id') ;
 
       }
+
+
+
+    
+
 }
