@@ -5,7 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-class SellCenterSale extends Model
+class SellCenterProduct extends Model
 {
 
 
@@ -26,8 +26,8 @@ class SellCenterSale extends Model
 
     public function  yesterday_sales(){
 
-      return $this->hasMany("App\Models\SellCenterSale","sell_center_product_id","id")->where('created_at', '>=', Carbon::yesterday_sales()->startOfDay())
-                                ->where('created_at', '<=', Carbon::yesterday_sales()->endOfDay())->select(['created_at','sell_center_product_id','amount','quantity']) ;
+      return $this->hasMany("App\Models\SellCenterSale","sell_center_product_id","id")->where('created_at', '>=', Carbon::yesterday()->startOfDay())
+                                ->where('created_at', '<=', Carbon::yesterday()->endOfDay())->select(['created_at','sell_center_product_id','amount','quantity']) ;
     }
 
 

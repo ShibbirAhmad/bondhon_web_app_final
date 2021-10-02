@@ -263,11 +263,6 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/sellcenter/sale/reports/analysis").then(function (resp) {
         console.log(resp);
         _this.this_month_sales_products = resp.data.this_month_sales_products;
-        _this.today_profit = resp.data.today_profit;
-        _this.yesterday_profit = resp.data.yesterday_profit;
-        _this.this_week_profit = resp.data.this_week_profit;
-        _this.this_month_profit = resp.data.this_month_profit;
-        _this.total_profit = resp.data.total_profit;
         _this.loading = false;
       });
     },

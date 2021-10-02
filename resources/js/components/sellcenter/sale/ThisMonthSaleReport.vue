@@ -115,11 +115,6 @@ export default {
         .then((resp) => {
           console.log(resp);
           this.this_month_sales_products = resp.data.this_month_sales_products;
-          this.today_profit = resp.data.today_profit;
-          this.yesterday_profit = resp.data.yesterday_profit;
-          this.this_week_profit = resp.data.this_week_profit;
-          this.this_month_profit = resp.data.this_month_profit;
-          this.total_profit = resp.data.total_profit;
           this.loading=false ;
         })
     },

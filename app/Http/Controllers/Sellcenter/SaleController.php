@@ -202,54 +202,62 @@ class SaleController extends Controller
    
     public function saleAnalysis(){
 
-        $total_sales_products = SellCenterSale::where('sell_center_id',session()->get('sellcenter')['id'])
-                                  ->select('amount','quantity','sell_center_product_id')
-                                  ->with('product.purchaseItems')->get();
+        $today_sales_products = SellCenterProduct::where('sell_center_id',session()->get('sellcenter')['id'])
+                                                    ->select('id','sell_center_id','name','image','code')
+                                                    ->with('today_sales','purchaseItems')->get();
 
-        $today_sales_products = SellCenterSale::where('created_at','>=',Carbon::today()->startOfDay())
-                                  ->where('created_at','<=',Carbon::today()->endOfDay())
-                                  ->where('sell_center_id',session()->get('sellcenter')['id'])
-                                  ->select('amount','quantity','sell_center_product_id')
-                                  ->with('product.purchaseItems')->get();
+        $yesterday_sales_products = SellCenterProduct::where('sell_center_id',session()->get('sellcenter')['id'])
+                                                        ->select('id','sell_center_id','name','image','code')
+                                                        ->with('purchaseItems','yesterday_sales')->get();
+                                            
+        $this_week_sales_products = SellCenterProduct::where('sell_center_id',session()->get('sellcenter')['id'])
+                                                        ->select('id','sell_center_id','name','image','code')
+                                                        ->with('purchaseItems','this_week_sales' )->get();
+                            
+        $this_month_sales_products = SellCenterProduct::where('sell_center_id',session()->get('sellcenter')['id'])
+                                                        ->select('id','sell_center_id','name','image','code')
+                                                        ->with('purchaseItems','this_month_sales' )->get(); 
+                                
+                                
+                        
+        $total_sales_products = SellCenterProduct::where('sell_center_id',session()->get('sellcenter')['id'])
+                                                        ->select('id','sell_center_id','name','image','code')
+                                                        ->with('purchaseItems','total_sales' )->get(); 
 
-                    
-        $yesterday_sales_products = SellCenterSale::where('created_at','>=',Carbon::yesterday()->startOfDay())
-                                  ->where('created_at','<=',Carbon::yesterday()->endOfDay())
-                                  ->where('sell_center_id',session()->get('sellcenter')['id'])
-                                  ->select('amount','quantity','sell_center_product_id')
-                                  ->with('product.purchaseItems')->get();
-                                                            
-               
-        $this_week_sales_products = SellCenterSale::where('created_at','>=',Carbon::today()->subDays('7')->startOfDay())
-                                  ->where('created_at','<=',Carbon::today()->endOfDay())
-                                  ->where('sell_center_id',session()->get('sellcenter')['id'])
-                                  ->select('amount','quantity','sell_center_product_id')
-                                  ->with('product.purchaseItems')->get();        
-
-        $this_month_sales_products = SellCenterSale::where('created_at','>=',Carbon::today()->subDays('30')->startOfDay())
-                                  ->where('created_at','<=',Carbon::today()->endOfDay())
-                                  ->where('sell_center_id',session()->get('sellcenter')['id'])
-                                  ->select('amount','quantity','sell_center_product_id')
-                                  ->with('product.purchaseItems')->get();   
-
+    
         return  response()->json([
                 'status' => 'OK',
-                'today_profit' => $this->profitCalculator($today_sales_products) ,
-                'yesterday_profit' => $this->profitCalculator($yesterday_sales_products)  ,
-                'this_week_profit' => $this->profitCalculator($this_week_sales_products) ,
-                'this_month_profit' => $this->profitCalculator($this_month_sales_products)  ,
-                'total_profit' => $this->profitCalculator($total_sales_products)  ,
-                'today_sales_products' => $today_sales_products,
-                'yesterday_sales_products' => $yesterday_sales_products,
-                'this_week_sales_products' => $this_week_sales_products,
-                'this_month_sales_products' => $this_month_sales_products,
-                'total_sales_products' => $total_sales_products,
+                'today_sales_products' => $today_sales_products ,
+                'yesterday_sales_products' => $yesterday_sales_products ,
+                'this_week_sales_products' => $this_week_sales_products ,
+                'this_month_sales_products' => $this_month_sales_products ,
+                'total_sales_products' => $total_sales_products ,
         ]) ;
 
 
     }
 
 
+
+    public function totalSaleCalculator($sales_products){
+         
+            foreach ($sales_products as $item) {
+
+            $total_purchase_price =  array_sum(array_column($item->purchaseItems, 'price'));  
+            $total_purchase_time = count($item->purchaseItems);
+            $average_purchase_price =  $total_purchase_price / $total_purchase_time ;
+
+
+            $total_purchase_price =  array_sum(array_column($item->purchaseItems, 'price'));  
+            $total_purchase_time = count($item->purchaseItems);
+            $average_purchase_price =  $total_purchase_price / $total_purchase_time ;
+
+            }
+
+
+    }
+
+    
 
 
 
