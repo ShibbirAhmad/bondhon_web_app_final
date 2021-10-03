@@ -24,7 +24,7 @@
               <div  class="boxs  blue">
                 <h3> Today Sales Profit </h3>
             
-              <h4>   {{ today_profit.toFixed(2) }} &#2547;  </h4>
+              <h4>   {{ today_profit }} &#2547;  </h4>
                    <router-link :to="{ name: 'today_sales_report' }" class="small-boxs-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
               ></router-link>
@@ -36,7 +36,7 @@
               <div  class="boxs  blue">
                 <h3> Yesterday Sales Profit </h3>
             
-              <h4>   {{ yesterday_profit.toFixed(2) }} &#2547;  </h4>
+              <h4>   {{ yesterday_profit }} &#2547;  </h4>
                    <router-link :to="{ name: 'yesterday_sales_report' }" class="small-boxs-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
               ></router-link>
@@ -48,7 +48,7 @@
               <div  class="boxs  blue">
                 <h3> This Week Sales Profit </h3>
             
-              <h4>   {{ this_week_profit.toFixed(2) }} &#2547;  </h4>
+              <h4>   {{ this_week_profit }} &#2547;  </h4>
                    <router-link :to="{ name: 'this_week_sales_report' }" class="small-boxs-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
               ></router-link>
@@ -60,7 +60,7 @@
               <div  class="boxs  blue">
                 <h3> This Month Sales Profit </h3>
             
-              <h4>   {{ this_month_profit.toFixed(2) }} &#2547;  </h4>
+              <h4>   {{ this_month_profit }} &#2547;  </h4>
                    <router-link :to="{ name: 'this_month_sales_report' }" class="small-boxs-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
               ></router-link>
@@ -73,7 +73,7 @@
               <div  class="boxs  blue">
                 <h3> Total Sales Profit </h3>
             
-              <h4>   {{ total_profit.toFixed(2) }} &#2547;  </h4>
+              <h4>   {{ total_profit }} &#2547;  </h4>
                    <router-link :to="{ name: 'total_sales_report' }" class="small-boxs-footer"
                 >More info <i class="fa fa-arrow-circle-right"></i
               ></router-link>
@@ -295,11 +295,11 @@ export default {
       balance: {},
       analysis: "",
       base_url: this.$store.state.image_base_link,
-      this_month_profit: '',
-      this_week_profit: '',
-      today_profit: '',
-      yesterday_profit: '',
-      total_profit: '',
+      this_month_profit: 0,
+      this_week_profit: 0,
+      today_profit: 0,
+      yesterday_profit: 0,
+      total_profit: 0,
     };
   },
   created() {
@@ -314,14 +314,154 @@ export default {
           console.log(resp);
           this.analysis = resp.data.analysis;
           this.balance=resp.data.balance ;
-          this.today_profit = resp.data.profit_analysis.original.today_profit;
-          this.yesterday_profit = resp.data.profit_analysis.original.yesterday_profit;
-          this.this_week_profit = resp.data.profit_analysis.original.this_week_profit;
-          this.this_month_profit = resp.data.profit_analysis.original.this_month_profit;
-          this.total_profit = resp.data.profit_analysis.original.total_profit;
+          this.totalProfit(resp.data.sale_profit_analysis.original.total_sales_products);
+          this.thisMonthProfit(resp.data.sale_profit_analysis.original.this_month_sales_products);
+          this.thisWeekProfit(resp.data.sale_profit_analysis.original.this_week_sales_products);
+          this.yesterdayProfit(resp.data.sale_profit_analysis.original.yesterday_sales_products);
+          this.todayProfit(resp.data.sale_profit_analysis.original.today_sales_products);
           this.loading = false;
         })
     },
+
+
+
+   
+    totalProfit(sales_products){
+             let average_purchase_price =0 ;
+             let total_sales_amount =0 ;
+             let total_sale_quantity =0 ;
+
+             sales_products.forEach((item)=>{
+                   item.total_sales.forEach((sale)=>{
+                        total_sales_amount += parseFloat(sale.amount);
+                        total_sale_quantity += parseFloat(sale.quantity);
+                   });
+              });
+
+              sales_products.forEach((item)=>{
+                   let purchase_price=0 ;
+                   item.purchase_items.forEach((purchase)=>{
+                        purchase_price += parseFloat(purchase.price);
+                   });
+                  average_purchase_price += purchase_price /  item.purchase_items.length
+              });
+
+            let total_sale_purchase_price =  average_purchase_price * total_sale_quantity;
+            let profit_amount = total_sales_amount - total_sale_purchase_price ;
+            this.total_profit = profit_amount.toFixed(2) ;
+    },
+
+
+    thisMonthProfit(sales_products){
+             let average_purchase_price =0 ;
+             let total_sales_amount =0 ;
+             let total_sale_quantity =0 ;
+
+             sales_products.forEach((item)=>{
+                   item.this_month_sales.forEach((sale)=>{
+                        total_sales_amount += parseFloat(sale.amount);
+                        total_sale_quantity += parseFloat(sale.quantity);
+                   });
+              });
+
+              sales_products.forEach((item)=>{
+                   let purchase_price=0 ;
+                   item.purchase_items.forEach((purchase)=>{
+                        purchase_price += parseFloat(purchase.price);
+                   });
+                  average_purchase_price += purchase_price /  item.purchase_items.length
+              });
+
+            let total_sale_purchase_price =  average_purchase_price * total_sale_quantity;
+            let profit_amount = total_sales_amount - total_sale_purchase_price ;
+            this.this_month_profit = profit_amount.toFixed(2) ;
+    },
+
+    thisWeekProfit(sales_products){
+             let average_purchase_price =0 ;
+             let total_sales_amount =0 ;
+             let total_sale_quantity =0 ;
+
+             sales_products.forEach((item)=>{
+                   item.this_week_sales.forEach((sale)=>{
+                        total_sales_amount += parseFloat(sale.amount);
+                        total_sale_quantity += parseFloat(sale.quantity);
+                   });
+              });
+
+              sales_products.forEach((item)=>{
+                   let purchase_price=0 ;
+                   item.purchase_items.forEach((purchase)=>{
+                        purchase_price += parseFloat(purchase.price);
+                   });
+                  average_purchase_price += purchase_price /  item.purchase_items.length
+              });
+
+            let total_sale_purchase_price =  average_purchase_price * total_sale_quantity;
+            let profit_amount = total_sales_amount - total_sale_purchase_price ;
+            this.this_week_profit = profit_amount.toFixed(2) ;
+    },
+
+    yesterdayProfit(sales_products){
+             let average_purchase_price =0 ;
+             let total_sales_amount =0 ;
+             let total_sale_quantity =0 ;
+
+             sales_products.forEach((item)=>{
+                   item.yesterday_sales.forEach((sale)=>{
+                        total_sales_amount += parseFloat(sale.amount);
+                        total_sale_quantity += parseFloat(sale.quantity);
+                   });
+              });
+
+              sales_products.forEach((item)=>{
+                   let purchase_price=0 ;
+                   item.purchase_items.forEach((purchase)=>{
+                        purchase_price += parseFloat(purchase.price);
+                   });
+                  average_purchase_price += purchase_price /  item.purchase_items.length
+              });
+
+            let total_sale_purchase_price =  average_purchase_price * total_sale_quantity;
+            let profit_amount = total_sales_amount - total_sale_purchase_price ;
+            this.yesterday_profit = profit_amount.toFixed(2) ;
+
+    },
+
+
+    todayProfit(sales_products){
+
+
+             let average_purchase_price =0 ;
+             let total_sales_amount =0 ;
+             let total_sale_quantity =0 ;
+
+             sales_products.forEach((item)=>{
+                   item.today_sales.forEach((sale)=>{
+                        total_sales_amount += parseFloat(sale.amount);
+                        total_sale_quantity += parseFloat(sale.quantity);
+                   });
+              });
+
+              sales_products.forEach((item)=>{
+                   let purchase_price=0 ;
+                   item.purchase_items.forEach((purchase)=>{
+                        purchase_price += parseFloat(purchase.price);
+                   });
+                  average_purchase_price += purchase_price /  item.purchase_items.length
+              });
+
+            let total_sale_purchase_price =  average_purchase_price * total_sale_quantity;
+            let profit_amount = total_sales_amount - total_sale_purchase_price ;
+            this.today_profit = profit_amount.toFixed(2) ;
+                  
+      
+    },
+
+
+
+
+
   },
 
   computed: {

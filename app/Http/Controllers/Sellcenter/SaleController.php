@@ -238,27 +238,28 @@ class SaleController extends Controller
     }
 
 
-
-    public function totalSaleCalculator($sales_products){
-         
-            foreach ($sales_products as $item) {
-
-            $total_purchase_price =  array_sum(array_column($item->purchaseItems, 'price'));  
-            $total_purchase_time = count($item->purchaseItems);
-            $average_purchase_price =  $total_purchase_price / $total_purchase_time ;
+  
 
 
-            $total_purchase_price =  array_sum(array_column($item->purchaseItems, 'price'));  
-            $total_purchase_time = count($item->purchaseItems);
-            $average_purchase_price =  $total_purchase_price / $total_purchase_time ;
+    // public function thisMonthProfitCalculator($sales_products){
 
-            }
+    //     $average_purchase_price =0 ;
+    //     $total_sales_amount =0 ;
+    //     $total_sale_quantity =0 ;
+        
+    //    foreach ($sales_products as $item) {
+    //        $average_purchase_price +=  array_sum(array_column((array)$item->purchaseItems, 'price')) / count($item->purchaseItems) ;
+    //        $total_sales_amount +=  array_sum(array_column((array)$item->this_month_sales, 'amount'));  
+    //        $total_sale_quantity +=  array_sum(array_column((array)$item->this_month_sales, 'quantity'));  
+    //    }
 
+    //    $total_sale_purchase_price =  floatval($average_purchase_price) * floatval($total_sale_quantity);
+    //    $profit_amount = floatval($total_sales_amount) - $total_sale_purchase_price ;
+    //    return $profit_amount ;
 
-    }
+    // }
 
-    
-
+ 
 
 
 }

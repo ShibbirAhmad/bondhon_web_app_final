@@ -89,11 +89,12 @@ class HomeController extends Controller
             $analysis['this_weeck_debit']=SellCenterDebit::where('sell_center_id',$sellcenter_id)->where('created_at','>=',Carbon::today()->subDays('7')->startOfDay())
                               ->where('created_at','<=', Carbon::today()->endOfDay())
                               ->sum('amount');
-
+            $sale_profit_analysis = new SaleController();
                   return response()->json([
                         'status'=> "OK",
                         'analysis'=>$analysis,
                         'balance'=>$balnce,
+                        'sale_profit_analysis' => $sale_profit_analysis->saleAnalysis(),
                   ]);
 
             }

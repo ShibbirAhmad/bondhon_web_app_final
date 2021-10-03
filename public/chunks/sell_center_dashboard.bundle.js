@@ -304,11 +304,11 @@ __webpack_require__.r(__webpack_exports__);
       balance: {},
       analysis: "",
       base_url: this.$store.state.image_base_link,
-      this_month_profit: '',
-      this_week_profit: '',
-      today_profit: '',
-      yesterday_profit: '',
-      total_profit: ''
+      this_month_profit: 0,
+      this_week_profit: 0,
+      today_profit: 0,
+      yesterday_profit: 0,
+      total_profit: 0
     };
   },
   created: function created() {
@@ -323,13 +323,124 @@ __webpack_require__.r(__webpack_exports__);
         console.log(resp);
         _this.analysis = resp.data.analysis;
         _this.balance = resp.data.balance;
-        _this.today_profit = resp.data.profit_analysis.original.today_profit;
-        _this.yesterday_profit = resp.data.profit_analysis.original.yesterday_profit;
-        _this.this_week_profit = resp.data.profit_analysis.original.this_week_profit;
-        _this.this_month_profit = resp.data.profit_analysis.original.this_month_profit;
-        _this.total_profit = resp.data.profit_analysis.original.total_profit;
+
+        _this.totalProfit(resp.data.sale_profit_analysis.original.total_sales_products);
+
+        _this.thisMonthProfit(resp.data.sale_profit_analysis.original.this_month_sales_products);
+
+        _this.thisWeekProfit(resp.data.sale_profit_analysis.original.this_week_sales_products);
+
+        _this.yesterdayProfit(resp.data.sale_profit_analysis.original.yesterday_sales_products);
+
+        _this.todayProfit(resp.data.sale_profit_analysis.original.today_sales_products);
+
         _this.loading = false;
       });
+    },
+    totalProfit: function totalProfit(sales_products) {
+      var average_purchase_price = 0;
+      var total_sales_amount = 0;
+      var total_sale_quantity = 0;
+      sales_products.forEach(function (item) {
+        item.total_sales.forEach(function (sale) {
+          total_sales_amount += parseFloat(sale.amount);
+          total_sale_quantity += parseFloat(sale.quantity);
+        });
+      });
+      sales_products.forEach(function (item) {
+        var purchase_price = 0;
+        item.purchase_items.forEach(function (purchase) {
+          purchase_price += parseFloat(purchase.price);
+        });
+        average_purchase_price += purchase_price / item.purchase_items.length;
+      });
+      var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
+      var profit_amount = total_sales_amount - total_sale_purchase_price;
+      this.total_profit = profit_amount.toFixed(2);
+    },
+    thisMonthProfit: function thisMonthProfit(sales_products) {
+      var average_purchase_price = 0;
+      var total_sales_amount = 0;
+      var total_sale_quantity = 0;
+      sales_products.forEach(function (item) {
+        item.this_month_sales.forEach(function (sale) {
+          total_sales_amount += parseFloat(sale.amount);
+          total_sale_quantity += parseFloat(sale.quantity);
+        });
+      });
+      sales_products.forEach(function (item) {
+        var purchase_price = 0;
+        item.purchase_items.forEach(function (purchase) {
+          purchase_price += parseFloat(purchase.price);
+        });
+        average_purchase_price += purchase_price / item.purchase_items.length;
+      });
+      var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
+      var profit_amount = total_sales_amount - total_sale_purchase_price;
+      this.this_month_profit = profit_amount.toFixed(2);
+    },
+    thisWeekProfit: function thisWeekProfit(sales_products) {
+      var average_purchase_price = 0;
+      var total_sales_amount = 0;
+      var total_sale_quantity = 0;
+      sales_products.forEach(function (item) {
+        item.this_week_sales.forEach(function (sale) {
+          total_sales_amount += parseFloat(sale.amount);
+          total_sale_quantity += parseFloat(sale.quantity);
+        });
+      });
+      sales_products.forEach(function (item) {
+        var purchase_price = 0;
+        item.purchase_items.forEach(function (purchase) {
+          purchase_price += parseFloat(purchase.price);
+        });
+        average_purchase_price += purchase_price / item.purchase_items.length;
+      });
+      var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
+      var profit_amount = total_sales_amount - total_sale_purchase_price;
+      this.this_week_profit = profit_amount.toFixed(2);
+    },
+    yesterdayProfit: function yesterdayProfit(sales_products) {
+      var average_purchase_price = 0;
+      var total_sales_amount = 0;
+      var total_sale_quantity = 0;
+      sales_products.forEach(function (item) {
+        item.yesterday_sales.forEach(function (sale) {
+          total_sales_amount += parseFloat(sale.amount);
+          total_sale_quantity += parseFloat(sale.quantity);
+        });
+      });
+      sales_products.forEach(function (item) {
+        var purchase_price = 0;
+        item.purchase_items.forEach(function (purchase) {
+          purchase_price += parseFloat(purchase.price);
+        });
+        average_purchase_price += purchase_price / item.purchase_items.length;
+      });
+      var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
+      var profit_amount = total_sales_amount - total_sale_purchase_price;
+      this.yesterday_profit = profit_amount.toFixed(2);
+    },
+    todayProfit: function todayProfit(sales_products) {
+      var average_purchase_price = 0;
+      var total_sales_amount = 0;
+      var total_sale_quantity = 0;
+      sales_products.forEach(function (item) {
+        item.today_sales.forEach(function (sale) {
+          total_sales_amount += parseFloat(sale.amount);
+          total_sale_quantity += parseFloat(sale.quantity);
+        });
+      });
+      sales_products.forEach(function (item) {
+        var purchase_price = 0;
+        item.purchase_items.forEach(function (purchase) {
+          purchase_price += parseFloat(purchase.price);
+        });
+        average_purchase_price += purchase_price / item.purchase_items.length;
+      });
+      var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
+      var profit_amount = total_sales_amount - total_sale_purchase_price;
+      this.today_profit = profit_amount.toFixed(2);
     }
   },
   computed: {
@@ -570,9 +681,7 @@ var render = function() {
                         _c("h3", [_vm._v(" Today Sales Profit ")]),
                         _vm._v(" "),
                         _c("h4", [
-                          _vm._v(
-                            "   " + _vm._s(_vm.today_profit.toFixed(2)) + " ৳  "
-                          )
+                          _vm._v("   " + _vm._s(_vm.today_profit) + " ৳  ")
                         ]),
                         _vm._v(" "),
                         _c(
@@ -612,11 +721,7 @@ var render = function() {
                         _c("h3", [_vm._v(" Yesterday Sales Profit ")]),
                         _vm._v(" "),
                         _c("h4", [
-                          _vm._v(
-                            "   " +
-                              _vm._s(_vm.yesterday_profit.toFixed(2)) +
-                              " ৳  "
-                          )
+                          _vm._v("   " + _vm._s(_vm.yesterday_profit) + " ৳  ")
                         ]),
                         _vm._v(" "),
                         _c(
@@ -656,11 +761,7 @@ var render = function() {
                         _c("h3", [_vm._v(" This Week Sales Profit ")]),
                         _vm._v(" "),
                         _c("h4", [
-                          _vm._v(
-                            "   " +
-                              _vm._s(_vm.this_week_profit.toFixed(2)) +
-                              " ৳  "
-                          )
+                          _vm._v("   " + _vm._s(_vm.this_week_profit) + " ৳  ")
                         ]),
                         _vm._v(" "),
                         _c(
@@ -700,11 +801,7 @@ var render = function() {
                         _c("h3", [_vm._v(" This Month Sales Profit ")]),
                         _vm._v(" "),
                         _c("h4", [
-                          _vm._v(
-                            "   " +
-                              _vm._s(_vm.this_month_profit.toFixed(2)) +
-                              " ৳  "
-                          )
+                          _vm._v("   " + _vm._s(_vm.this_month_profit) + " ৳  ")
                         ]),
                         _vm._v(" "),
                         _c(
@@ -744,9 +841,7 @@ var render = function() {
                         _c("h3", [_vm._v(" Total Sales Profit ")]),
                         _vm._v(" "),
                         _c("h4", [
-                          _vm._v(
-                            "   " + _vm._s(_vm.total_profit.toFixed(2)) + " ৳  "
-                          )
+                          _vm._v("   " + _vm._s(_vm.total_profit) + " ৳  ")
                         ]),
                         _vm._v(" "),
                         _c(
