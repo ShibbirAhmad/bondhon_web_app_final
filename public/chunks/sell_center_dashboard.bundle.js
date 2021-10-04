@@ -338,109 +338,119 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     totalProfit: function totalProfit(sales_products) {
-      var average_purchase_price = 0;
-      var total_sales_amount = 0;
-      var total_sale_quantity = 0;
-      sales_products.forEach(function (item) {
-        item.total_sales.forEach(function (sale) {
-          total_sales_amount += parseFloat(sale.amount);
-          total_sale_quantity += parseFloat(sale.quantity);
+      if (sales_products) {
+        var average_purchase_price = 0;
+        var total_sales_amount = 0;
+        var total_sale_quantity = 0;
+        sales_products.forEach(function (item) {
+          item.total_sales.forEach(function (sale) {
+            total_sales_amount += parseFloat(sale.amount);
+            total_sale_quantity += parseFloat(sale.quantity);
+          });
         });
-      });
-      sales_products.forEach(function (item) {
-        var purchase_price = 0;
-        item.purchase_items.forEach(function (purchase) {
-          purchase_price += parseFloat(purchase.price);
+        sales_products.forEach(function (item) {
+          var purchase_price = 0;
+          item.purchase_items.forEach(function (purchase) {
+            purchase_price += parseFloat(purchase.price);
+          });
+          average_purchase_price += purchase_price / item.purchase_items.length > 0 ? item.purchase_items.length : 1;
         });
-        average_purchase_price += purchase_price / item.purchase_items.length;
-      });
-      var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
-      var profit_amount = total_sales_amount - total_sale_purchase_price;
-      this.total_profit = profit_amount.toFixed(2);
+        var total_sale_purchase_price = parseFloat(average_purchase_price) * parseFloat(total_sale_quantity);
+        var profit_amount = parseFloat(total_sales_amount) - parseFloat(total_sale_purchase_price);
+        this.total_profit = profit_amount.toFixed(2);
+      }
     },
     thisMonthProfit: function thisMonthProfit(sales_products) {
-      var average_purchase_price = 0;
-      var total_sales_amount = 0;
-      var total_sale_quantity = 0;
-      sales_products.forEach(function (item) {
-        item.this_month_sales.forEach(function (sale) {
-          total_sales_amount += parseFloat(sale.amount);
-          total_sale_quantity += parseFloat(sale.quantity);
+      if (sales_products) {
+        var average_purchase_price = 0;
+        var total_sales_amount = 0;
+        var total_sale_quantity = 0;
+        sales_products.forEach(function (item) {
+          item.this_month_sales.forEach(function (sale) {
+            total_sales_amount += parseFloat(sale.amount);
+            total_sale_quantity += parseFloat(sale.quantity);
+          });
         });
-      });
-      sales_products.forEach(function (item) {
-        var purchase_price = 0;
-        item.purchase_items.forEach(function (purchase) {
-          purchase_price += parseFloat(purchase.price);
+        sales_products.forEach(function (item) {
+          var purchase_price = 0;
+          item.purchase_items.forEach(function (purchase) {
+            purchase_price += parseFloat(purchase.price);
+          });
+          average_purchase_price += purchase_price / item.purchase_items.length > 0 ? item.purchase_items.length : 1;
         });
-        average_purchase_price += purchase_price / item.purchase_items.length;
-      });
-      var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
-      var profit_amount = total_sales_amount - total_sale_purchase_price;
-      this.this_month_profit = profit_amount.toFixed(2);
+        var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
+        var profit_amount = total_sales_amount - total_sale_purchase_price;
+        this.this_month_profit = profit_amount.toFixed(2);
+      }
     },
     thisWeekProfit: function thisWeekProfit(sales_products) {
-      var average_purchase_price = 0;
-      var total_sales_amount = 0;
-      var total_sale_quantity = 0;
-      sales_products.forEach(function (item) {
-        item.this_week_sales.forEach(function (sale) {
-          total_sales_amount += parseFloat(sale.amount);
-          total_sale_quantity += parseFloat(sale.quantity);
+      if (sales_products) {
+        var average_purchase_price = 0;
+        var total_sales_amount = 0;
+        var total_sale_quantity = 0;
+        sales_products.forEach(function (item) {
+          item.this_week_sales.forEach(function (sale) {
+            total_sales_amount += parseFloat(sale.amount);
+            total_sale_quantity += parseFloat(sale.quantity);
+          });
         });
-      });
-      sales_products.forEach(function (item) {
-        var purchase_price = 0;
-        item.purchase_items.forEach(function (purchase) {
-          purchase_price += parseFloat(purchase.price);
+        sales_products.forEach(function (item) {
+          var purchase_price = 0;
+          item.purchase_items.forEach(function (purchase) {
+            purchase_price += parseFloat(purchase.price);
+          });
+          average_purchase_price += purchase_price / item.purchase_items.length > 0 ? item.purchase_items.length : 1;
         });
-        average_purchase_price += purchase_price / item.purchase_items.length;
-      });
-      var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
-      var profit_amount = total_sales_amount - total_sale_purchase_price;
-      this.this_week_profit = profit_amount.toFixed(2);
+        var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
+        var profit_amount = total_sales_amount - total_sale_purchase_price;
+        this.this_week_profit = profit_amount.toFixed(2);
+      }
     },
     yesterdayProfit: function yesterdayProfit(sales_products) {
-      var average_purchase_price = 0;
-      var total_sales_amount = 0;
-      var total_sale_quantity = 0;
-      sales_products.forEach(function (item) {
-        item.yesterday_sales.forEach(function (sale) {
-          total_sales_amount += parseFloat(sale.amount);
-          total_sale_quantity += parseFloat(sale.quantity);
+      if (sales_products) {
+        var average_purchase_price = 0;
+        var total_sales_amount = 0;
+        var total_sale_quantity = 0;
+        sales_products.forEach(function (item) {
+          item.yesterday_sales.forEach(function (sale) {
+            total_sales_amount += parseFloat(sale.amount);
+            total_sale_quantity += parseFloat(sale.quantity);
+          });
         });
-      });
-      sales_products.forEach(function (item) {
-        var purchase_price = 0;
-        item.purchase_items.forEach(function (purchase) {
-          purchase_price += parseFloat(purchase.price);
+        sales_products.forEach(function (item) {
+          var purchase_price = 0;
+          item.purchase_items.forEach(function (purchase) {
+            purchase_price += parseFloat(purchase.price);
+          });
+          average_purchase_price += purchase_price / item.purchase_items.length > 0 ? item.purchase_items.length : 1;
         });
-        average_purchase_price += purchase_price / item.purchase_items.length;
-      });
-      var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
-      var profit_amount = total_sales_amount - total_sale_purchase_price;
-      this.yesterday_profit = profit_amount.toFixed(2);
+        var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
+        var profit_amount = total_sales_amount - total_sale_purchase_price;
+        this.yesterday_profit = profit_amount.toFixed(2);
+      }
     },
     todayProfit: function todayProfit(sales_products) {
-      var average_purchase_price = 0;
-      var total_sales_amount = 0;
-      var total_sale_quantity = 0;
-      sales_products.forEach(function (item) {
-        item.today_sales.forEach(function (sale) {
-          total_sales_amount += parseFloat(sale.amount);
-          total_sale_quantity += parseFloat(sale.quantity);
+      if (sales_products) {
+        var average_purchase_price = 0;
+        var total_sales_amount = 0;
+        var total_sale_quantity = 0;
+        sales_products.forEach(function (item) {
+          item.today_sales.forEach(function (sale) {
+            total_sales_amount += parseFloat(sale.amount);
+            total_sale_quantity += parseFloat(sale.quantity);
+          });
         });
-      });
-      sales_products.forEach(function (item) {
-        var purchase_price = 0;
-        item.purchase_items.forEach(function (purchase) {
-          purchase_price += parseFloat(purchase.price);
+        sales_products.forEach(function (item) {
+          var purchase_price = 0;
+          item.purchase_items.forEach(function (purchase) {
+            purchase_price += parseFloat(purchase.price);
+          });
+          average_purchase_price += purchase_price / item.purchase_items.length > 0 ? item.purchase_items.length : 1;
         });
-        average_purchase_price += purchase_price / item.purchase_items.length;
-      });
-      var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
-      var profit_amount = total_sales_amount - total_sale_purchase_price;
-      this.today_profit = profit_amount.toFixed(2);
+        var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
+        var profit_amount = total_sales_amount - total_sale_purchase_price;
+        this.today_profit = profit_amount.toFixed(2);
+      }
     }
   },
   computed: {

@@ -126,16 +126,18 @@ export default {
           this.loading=false ;
         })
     },
-
-   purchasePrice(items){
+  
+    purchasePrice(items){
 
       if (items) {
-        let price = 0 ;
+        let price = 0.0 ;
+        let purchase_times = 0 ;
         items.forEach(item => {
             price += parseFloat(item.price) ;
+            purchase_times += 1 ;
         });
-        let  average_price = price / items.length  ;
-        return average_price.toFixed(2)  ;
+        let  average_price = price / purchase_times.length > 0 ? purchase_times : 1 ;
+        return average_price  ;
         }
    },
 
@@ -152,16 +154,20 @@ export default {
                    });
               });
 
+
               sales_products.forEach((item)=>{
                    let purchase_price=0 ;
+                   let purchase_times = 0 ;
                    item.purchase_items.forEach((purchase)=>{
                         purchase_price += parseFloat(purchase.price);
+                        purchase_times += 1 ;
                    });
-                  average_purchase_price += purchase_price /  item.purchase_items.length
+                  average_purchase_price += purchase_price / purchase_times.length > 0 ? purchase_times : 1 ;
               });
 
-            let total_sale_purchase_price =  average_purchase_price * total_sale_quantity;
-            let profit_amount = total_sales_amount - total_sale_purchase_price ;
+
+            let total_sale_purchase_price =  parseFloat(average_purchase_price) * parseFloat(total_sale_quantity);
+            let profit_amount = parseFloat(total_sales_amount) - parseFloat(total_sale_purchase_price) ;
             this.total_profit = profit_amount.toFixed(2) ;
         
     }
@@ -183,11 +189,14 @@ export default {
 
               sales_products.forEach((item)=>{
                    let purchase_price=0 ;
+                   let purchase_times = 0 ;
                    item.purchase_items.forEach((purchase)=>{
                         purchase_price += parseFloat(purchase.price);
+                        purchase_times += 1 ;
                    });
-                  average_purchase_price += purchase_price /  item.purchase_items.length
+                  average_purchase_price += purchase_price / purchase_times.length > 0 ? purchase_times : 1 ;
               });
+
 
             let total_sale_purchase_price =  average_purchase_price * total_sale_quantity;
             let profit_amount = total_sales_amount - total_sale_purchase_price ;
@@ -209,13 +218,17 @@ export default {
                    });
               });
 
+
               sales_products.forEach((item)=>{
                    let purchase_price=0 ;
+                   let purchase_times = 0 ;
                    item.purchase_items.forEach((purchase)=>{
                         purchase_price += parseFloat(purchase.price);
+                        purchase_times += 1 ;
                    });
-                  average_purchase_price += purchase_price /  item.purchase_items.length
+                  average_purchase_price += purchase_price / purchase_times.length > 0 ? purchase_times : 1 ;
               });
+
 
             let total_sale_purchase_price =  average_purchase_price * total_sale_quantity;
             let profit_amount = total_sales_amount - total_sale_purchase_price ;
@@ -239,11 +252,14 @@ export default {
 
               sales_products.forEach((item)=>{
                    let purchase_price=0 ;
+                   let purchase_times = 0 ;
                    item.purchase_items.forEach((purchase)=>{
                         purchase_price += parseFloat(purchase.price);
+                        purchase_times += 1 ;
                    });
-                  average_purchase_price += purchase_price /  item.purchase_items.length
+                  average_purchase_price += purchase_price / purchase_times.length > 0 ? purchase_times : 1 ;
               });
+
 
             let total_sale_purchase_price =  average_purchase_price * total_sale_quantity;
             let profit_amount = total_sales_amount - total_sale_purchase_price ;
@@ -270,10 +286,12 @@ export default {
 
               sales_products.forEach((item)=>{
                    let purchase_price=0 ;
+                   let purchase_times = 0 ;
                    item.purchase_items.forEach((purchase)=>{
                         purchase_price += parseFloat(purchase.price);
+                        purchase_times += 1 ;
                    });
-                  average_purchase_price += purchase_price /  item.purchase_items.length
+                  average_purchase_price += purchase_price / purchase_times.length > 0 ? purchase_times : 1 ;
               });
 
             let total_sale_purchase_price =  average_purchase_price * total_sale_quantity;

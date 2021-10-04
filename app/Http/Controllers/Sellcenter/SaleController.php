@@ -202,27 +202,55 @@ class SaleController extends Controller
    
     public function saleAnalysis(){
 
-        $today_sales_products = SellCenterProduct::where('sell_center_id',session()->get('sellcenter')['id'])
+        $total_sales_products_id = SellCenterSale::where('sell_center_id',session()->get('sellcenter')['id'])->select('sell_center_product_id')->pluck('sell_center_product_id');
+
+        $today_sales_products_id = SellCenterSale::where('created_at','>=',Carbon::today()->startOfDay())
+                                                    ->where('created_at','<=',Carbon::today()->endOfDay())
+                                                    ->where('sell_center_id',session()->get('sellcenter')['id'])
+                                                    ->select('sell_center_product_id')
+                                                    ->pluck('sell_center_product_id');
+
+
+        $yesterday_sales_products_id = SellCenterSale::where('created_at','>=',Carbon::yesterday()->startOfDay())
+                                                    ->where('created_at','<=',Carbon::yesterday()->endOfDay())
+                                                    ->where('sell_center_id',session()->get('sellcenter')['id'])
+                                                    ->select('sell_center_product_id')
+                                                    ->pluck('sell_center_product_id');
+
+
+        $this_week_sales_products_id = SellCenterSale::where('created_at','>=',Carbon::today()->subDays('7')->startOfDay())
+                                                    ->where('created_at','<=',Carbon::today()->endOfDay())
+                                                    ->where('sell_center_id',session()->get('sellcenter')['id'])
+                                                    ->select('sell_center_product_id')
+                                                    ->pluck('sell_center_product_id');      
+
+        $this_month_sales_products_id = SellCenterSale::where('created_at','>=',Carbon::today()->subDays('30')->startOfDay())
+                                                    ->where('created_at','<=',Carbon::today()->endOfDay())
+                                                    ->select('sell_center_product_id')
+                                                    ->pluck('sell_center_product_id');
+
+        
+        $today_sales_products = SellCenterProduct::whereIn('id',$today_sales_products_id)
                                                     ->select('id','sell_center_id','name','image','code')
                                                     ->with('today_sales','purchaseItems')->get();
 
-        $yesterday_sales_products = SellCenterProduct::where('sell_center_id',session()->get('sellcenter')['id'])
-                                                        ->select('id','sell_center_id','name','image','code')
-                                                        ->with('purchaseItems','yesterday_sales')->get();
+        $yesterday_sales_products = SellCenterProduct::whereIn('id',$yesterday_sales_products_id)
+                                                    ->select('id','sell_center_id','name','image','code')
+                                                    ->with('purchaseItems','yesterday_sales')->get();
                                             
-        $this_week_sales_products = SellCenterProduct::where('sell_center_id',session()->get('sellcenter')['id'])
-                                                        ->select('id','sell_center_id','name','image','code')
-                                                        ->with('purchaseItems','this_week_sales' )->get();
+        $this_week_sales_products = SellCenterProduct::whereIn('id',$this_week_sales_products_id)
+                                                    ->select('id','sell_center_id','name','image','code')
+                                                    ->with('purchaseItems','this_week_sales' )->get();
                             
-        $this_month_sales_products = SellCenterProduct::where('sell_center_id',session()->get('sellcenter')['id'])
-                                                        ->select('id','sell_center_id','name','image','code')
-                                                        ->with('purchaseItems','this_month_sales' )->get(); 
+        $this_month_sales_products = SellCenterProduct::whereIn('id',$this_month_sales_products_id)
+                                                    ->select('id','sell_center_id','name','image','code')
+                                                    ->with('purchaseItems','this_month_sales' )->get(); 
                                 
                                 
                         
-        $total_sales_products = SellCenterProduct::where('sell_center_id',session()->get('sellcenter')['id'])
-                                                        ->select('id','sell_center_id','name','image','code')
-                                                        ->with('purchaseItems','total_sales' )->get(); 
+        $total_sales_products = SellCenterProduct::whereIn('id',$total_sales_products_id)
+                                                    ->select('id','sell_center_id','name','image','code')
+                                                    ->with('purchaseItems','total_sales' )->get(); 
 
     
         return  response()->json([

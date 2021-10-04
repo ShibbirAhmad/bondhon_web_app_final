@@ -324,9 +324,8 @@ export default {
     },
 
 
-
-   
-    totalProfit(sales_products){
+  totalProfit(sales_products){
+          if (sales_products) {
              let average_purchase_price =0 ;
              let total_sales_amount =0 ;
              let total_sale_quantity =0 ;
@@ -343,16 +342,19 @@ export default {
                    item.purchase_items.forEach((purchase)=>{
                         purchase_price += parseFloat(purchase.price);
                    });
-                  average_purchase_price += purchase_price /  item.purchase_items.length
+                  average_purchase_price += purchase_price /  item.purchase_items.length > 0 ?  item.purchase_items.length : 1
               });
 
-            let total_sale_purchase_price =  average_purchase_price * total_sale_quantity;
-            let profit_amount = total_sales_amount - total_sale_purchase_price ;
+            let total_sale_purchase_price =  parseFloat(average_purchase_price) * parseFloat(total_sale_quantity);
+            let profit_amount = parseFloat(total_sales_amount) - parseFloat(total_sale_purchase_price) ;
             this.total_profit = profit_amount.toFixed(2) ;
+        
+    }
     },
 
 
     thisMonthProfit(sales_products){
+          if (sales_products) {
              let average_purchase_price =0 ;
              let total_sales_amount =0 ;
              let total_sale_quantity =0 ;
@@ -369,15 +371,18 @@ export default {
                    item.purchase_items.forEach((purchase)=>{
                         purchase_price += parseFloat(purchase.price);
                    });
-                  average_purchase_price += purchase_price /  item.purchase_items.length
+                  average_purchase_price += purchase_price /   item.purchase_items.length > 0 ?  item.purchase_items.length : 1
               });
 
             let total_sale_purchase_price =  average_purchase_price * total_sale_quantity;
             let profit_amount = total_sales_amount - total_sale_purchase_price ;
             this.this_month_profit = profit_amount.toFixed(2) ;
+        
+     }
     },
 
     thisWeekProfit(sales_products){
+         if (sales_products) {
              let average_purchase_price =0 ;
              let total_sales_amount =0 ;
              let total_sale_quantity =0 ;
@@ -394,15 +399,18 @@ export default {
                    item.purchase_items.forEach((purchase)=>{
                         purchase_price += parseFloat(purchase.price);
                    });
-                  average_purchase_price += purchase_price /  item.purchase_items.length
+                  average_purchase_price += purchase_price /  item.purchase_items.length > 0 ?  item.purchase_items.length : 1
               });
 
             let total_sale_purchase_price =  average_purchase_price * total_sale_quantity;
             let profit_amount = total_sales_amount - total_sale_purchase_price ;
             this.this_week_profit = profit_amount.toFixed(2) ;
+        
+      }
     },
 
     yesterdayProfit(sales_products){
+         if (sales_products) {
              let average_purchase_price =0 ;
              let total_sales_amount =0 ;
              let total_sale_quantity =0 ;
@@ -419,18 +427,20 @@ export default {
                    item.purchase_items.forEach((purchase)=>{
                         purchase_price += parseFloat(purchase.price);
                    });
-                  average_purchase_price += purchase_price /  item.purchase_items.length
+                  average_purchase_price += purchase_price /  item.purchase_items.length > 0 ?  item.purchase_items.length : 1
               });
 
             let total_sale_purchase_price =  average_purchase_price * total_sale_quantity;
             let profit_amount = total_sales_amount - total_sale_purchase_price ;
             this.yesterday_profit = profit_amount.toFixed(2) ;
-
+        
+      }
     },
 
 
     todayProfit(sales_products){
 
+          if (sales_products) {
 
              let average_purchase_price =0 ;
              let total_sales_amount =0 ;
@@ -448,15 +458,16 @@ export default {
                    item.purchase_items.forEach((purchase)=>{
                         purchase_price += parseFloat(purchase.price);
                    });
-                  average_purchase_price += purchase_price /  item.purchase_items.length
+                  average_purchase_price += purchase_price /  item.purchase_items.length > 0 ?  item.purchase_items.length : 1
               });
 
             let total_sale_purchase_price =  average_purchase_price * total_sale_quantity;
             let profit_amount = total_sales_amount - total_sale_purchase_price ;
             this.today_profit = profit_amount.toFixed(2) ;
                   
-      
+          }  
     },
+
 
 
 

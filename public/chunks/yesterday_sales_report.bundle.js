@@ -282,12 +282,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     purchasePrice: function purchasePrice(items) {
       if (items) {
-        var price = 0;
+        var price = 0.0;
+        var purchase_times = 0;
         items.forEach(function (item) {
           price += parseFloat(item.price);
+          purchase_times += 1;
         });
-        var average_price = price / items.length;
-        return average_price.toFixed(2);
+        var average_price = price / purchase_times.length > 0 ? purchase_times : 1;
+        return average_price;
       }
     },
     totalProfit: function totalProfit(sales_products) {
@@ -303,13 +305,15 @@ __webpack_require__.r(__webpack_exports__);
         });
         sales_products.forEach(function (item) {
           var purchase_price = 0;
+          var purchase_times = 0;
           item.purchase_items.forEach(function (purchase) {
             purchase_price += parseFloat(purchase.price);
+            purchase_times += 1;
           });
-          average_purchase_price += purchase_price / item.purchase_items.length;
+          average_purchase_price += purchase_price / purchase_times.length > 0 ? purchase_times : 1;
         });
-        var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
-        var profit_amount = total_sales_amount - total_sale_purchase_price;
+        var total_sale_purchase_price = parseFloat(average_purchase_price) * parseFloat(total_sale_quantity);
+        var profit_amount = parseFloat(total_sales_amount) - parseFloat(total_sale_purchase_price);
         this.total_profit = profit_amount.toFixed(2);
       }
     },
@@ -326,10 +330,12 @@ __webpack_require__.r(__webpack_exports__);
         });
         sales_products.forEach(function (item) {
           var purchase_price = 0;
+          var purchase_times = 0;
           item.purchase_items.forEach(function (purchase) {
             purchase_price += parseFloat(purchase.price);
+            purchase_times += 1;
           });
-          average_purchase_price += purchase_price / item.purchase_items.length;
+          average_purchase_price += purchase_price / purchase_times.length > 0 ? purchase_times : 1;
         });
         var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
         var profit_amount = total_sales_amount - total_sale_purchase_price;
@@ -349,10 +355,12 @@ __webpack_require__.r(__webpack_exports__);
         });
         sales_products.forEach(function (item) {
           var purchase_price = 0;
+          var purchase_times = 0;
           item.purchase_items.forEach(function (purchase) {
             purchase_price += parseFloat(purchase.price);
+            purchase_times += 1;
           });
-          average_purchase_price += purchase_price / item.purchase_items.length;
+          average_purchase_price += purchase_price / purchase_times.length > 0 ? purchase_times : 1;
         });
         var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
         var profit_amount = total_sales_amount - total_sale_purchase_price;
@@ -372,10 +380,12 @@ __webpack_require__.r(__webpack_exports__);
         });
         sales_products.forEach(function (item) {
           var purchase_price = 0;
+          var purchase_times = 0;
           item.purchase_items.forEach(function (purchase) {
             purchase_price += parseFloat(purchase.price);
+            purchase_times += 1;
           });
-          average_purchase_price += purchase_price / item.purchase_items.length;
+          average_purchase_price += purchase_price / purchase_times.length > 0 ? purchase_times : 1;
         });
         var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
         var profit_amount = total_sales_amount - total_sale_purchase_price;
@@ -395,10 +405,12 @@ __webpack_require__.r(__webpack_exports__);
         });
         sales_products.forEach(function (item) {
           var purchase_price = 0;
+          var purchase_times = 0;
           item.purchase_items.forEach(function (purchase) {
             purchase_price += parseFloat(purchase.price);
+            purchase_times += 1;
           });
-          average_purchase_price += purchase_price / item.purchase_items.length;
+          average_purchase_price += purchase_price / purchase_times.length > 0 ? purchase_times : 1;
         });
         var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
         var profit_amount = total_sales_amount - total_sale_purchase_price;
@@ -756,7 +768,7 @@ var render = function() {
                                             item.purchase_items
                                           ) *
                                           _vm.salesQuantity(
-                                            item.this_month_sales
+                                            item.yesterday_sales
                                           )
                                         ).toFixed(2)
                                       )
@@ -766,7 +778,7 @@ var render = function() {
                                   _c("td", [
                                     _vm._v(
                                       _vm._s(
-                                        _vm.salesQuantity(item.this_month_sales)
+                                        _vm.salesQuantity(item.yesterday_sales)
                                       )
                                     )
                                   ]),
@@ -774,7 +786,7 @@ var render = function() {
                                   _c("td", [
                                     _vm._v(
                                       _vm._s(
-                                        _vm.salesAmount(item.this_month_sales)
+                                        _vm.salesAmount(item.yesterday_sales)
                                       )
                                     )
                                   ]),
@@ -784,13 +796,13 @@ var render = function() {
                                       _vm._s(
                                         (
                                           _vm.salesAmount(
-                                            item.this_month_sales
+                                            item.yesterday_sales
                                           ) -
                                           _vm.purchasePrice(
                                             item.purchase_items
                                           ) *
                                             _vm.salesQuantity(
-                                              item.this_month_sales
+                                              item.yesterday_sales
                                             )
                                         ).toFixed(2)
                                       ) + "  "

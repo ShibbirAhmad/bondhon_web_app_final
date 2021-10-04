@@ -252,14 +252,18 @@ export default {
       }
     },
 
-
    purchasePrice(items){
-       let price = 0 ;
-       items.forEach(item => {
-           price += parseFloat(item.price) ;
-       });
-       let  average_price = price / items.length  ;
-       return average_price.toFixed(2)  ;
+
+      if (items) {
+        let price = 0.0 ;
+        let purchase_times = 0 ;
+        items.forEach(item => {
+            price += parseFloat(item.price) ;
+            purchase_times += 1 ;
+        });
+        let  average_price = price / purchase_times ;
+        return average_price  ;
+        }
    },
 
     deActive(id) {
