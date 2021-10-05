@@ -338,119 +338,84 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     totalProfit: function totalProfit(sales_products) {
-      if (sales_products) {
-        var average_purchase_price = 0;
-        var total_sales_amount = 0;
-        var total_sale_quantity = 0;
-        sales_products.forEach(function (item) {
-          item.total_sales.forEach(function (sale) {
-            total_sales_amount += parseFloat(sale.amount);
-            total_sale_quantity += parseFloat(sale.quantity);
-          });
+      var average_sale_purchase_price = 0;
+      var total_sales_amount = 0;
+      sales_products.forEach(function (item) {
+        var sales = item.total_sales;
+        var purchases = item.purchase_items; //i have merged sale and purchase so that i can calculate actual profit
+
+        var sale_and_purchase = sales.map(function (item, i) {
+          return Object.assign({}, item, purchases[i]);
         });
-        sales_products.forEach(function (item) {
-          var purchase_price = 0;
-          item.purchase_items.forEach(function (purchase) {
-            purchase_price += parseFloat(purchase.price);
-          });
-          average_purchase_price += purchase_price / item.purchase_items.length > 0 ? item.purchase_items.length : 1;
-        });
-        var total_sale_purchase_price = parseFloat(average_purchase_price) * parseFloat(total_sale_quantity);
-        var profit_amount = parseFloat(total_sales_amount) - parseFloat(total_sale_purchase_price);
-        this.total_profit = profit_amount.toFixed(2);
-      }
+        total_sales_amount += parseFloat(sale_and_purchase[0].amount);
+        average_sale_purchase_price += parseFloat(sale_and_purchase[0].price) * parseFloat(sale_and_purchase[0].sale_quantity);
+      });
+      var profit = total_sales_amount - average_sale_purchase_price;
+      this.total_profit = profit.toFixed(2);
     },
     thisMonthProfit: function thisMonthProfit(sales_products) {
-      if (sales_products) {
-        var average_purchase_price = 0;
-        var total_sales_amount = 0;
-        var total_sale_quantity = 0;
-        sales_products.forEach(function (item) {
-          item.this_month_sales.forEach(function (sale) {
-            total_sales_amount += parseFloat(sale.amount);
-            total_sale_quantity += parseFloat(sale.quantity);
-          });
+      var average_sale_purchase_price = 0;
+      var total_sales_amount = 0;
+      sales_products.forEach(function (item) {
+        var sales = item.this_month_sales;
+        var purchases = item.purchase_items; //i have merged sale and purchase so that i can calculate actual profit
+
+        var sale_and_purchase = sales.map(function (item, i) {
+          return Object.assign({}, item, purchases[i]);
         });
-        sales_products.forEach(function (item) {
-          var purchase_price = 0;
-          item.purchase_items.forEach(function (purchase) {
-            purchase_price += parseFloat(purchase.price);
-          });
-          average_purchase_price += purchase_price / item.purchase_items.length > 0 ? item.purchase_items.length : 1;
-        });
-        var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
-        var profit_amount = total_sales_amount - total_sale_purchase_price;
-        this.this_month_profit = profit_amount.toFixed(2);
-      }
+        total_sales_amount += parseFloat(sale_and_purchase[0].amount);
+        average_sale_purchase_price += parseFloat(sale_and_purchase[0].price) * parseFloat(sale_and_purchase[0].sale_quantity);
+      });
+      var profit = total_sales_amount - average_sale_purchase_price;
+      this.this_month_profit = profit.toFixed(2);
     },
     thisWeekProfit: function thisWeekProfit(sales_products) {
-      if (sales_products) {
-        var average_purchase_price = 0;
-        var total_sales_amount = 0;
-        var total_sale_quantity = 0;
-        sales_products.forEach(function (item) {
-          item.this_week_sales.forEach(function (sale) {
-            total_sales_amount += parseFloat(sale.amount);
-            total_sale_quantity += parseFloat(sale.quantity);
-          });
+      var average_sale_purchase_price = 0;
+      var total_sales_amount = 0;
+      sales_products.forEach(function (item) {
+        var sales = item.this_week_sales;
+        var purchases = item.purchase_items; //i have merged sale and purchase so that i can calculate actual profit
+
+        var sale_and_purchase = sales.map(function (item, i) {
+          return Object.assign({}, item, purchases[i]);
         });
-        sales_products.forEach(function (item) {
-          var purchase_price = 0;
-          item.purchase_items.forEach(function (purchase) {
-            purchase_price += parseFloat(purchase.price);
-          });
-          average_purchase_price += purchase_price / item.purchase_items.length > 0 ? item.purchase_items.length : 1;
-        });
-        var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
-        var profit_amount = total_sales_amount - total_sale_purchase_price;
-        this.this_week_profit = profit_amount.toFixed(2);
-      }
+        total_sales_amount += parseFloat(sale_and_purchase[0].amount);
+        average_sale_purchase_price += parseFloat(sale_and_purchase[0].price) * parseFloat(sale_and_purchase[0].sale_quantity);
+      });
+      var profit = total_sales_amount - average_sale_purchase_price;
+      this.this_week_profit = profit.toFixed(2);
     },
     yesterdayProfit: function yesterdayProfit(sales_products) {
-      if (sales_products) {
-        var average_purchase_price = 0;
-        var total_sales_amount = 0;
-        var total_sale_quantity = 0;
-        sales_products.forEach(function (item) {
-          item.yesterday_sales.forEach(function (sale) {
-            total_sales_amount += parseFloat(sale.amount);
-            total_sale_quantity += parseFloat(sale.quantity);
-          });
+      var average_sale_purchase_price = 0;
+      var total_sales_amount = 0;
+      sales_products.forEach(function (item) {
+        var sales = item.yesterday_sales;
+        var purchases = item.purchase_items; //i have merged sale and purchase so that i can calculate actual profit
+
+        var sale_and_purchase = sales.map(function (item, i) {
+          return Object.assign({}, item, purchases[i]);
         });
-        sales_products.forEach(function (item) {
-          var purchase_price = 0;
-          item.purchase_items.forEach(function (purchase) {
-            purchase_price += parseFloat(purchase.price);
-          });
-          average_purchase_price += purchase_price / item.purchase_items.length > 0 ? item.purchase_items.length : 1;
-        });
-        var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
-        var profit_amount = total_sales_amount - total_sale_purchase_price;
-        this.yesterday_profit = profit_amount.toFixed(2);
-      }
+        total_sales_amount += parseFloat(sale_and_purchase[0].amount);
+        average_sale_purchase_price += parseFloat(sale_and_purchase[0].price) * parseFloat(sale_and_purchase[0].sale_quantity);
+      });
+      var profit = total_sales_amount - average_sale_purchase_price;
+      this.yesterday_profit = profit.toFixed(2);
     },
     todayProfit: function todayProfit(sales_products) {
-      if (sales_products) {
-        var average_purchase_price = 0;
-        var total_sales_amount = 0;
-        var total_sale_quantity = 0;
-        sales_products.forEach(function (item) {
-          item.today_sales.forEach(function (sale) {
-            total_sales_amount += parseFloat(sale.amount);
-            total_sale_quantity += parseFloat(sale.quantity);
-          });
+      var average_sale_purchase_price = 0;
+      var total_sales_amount = 0;
+      sales_products.forEach(function (item) {
+        var sales = item.today_sales;
+        var purchases = item.purchase_items; //i have merged sale and purchase so that i can calculate actual profit
+
+        var sale_and_purchase = sales.map(function (item, i) {
+          return Object.assign({}, item, purchases[i]);
         });
-        sales_products.forEach(function (item) {
-          var purchase_price = 0;
-          item.purchase_items.forEach(function (purchase) {
-            purchase_price += parseFloat(purchase.price);
-          });
-          average_purchase_price += purchase_price / item.purchase_items.length > 0 ? item.purchase_items.length : 1;
-        });
-        var total_sale_purchase_price = average_purchase_price * total_sale_quantity;
-        var profit_amount = total_sales_amount - total_sale_purchase_price;
-        this.today_profit = profit_amount.toFixed(2);
-      }
+        total_sales_amount += parseFloat(sale_and_purchase[0].amount);
+        average_sale_purchase_price += parseFloat(sale_and_purchase[0].price) * parseFloat(sale_and_purchase[0].sale_quantity);
+      });
+      var profit = total_sales_amount - average_sale_purchase_price;
+      this.today_profit = profit.toFixed(2);
     }
   },
   computed: {

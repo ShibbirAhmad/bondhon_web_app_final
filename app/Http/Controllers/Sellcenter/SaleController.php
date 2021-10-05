@@ -83,7 +83,7 @@ class SaleController extends Controller
                 $sale->sell_center_id = session()->get('sellcenter')['id'];
                 $sale->sell_center_product_id = $product->id;
                 $sale->price = $request->price;
-                $sale->quantity = floatval($request->quantity);
+                $sale->sale_quantity = floatval($request->quantity);
                 $sale->quantity_type = $request->quantity_type;
                 $sale->discount = $request->discount ?? 0;
                 $sale->amount =  ( floatval($request->price) * floatval($request->quantity) ) - floatval($request->discount) ;
@@ -138,14 +138,14 @@ class SaleController extends Controller
                 $sale = SellCenterSale::findOrFail($id);
 
                 //update stock 
-                $product->stock = $product->stock + $sale->quantity;
+                $product->stock = $product->stock + $sale->sale_quantity;
                 $product->stock = $product->stock  - floatval($request->quantity);
                 $product->save();
 
                 $sale->sell_center_id = session()->get('sellcenter')['id'];
                 $sale->sell_center_product_id = $product->id;
                 $sale->price = $request->price;
-                $sale->quantity = floatval($request->quantity);
+                $sale->sale_quantity = floatval($request->quantity);
                 $sale->quantity_type = $request->quantity_type;
                 $sale->discount = $request->discount ?? 0;
                 $sale->amount =  ( floatval($request->price) * floatval($request->quantity) ) - floatval($request->discount) ;
