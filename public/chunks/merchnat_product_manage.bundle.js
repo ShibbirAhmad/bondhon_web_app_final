@@ -339,6 +339,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -403,16 +418,21 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     purchasePrice: function purchasePrice(items) {
-      if (items) {
-        var price = 0.0;
-        var purchase_times = 0;
-        items.forEach(function (item) {
-          price += parseFloat(item.price);
-          purchase_times += 1;
-        });
-        var average_price = price / purchase_times;
-        return average_price;
-      }
+      var price = 0.0;
+      var purchase_times = 0;
+      items.forEach(function (item) {
+        price += parseFloat(item.price);
+        purchase_times += 1;
+      });
+      var average_price = price / purchase_times;
+      return average_price;
+    },
+    totalStocked: function totalStocked(items) {
+      var itmes = 0;
+      items.forEach(function (item) {
+        itmes += parseFloat(item.quantity);
+      });
+      return itmes;
     },
     deActive: function deActive(id) {
       var _this4 = this;
@@ -971,18 +991,56 @@ var render = function() {
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      _vm._v(
-                                        "৳" +
-                                          _vm._s(
-                                            _vm.purchasePrice(
-                                              product.purchase_items
+                                      product.purchase_items.length > 0
+                                        ? _c("p", [
+                                            _vm._v(
+                                              " ৳" +
+                                                _vm._s(
+                                                  _vm.purchasePrice(
+                                                    product.purchase_items
+                                                  )
+                                                )
                                             )
-                                          )
-                                      )
+                                          ])
+                                        : _c("p", [_vm._v(" ৳0 ")])
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _vm._v("৳" + _vm._s(product.sale_price))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "span",
+                                        { staticClass: "badge badge-success" },
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.totalStocked(
+                                                product.purchase_items
+                                              )
+                                            )
+                                          )
+                                        ]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "span",
+                                        { staticClass: "badge badge-warning" },
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              (
+                                                _vm.totalStocked(
+                                                  product.purchase_items
+                                                ) - parseFloat(product.stock)
+                                              ).toFixed(2)
+                                            )
+                                          )
+                                        ]
+                                      )
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
@@ -1198,7 +1256,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Sale price")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Stock")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Total Stocked")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Sales Items")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Present Stock")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("status")]),
         _vm._v(" "),

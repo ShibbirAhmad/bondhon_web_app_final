@@ -72,7 +72,9 @@
                         <th scope="col">Discount</th>
                         <th scope="col">Purchase Price</th>
                         <th scope="col">Sale price</th>
-                        <th scope="col">Stock</th>
+                        <th scope="col">Total Stocked</th>
+                        <th scope="col">Sales Items</th>
+                        <th scope="col">Present Stock</th>
                         <th scope="col">status</th>
                         <th scope="col">Action</th>
                       </tr>
@@ -102,8 +104,21 @@
                              product.discount
                           }}</span>
                         </td>
-                        <td>&#2547;{{ purchasePrice(product.purchase_items) }}</td>
+                        <td>
+                         <p v-if="product.purchase_items.length > 0"> &#2547;{{ purchasePrice(product.purchase_items) }}</p>
+                         <p v-else> &#2547;0 </p>
+                        </td>
                         <td>&#2547;{{ product.sale_price }}</td>
+                       
+                        <td>
+                          <span class="badge badge-success"
+                            >{{ totalStocked(product.purchase_items) }}</span>
+                        </td>
+
+                       <td>
+                          <span class="badge badge-warning"
+                            >{{ (totalStocked(product.purchase_items) - parseFloat(product.stock)).toFixed(2) }}</span>
+                        </td>
 
                         <td>
                           <span
@@ -254,7 +269,6 @@ export default {
 
    purchasePrice(items){
 
-      if (items) {
         let price = 0.0 ;
         let purchase_times = 0 ;
         items.forEach(item => {
@@ -262,8 +276,18 @@ export default {
             purchase_times += 1 ;
         });
         let  average_price = price / purchase_times ;
-        return average_price  ;
-        }
+ 
+        return  average_price ;
+     
+    
+   },
+
+    totalStocked(items){
+        let itmes = 0 ;
+        items.forEach(item => {
+            itmes += parseFloat(item.quantity) ;
+        });
+        return itmes  ;
    },
 
     deActive(id) {
