@@ -307,7 +307,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         product_id: "",
         price: 0,
         discount: 0,
-        quantity: 1,
+        quantity: 0,
         quantity_type: "pice",
         amount: 0
       }),
@@ -325,7 +325,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         _this2.form.product_id = resp.data.sale.sell_center_product_id;
         _this2.form.price = resp.data.sale.price;
         _this2.form.discount = resp.data.sale.discount;
-        _this2.form.quantity = resp.data.sale.quantity;
+        _this2.form.quantity = resp.data.sale.sale_quantity;
         _this2.form.quantity_type = resp.data.sale.quantity_type;
         _this2.form.amount = resp.data.sale.amount;
       });
@@ -377,7 +377,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.mb-2[data-v-d3e7d656] {\r\n  margin-bottom: 5px !important;\n}\n.search_content[data-v-d3e7d656] {\r\n  width: 95%;\r\n  max-height: 300px;\r\n  position: absolute;\r\n  overflow-y: auto;\n}\n.sale_box[data-v-d3e7d656] {\r\n  margin-top: 30px;\n}\r\n", ""]);
+exports.push([module.i, "\n.mb-2[data-v-d3e7d656] {\r\n  margin-bottom: 5px !important;\n}\n.search_content[data-v-d3e7d656] {\r\n  width: 95%;\r\n  max-height: 300px;\r\n  position: absolute;\r\n  z-index: 99999;\r\n  overflow-y: auto;\n}\n.sale_box[data-v-d3e7d656] {\r\n  margin-top: 30px;\n}\r\n", ""]);
 
 // exports
 
@@ -715,7 +715,7 @@ var render = function() {
                               ],
                               staticClass: "form-control",
                               attrs: {
-                                type: "numer",
+                                type: "text",
                                 name: "quantity",
                                 required: ""
                               },
@@ -754,7 +754,7 @@ var render = function() {
                               ],
                               staticClass: "form-control",
                               attrs: {
-                                type: "number",
+                                type: "text",
                                 name: "price",
                                 required: "",
                                 placeholder: "price"
@@ -792,7 +792,7 @@ var render = function() {
                               ],
                               staticClass: "form-control",
                               attrs: {
-                                type: "number",
+                                type: "text",
                                 name: "discount",
                                 required: "",
                                 placeholder: "discount"

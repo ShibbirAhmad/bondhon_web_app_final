@@ -352,12 +352,14 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
       if (this.search.length > 2) {
         axios.get("/api/sellcenter/search/product/for/sale/" + this.search).then(function (resp) {
           console.log(resp);
+          document.getElementById('search_products').style.display = 'block';
           _this2.products = resp.data.products;
         });
       }
     },
     selecetProduct: function selecetProduct(product) {
       this.form.product_id = product.id;
+      document.getElementById('search_products').style.display = 'none';
       this.saleInfo = true;
     },
     amountCalculate: function amountCalculate() {
@@ -407,7 +409,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.mb-2[data-v-72e97726] {\r\n  margin-bottom: 5px !important;\n}\n.search_content[data-v-72e97726] {\r\n  width: 95%;\r\n  max-height: 300px;\r\n  position: absolute;\r\n  overflow-y: auto;\n}\n.sale_box[data-v-72e97726] {\r\n  margin-top: 30px;\n}\r\n", ""]);
+exports.push([module.i, "\n.mb-2[data-v-72e97726] {\r\n  margin-bottom: 5px !important;\n}\n.search_content[data-v-72e97726] {\r\n  width: 95%;\r\n  max-height: 300px;\r\n  position: absolute;\r\n  z-index: 99999;\r\n  overflow-y: auto;\n}\n.sale_box[data-v-72e97726] {\r\n  margin-top: 30px;\n}\r\n", ""]);
 
 // exports
 
@@ -691,7 +693,8 @@ var render = function() {
                             expression: "products.length > 0"
                           }
                         ],
-                        staticClass: "list-group"
+                        staticClass: "list-group",
+                        attrs: { id: "search_products" }
                       },
                       _vm._l(_vm.products, function(product, index) {
                         return _c(
@@ -829,7 +832,7 @@ var render = function() {
                                   ],
                                   staticClass: "form-control",
                                   attrs: {
-                                    type: "numer",
+                                    type: "text",
                                     name: "quantity",
                                     required: ""
                                   },
@@ -868,7 +871,7 @@ var render = function() {
                                   ],
                                   staticClass: "form-control",
                                   attrs: {
-                                    type: "number",
+                                    type: "text",
                                     name: "price",
                                     required: "",
                                     placeholder: "price"
@@ -906,7 +909,7 @@ var render = function() {
                                   ],
                                   staticClass: "form-control",
                                   attrs: {
-                                    type: "number",
+                                    type: "text",
                                     name: "discount",
                                     required: "",
                                     placeholder: "discount"

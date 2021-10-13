@@ -58,7 +58,7 @@
                         <label>Unit</label>
                         <input
                           v-model="form.quantity"
-                          type="numer"
+                          type="text"
                           name="quantity"
                           @keyup="amountCalculate"
                           class="form-control"
@@ -74,7 +74,7 @@
                         <label>Price</label>
                         <input
                           v-model="form.price"
-                          type="number"
+                          type="text"
                           name="price"
                           class="form-control"
                           @keyup="amountCalculate"
@@ -89,7 +89,7 @@
                         <label>Discount</label>
                         <input
                           v-model="form.discount"
-                          type="number"
+                          type="text"
                           name="discount"
                           class="form-control"
                           @keyup="amountCalculate"
@@ -151,7 +151,7 @@ export default {
         product_id: "",
         price: 0,
         discount: 0,
-        quantity: 1,
+        quantity: 0,
         quantity_type: "pice",
         amount: 0,
       }),
@@ -171,7 +171,7 @@ export default {
             this.form.product_id = resp.data.sale.sell_center_product_id;
             this.form.price = resp.data.sale.price;
             this.form.discount = resp.data.sale.discount;
-            this.form.quantity = resp.data.sale.quantity;
+            this.form.quantity = resp.data.sale.sale_quantity;
             this.form.quantity_type = resp.data.sale.quantity_type;
             this.form.amount = resp.data.sale.amount;
           });
@@ -221,6 +221,7 @@ export default {
   width: 95%;
   max-height: 300px;
   position: absolute;
+  z-index: 99999;
   overflow-y: auto;
 }
 

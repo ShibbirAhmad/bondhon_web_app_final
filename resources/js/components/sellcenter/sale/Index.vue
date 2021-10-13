@@ -81,7 +81,7 @@
                         <td>{{ "S-" + sale.id }}</td>
                         <td>{{ sale.product.name }}</td>
 
-                        <td>{{ sale.quantity+'-'+sale.quantity_type }}</td>
+                        <td>{{ sale.sale_quantity+'-'+sale.quantity_type }}</td>
                         <td>{{ sale.price }}</td>
                         <td>{{ sale.amount }}</td>
                         <td>

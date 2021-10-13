@@ -226,6 +226,7 @@ class SaleController extends Controller
 
         $this_month_sales_products_id = SellCenterSale::where('created_at','>=',Carbon::today()->subDays('30')->startOfDay())
                                                     ->where('created_at','<=',Carbon::today()->endOfDay())
+                                                    ->where('sell_center_id',session()->get('sellcenter')['id'])
                                                     ->select('sell_center_product_id')
                                                     ->pluck('sell_center_product_id');
 

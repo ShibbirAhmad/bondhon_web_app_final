@@ -733,7 +733,7 @@ var render = function() {
                                     _c("td", [
                                       _vm._v(
                                         _vm._s(
-                                          sale.quantity +
+                                          sale.sale_quantity +
                                             "-" +
                                             sale.quantity_type
                                         )

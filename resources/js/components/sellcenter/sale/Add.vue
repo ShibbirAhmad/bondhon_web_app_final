@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="search_content">
-                  <ul v-show="products.length > 0" class="list-group">
+                  <ul id="search_products" v-show="products.length > 0" class="list-group">
                     <li
                       class="list-group-item"
                       v-for="(product, index) in products"
@@ -85,7 +85,7 @@
                         <label>Unit</label>
                         <input
                           v-model="form.quantity"
-                          type="numer"
+                          type="text"
                           name="quantity"
                           @keyup="amountCalculate"
                           class="form-control"
@@ -101,7 +101,7 @@
                         <label>Price</label>
                         <input
                           v-model="form.price"
-                          type="number"
+                          type="text"
                           name="price"
                           class="form-control"
                           @keyup="amountCalculate"
@@ -116,7 +116,7 @@
                         <label>Discount</label>
                         <input
                           v-model="form.discount"
-                          type="number"
+                          type="text"
                           name="discount"
                           class="form-control"
                           @keyup="amountCalculate"
@@ -197,12 +197,14 @@ export default {
           .get("/api/sellcenter/search/product/for/sale/" + this.search)
           .then((resp) => {
             console.log(resp);
+             document.getElementById('search_products').style.display='block' ;
             this.products = resp.data.products;
           });
       }
     },
     selecetProduct(product) {
       this.form.product_id = product.id;
+      document.getElementById('search_products').style.display='none' ;
       this.saleInfo = true;
     },
     amountCalculate() {
@@ -247,6 +249,7 @@ export default {
   width: 95%;
   max-height: 300px;
   position: absolute;
+  z-index: 99999;
   overflow-y: auto;
 }
 
