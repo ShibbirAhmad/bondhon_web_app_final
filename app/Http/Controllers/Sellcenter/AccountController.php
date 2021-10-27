@@ -248,12 +248,13 @@ class AccountController extends Controller
                 $employee_salary->amount=$request->amount;
                 $employee_salary->paid_by=$request->debit_from;
                 $employee_salary->comment=$request->comment;
+                $employee_salary->month=$request->month ?? null;
                 $employee_salary->date=$request->date;
                 $employee_salary->save();
                 //update debit comment
                 $debit->purpose = $debit->purpose.'('. $employee->name .')';
                 $debit->save();
-                SellCenterEmployee::sendMessageToEmployeer($employee,$request->amount);
+                SellCenterEmployee::sendMessageToEmployeer($employee,$request->amount,$request->month);
             }
          
 

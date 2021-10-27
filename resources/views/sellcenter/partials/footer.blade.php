@@ -1,8 +1,6 @@
-<footer class="main-footer">
-    <div class="pull-right hidden-xs">
+<footer class="main-footer text-center">
 
-    </div>
-    <strong>  &copy; 2021 <a href="https://bondhonsociety.com">Bondhon Society Limited</a>.</strong> All rights
+    <strong>  &copy; 2021 <a href=""> {{  session('sellcenter')['name'] }} </a>.</strong> All rights
     reserved.
   </footer>
 

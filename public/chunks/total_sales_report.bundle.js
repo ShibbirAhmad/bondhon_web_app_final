@@ -123,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
             duration: 10000
           });
         }
-      })["catch"]();
+      });
     }
   },
   computed: {
@@ -282,13 +282,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     purchasePrice: function purchasePrice(items) {
       if (items) {
-        var price = 0.0;
+        var price = 0;
         var purchase_times = 0;
         items.forEach(function (item) {
           price += parseFloat(item.price);
           purchase_times += 1;
         });
-        purchase_times = purchase_times.length > 0 ? purchase_times : 1;
         var average_price = price / purchase_times;
         return average_price;
       }
@@ -420,7 +419,7 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _c("span", { staticClass: "logo-lg" }, [
-          _c("b", [_vm._v(_vm._s(_vm.general_setting.title))])
+          _c("b", [_vm._v(_vm._s(_vm.sellcenter.name))])
         ])
       ]),
       _vm._v(" "),

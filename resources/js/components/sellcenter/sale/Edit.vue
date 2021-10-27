@@ -22,7 +22,7 @@
           <div class="col-lg-6 col-lg-offset-2">
             <div class="box box-primary">
               <div class="box-header with-border text-center">
-                <h3 class="box-title">Add Sale</h3>
+                <h3 class="box-title">Edit Sale</h3>
               </div>
              
              

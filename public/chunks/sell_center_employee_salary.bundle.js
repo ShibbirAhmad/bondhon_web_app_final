@@ -123,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
             duration: 10000
           });
         }
-      })["catch"]();
+      });
     }
   },
   computed: {
@@ -148,6 +148,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Navbar_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Navbar.vue */ "./resources/js/components/sellcenter/Navbar.vue");
+//
+//
 //
 //
 //
@@ -489,7 +491,7 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _c("span", { staticClass: "logo-lg" }, [
-          _c("b", [_vm._v(_vm._s(_vm.general_setting.title))])
+          _c("b", [_vm._v(_vm._s(_vm.sellcenter.name))])
         ])
       ]),
       _vm._v(" "),
@@ -716,6 +718,18 @@ var render = function() {
                                         _vm._v(
                                           " " +
                                             _vm._s(
+                                              salary.month
+                                                ? salary.month
+                                                : "empty"
+                                            ) +
+                                            " "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(
                                               salary.comment
                                                 ? salary.comment
                                                 : ""
@@ -909,6 +923,8 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Month")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Comment")]),
         _vm._v(" "),

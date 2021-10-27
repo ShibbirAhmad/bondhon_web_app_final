@@ -123,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
             duration: 10000
           });
         }
-      })["catch"]();
+      });
     }
   },
   computed: {
@@ -601,7 +601,7 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _c("span", { staticClass: "logo-lg" }, [
-          _c("b", [_vm._v(_vm._s(_vm.general_setting.title))])
+          _c("b", [_vm._v(_vm._s(_vm.sellcenter.name))])
         ])
       ]),
       _vm._v(" "),

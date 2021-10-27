@@ -127,21 +127,20 @@ export default {
         })
     },
 
-     purchasePrice(items){
+  
+    purchasePrice(items){
 
       if (items) {
-        let price = 0.0 ;
+        let price = 0;
         let purchase_times = 0 ;
         items.forEach(item => {
             price += parseFloat(item.price) ;
             purchase_times += 1 ;
         });
-        purchase_times =purchase_times.length > 0 ? purchase_times : 1 ;
         let  average_price = price / purchase_times ;
         return average_price  ;
         }
    },
-
 
      totalProfit(sales_products){
         
@@ -247,6 +246,7 @@ export default {
        }
     },
 
+    
   salesQuantity(items){
      if (items) {
         let quantity = 0 ;
@@ -256,6 +256,7 @@ export default {
         return quantity.toFixed(2)  ;
      }
     },
+
 
    back(){
        return window.history.back();

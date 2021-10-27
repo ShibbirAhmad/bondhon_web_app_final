@@ -123,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
             duration: 10000
           });
         }
-      })["catch"]();
+      });
     }
   },
   computed: {
@@ -310,6 +310,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         purpose: "others",
         amount: "",
         date: "",
+        month: "",
         comment: "",
         debit_from: "Cash",
         dmin_id: "",
@@ -399,6 +400,19 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         }).then(function (result) {
           if (result.value) {
             _this2.form.employee_id = result.value;
+            Swal.fire({
+              title: "Select Month",
+              input: "select",
+              inputOptions: _this2.months,
+              inputPlaceholder: "Select One",
+              showCancelButton: true
+            }).then(function (month) {
+              if (month.value) {
+                _this2.form.month = month.value;
+              } else {
+                _this2.form.month = "";
+              }
+            });
           } else {
             _this2.form.purpose = "";
             _this2.form.employee_id = "";
@@ -544,7 +558,7 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _c("span", { staticClass: "logo-lg" }, [
-          _c("b", [_vm._v(_vm._s(_vm.general_setting.title))])
+          _c("b", [_vm._v(_vm._s(_vm.sellcenter.name))])
         ])
       ]),
       _vm._v(" "),

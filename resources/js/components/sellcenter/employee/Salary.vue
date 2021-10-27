@@ -44,6 +44,7 @@
                     <thead>
                       <tr>
                         <th scope="col">Date</th>
+                        <th scope="col">Month</th>
                         <th scope="col">Comment</th>
                         <th scope="col">Paid By</th>
                         <th scope="col">Amount</th>
@@ -54,6 +55,7 @@
                         <td>
                           {{ salary.date }}
                         </td>
+                        <td> {{ salary.month ? salary.month : 'empty' }} </td>
                         <td> {{ salary.comment ? salary.comment : '' }} </td>
                         <td> {{ salary.paid_by ? salary.paid_by : '' }} </td>
 

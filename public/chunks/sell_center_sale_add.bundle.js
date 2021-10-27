@@ -123,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
             duration: 10000
           });
         }
-      })["catch"]();
+      });
     }
   },
   computed: {
@@ -312,6 +312,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -336,6 +352,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         discount: 0,
         quantity: 1,
         quantity_type: "pice",
+        average_price: 0,
         amount: 0
       }),
       saleInfo: false,
@@ -367,6 +384,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
       var qty = parseFloat(this.form.quantity);
       var discount = parseFloat(this.form.discount);
       this.form.amount = price * qty - discount;
+      this.form.average_price = (parseFloat(price) / parseFloat(qty)).toFixed(2);
     },
     addSale: function addSale() {
       var _this3 = this;
@@ -467,7 +485,7 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _c("span", { staticClass: "logo-lg" }, [
-          _c("b", [_vm._v(_vm._s(_vm.general_setting.title))])
+          _c("b", [_vm._v(_vm._s(_vm.sellcenter.name))])
         ])
       ]),
       _vm._v(" "),
@@ -933,38 +951,78 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "form-group" }, [
-                            _c("label", [_vm._v("Amount")]),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.amount,
-                                  expression: "form.amount"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                name: "amount",
-                                readonly: ""
-                              },
-                              domProps: { value: _vm.form.amount },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-6 col-xs-12" }, [
+                              _c("div", { staticClass: "form-group" }, [
+                                _c("label", [_vm._v("Average Price")]),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.average_price,
+                                      expression: "form.average_price"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    name: "amount",
+                                    readonly: ""
+                                  },
+                                  domProps: { value: _vm.form.average_price },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "average_price",
+                                        $event.target.value
+                                      )
+                                    }
                                   }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "amount",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            })
+                                })
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-6 col-xs-12" }, [
+                              _c("div", { staticClass: "form-group" }, [
+                                _c("label", [_vm._v("Amount")]),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.amount,
+                                      expression: "form.amount"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    name: "amount",
+                                    readonly: ""
+                                  },
+                                  domProps: { value: _vm.form.amount },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "amount",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ])
+                            ])
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "form-group text-center" }, [

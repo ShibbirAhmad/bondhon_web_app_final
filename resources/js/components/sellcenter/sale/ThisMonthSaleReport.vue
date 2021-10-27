@@ -130,17 +130,17 @@ export default {
     purchasePrice(items){
 
       if (items) {
-        let price = 0.0 ;
+        let price = 0;
         let purchase_times = 0 ;
         items.forEach(item => {
             price += parseFloat(item.price) ;
             purchase_times += 1 ;
         });
-        purchase_times =purchase_times.length > 0 ? purchase_times : 1 ;
         let  average_price = price / purchase_times ;
         return average_price  ;
         }
    },
+   
 
 
      totalProfit(sales_products){

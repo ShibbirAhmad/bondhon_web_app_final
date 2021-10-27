@@ -127,16 +127,32 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <label>Amount</label>
-                    <input
-                      v-model="form.amount"
-                      type="text"
-                      name="amount"
-                      class="form-control"
-                      readonly
-                    />
-                  </div>
+                 <div class="row">
+                   <div class="col-md-6 col-xs-12">
+                      <div class="form-group">
+                        <label>Average Price</label>
+                        <input
+                          v-model="form.average_price"
+                          type="text"
+                          name="amount"
+                          class="form-control"
+                          readonly
+                        />
+                      </div> 
+                    </div>
+                   <div class="col-md-6 col-xs-12">
+                     <div class="form-group">
+                        <label>Amount</label>
+                        <input
+                          v-model="form.amount"
+                          type="text"
+                          name="amount"
+                          class="form-control"
+                          readonly
+                        />
+                      </div>
+                    </div>
+                 </div>
                   <div class="form-group text-center">
                     <button
                       :disabled="form.busy"
@@ -180,6 +196,7 @@ export default {
         discount: 0,
         quantity: 1,
         quantity_type: "pice",
+        average_price: 0,
         amount: 0,
       }),
       saleInfo: false,
@@ -212,6 +229,8 @@ export default {
       let qty = parseFloat(this.form.quantity) ;
       let discount = parseFloat(this.form.discount) ;
       this.form.amount = (price * qty) - discount;
+
+      this.form.average_price = (parseFloat(price) / parseFloat(qty)).toFixed(2); 
     },
     addSale() {
       this.form

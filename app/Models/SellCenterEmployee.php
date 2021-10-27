@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class SellCenterEmployee extends Model
 {
-    public static function sendMessageToEmployeer($employee,$amount){
+    public static function sendMessageToEmployeer($employee,$amount,$month){
 
         $api_key = "C200833360d1a324e46036.34232547";
         $contacts = $employee->phone;
         $senderid = '8809612436107';
-        $sms = 'Assalamualikum, '. $employee->name.' you have received a payment as your salary ' .$amount.'/= BDT, from the ' .session()->get('sellcenter')['name'];
+        $sms = 'Assalamualikum, '. $employee->name.' you have received ' .$amount.'/= BDT, salary of '. $month .' month from the ' .session()->get('sellcenter')['name'];
         // put here your dynamic message text here
         $URL = "http://sms.esmsbd.com/smsapi?api_key=" . urlencode($api_key) . "&type=text&contacts=" . urlencode($contacts) . "&senderid=" . urlencode($senderid) . "&msg=" . urlencode($sms);
         $ch = curl_init();

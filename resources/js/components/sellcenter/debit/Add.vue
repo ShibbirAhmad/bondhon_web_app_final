@@ -158,6 +158,7 @@ export default {
         purpose: "others",
         amount: "",
         date: "",
+        month: "",
         comment: "",
         debit_from: "Cash",
         dmin_id: "",
@@ -254,6 +255,19 @@ export default {
           }).then((result) => {
             if (result.value) {
               this.form.employee_id = result.value;
+                Swal.fire({
+                title: "Select Month",
+                input: "select",
+                inputOptions: this.months,
+                inputPlaceholder: "Select One",
+                showCancelButton: true,
+              }).then((month) => {
+                if (month.value) {
+                  this.form.month = month.value;
+                } else {
+                  this.form.month = "";
+                }
+              });
             } else {
               this.form.purpose = "";
               this.form.employee_id = "";
