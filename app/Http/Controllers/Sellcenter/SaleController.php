@@ -86,7 +86,7 @@ class SaleController extends Controller
                 $sale->sale_quantity = floatval($request->quantity);
                 $sale->quantity_type = $request->quantity_type;
                 $sale->discount = $request->discount ?? 0;
-                $sale->amount =  ( floatval($request->price) * floatval($request->quantity) ) - floatval($request->discount) ;
+                $sale->amount =  $request->amount ;
                 $sale->save();
 
                 //update stock
@@ -148,7 +148,7 @@ class SaleController extends Controller
                 $sale->sale_quantity = floatval($request->quantity);
                 $sale->quantity_type = $request->quantity_type;
                 $sale->discount = $request->discount ?? 0;
-                $sale->amount =  ( floatval($request->price) * floatval($request->quantity) ) - floatval($request->discount) ;
+                $sale->amount =  $request->amount ;
                 $sale->save();
             
                 if ($sale->amount > 0) {

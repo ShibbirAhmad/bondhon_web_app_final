@@ -116,18 +116,13 @@ Route::group([
         Route::get('api/api/sellcenter/employee/search/{data}','EmployeeController@search_employee');
         Route::get('api/sellcenter/employee/salary/list/{id}','EmployeeController@salaryDetails');
 
-
         // end employee route here
-
             
         //company bill statements route is here
         Route::get('api/sellcenter/bill/statement/list/type/credit','BillStatementController@credit_statement_list');
         Route::get('api/sellcenter/bill/statement/list/type/debit','BillStatementController@debit_statement_list');
         Route::post('api/sellcenter/bill/statement/add','BillStatementController@store');
         Route::get('api/sellcenter/bill/statement/details/{id}','BillStatementController@bill_statement_details');
-
-
-
         Route::get('api/sellcenter/sale/reports/analysis','SaleController@saleAnalysis');
 
 

@@ -71,15 +71,15 @@
                   <div class="row">
                     <div class="col-md-6 col-xs-6">
                       <div class="form-group">
-                        <label>Price</label>
+                        <label>Amount</label>
                         <input
-                          v-model="form.price"
+                          v-model="form.total_amount"
                           type="text"
-                          name="price"
+                          name="total_amount"
                           class="form-control"
                           @keyup="amountCalculate"
                           required
-                          placeholder="price"
+                          placeholder="total amount"
                         />
                       </div>
                     </div>
@@ -100,16 +100,32 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <label>Amount</label>
-                    <input
-                      v-model="form.amount"
-                      type="text"
-                      name="amount"
-                      class="form-control"
-                      readonly
-                    />
-                  </div>
+                 <div class="row">
+                   <div class="col-md-6 col-xs-12">
+                      <div class="form-group">
+                        <label>Average Price</label>
+                        <input
+                          v-model="form.price"
+                          type="text"
+                          name="amount"
+                          class="form-control"
+                          readonly
+                        />
+                      </div> 
+                    </div>
+                   <div class="col-md-6 col-xs-12">
+                     <div class="form-group">
+                        <label>Payable Amount</label>
+                        <input
+                          v-model="form.amount"
+                          type="text"
+                          name="amount"
+                          class="form-control"
+                          readonly
+                        />
+                      </div>
+                    </div>
+                 </div>
                   <div class="form-group text-center">
                     <button
                       :disabled="form.busy"
@@ -120,6 +136,7 @@
                       >Submit
                     </button>
                   </div>
+
                 </form>
               </div>
             </div>
@@ -151,8 +168,9 @@ export default {
         product_id: "",
         price: 0,
         discount: 0,
-        quantity: 0,
+        quantity: 1,
         quantity_type: "pice",
+        total_amount: 0,
         amount: 0,
       }),
       products: "",
@@ -173,16 +191,21 @@ export default {
             this.form.discount = resp.data.sale.discount;
             this.form.quantity = resp.data.sale.sale_quantity;
             this.form.quantity_type = resp.data.sale.quantity_type;
+            this.form.total_amount = resp.data.sale.amount;
             this.form.amount = resp.data.sale.amount;
           });
       
     },
    
-   amountCalculate() {
-      let price = parseFloat(this.form.price) ;
+    amountCalculate() {
+
+      let total_amount = parseFloat(this.form.total_amount) ;
       let qty = parseFloat(this.form.quantity) ;
       let discount = parseFloat(this.form.discount) ;
-      this.form.amount = (price * qty) - discount;
+      this.form.amount = total_amount - discount ;
+      this.form.price = ( this.form.amount / qty).toFixed(2);
+      
+
     },
 
     updateSale() {

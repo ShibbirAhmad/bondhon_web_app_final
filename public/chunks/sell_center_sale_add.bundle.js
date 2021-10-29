@@ -352,7 +352,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         discount: 0,
         quantity: 1,
         quantity_type: "pice",
-        average_price: 0,
+        total_amount: 0,
         amount: 0
       }),
       saleInfo: false,
@@ -380,11 +380,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
       this.saleInfo = true;
     },
     amountCalculate: function amountCalculate() {
-      var price = parseFloat(this.form.price);
+      var total_amount = parseFloat(this.form.total_amount);
       var qty = parseFloat(this.form.quantity);
       var discount = parseFloat(this.form.discount);
-      this.form.amount = price * qty - discount;
-      this.form.average_price = (parseFloat(price) / parseFloat(qty)).toFixed(2);
+      this.form.amount = total_amount - discount;
+      this.form.price = (this.form.amount / qty).toFixed(2);
     },
     addSale: function addSale() {
       var _this3 = this;
@@ -876,25 +876,25 @@ var render = function() {
                           _c("div", { staticClass: "row" }, [
                             _c("div", { staticClass: "col-md-6 col-xs-6" }, [
                               _c("div", { staticClass: "form-group" }, [
-                                _c("label", [_vm._v("Price")]),
+                                _c("label", [_vm._v("Amount")]),
                                 _vm._v(" "),
                                 _c("input", {
                                   directives: [
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.form.price,
-                                      expression: "form.price"
+                                      value: _vm.form.total_amount,
+                                      expression: "form.total_amount"
                                     }
                                   ],
                                   staticClass: "form-control",
                                   attrs: {
                                     type: "text",
-                                    name: "price",
+                                    name: "total_amount",
                                     required: "",
-                                    placeholder: "price"
+                                    placeholder: "total amount"
                                   },
-                                  domProps: { value: _vm.form.price },
+                                  domProps: { value: _vm.form.total_amount },
                                   on: {
                                     keyup: _vm.amountCalculate,
                                     input: function($event) {
@@ -903,7 +903,7 @@ var render = function() {
                                       }
                                       _vm.$set(
                                         _vm.form,
-                                        "price",
+                                        "total_amount",
                                         $event.target.value
                                       )
                                     }
@@ -961,8 +961,8 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.form.average_price,
-                                      expression: "form.average_price"
+                                      value: _vm.form.price,
+                                      expression: "form.price"
                                     }
                                   ],
                                   staticClass: "form-control",
@@ -971,7 +971,7 @@ var render = function() {
                                     name: "amount",
                                     readonly: ""
                                   },
-                                  domProps: { value: _vm.form.average_price },
+                                  domProps: { value: _vm.form.price },
                                   on: {
                                     input: function($event) {
                                       if ($event.target.composing) {
@@ -979,7 +979,7 @@ var render = function() {
                                       }
                                       _vm.$set(
                                         _vm.form,
-                                        "average_price",
+                                        "price",
                                         $event.target.value
                                       )
                                     }
@@ -990,7 +990,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-6 col-xs-12" }, [
                               _c("div", { staticClass: "form-group" }, [
-                                _c("label", [_vm._v("Amount")]),
+                                _c("label", [_vm._v("Payable Amount")]),
                                 _vm._v(" "),
                                 _c("input", {
                                   directives: [

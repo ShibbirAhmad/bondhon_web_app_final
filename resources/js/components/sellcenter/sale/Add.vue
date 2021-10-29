@@ -98,15 +98,15 @@
                   <div class="row">
                     <div class="col-md-6 col-xs-6">
                       <div class="form-group">
-                        <label>Price</label>
+                        <label>Amount</label>
                         <input
-                          v-model="form.price"
+                          v-model="form.total_amount"
                           type="text"
-                          name="price"
+                          name="total_amount"
                           class="form-control"
                           @keyup="amountCalculate"
                           required
-                          placeholder="price"
+                          placeholder="total amount"
                         />
                       </div>
                     </div>
@@ -132,7 +132,7 @@
                       <div class="form-group">
                         <label>Average Price</label>
                         <input
-                          v-model="form.average_price"
+                          v-model="form.price"
                           type="text"
                           name="amount"
                           class="form-control"
@@ -142,7 +142,7 @@
                     </div>
                    <div class="col-md-6 col-xs-12">
                      <div class="form-group">
-                        <label>Amount</label>
+                        <label>Payable Amount</label>
                         <input
                           v-model="form.amount"
                           type="text"
@@ -196,7 +196,7 @@ export default {
         discount: 0,
         quantity: 1,
         quantity_type: "pice",
-        average_price: 0,
+        total_amount: 0,
         amount: 0,
       }),
       saleInfo: false,
@@ -225,12 +225,14 @@ export default {
       this.saleInfo = true;
     },
     amountCalculate() {
-      let price = parseFloat(this.form.price) ;
+
+      let total_amount = parseFloat(this.form.total_amount) ;
       let qty = parseFloat(this.form.quantity) ;
       let discount = parseFloat(this.form.discount) ;
-      this.form.amount = (price * qty) - discount;
+      this.form.amount = total_amount - discount ;
+      this.form.price = ( this.form.amount / qty).toFixed(2);
+      
 
-      this.form.average_price = (parseFloat(price) / parseFloat(qty)).toFixed(2); 
     },
     addSale() {
       this.form
