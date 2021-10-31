@@ -239,6 +239,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
@@ -282,13 +283,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     purchasePrice: function purchasePrice(items) {
       if (items) {
-        var price = 0.0;
+        var price = 0;
         var purchase_times = 0;
         items.forEach(function (item) {
           price += parseFloat(item.price);
           purchase_times += 1;
         });
-        purchase_times = purchase_times.length > 0 ? purchase_times : 1;
         var average_price = price / purchase_times;
         return average_price;
       }

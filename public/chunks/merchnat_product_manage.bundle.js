@@ -425,7 +425,7 @@ __webpack_require__.r(__webpack_exports__);
         purchase_times += 1;
       });
       var average_price = price / purchase_times;
-      return average_price;
+      return average_price.toFixed(2);
     },
     totalStocked: function totalStocked(items) {
       var itmes = 0;

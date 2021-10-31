@@ -277,7 +277,7 @@ export default {
         });
         let  average_price = price / purchase_times ;
  
-        return  average_price ;
+        return  average_price.toFixed(2) ;
      
     
    },

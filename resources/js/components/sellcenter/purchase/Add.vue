@@ -111,12 +111,10 @@
                         <input
                           v-model="preview_products.price"
                           type="text"
-                          ref="price"
+                          readonly
                           name="price"
                           class="form-control"
-                          autocomplete="off"
-                          placeholder="price"
-                          @keyup="total"
+                          
                         />
                       </div>
                     </div>
@@ -145,7 +143,7 @@
                           class="form-control"
                           autocomplete="off"
                           placeholder="total"
-                          readonly
+                          @keyup="total"
                         />
                       </div>
                     </div>
@@ -283,9 +281,9 @@ export default {
         product_name: "",
         product_id: "",
         code: "",
-        price: "",
-        quantity: "",
-        total: "",
+        price: 0,
+        quantity: 0,
+        total: 0,
       },
       AmountTotal: 0,
       paid: 0,
@@ -384,26 +382,16 @@ export default {
       }
     },
     total() {
-      if (this.preview_products.price.length <= 0) {
-        this.$toasted.show("sorry! price filed fille up first", {
-          type: "error",
-          position: "top-center",
-          duration: 5000,
-        });
-        this.$refs.price.focus();
-        this.validation();
-        return;
-      } else {
-        let price = this.preview_products.price;
+        
         let quantity = parseFloat(this.preview_products.quantity);
 
         if (quantity <= 1) {
           quantity = 1;
         }
-        let total = price * quantity;
-        this.preview_products.total = parseFloat(total);
+        let price = parseFloat(this.preview_products.total) / quantity ;
+        this.preview_products.price = price.toFixed(2);
         this.validation();
-      }
+      
     },
     productAdd() {
       this.products.push(this.preview_products);

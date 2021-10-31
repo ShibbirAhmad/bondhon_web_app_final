@@ -402,8 +402,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -437,9 +435,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         product_name: "",
         product_id: "",
         code: "",
-        price: "",
-        quantity: "",
-        total: ""
+        price: 0,
+        quantity: 0,
+        total: 0
       },
       AmountTotal: 0,
       paid: 0,
@@ -546,27 +544,15 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
       }
     },
     total: function total() {
-      if (this.preview_products.price.length <= 0) {
-        this.$toasted.show("sorry! price filed fille up first", {
-          type: "error",
-          position: "top-center",
-          duration: 5000
-        });
-        this.$refs.price.focus();
-        this.validation();
-        return;
-      } else {
-        var price = this.preview_products.price;
-        var quantity = parseFloat(this.preview_products.quantity);
+      var quantity = parseFloat(this.preview_products.quantity);
 
-        if (quantity <= 1) {
-          quantity = 1;
-        }
-
-        var total = price * quantity;
-        this.preview_products.total = parseFloat(total);
-        this.validation();
+      if (quantity <= 1) {
+        quantity = 1;
       }
+
+      var price = parseFloat(this.preview_products.total) / quantity;
+      this.preview_products.price = price.toFixed(2);
+      this.validation();
     },
     productAdd: function productAdd() {
       this.products.push(this.preview_products);
@@ -1153,17 +1139,14 @@ var render = function() {
                                 expression: "preview_products.price"
                               }
                             ],
-                            ref: "price",
                             staticClass: "form-control",
                             attrs: {
                               type: "text",
-                              name: "price",
-                              autocomplete: "off",
-                              placeholder: "price"
+                              readonly: "",
+                              name: "price"
                             },
                             domProps: { value: _vm.preview_products.price },
                             on: {
-                              keyup: _vm.total,
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
@@ -1235,11 +1218,11 @@ var render = function() {
                               type: "text",
                               name: "total",
                               autocomplete: "off",
-                              placeholder: "total",
-                              readonly: ""
+                              placeholder: "total"
                             },
                             domProps: { value: _vm.preview_products.total },
                             on: {
+                              keyup: _vm.total,
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
