@@ -128,7 +128,6 @@ export default {
         })
     },
 
-
    purchasePrice(items){
 
       if (items) {

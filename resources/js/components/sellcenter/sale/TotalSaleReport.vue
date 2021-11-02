@@ -221,7 +221,7 @@ export default {
             let average_sale_purchase_price = 0 ;
             let total_sales_amount = 0 ;
 
-             sales_products.forEach((item)=>{
+             sales_products.forEach((item)=>{  
                   let sales = item.today_sales ;
                   let purchases = item.purchase_items ;
                   //i have merged sale and purchase so that i can calculate actual profit

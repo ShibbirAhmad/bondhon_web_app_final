@@ -302,6 +302,107 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var _ref;
@@ -351,7 +452,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.container_row {\r\n  margin-left: -35px !important;\r\n  margin-right: 0px !important;\n}\n.person_counter {\r\n  padding-right: 5%;\r\n  color: #1d2671;\n}\n.box-gradiant {\r\n  background: linear-gradient(to right, #c33764, #1d2671);\n}\n.small-box .icon {\r\n  color: #fff !important;\r\n  opacity: 0.6;\n}\n.product-thumb.clearfix {\r\n  padding: 12px 13px;\r\n  margin-right: 10px;\r\n  margin-right: 10px;\r\n  border: 1px solid #eee;\r\n  box-shadow: 2px 2px 2px #eee;\n}\n.custom-boxs {\r\n  background: #fff;\r\n  padding: 13px;\r\n  height: 220px;\r\n  box-shadow: 3px 3px 3px #ddd;\r\n  border-radius: 6px;\r\n  margin-bottom: 10px;\n}\n.custom-boxs-body strong {\r\n  position: absolute;\r\n  right: 10%;\r\n  color: blue;\n}\n.custom-boxs-footer {\r\n  background: #00a65a;\r\n  color: #fff;\n}\n.analysis-item {\r\n  display: flex;\r\n  list-style-type: none;\r\n  float: right;\n}\n.analysis-item li {\r\n  padding: 10px 10px;\r\n  text-transform: uppercase;\r\n  font-weight: bold;\r\n  cursor: pointer;\n}\n.analysis-item .active {\r\n  border-bottom: 2px solid #000;\n}\n.sub_info{\r\n   font-size: 24px;\r\n    color: #fff;\r\n    margin-top: 0px;\r\n    position: absolute;\r\n    margin-left: 20px;\n}\n.small-box{\r\n    border-radius: 30px;\n}\n.small-box h3 {\r\n      margin: 0px 18px;\r\n      margin-top:5px;\r\n      font-size: 26px;\n}\n.small-box h4 {\r\n    padding-top: 30px;\r\n    margin-left: 20px;\n}\n.money_icon {\r\n  font-size: 26px;\n}\n.small-box>.small-box-footer {\r\n    border-radius: 0px 0px 30px 30px;\n}\n:root {\r\n    --red: hsl(0, 78%, 62%);\r\n    --cyan: hsl(180, 62%, 55%);\r\n    --orange: hsl(34, 97%, 64%);\r\n    --blue: hsl(212, 86%, 64%);\r\n    --varyDarkBlue: hsl(234, 12%, 34%);\r\n    --grayishBlue: hsl(229, 6%, 66%);\r\n    --veryLightGray: hsl(0, 0%, 98%);\r\n    --weight1: 200;\r\n    --weight2: 400;\r\n    --weight3: 600;\n}\nbody {\r\n    font-size: 15px;\r\n    font-family: 'Poppins', sans-serif;\r\n    background-color: var(--veryLightGray);\n}\n.attribution { \r\n    font-size: 11px; text-align: center;\n}\n.attribution a { \r\n    color: hsl(228, 45%, 44%);\n}\nh1:first-of-type {\r\n    font-weight: var(--weight1);\r\n    color: var(--varyDarkBlue);\n}\nh1:last-of-type {\r\n    color: var(--varyDarkBlue);\n}\n@media (max-width: 400px) {\nh1 {\r\n        font-size: 1.5rem;\n}\n}\n.header {\r\n    text-align: center;\r\n    line-height: 0.8;\r\n    margin-bottom: 50px;\r\n    margin-top: 100px;\n}\n.header p {\r\n    margin: 0 auto;\r\n    line-height: 2;\r\n    color: var(--grayishBlue);\n}\n.boxs p {\r\n    color: var(--grayishBlue);\n}\n.boxs {\r\n    border-radius: 5px;\r\n    box-shadow: 0px 30px 40px -20px var(--grayishBlue);\r\n    padding: 30px;\r\n    margin: 20px;\n}\n.d_img_icon {\r\n    margin-top: -75px;\r\n    float: right;\n}\n@media (max-width: 450px) {\n.boxs {\r\n        height: 200px;\n}\n}\n@media (max-width: 950px) and (min-width: 450px) {\n.boxs {\r\n        text-align: center;\r\n        height: 180px;\n}\n}\n.cyan {\r\n    border-top: 3px solid var(--cyan);\n}\n.red {\r\n    border-top: 3px solid var(--red);\n}\n.blue {\r\n    border-top: 3px solid var(--blue);\n}\n.orange {\r\n    border-top: 3px solid var(--orange);\n}\nh3 {\r\n    color: var(--varyDarkBlue);\r\n    font-weight: var(--weight3);\n}\n@media (min-width: 950px) {\n.row1-container {\r\n        display: flex;\r\n        justify-content: center;\r\n        align-items: center;\n}\n.row2-container {\r\n        display: flex;\r\n        justify-content: center;\r\n        align-items: center;\n}\n.boxs-down {\r\n        position: relative;\r\n        top: 150px;\n}\n.boxs {\r\n        width: 100%;\r\n        height: 150px;\n}\n.header p {\r\n        width: 30%;\n}\n}\n.boxs {\r\n     border-radius: 5px;\r\n    box-shadow: 0px 30px 40px -20px var(--grayishBlue);\r\n    padding: 30px;\r\n    margin: 20px;\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n.container_row {\r\n  margin-left: -35px !important;\r\n  margin-right: 0px !important;\n}\n.person_counter {\r\n  padding-right: 5%;\r\n  color: #1d2671;\n}\n.box-gradiant {\r\n  background: linear-gradient(to right, #c33764, #1d2671);\n}\n.small-box .icon {\r\n  color: #fff !important;\r\n  opacity: 0.6;\n}\n.product-thumb.clearfix {\r\n  padding: 12px 13px;\r\n  margin-right: 10px;\r\n  margin-right: 10px;\r\n  border: 1px solid #eee;\r\n  box-shadow: 2px 2px 2px #eee;\n}\n.custom-boxs {\r\n  background: #fff;\r\n  padding: 13px;\r\n  height: 220px;\r\n  box-shadow: 3px 3px 3px #ddd;\r\n  border-radius: 6px;\r\n  margin-bottom: 10px;\n}\n.custom-boxs-body strong {\r\n  position: absolute;\r\n  right: 10%;\r\n  color: blue;\n}\n.custom-boxs-footer {\r\n  background: #00a65a;\r\n  color: #fff;\n}\n.analysis-item {\r\n  display: flex;\r\n  list-style-type: none;\r\n  float: right;\n}\n.analysis-item li {\r\n  padding: 10px 10px;\r\n  text-transform: uppercase;\r\n  font-weight: bold;\r\n  cursor: pointer;\n}\n.analysis-item .active {\r\n  border-bottom: 2px solid #000;\n}\n.sub_info {\r\n  font-size: 24px;\r\n  color: #fff;\r\n  margin-top: 0px;\r\n  position: absolute;\r\n  margin-left: 20px;\n}\n.small-box {\r\n  border-radius: 30px;\n}\n.small-box h3 {\r\n  margin: 0px 18px;\r\n  margin-top: 5px;\r\n  font-size: 26px;\n}\n.small-box h4 {\r\n  padding-top: 30px;\r\n  margin-left: 20px;\n}\n.money_icon {\r\n  font-size: 26px;\n}\n.small-box > .small-box-footer {\r\n  border-radius: 0px 0px 30px 30px;\n}\n:root {\r\n  --red: hsl(0, 78%, 62%);\r\n  --cyan: hsl(180, 62%, 55%);\r\n  --orange: hsl(34, 97%, 64%);\r\n  --blue: hsl(212, 86%, 64%);\r\n  --varyDarkBlue: hsl(234, 12%, 34%);\r\n  --grayishBlue: hsl(229, 6%, 66%);\r\n  --veryLightGray: hsl(0, 0%, 98%);\r\n  --weight1: 200;\r\n  --weight2: 400;\r\n  --weight3: 600;\n}\nbody {\r\n  font-size: 15px;\r\n  font-family: \"Poppins\", sans-serif;\r\n  background-color: var(--veryLightGray);\n}\n.attribution {\r\n  font-size: 11px;\r\n  text-align: center;\n}\n.attribution a {\r\n  color: hsl(228, 45%, 44%);\n}\nh1:first-of-type {\r\n  font-weight: var(--weight1);\r\n  color: var(--varyDarkBlue);\n}\nh1:last-of-type {\r\n  color: var(--varyDarkBlue);\n}\n@media (max-width: 400px) {\nh1 {\r\n    font-size: 1.5rem;\n}\n}\n.header {\r\n  text-align: center;\r\n  line-height: 0.8;\r\n  margin-bottom: 50px;\r\n  margin-top: 100px;\n}\n.header p {\r\n  margin: 0 auto;\r\n  line-height: 2;\r\n  color: var(--grayishBlue);\n}\n.boxs p {\r\n  color: var(--grayishBlue);\n}\n.boxs {\r\n  border-radius: 5px;\r\n  box-shadow: 0px 30px 40px -20px var(--grayishBlue);\r\n  padding: 30px;\r\n  margin: 20px;\n}\n.d_img_icon {\r\n  margin-top: -75px;\r\n  float: right;\n}\n@media (max-width: 450px) {\n.boxs {\r\n    height: 200px;\n}\n}\n@media (max-width: 950px) and (min-width: 450px) {\n.boxs {\r\n    text-align: center;\r\n    height: 180px;\n}\n}\n.cyan {\r\n  border-top: 3px solid var(--cyan);\n}\n.red {\r\n  border-top: 3px solid var(--red);\n}\n.blue {\r\n  border-top: 3px solid var(--blue);\n}\n.orange {\r\n  border-top: 3px solid var(--orange);\n}\nh3 {\r\n  color: var(--varyDarkBlue);\r\n  font-weight: var(--weight3);\n}\n@media (min-width: 950px) {\n.row1-container {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\n}\n.row2-container {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\n}\n.boxs-down {\r\n    position: relative;\r\n    top: 150px;\n}\n.boxs {\r\n    width: 100%;\r\n    height: 150px;\n}\n.header p {\r\n    width: 30%;\n}\n}\n.boxs {\r\n  border-radius: 5px;\r\n  box-shadow: 0px 30px 40px -20px var(--grayishBlue);\r\n  padding: 30px;\r\n  margin: 20px;\n}\r\n", ""]);
 
 // exports
 
@@ -426,22 +527,23 @@ var render = function() {
                     _vm.$can("member_and_amount")
                       ? _c(
                           "div",
-                          { staticClass: "boxs  blue" },
+                          { staticClass: "boxs blue" },
                           [
                             _c("h3", [
                               _c("span", { staticClass: "person_counter" }, [
                                 _vm._v(
-                                  " " + _vm._s(_vm.analysis.total_member) + " "
+                                  "\n                " +
+                                    _vm._s(_vm.analysis.total_member) +
+                                    "\n              "
                                 )
                               ]),
-                              _vm._v(" Member  ")
+                              _vm._v("\n              Member\n            ")
                             ]),
                             _vm._v(" "),
                             _c("h4", [
                               _vm._v(
-                                " " +
-                                  _vm._s(_vm.analysis.total_amount_of_member) +
-                                  " ৳ "
+                                _vm._s(_vm.analysis.total_amount_of_member) +
+                                  " ৳"
                               )
                             ]),
                             _vm._v(" "),
@@ -481,27 +583,27 @@ var render = function() {
                       [
                         _c(
                           "div",
-                          { staticClass: "boxs  blue" },
+                          { staticClass: "boxs blue" },
                           [
                             _c("h3", [
                               _c("span", { staticClass: "person_counter" }, [
                                 _vm._v(
-                                  " " +
+                                  "\n                " +
                                     _vm._s(_vm.analysis.total_investor) +
-                                    " "
+                                    "\n              "
                                 )
                               ]),
-                              _vm._v(" Investor  ")
+                              _vm._v("\n              Investor\n            ")
                             ]),
                             _vm._v(" "),
                             _c("h4", [
                               _vm._v(
-                                "   " +
+                                "\n              " +
                                   _vm._s(
                                     _vm.analysis.total_invested_amount -
                                       _vm.analysis.total_invested_return_amount
                                   ) +
-                                  " ৳  "
+                                  "\n              ৳\n            "
                               )
                             ]),
                             _vm._v(" "),
@@ -541,26 +643,26 @@ var render = function() {
                       [
                         _c(
                           "div",
-                          { staticClass: "boxs  blue" },
+                          { staticClass: "boxs blue" },
                           [
                             _c("h3", [
                               _c("span", { staticClass: "person_counter" }, [
                                 _vm._v(
-                                  " " +
+                                  "\n                " +
                                     _vm._s(
                                       _vm.analysis.number_of_profit_project
                                     ) +
-                                    " "
+                                    "\n              "
                                 )
                               ]),
-                              _vm._v(" Project Profit  ")
+                              _vm._v(
+                                "\n              Project Profit\n            "
+                              )
                             ]),
                             _vm._v(" "),
                             _c("h4", [
                               _vm._v(
-                                "   " +
-                                  _vm._s(_vm.analysis.total_project_profit) +
-                                  " ৳  "
+                                _vm._s(_vm.analysis.total_project_profit) + " ৳"
                               )
                             ]),
                             _vm._v(" "),
@@ -600,26 +702,26 @@ var render = function() {
                       [
                         _c(
                           "div",
-                          { staticClass: "boxs  red" },
+                          { staticClass: "boxs red" },
                           [
                             _c("h3", [
                               _c("span", { staticClass: "person_counter" }, [
                                 _vm._v(
-                                  " " +
+                                  "\n                " +
                                     _vm._s(
                                       _vm.analysis.number_of_cost_project
                                     ) +
-                                    "  "
+                                    "\n              "
                                 )
                               ]),
-                              _vm._v("  Project Cost")
+                              _vm._v(
+                                "\n              Project Cost\n            "
+                              )
                             ]),
                             _vm._v(" "),
                             _c("h4", [
                               _vm._v(
-                                "   " +
-                                  _vm._s(_vm.analysis.total_project_cost) +
-                                  " ৳  "
+                                _vm._s(_vm.analysis.total_project_cost) + " ৳"
                               )
                             ]),
                             _vm._v(" "),
@@ -658,16 +760,12 @@ var render = function() {
                   [
                     _c(
                       "div",
-                      { staticClass: "boxs  blue" },
+                      { staticClass: "boxs blue" },
                       [
-                        _c("h3", [_vm._v(" Credit This Weeck  ")]),
+                        _c("h3", [_vm._v("Credit This Weeck")]),
                         _vm._v(" "),
                         _c("h4", [
-                          _vm._v(
-                            "   " +
-                              _vm._s(_vm.analysis.this_weeck_credit) +
-                              " ৳  "
-                          )
+                          _vm._v(_vm._s(_vm.analysis.this_weeck_credit) + " ৳")
                         ]),
                         _vm._v(" "),
                         _c(
@@ -703,15 +801,13 @@ var render = function() {
                       [
                         _c(
                           "div",
-                          { staticClass: "boxs  blue" },
+                          { staticClass: "boxs blue" },
                           [
-                            _c("h3", [_vm._v(" Credit This Month  ")]),
+                            _c("h3", [_vm._v("Credit This Month")]),
                             _vm._v(" "),
                             _c("h4", [
                               _vm._v(
-                                "   " +
-                                  _vm._s(_vm.analysis.this_month_credit) +
-                                  " ৳  "
+                                _vm._s(_vm.analysis.this_month_credit) + " ৳"
                               )
                             ]),
                             _vm._v(" "),
@@ -751,16 +847,12 @@ var render = function() {
                       [
                         _c(
                           "div",
-                          { staticClass: "boxs  blue" },
+                          { staticClass: "boxs blue" },
                           [
-                            _c("h3", [_vm._v(" Total Credit   ")]),
+                            _c("h3", [_vm._v("Total Credit")]),
                             _vm._v(" "),
                             _c("h4", [
-                              _vm._v(
-                                "   " +
-                                  _vm._s(_vm.analysis.total_credit) +
-                                  " ৳  "
-                              )
+                              _vm._v(_vm._s(_vm.analysis.total_credit) + " ৳")
                             ]),
                             _vm._v(" "),
                             _c(
@@ -798,16 +890,12 @@ var render = function() {
                   [
                     _c(
                       "div",
-                      { staticClass: "boxs  red" },
+                      { staticClass: "boxs red" },
                       [
-                        _c("h3", [_vm._v("  Debit This Weeck   ")]),
+                        _c("h3", [_vm._v("Debit This Weeck")]),
                         _vm._v(" "),
                         _c("h4", [
-                          _vm._v(
-                            "   " +
-                              _vm._s(_vm.analysis.this_weeck_debit) +
-                              " ৳  "
-                          )
+                          _vm._v(_vm._s(_vm.analysis.this_weeck_debit) + " ৳")
                         ]),
                         _vm._v(" "),
                         _c(
@@ -843,15 +931,13 @@ var render = function() {
                       [
                         _c(
                           "div",
-                          { staticClass: "boxs  red" },
+                          { staticClass: "boxs red" },
                           [
-                            _c("h3", [_vm._v("  Debit This Month   ")]),
+                            _c("h3", [_vm._v("Debit This Month")]),
                             _vm._v(" "),
                             _c("h4", [
                               _vm._v(
-                                "   " +
-                                  _vm._s(_vm.analysis.this_month_debit) +
-                                  " ৳  "
+                                _vm._s(_vm.analysis.this_month_debit) + " ৳"
                               )
                             ]),
                             _vm._v(" "),
@@ -891,16 +977,12 @@ var render = function() {
                       [
                         _c(
                           "div",
-                          { staticClass: "boxs  red" },
+                          { staticClass: "boxs red" },
                           [
-                            _c("h3", [_vm._v(" Total Debit   ")]),
+                            _c("h3", [_vm._v("Total Debit")]),
                             _vm._v(" "),
                             _c("h4", [
-                              _vm._v(
-                                "   " +
-                                  _vm._s(_vm.analysis.total_debit) +
-                                  " ৳  "
-                              )
+                              _vm._v(_vm._s(_vm.analysis.total_debit) + " ৳")
                             ]),
                             _vm._v(" "),
                             _c(
@@ -937,15 +1019,11 @@ var render = function() {
                       "div",
                       { staticClass: "col-lg-4 col-md-4 col-lg-12 col-md-12" },
                       [
-                        _c("div", { staticClass: "boxs  blue" }, [
-                          _c("h3", [_vm._v(" Company Assets   ")]),
+                        _c("div", { staticClass: "boxs blue" }, [
+                          _c("h3", [_vm._v("Company Assets")]),
                           _vm._v(" "),
                           _c("h4", [
-                            _vm._v(
-                              "   " +
-                                _vm._s(_vm.analysis.company_value) +
-                                " ৳  "
-                            )
+                            _vm._v(_vm._s(_vm.analysis.company_value) + " ৳")
                           ]),
                           _vm._v(" "),
                           _c("img", {
@@ -966,14 +1044,12 @@ var render = function() {
                       "div",
                       { staticClass: "col-lg-4 col-md-4 col-lg-12 col-md-12" },
                       [
-                        _c("div", { staticClass: "boxs  cyan" }, [
-                          _c("h3", [_vm._v(" Share Value   ")]),
+                        _c("div", { staticClass: "boxs cyan" }, [
+                          _c("h3", [_vm._v("Share Value")]),
                           _vm._v(" "),
                           _c("h4", [
                             _vm._v(
-                              "   " +
-                                _vm._s(_vm.analysis.share_value.toFixed(2)) +
-                                " ৳  "
+                              _vm._s(_vm.analysis.share_value.toFixed(2)) + " ৳"
                             )
                           ]),
                           _vm._v(" "),
@@ -994,7 +1070,7 @@ var render = function() {
               _c("div", { staticClass: "row" }, [
                 _vm.$can("manage accounts")
                   ? _c("h1", { staticStyle: { "margin-left": "15px" } }, [
-                      _vm._v("Accounts")
+                      _vm._v("\n          Accounts\n        ")
                     ])
                   : _vm._e(),
                 _vm._v(" "),
@@ -1002,7 +1078,7 @@ var render = function() {
                   _c("div", { staticClass: "custom-boxs" }, [
                     _c("div", { staticClass: "custom-boxs-body" }, [
                       _c("h4", [
-                        _vm._v("\n                In Cash: "),
+                        _vm._v("\n                In Cash:\n                "),
                         _c("strong", [
                           _vm._v(
                             _vm._s(parseInt(_vm.balance.today_credit_cash))
@@ -1037,7 +1113,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("h4", [
-                        _vm._v("\n                In Bank: "),
+                        _vm._v("\n                In Bank:\n                "),
                         _c("strong", [
                           _vm._v(
                             _vm._s(parseInt(_vm.balance.today_credit_bank))
@@ -1061,7 +1137,7 @@ var render = function() {
                   _c("div", { staticClass: "custom-boxs" }, [
                     _c("div", { staticClass: "custom-boxs-body" }, [
                       _c("h4", [
-                        _vm._v("\n                In Cash: "),
+                        _vm._v("\n                In Cash:\n                "),
                         _c("strong", [
                           _vm._v(
                             _vm._s(parseInt(_vm.balance.today_debitt_cash))
@@ -1096,7 +1172,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("h4", [
-                        _vm._v("\n                In Bank: "),
+                        _vm._v("\n                In Bank:\n                "),
                         _c("strong", [
                           _vm._v(_vm._s(parseInt(_vm.balance.today_debit_bank)))
                         ])
@@ -1227,7 +1303,7 @@ var staticRenderFns = [
           staticClass: "text-center text-uppercase",
           staticStyle: { color: "#fff" }
         },
-        [_vm._v("today credit")]
+        [_vm._v("\n                today credit\n              ")]
       )
     ])
   },
@@ -1242,7 +1318,7 @@ var staticRenderFns = [
           staticClass: "text-center text-uppercase",
           staticStyle: { color: "#fff" }
         },
-        [_vm._v("today debit")]
+        [_vm._v("\n                today debit\n              ")]
       )
     ])
   },
@@ -1257,7 +1333,7 @@ var staticRenderFns = [
           staticClass: "text-center text-uppercase",
           staticStyle: { color: "#fff" }
         },
-        [_vm._v("total balance")]
+        [_vm._v("\n                total balance\n              ")]
       )
     ])
   }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Sellcenter;
 use Carbon\Carbon;
 use App\Models\Order ;
 use App\Models\OrderItem ;
+use App\Models\PurchaseItem;
 use Illuminate\Http\Request;
 use App\Models\SellCenterDebit;
 use App\Models\SellCenterCredit;
@@ -66,8 +67,22 @@ class HomeController extends Controller
 
       public function DashboardHighlightInfo(){
 
-            $sellcenter_id = session()->get('sellcenter')['id'];
-                  
+            $total_stock_price=0;
+            $products=SellCenterProduct::where('stock','>',0)->get();
+            $total_stock_quantity=$products->sum('stock');
+   
+            foreach($products as $product){
+               $purchase_item=PurchaseItem::where('sell_center_product_id',$product->id)->get();
+               $total_purchase_price = 0 ;
+               foreach($purchase_item as $item){
+                  $total_purchase_price += floatval($item->price) ;
+               }
+               $average_price = $total_purchase_price / count($purchase_item);
+               $total_stock_price += floatval($average_price) * floatval($product->stock);
+            }
+   
+
+            $sellcenter_id = session()->get('sellcenter')['id'];  
             //balance analysis
             $balnce=SellCenterCredit::Balance();
             $analysis['total_credit']=SellCenterCredit::where('sell_center_id',$sellcenter_id)->sum('amount');
@@ -94,6 +109,8 @@ class HomeController extends Controller
                         'status'=> "OK",
                         'analysis'=>$analysis,
                         'balance'=>$balnce,
+                        'total_stock_quantity'=>$total_stock_quantity,
+                        'total_stock_price'=>$total_stock_price,
                         'sale_profit_analysis' => $sale_profit_analysis->saleAnalysis(),
                   ]);
 

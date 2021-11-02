@@ -282,13 +282,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     purchasePrice: function purchasePrice(items) {
       if (items) {
-        var price = 0.0;
+        var price = 0;
         var purchase_times = 0;
         items.forEach(function (item) {
           price += parseFloat(item.price);
           purchase_times += 1;
         });
-        purchase_times = purchase_times.length > 0 ? purchase_times : 1;
         var average_price = price / purchase_times;
         return average_price;
       }
@@ -719,7 +718,14 @@ var render = function() {
                                   _c("td", [
                                     _vm._v(
                                       _vm._s(
-                                        _vm.purchasePrice(item.purchase_items)
+                                        (
+                                          _vm.purchasePrice(
+                                            item.purchase_items
+                                          ) *
+                                          _vm.salesQuantity(
+                                            item.this_week_sales
+                                          )
+                                        ).toFixed(2)
                                       )
                                     )
                                   ]),

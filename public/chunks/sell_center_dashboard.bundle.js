@@ -293,6 +293,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -303,6 +320,8 @@ __webpack_require__.r(__webpack_exports__);
       loading: true,
       balance: {},
       analysis: "",
+      total_stock_quantity: "",
+      total_stock_price: "",
       base_url: this.$store.state.image_base_link,
       this_month_profit: 0,
       this_week_profit: 0,
@@ -323,6 +342,8 @@ __webpack_require__.r(__webpack_exports__);
         console.log(resp);
         _this.analysis = resp.data.analysis;
         _this.balance = resp.data.balance;
+        _this.total_stock_quantity = resp.data.total_stock_quantity;
+        _this.total_stock_price = resp.data.total_stock_price;
 
         _this.totalProfit(resp.data.sale_profit_analysis.original.total_sales_products);
 
@@ -577,7 +598,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.container_row {\n  margin-left: -35px !important;\n  margin-right: 0px !important;\n}\n.person_counter {\n  padding-right: 5%;\n  color: #1d2671;\n}\n.box-gradiant {\n  background: linear-gradient(to right, #c33764, #1d2671);\n}\n.small-box .icon {\n  color: #fff !important;\n  opacity: 0.6;\n}\n.product-thumb.clearfix {\n  padding: 12px 13px;\n  margin-right: 10px;\n  margin-right: 10px;\n  border: 1px solid #eee;\n  box-shadow: 2px 2px 2px #eee;\n}\n.custom-boxs {\n  background: #fff;\n  padding: 13px;\n  height: 220px;\n  box-shadow: 3px 3px 3px #ddd;\n  border-radius: 6px;\n  margin-bottom: 10px;\n}\n.custom-boxs-body strong {\n  position: absolute;\n  right: 10%;\n  color: blue;\n}\n.custom-boxs-footer {\n  background: #00a65a;\n  color: #fff;\n}\n.analysis-item {\n  display: flex;\n  list-style-type: none;\n  float: right;\n}\n.analysis-item li {\n  padding: 10px 10px;\n  text-transform: uppercase;\n  font-weight: bold;\n  cursor: pointer;\n}\n.analysis-item .active {\n  border-bottom: 2px solid #000;\n}\n.sub_info{\n  font-size: 24px;\n    color: #fff;\n    margin-top: 0px;\n    position: absolute;\n    margin-left: 20px;\n}\n.small-box{\n    border-radius: 30px;\n}\n.small-box h3 {\n      margin: 0px 18px;\n      margin-top:5px;\n      font-size: 26px;\n}\n.small-box h4 {\n    padding-top: 30px;\n    margin-left: 20px;\n}\n.money_icon {\n  font-size: 26px;\n}\n.small-box>.small-box-footer {\n    border-radius: 0px 0px 30px 30px;\n}\n:root {\n    --red: hsl(0, 78%, 62%);\n    --cyan: hsl(180, 62%, 55%);\n    --orange: hsl(34, 97%, 64%);\n    --blue: hsl(212, 86%, 64%);\n    --varyDarkBlue: hsl(234, 12%, 34%);\n    --grayishBlue: hsl(229, 6%, 66%);\n    --veryLightGray: hsl(0, 0%, 98%);\n    --weight1: 200;\n    --weight2: 400;\n    --weight3: 600;\n}\nbody {\n    font-size: 15px;\n    font-family: 'Poppins', sans-serif;\n    background-color: var(--veryLightGray);\n}\n.attribution { \n    font-size: 11px; text-align: center;\n}\n.attribution a { \n    color: hsl(228, 45%, 44%);\n}\nh1:first-of-type {\n    font-weight: var(--weight1);\n    color: var(--varyDarkBlue);\n}\nh1:last-of-type {\n    color: var(--varyDarkBlue);\n}\n@media (max-width: 400px) {\nh1 {\n        font-size: 1.5rem;\n}\n}\n.header {\n    text-align: center;\n    line-height: 0.8;\n    margin-bottom: 50px;\n    margin-top: 100px;\n}\n.header p {\n    margin: 0 auto;\n    line-height: 2;\n    color: var(--grayishBlue);\n}\n.boxs p {\n    color: var(--grayishBlue);\n}\n.boxs {\n    border-radius: 5px;\n    box-shadow: 0px 30px 40px -20px var(--grayishBlue);\n    padding: 30px;\n    margin: 20px;\n}\n.d_img_icon {\n    margin-top: -75px;\n    float: right;\n}\n@media (max-width: 450px) {\n.boxs {\n        height: 200px;\n}\n}\n@media (max-width: 950px) and (min-width: 450px) {\n.boxs {\n        text-align: center;\n        height: 180px;\n}\n}\n.cyan {\n    border-top: 3px solid var(--cyan);\n}\n.red {\n    border-top: 3px solid var(--red);\n}\n.blue {\n    border-top: 3px solid var(--blue);\n}\n.orange {\n    border-top: 3px solid var(--orange);\n}\nh3 {\n    color: var(--varyDarkBlue);\n    font-weight: var(--weight3);\n}\n@media (min-width: 950px) {\n.row1-container {\n        display: flex;\n        justify-content: center;\n        align-items: center;\n}\n.row2-container {\n        display: flex;\n        justify-content: center;\n        align-items: center;\n}\n.boxs-down {\n        position: relative;\n        top: 150px;\n}\n.boxs {\n        width: 100%;\n        height: 150px;\n}\n.header p {\n        width: 30%;\n}\n}\n.boxs {\n    border-radius: 5px;\n    box-shadow: 0px 30px 40px -20px var(--grayishBlue);\n    padding: 30px;\n    margin: 20px;\n}\n\n\n", ""]);
+exports.push([module.i, "\n.container_row {\n   margin-left: -35px !important;\n   margin-right: 0px !important;\n}\n.person_counter {\n   padding-right: 5%;\n   color: #1d2671;\n}\n.box-gradiant {\n   background: linear-gradient(to right, #c33764, #1d2671);\n}\n.small-box .icon {\n   color: #fff !important;\n   opacity: 0.6;\n}\n.product-thumb.clearfix {\n   padding: 12px 13px;\n   margin-right: 10px;\n   margin-right: 10px;\n   border: 1px solid #eee;\n   box-shadow: 2px 2px 2px #eee;\n}\n.custom-boxs {\n   background: #fff;\n   padding: 13px;\n   height: 220px;\n   box-shadow: 3px 3px 3px #ddd;\n   border-radius: 6px;\n   margin-bottom: 10px;\n}\n.stock-custom-boxs {\n   background: #fff;\n   padding: 13px;\n   height: 100px;\n   box-shadow: 3px 3px 3px #ddd;\n   border-radius: 6px;\n   margin-bottom: 10px;\n}\n.custom-boxs-body strong {\n   position: absolute;\n   right: 10%;\n   color: blue;\n}\n.custom-boxs-footer {\n   background: #00a65a;\n   color: #fff;\n}\n.analysis-item {\n   display: flex;\n   list-style-type: none;\n   float: right;\n}\n.analysis-item li {\n   padding: 10px 10px;\n   text-transform: uppercase;\n   font-weight: bold;\n   cursor: pointer;\n}\n.analysis-item .active {\n   border-bottom: 2px solid #000;\n}\n.sub_info{\n   font-size: 24px;\n     color: #fff;\n     margin-top: 0px;\n     position: absolute;\n     margin-left: 20px;\n}\n.small-box{\n     border-radius: 30px;\n}\n.small-box h3 {\n       margin: 0px 18px;\n       margin-top:5px;\n       font-size: 26px;\n}\n.small-box h4 {\n     padding-top: 30px;\n     margin-left: 20px;\n}\n.money_icon {\n   font-size: 26px;\n}\n.small-box>.small-box-footer {\n     border-radius: 0px 0px 30px 30px;\n}\n:root {\n     --red: hsl(0, 78%, 62%);\n     --cyan: hsl(180, 62%, 55%);\n     --orange: hsl(34, 97%, 64%);\n     --blue: hsl(212, 86%, 64%);\n     --varyDarkBlue: hsl(234, 12%, 34%);\n     --grayishBlue: hsl(229, 6%, 66%);\n     --veryLightGray: hsl(0, 0%, 98%);\n     --weight1: 200;\n     --weight2: 400;\n     --weight3: 600;\n}\nbody {\n     font-size: 15px;\n     font-family: 'Poppins', sans-serif;\n     background-color: var(--veryLightGray);\n}\n.attribution { \n     font-size: 11px; text-align: center;\n}\n.attribution a { \n     color: hsl(228, 45%, 44%);\n}\nh1:first-of-type {\n     font-weight: var(--weight1);\n     color: var(--varyDarkBlue);\n}\nh1:last-of-type {\n     color: var(--varyDarkBlue);\n}\n@media (max-width: 400px) {\nh1 {\n         font-size: 1.5rem;\n}\n}\n.header {\n     text-align: center;\n     line-height: 0.8;\n     margin-bottom: 50px;\n     margin-top: 100px;\n}\n.header p {\n     margin: 0 auto;\n     line-height: 2;\n     color: var(--grayishBlue);\n}\n.boxs p {\n     color: var(--grayishBlue);\n}\n.boxs {\n     border-radius: 5px;\n     box-shadow: 0px 30px 40px -20px var(--grayishBlue);\n     padding: 30px;\n     margin: 20px;\n}\n.d_img_icon {\n     margin-top: -75px;\n     float: right;\n}\n@media (max-width: 450px) {\n.boxs {\n         height: 200px;\n}\n}\n@media (max-width: 950px) and (min-width: 450px) {\n.boxs {\n         text-align: center;\n         height: 180px;\n}\n}\n.cyan {\n     border-top: 3px solid var(--cyan);\n}\n.red {\n     border-top: 3px solid var(--red);\n}\n.blue {\n     border-top: 3px solid var(--blue);\n}\n.orange {\n     border-top: 3px solid var(--orange);\n}\nh3 {\n     color: var(--varyDarkBlue);\n     font-weight: var(--weight3);\n}\n@media (min-width: 950px) {\n.row1-container {\n         display: flex;\n         justify-content: center;\n         align-items: center;\n}\n.row2-container {\n         display: flex;\n         justify-content: center;\n         align-items: center;\n}\n.boxs-down {\n         position: relative;\n         top: 150px;\n}\n.boxs {\n         width: 100%;\n         height: 150px;\n}\n.header p {\n         width: 30%;\n}\n}\n.boxs {\n     border-radius: 5px;\n     box-shadow: 0px 30px 40px -20px var(--grayishBlue);\n     padding: 30px;\n     margin: 20px;\n}\n\n\n", ""]);
 
 // exports
 
@@ -1107,15 +1128,20 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
-                _c("h1", { staticStyle: { "margin-left": "15px" } }, [
-                  _vm._v("Accounts")
-                ]),
+                _c(
+                  "h1",
+                  {
+                    staticClass: "heading",
+                    staticStyle: { "margin-left": "15px" }
+                  },
+                  [_vm._v("Accounts")]
+                ),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-lg-4" }, [
                   _c("div", { staticClass: "custom-boxs" }, [
                     _c("div", { staticClass: "custom-boxs-body" }, [
                       _c("h4", [
-                        _vm._v("\n                In Cash: "),
+                        _vm._v("\n                  In Cash: "),
                         _c("strong", [
                           _vm._v(
                             _vm._s(parseInt(_vm.balance.today_credit_cash))
@@ -1124,7 +1150,9 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("h4", [
-                        _vm._v("\n                In Bkash:\n                "),
+                        _vm._v(
+                          "\n                  In Bkash:\n                  "
+                        ),
                         _c("strong", [
                           _vm._v(
                             _vm._s(parseInt(_vm.balance.today_credit_bkash))
@@ -1133,7 +1161,9 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("h4", [
-                        _vm._v("\n                In Nagad:\n                "),
+                        _vm._v(
+                          "\n                  In Nagad:\n                  "
+                        ),
                         _c("strong", [
                           _vm._v(
                             _vm._s(parseInt(_vm.balance.today_credit_nagad))
@@ -1142,7 +1172,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("h4", [
-                        _vm._v("\n                In Bank: "),
+                        _vm._v("\n                  In Bank: "),
                         _c("strong", [
                           _vm._v(
                             _vm._s(parseInt(_vm.balance.today_credit_bank))
@@ -1151,7 +1181,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("h4", [
-                        _vm._v("\n                Total: "),
+                        _vm._v("\n                  Total: "),
                         _c("strong", [
                           _vm._v(_vm._s(parseInt(_vm.balance.today_credit)))
                         ])
@@ -1166,14 +1196,16 @@ var render = function() {
                   _c("div", { staticClass: "custom-boxs" }, [
                     _c("div", { staticClass: "custom-boxs-body" }, [
                       _c("h4", [
-                        _vm._v("\n                In Cash: "),
+                        _vm._v("\n                  In Cash: "),
                         _c("strong", [
                           _vm._v(_vm._s(parseInt(_vm.balance.today_debit_cash)))
                         ])
                       ]),
                       _vm._v(" "),
                       _c("h4", [
-                        _vm._v("\n                In Bkash:\n                "),
+                        _vm._v(
+                          "\n                  In Bkash:\n                  "
+                        ),
                         _c("strong", [
                           _vm._v(
                             _vm._s(parseInt(_vm.balance.today_debit_bkash))
@@ -1182,7 +1214,9 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("h4", [
-                        _vm._v("\n                In Nagad:\n                "),
+                        _vm._v(
+                          "\n                  In Nagad:\n                  "
+                        ),
                         _c("strong", [
                           _vm._v(
                             _vm._s(parseInt(_vm.balance.today_debit_nagad))
@@ -1191,14 +1225,14 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("h4", [
-                        _vm._v("\n                In Bank: "),
+                        _vm._v("\n                  In Bank: "),
                         _c("strong", [
                           _vm._v(_vm._s(parseInt(_vm.balance.today_debit_bank)))
                         ])
                       ]),
                       _vm._v(" "),
                       _c("h4", [
-                        _vm._v("\n                Total: "),
+                        _vm._v("\n                  Total: "),
                         _c("strong", [
                           _vm._v(_vm._s(parseInt(_vm.balance.today_debit)))
                         ])
@@ -1213,7 +1247,9 @@ var render = function() {
                   _c("div", { staticClass: "custom-boxs" }, [
                     _c("div", { staticClass: "custom-boxs-body" }, [
                       _c("h4", [
-                        _vm._v("\n                In Cash:\n                "),
+                        _vm._v(
+                          "\n                  In Cash:\n                  "
+                        ),
                         _c("strong", [
                           _vm._v(
                             _vm._s(
@@ -1225,7 +1261,9 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("h4", [
-                        _vm._v("\n                In Bkash:\n                "),
+                        _vm._v(
+                          "\n                  In Bkash:\n                  "
+                        ),
                         _c("strong", [
                           _vm._v(
                             _vm._s(
@@ -1237,7 +1275,9 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("h4", [
-                        _vm._v("\n                In Nagad:\n                "),
+                        _vm._v(
+                          "\n                  In Nagad:\n                  "
+                        ),
                         _c("strong", [
                           _vm._v(
                             _vm._s(
@@ -1249,7 +1289,9 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("h4", [
-                        _vm._v("\n                In Bank:\n                "),
+                        _vm._v(
+                          "\n                  In Bank:\n                  "
+                        ),
                         _c("strong", [
                           _vm._v(
                             _vm._s(
@@ -1261,7 +1303,9 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("h4", [
-                        _vm._v("\n                Total:\n                "),
+                        _vm._v(
+                          "\n                  Total:\n                  "
+                        ),
                         _c("strong", [
                           _vm._v(
                             _vm._s(
@@ -1276,6 +1320,48 @@ var render = function() {
                     _vm._m(3)
                   ])
                 ])
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-lg-6 col-xl-6 col-md-6 col-xs-12" },
+                  [
+                    _c("div", { staticClass: "stock-custom-boxs" }, [
+                      _c("h2", { staticClass: "heading" }, [
+                        _vm._v(" Total Stock Quantity:   "),
+                        _c("strong", [
+                          _vm._v(
+                            " " +
+                              _vm._s(_vm.total_stock_quantity.toFixed(2)) +
+                              " "
+                          )
+                        ])
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-lg-6 col-xl-6 col-md-6 col-xs-12" },
+                  [
+                    _c("div", { staticClass: "stock-custom-boxs" }, [
+                      _c("h2", { staticClass: "heading" }, [
+                        _vm._v(" Total Stock Amount:  "),
+                        _c("strong", [
+                          _vm._v(
+                            " " + _vm._s(_vm.total_stock_price.toFixed(2)) + " "
+                          )
+                        ])
+                      ])
+                    ])
+                  ]
+                )
               ])
             ])
       ])

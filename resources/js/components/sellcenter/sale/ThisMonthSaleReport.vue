@@ -127,7 +127,8 @@ export default {
         })
     },
   
-    purchasePrice(items){
+
+   purchasePrice(items){
 
       if (items) {
         let price = 0;
@@ -140,7 +141,7 @@ export default {
         return average_price  ;
         }
    },
-   
+
 
 
      totalProfit(sales_products){
@@ -246,6 +247,7 @@ export default {
           return amount.toFixed(2)  ;
        }
     },
+
 
   salesQuantity(items){
      if (items) {

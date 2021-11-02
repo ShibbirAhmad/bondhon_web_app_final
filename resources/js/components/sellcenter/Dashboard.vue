@@ -168,7 +168,7 @@
 
 
     <div class="row">
-          <h1 style="margin-left: 15px">Accounts</h1>
+          <h1 class="heading" style="margin-left: 15px">Accounts</h1>
           <div class="col-lg-4">
             <div class="custom-boxs">
               <div class="custom-boxs-body">
@@ -274,8 +274,25 @@
           </div>
         </div>
 
+<br>
+<hr>
+    <div class="row">
+
+          <div class="col-lg-6 col-xl-6 col-md-6 col-xs-12">
+            <div class="stock-custom-boxs">
+                <h2 class="heading"> Total Stock Quantity:   <strong> {{  total_stock_quantity.toFixed(2) }} </strong>  </h2>
+            </div>
+          </div>
 
 
+          <div class="col-lg-6 col-xl-6 col-md-6 col-xs-12">
+            <div class="stock-custom-boxs">
+                 <h2 class="heading"> Total Stock Amount:  <strong> {{ total_stock_price.toFixed(2) }} </strong>  </h2>
+            </div>
+          </div>
+
+
+        </div>
       </section>
     </div>
   </div>
@@ -294,6 +311,8 @@ export default {
       loading: true,
       balance: {},
       analysis: "",
+      total_stock_quantity: "",
+      total_stock_price: "",
       base_url: this.$store.state.image_base_link,
       this_month_profit: 0,
       this_week_profit: 0,
@@ -314,6 +333,8 @@ export default {
           console.log(resp);
           this.analysis = resp.data.analysis;
           this.balance=resp.data.balance ;
+          this.total_stock_quantity=resp.data.total_stock_quantity ;
+          this.total_stock_price=resp.data.total_stock_price ;
           this.totalProfit(resp.data.sale_profit_analysis.original.total_sales_products);
           this.thisMonthProfit(resp.data.sale_profit_analysis.original.this_month_sales_products);
           this.thisWeekProfit(resp.data.sale_profit_analysis.original.this_week_sales_products);
@@ -461,8 +482,18 @@ export default {
       box-shadow: 3px 3px 3px #ddd;
       border-radius: 6px;
       margin-bottom: 10px;
-
     }
+
+   .stock-custom-boxs {
+      background: #fff;
+      padding: 13px;
+      height: 100px;
+      box-shadow: 3px 3px 3px #ddd;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+
     .custom-boxs-body strong {
       position: absolute;
       right: 10%;
