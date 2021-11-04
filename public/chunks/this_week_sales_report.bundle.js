@@ -293,81 +293,81 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     totalProfit: function totalProfit(sales_products) {
+      var _this2 = this;
+
       var average_sale_purchase_price = 0;
       var total_sales_amount = 0;
       sales_products.forEach(function (item) {
-        var sales = item.total_sales;
-        var purchases = item.purchase_items; //i have merged sale and purchase so that i can calculate actual profit
+        var purchase_price = _this2.purchasePrice(item.purchase_items);
 
-        var sale_and_purchase = sales.map(function (item, i) {
-          return Object.assign({}, item, purchases[i]);
+        item.total_sales.forEach(function (sale) {
+          total_sales_amount += parseFloat(sale.amount);
         });
-        total_sales_amount += parseFloat(sale_and_purchase[0].amount);
-        average_sale_purchase_price += parseFloat(sale_and_purchase[0].price) * parseFloat(sale_and_purchase[0].sale_quantity);
+        average_sale_purchase_price += parseFloat(purchase_price) * _this2.salesQuantity(item.total_sales);
       });
       var profit = total_sales_amount - average_sale_purchase_price;
       this.total_profit = profit.toFixed(2);
     },
     thisMonthProfit: function thisMonthProfit(sales_products) {
+      var _this3 = this;
+
       var average_sale_purchase_price = 0;
       var total_sales_amount = 0;
       sales_products.forEach(function (item) {
-        var sales = item.this_month_sales;
-        var purchases = item.purchase_items; //i have merged sale and purchase so that i can calculate actual profit
+        var purchase_price = _this3.purchasePrice(item.purchase_items);
 
-        var sale_and_purchase = sales.map(function (item, i) {
-          return Object.assign({}, item, purchases[i]);
+        item.this_month_sales.forEach(function (sale) {
+          total_sales_amount += parseFloat(sale.amount);
         });
-        total_sales_amount += parseFloat(sale_and_purchase[0].amount);
-        average_sale_purchase_price += parseFloat(sale_and_purchase[0].price) * parseFloat(sale_and_purchase[0].sale_quantity);
+        average_sale_purchase_price += parseFloat(purchase_price) * _this3.salesQuantity(item.this_month_sales);
       });
       var profit = total_sales_amount - average_sale_purchase_price;
       this.this_month_profit = profit.toFixed(2);
     },
     thisWeekProfit: function thisWeekProfit(sales_products) {
+      var _this4 = this;
+
       var average_sale_purchase_price = 0;
       var total_sales_amount = 0;
       sales_products.forEach(function (item) {
-        var sales = item.this_week_sales;
-        var purchases = item.purchase_items; //i have merged sale and purchase so that i can calculate actual profit
+        var purchase_price = _this4.purchasePrice(item.purchase_items);
 
-        var sale_and_purchase = sales.map(function (item, i) {
-          return Object.assign({}, item, purchases[i]);
+        item.this_week_sales.forEach(function (sale) {
+          total_sales_amount += parseFloat(sale.amount);
         });
-        total_sales_amount += parseFloat(sale_and_purchase[0].amount);
-        average_sale_purchase_price += parseFloat(sale_and_purchase[0].price) * parseFloat(sale_and_purchase[0].sale_quantity);
+        average_sale_purchase_price += parseFloat(purchase_price) * _this4.salesQuantity(item.this_week_sales);
       });
       var profit = total_sales_amount - average_sale_purchase_price;
       this.this_week_profit = profit.toFixed(2);
     },
     yesterdayProfit: function yesterdayProfit(sales_products) {
+      var _this5 = this;
+
       var average_sale_purchase_price = 0;
       var total_sales_amount = 0;
       sales_products.forEach(function (item) {
-        var sales = item.yesterday_sales;
-        var purchases = item.purchase_items; //i have merged sale and purchase so that i can calculate actual profit
+        var purchase_price = _this5.purchasePrice(item.purchase_items);
 
-        var sale_and_purchase = sales.map(function (item, i) {
-          return Object.assign({}, item, purchases[i]);
+        item.yesterday_sales.forEach(function (sale) {
+          total_sales_amount += parseFloat(sale.amount);
         });
-        total_sales_amount += parseFloat(sale_and_purchase[0].amount);
-        average_sale_purchase_price += parseFloat(sale_and_purchase[0].price) * parseFloat(sale_and_purchase[0].sale_quantity);
+        average_sale_purchase_price += parseFloat(purchase_price) * _this5.salesQuantity(item.yesterday_sales);
       });
       var profit = total_sales_amount - average_sale_purchase_price;
       this.yesterday_profit = profit.toFixed(2);
     },
     todayProfit: function todayProfit(sales_products) {
+      var _this6 = this;
+
       var average_sale_purchase_price = 0;
       var total_sales_amount = 0;
       sales_products.forEach(function (item) {
-        var sales = item.today_sales;
-        var purchases = item.purchase_items; //i have merged sale and purchase so that i can calculate actual profit
+        var purchase_price = _this6.purchasePrice(item.purchase_items);
 
-        var sale_and_purchase = sales.map(function (item, i) {
-          return Object.assign({}, item, purchases[i]);
+        item.today_sales.forEach(function (sale) {
+          total_sales_amount += parseFloat(sale.amount);
         });
-        total_sales_amount += parseFloat(sale_and_purchase[0].amount);
-        average_sale_purchase_price += parseFloat(sale_and_purchase[0].price) * parseFloat(sale_and_purchase[0].sale_quantity);
+        average_sale_purchase_price += parseFloat(purchase_price) * _this6.salesQuantity(item.today_sales);
       });
       var profit = total_sales_amount - average_sale_purchase_price;
       this.today_profit = profit.toFixed(2);

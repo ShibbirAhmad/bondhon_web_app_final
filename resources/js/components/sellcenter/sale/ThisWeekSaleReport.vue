@@ -148,13 +148,13 @@ export default {
             let total_sales_amount = 0 ;
 
              sales_products.forEach((item)=>{
-                  let sales = item.total_sales ;
-                  let purchases = item.purchase_items ;
-                  //i have merged sale and purchase so that i can calculate actual profit
-                  let sale_and_purchase = sales.map((item, i) => Object.assign({}, item, purchases[i]));
-                  total_sales_amount += parseFloat(sale_and_purchase[0].amount) ;
-                  average_sale_purchase_price += parseFloat(sale_and_purchase[0].price) * parseFloat(sale_and_purchase[0].sale_quantity);
+                  let purchase_price = this.purchasePrice(item.purchase_items) ;
+                      item.total_sales.forEach(sale => {
+                                  total_sales_amount += parseFloat(sale.amount) ;
+                         }); 
+                  average_sale_purchase_price += parseFloat(purchase_price) * this.salesQuantity(item.total_sales);
               });
+
             let profit = total_sales_amount - average_sale_purchase_price ;
             this.total_profit = profit.toFixed(2) ;
     },
@@ -166,17 +166,19 @@ export default {
             let total_sales_amount = 0 ;
 
              sales_products.forEach((item)=>{
-                  let sales = item.this_month_sales ;
-                  let purchases = item.purchase_items ;
-                  //i have merged sale and purchase so that i can calculate actual profit
-                  let sale_and_purchase = sales.map((item, i) => Object.assign({}, item, purchases[i]));
-                  total_sales_amount += parseFloat(sale_and_purchase[0].amount) ;
-                  average_sale_purchase_price += parseFloat(sale_and_purchase[0].price) * parseFloat(sale_and_purchase[0].sale_quantity);
+                  let purchase_price = this.purchasePrice(item.purchase_items) ;
+                      item.this_month_sales.forEach(sale => {
+                                  total_sales_amount += parseFloat(sale.amount) ;
+                         }); 
+                  average_sale_purchase_price += parseFloat(purchase_price) * this.salesQuantity(item.this_month_sales);
               });
+
             let profit = total_sales_amount - average_sale_purchase_price ;
             this.this_month_profit = profit.toFixed(2) ;
 
     },
+
+   
 
     thisWeekProfit(sales_products){
         
@@ -184,13 +186,13 @@ export default {
             let total_sales_amount = 0 ;
 
              sales_products.forEach((item)=>{
-                  let sales = item.this_week_sales ;
-                  let purchases = item.purchase_items ;
-                  //i have merged sale and purchase so that i can calculate actual profit
-                  let sale_and_purchase = sales.map((item, i) => Object.assign({}, item, purchases[i]));
-                  total_sales_amount += parseFloat(sale_and_purchase[0].amount) ;
-                  average_sale_purchase_price += parseFloat(sale_and_purchase[0].price) * parseFloat(sale_and_purchase[0].sale_quantity);
+                  let purchase_price = this.purchasePrice(item.purchase_items) ;
+                      item.this_week_sales.forEach(sale => {
+                                  total_sales_amount += parseFloat(sale.amount) ;
+                         }); 
+                  average_sale_purchase_price += parseFloat(purchase_price) * this.salesQuantity(item.this_week_sales);
               });
+
             let profit = total_sales_amount - average_sale_purchase_price ;
             this.this_week_profit = profit.toFixed(2) ;
 
@@ -202,12 +204,11 @@ export default {
             let total_sales_amount = 0 ;
 
              sales_products.forEach((item)=>{
-                  let sales = item.yesterday_sales ;
-                  let purchases = item.purchase_items ;
-                  //i have merged sale and purchase so that i can calculate actual profit
-                  let sale_and_purchase = sales.map((item, i) => Object.assign({}, item, purchases[i]));
-                  total_sales_amount += parseFloat(sale_and_purchase[0].amount) ;
-                  average_sale_purchase_price += parseFloat(sale_and_purchase[0].price) * parseFloat(sale_and_purchase[0].sale_quantity);
+                  let purchase_price = this.purchasePrice(item.purchase_items) ;
+                      item.yesterday_sales.forEach(sale => {
+                                  total_sales_amount += parseFloat(sale.amount) ;
+                         }); 
+                  average_sale_purchase_price += parseFloat(purchase_price) * this.salesQuantity(item.yesterday_sales);
               });
             let profit = total_sales_amount - average_sale_purchase_price ;
             this.yesterday_profit = profit.toFixed(2) ;
@@ -220,14 +221,12 @@ export default {
         
             let average_sale_purchase_price = 0 ;
             let total_sales_amount = 0 ;
-
              sales_products.forEach((item)=>{
-                  let sales = item.today_sales ;
-                  let purchases = item.purchase_items ;
-                  //i have merged sale and purchase so that i can calculate actual profit
-                  let sale_and_purchase = sales.map((item, i) => Object.assign({}, item, purchases[i]));
-                  total_sales_amount += parseFloat(sale_and_purchase[0].amount) ;
-                  average_sale_purchase_price += parseFloat(sale_and_purchase[0].price) * parseFloat(sale_and_purchase[0].sale_quantity);
+                  let purchase_price = this.purchasePrice(item.purchase_items) ;
+                      item.today_sales.forEach(sale => {
+                                  total_sales_amount += parseFloat(sale.amount) ;
+                         }); 
+                  average_sale_purchase_price += parseFloat(purchase_price) * this.salesQuantity(item.today_sales);
               });
             let profit = total_sales_amount - average_sale_purchase_price ;
             this.today_profit = profit.toFixed(2) ;
