@@ -1110,13 +1110,22 @@ const routes = [
     },
 
 
+    {
+        path: '/sell/center/company/sale/add',
+        component: () => import(/* webpackChunkName: "sell_center_company_sale_add" */'./components/sellcenter/sale/CompanySaleAdd.vue'),
+        name: 'sell_center_company_sale_add',
+        meta: {
+            title: 'company sale add',
+            authSellCenter: true ,
+        }
+    },
 
     {
         path: '/sell/center/sale/add',
-        component: () => import(/* webpackChunkName: "sell_center_sale_add" */'./components/sellcenter/sale/Add.vue'),
+        component: () => import(/* webpackChunkName: "sell_center_sale_add" */'./components/sellcenter/sale/ShopSaleAdd.vue'),
         name: 'sell_center_sale_add',
         meta: {
-            title: 'Sale Info',
+            title: 'shop sale add',
             authSellCenter: true ,
         }
     },

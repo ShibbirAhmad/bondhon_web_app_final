@@ -68,7 +68,7 @@ class HomeController extends Controller
       public function DashboardHighlightInfo(){
 
             $total_stock_price=0;
-            $products=SellCenterProduct::where('stock','>',0)->get();
+            $products=SellCenterProduct::where('sell_center_id',session()->get('sellcenter')['id'])->where('stock','>',0)->get();
             $total_stock_quantity=$products->sum('stock');
    
             foreach($products as $product){
@@ -105,16 +105,16 @@ class HomeController extends Controller
                               ->where('created_at','<=', Carbon::today()->endOfDay())
                               ->sum('amount');
             $sale_profit_analysis = new SaleController();
-                  return response()->json([
-                        'status'=> "OK",
-                        'analysis'=>$analysis,
-                        'balance'=>$balnce,
-                        'total_stock_quantity'=>$total_stock_quantity,
-                        'total_stock_price'=>$total_stock_price,
-                        'sale_profit_analysis' => $sale_profit_analysis->saleAnalysis(),
-                  ]);
+            return response()->json([
+                  'status'=> "OK",
+                  'analysis'=>$analysis,
+                  'balance'=>$balnce,
+                  'total_stock_quantity'=>$total_stock_quantity,
+                  'total_stock_price'=>$total_stock_price,
+                  'sale_profit_analysis' => $sale_profit_analysis->saleAnalysis(),
+            ]);
 
-            }
+      }
 
 
 

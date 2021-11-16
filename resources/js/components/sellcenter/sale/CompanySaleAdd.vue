@@ -1,0 +1,356 @@
+<template>
+  <div>
+    <navbar></navbar>
+    <div class="content-wrapper">
+      <section class="content-header">
+        <h1>
+          <router-link
+            :to="{ name: 'sell_center_sale' }"
+            class="btn btn-primary"
+            ><i class="fa fa-arrow-left"></i
+          ></router-link>
+        </h1>
+        <ol class="breadcrumb">
+          <li>
+            <a href="#"><i class="fa fa-dashboard"></i>Dashboard</a>
+          </li>
+          <li class="active">sale</li>
+        </ol>
+      </section>
+      <section class="content">
+        <div class="row">
+          <div class="col-lg-11 col-md-11 col-lg-11">
+            <div class="box box-primary">
+              <div class="box-header with-border text-center">
+                <h3 class="box-title">Add Company Sale</h3>
+              </div>
+              <div class="box-body">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-xl-4 col-md-4 col-lg-4">
+                      <div class="form-group">
+                        <label for="phone">customer phone </label>
+                        <input
+                          type="text"
+                          minlength="11"
+                          maxlength="11"
+                          autocomplete="off"
+                          name="customer_phone"
+                          required
+                          @keyup="searchCustomer"
+                          v-model="form.customer_phone"
+                          class="form-control"
+                        />
+                      </div> 
+                    </div>
+                    <div class="col-xl-4 col-md-4 col-lg-4">
+                      <div class="form-group">
+                        <label for="name">customer name </label>
+                        <input
+                          type="text"
+                          name="customer_name"
+                          placeholder="ex:Mohammad"
+                          required
+                          v-model="form.customer_name"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-xl-4 col-md-4 col-lg-4">
+                      <div class="form-group">
+                        <label for="address">customer full address  </label>
+                        <input
+                          type="text"
+                          name="customer_address"
+                          placeholder="address details"
+                          required
+                          v-model="form.customer_address"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                 <div class="row">
+                   <div class="col-xl-6 col-lg-6 col-md-6 col-xs-12"> 
+                    <label>  </label>
+                    <input
+                      v-model="search"
+                      @keyup="searchProduct"
+                      type="text"
+                      name="search"
+                      class="form-control"
+                      autofocus
+                      autocomplete="off"
+                      placeholder="type product name or code"
+                    />
+                   </div>
+                   <div class="col-xl-6 col-lg-6 col-md-6 col-xs-12"> 
+                    <label>Product Code </label>
+                    <input
+                      v-model="search"
+                      @keyup="searchProduct"
+                      type="text"
+                      name="search"
+                      class="form-control"
+                      autofocus
+                      autocomplete="off"
+                      placeholder="type product name or code"
+                    />
+                   </div>
+                 </div>
+                </div>
+
+                <div class="search_content">
+                  <ul
+                    id="search_products"
+                    v-show="products.length > 0"
+                    class="list-group"
+                  >
+                    <li
+                      class="list-group-item"
+                      v-for="(product, index) in products"
+                      :key="index"
+                      @click="selecetProduct(product)"
+                    >
+                      {{ product.name + "-" + product.code }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div v-if="saleInfo" class="box-body sale_box">
+                <form @submit.prevent="addSale" enctype="multipart/form-data">
+                  <div class="alert-danger alert" v-if="error">
+                    {{ error }}
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-xs-6">
+                      <div class="form-group">
+                        <label for="quantity_type"> Unit Type</label>
+                        <select
+                          name="quantity_type"
+                          required
+                          v-model="form.quantity_type"
+                          class="form-control"
+                        >
+                          <option value="pice">pice</option>
+                          <option value="gm">gm</option>
+                          <option value="kg">kg</option>
+                          <option value="liter">liter</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 col-xs-6">
+                      <div class="form-group">
+                        <label>Unit</label>
+                        <input
+                          v-model="form.quantity"
+                          type="text"
+                          name="quantity"
+                          @keyup="amountCalculate"
+                          class="form-control"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-xs-6">
+                      <div class="form-group">
+                        <label>Amount</label>
+                        <input
+                          v-model="form.total_amount"
+                          type="text"
+                          name="total_amount"
+                          class="form-control"
+                          @keyup="amountCalculate"
+                          required
+                          placeholder="total amount"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 col-xs-6">
+                      <div class="form-group">
+                        <label>Discount</label>
+                        <input
+                          v-model="form.discount"
+                          type="text"
+                          name="discount"
+                          class="form-control"
+                          @keyup="amountCalculate"
+                          required
+                          placeholder="discount"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-xs-12">
+                      <div class="form-group">
+                        <label>Average Price</label>
+                        <input
+                          v-model="form.price"
+                          type="text"
+                          name="amount"
+                          class="form-control"
+                          readonly
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                      <div class="form-group">
+                        <label>Payable Amount</label>
+                        <input
+                          v-model="form.amount"
+                          type="text"
+                          name="amount"
+                          class="form-control"
+                          readonly
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group text-center">
+                    <button
+                      :disabled="form.busy"
+                      type="submit"
+                      class="btn btn-primary"
+                    >
+                      <i class="fa fa-spin fa-spinner" v-if="form.busy"></i
+                      >Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+
+
+<script>
+import Vue from "vue";
+import { Form, HasError, AlertError } from "vform";
+import navbar from "../Navbar.vue";
+
+Vue.component(HasError.name, HasError);
+export default {
+  components: { navbar },
+  name: "Add",
+  created() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 500);
+  },
+  data() {
+    return {
+      form: new Form({
+        customer_phone:"",
+        customer_name:"",
+        customer_address:"",
+        note:"",
+        product_id: "",
+        price: 0,
+        discount: 0,
+        quantity: 1,
+        quantity_type: "pice",
+        total_amount: 0,
+        amount: 0,
+      }),
+      saleInfo: false,
+      search: "",
+      products: "",
+      loading: true,
+      error: "",
+    };
+  },
+
+  methods: {
+    searchProduct() {
+      if (this.search.length > 2) {
+        axios
+          .get("/api/sellcenter/search/product/for/sale/" + this.search)
+          .then((resp) => {
+            console.log(resp);
+            document.getElementById("search_products").style.display = "block";
+            this.products = resp.data.products;
+          });
+      }
+    },
+    searchCustomer() {
+      if (this.form.customer_phone.length > 10) {
+        axios
+          .get("/api/sellcenter/search/product/for/sale/" + this.search)
+          .then((resp) => {
+            console.log(resp);
+            document.getElementById("search_products").style.display = "block";
+            this.products = resp.data.products;
+          });
+      }
+    },
+    selecetProduct(product) {
+      this.form.product_id = product.id;
+      document.getElementById("search_products").style.display = "none";
+      this.saleInfo = true;
+    },
+    amountCalculate() {
+      let total_amount = parseFloat(this.form.total_amount);
+      let qty = parseFloat(this.form.quantity);
+      let discount = parseFloat(this.form.discount);
+      this.form.amount = total_amount - discount;
+      this.form.price = (this.form.amount / qty).toFixed(2);
+    },
+    addSale() {
+      this.form
+        .post("/api/sellcenter/sale/add", {
+          transformRequest: [
+            function (data, headers) {
+              return objectToFormData(data);
+            },
+          ],
+        })
+        .then((resp) => {
+          //   console.log(resp)
+          if (resp.data.status == "SUCCESS") {
+            this.$router.push({ name: "sell_center_sale" });
+            this.$toasted.show(resp.data.message, {
+              type: "success",
+              position: "top-center",
+              duration: 4000,
+            });
+          } else {
+            this.error = "something went to wrong";
+          }
+        });
+    },
+  },
+};
+</script>
+
+<style scoped>
+.mb-2 {
+  margin-bottom: 5px !important;
+}
+
+.search_content {
+  width: 95%;
+  max-height: 300px;
+  position: absolute;
+  z-index: 99999;
+  overflow-y: auto;
+}
+
+.sale_box {
+  margin-top: 30px;
+}
+</style>
