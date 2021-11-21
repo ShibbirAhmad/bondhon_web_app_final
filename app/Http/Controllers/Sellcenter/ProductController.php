@@ -167,6 +167,19 @@ class ProductController extends Controller
    }
 
    
+ public function ProductForCompanySale($code){
+
+       $product = SellCenterProduct::where('sell_center_id',session()->get('sellcenter')['id'])
+                                     ->where('code',$code)
+                                     ->first();
+       return response()->json([
+           'status' => 'SUCCESS',
+           'product' => $product
+       ]);
+       
+   }
+
+   
    public function searchForSale($search){
 
     $products = SellCenterProduct::where('sell_center_id',session()->get('sellcenter')['id'])

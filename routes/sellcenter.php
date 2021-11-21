@@ -27,6 +27,7 @@ Route::group([
         Route::get('api/product/others', 'OthersController@others');
         //route for search product, edit product and delete product if it pending situation
         Route::get('api/sellcenter/search/product/{search}','ProductController@searchProducts');
+        Route::get('api/sellcenter/search/product/for/company/sale/{code}', 'ProductController@ProductForCompanySale');
         Route::get('api/sellcenter/search/product/for/sale/{search}','ProductController@searchForSale');
         Route::get('api/search/product/by/code/{search}','ProductController@searchByCode');
         Route::get('api/active/deactive/sellcenter/product/{id}','ProductController@productStatus');
@@ -104,7 +105,15 @@ Route::group([
        Route::get('api/sellcenter/sale/item/{id}', 'SaleController@saleItem');
        Route::post('api/sellcenter/sale/update/{id}', 'SaleController@update');
        Route::post('api/sellcenter/sale/add', 'SaleController@store');
-
+       //new
+       Route::get('api/search/sell/center/customer/{phone}', 'SaleController@searchCustomer');
+       Route::get('api/sellcenter/coureir/list', 'SaleController@Couriers');
+       Route::get('api/sellcenter/coureir/{id}', 'SaleController@EditCourer');
+       Route::get('api/sell/center/courier/de-active/{id}', 'SaleController@DeActiveCourier');
+       Route::get('api/sell/center/courier/active/{id}', 'SaleController@ActiveCourier');
+       Route::post('api/sellcenter/coureir/store', 'SaleController@StoreCourier');
+       Route::post('api/sellcenter/coureir/update/{id}', 'SaleController@UpdateCourier');
+      
 
 
          // start employee route here

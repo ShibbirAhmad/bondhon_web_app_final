@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\SellCenterSale;
 use App\Models\SellCenterCredit;
+use App\Models\SellCenterCourier;
 use App\Models\SellCenterProduct;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -22,6 +23,18 @@ class SaleController extends Controller
                 'sales' => $sales,
             ]);
      }
+
+
+     public function searchCustomer($phone){
+
+            $customer = SellCenterSale::where('sell_center_id',session()->get('sellcenter')['id'])->where('customer_phone',$phone)->select('customer_name','customer_phone','customer_address')->first();
+            return response()->json([
+                'status' => 'SUCCESS',
+                'customer' => $customer,
+            ]);
+     }
+
+     
 
 
     public function saleItem($id){
@@ -88,7 +101,7 @@ class SaleController extends Controller
                 $sale->discount = $request->discount ?? 0;
                 $sale->amount =  $request->amount ;
                 $sale->save();
-
+                
                 //update stock
                 $product->stock= floatval($product->stock) -  floatval($request->quantity) ;
                 $product->save();
@@ -104,6 +117,7 @@ class SaleController extends Controller
                     $credit->credit_in = "Cash";
                     $credit->save();
                 }
+                
 
             });
         }
@@ -268,6 +282,97 @@ class SaleController extends Controller
 
 
   
+
+    public function Couriers()
+    {
+        $couriers = SellCenterCourier::orderBy('id', 'desc')->paginate(50);
+        return response()->json([
+            'status' => 'SUCCESS',
+            'couriers' => $couriers
+        ]);
+    }
+
+
+
+    public function StoreCourier(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|unique:sell_center_couriers',
+
+        ]);
+
+        $courier = new SellCenterCourier();
+        $courier->name = $request->name;
+        $courier->save();
+            return response()->json([
+                'status' => 'SUCCESS',
+                'message' => "add successfully"
+            ]);
+        
+    }
+
+
+    public function EditCourer($id)
+    {
+        $courier = SellCenterCourier::find($id);
+            return response()->json([
+                'status' => 'SUCCESS',
+                'courier' => $courier
+            ]);
+    }
+
+
+    public function UpdateCourier(Request $request, $id){
+        $this->validate($request, [
+            'name' => 'required|unique:sell_center_couriers,name,'.$id,
+        ]);
+
+        $courier = SellCenterCourier::find($id);
+            $courier->name = $request->name;
+            if ($courier->save()) {
+                return response()->json([
+                    'status' => 'SUCCESS',
+                    'message' => " Updated successfully"
+                ]);
+            }
+
+    }
+
+
+    public function ActiveCourier($id)
+    {
+        $courier = SellCenterCourier::find($id);
+            $courier->status = 1;
+            $courier->save();
+                return response()->json([
+                    'status' => 'SUCCESS',
+                    'message' => ' active successfully'
+                ]);
+            
+        
+    }
+
+    public function DeActiveCourier($id)
+    {
+        $courier = SellCenterCourier::find($id);
+            $courier->status = 0;
+            $courier->save();
+                return response()->json([
+                    'status' => 'SUCCESS',
+                    'message' => ' de-active successfully'
+                ]);
+            
+    }
+
+
+    
+    public function SearchCourier($data){
+              
+        $couriers = SellCenterCourier::where('name','like','%'.$data.'%')->paginate(20);
+        return response()->json(['couriers'=>$couriers]);   
+     }
+
+
 
 
 

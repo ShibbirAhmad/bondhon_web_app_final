@@ -375,7 +375,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         });
       }
     },
-    selecetProduct: function selecetProduct(product) {
+    selectProduct: function selectProduct(product) {
       this.form.product_id = product.id;
       document.getElementById('search_products').style.display = 'none';
       this.saleInfo = true;
@@ -723,7 +723,7 @@ var render = function() {
                             staticClass: "list-group-item",
                             on: {
                               click: function($event) {
-                                return _vm.selecetProduct(product)
+                                return _vm.selectProduct(product)
                               }
                             }
                           },

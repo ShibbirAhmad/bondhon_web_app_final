@@ -161,7 +161,6 @@ export default {
         month: "",
         comment: "",
         debit_from: "Cash",
-        dmin_id: "",
         supplier_id: "",
         bill_statement_id: "",
         employee_id: "",

@@ -45,7 +45,7 @@
                       class="list-group-item"
                       v-for="(product, index) in products"
                       :key="index"
-                      @click="selecetProduct(product)"
+                      @click="selectProduct(product)"
                     >
                       {{ product.name + "-" + product.code }}
                     </li>
@@ -220,7 +220,9 @@ export default {
           });
       }
     },
-    selecetProduct(product) {
+    
+  
+    selectProduct(product) {
       this.form.product_id = product.id;
       document.getElementById('search_products').style.display='none' ;
       this.saleInfo = true;

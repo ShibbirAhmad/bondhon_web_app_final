@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "chunks/" + ({"account_purpose":"account_purpose","admin":"admin","bondhon_member":"bondhon_member","comment":"comment","contact_messgae":"contact_messgae","credit":"credit","customer":"customer","debit":"debit","fondtransfer":"fondtransfer","member_notice":"member_notice","purchase":"purchase","role":"role","sell_center":"sell_center","sell_center_credit":"sell_center_credit","sell_center_debit":"sell_center_debit","sell_center_sale":"sell_center_sale","subscriber_list":"subscriber_list","supplier":"supplier","this_month_sales_report":"this_month_sales_report","this_week_sales_report":"this_week_sales_report","today_sales_report":"today_sales_report","total_sales_report":"total_sales_report","user":"user","vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e":"vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e","Loan":"Loan","LoanDetails":"LoanDetails","SupplierAmount":"SupplierAmount","admin_dashboard":"admin_dashboard","category":"category","slider":"slider","applied_user":"applied_user","bondhon_member_details":"bondhon_member_details","creditDue":"creditDue","credit_statement":"credit_statement","debit_statement":"debit_statement","employee_sell_center":"employee_sell_center","home_carrier":"home_carrier","investment":"investment","investor_details":"investor_details","member_collection_history":"member_collection_history","member_dashboard":"member_dashboard","member_profile":"member_profile","member_profit_history":"member_profit_history","project_details":"project_details","salaryDetails":"salaryDetails","sell_center_credit_statement":"sell_center_credit_statement","sell_center_dashboard":"sell_center_dashboard","sell_center_debit_statement":"sell_center_debit_statement","sell_center_employee_salary":"sell_center_employee_salary","sell_center_manager":"sell_center_manager","sell_center_profile":"sell_center_profile","sell_center_statement_details":"sell_center_statement_details","statement_details":"statement_details","team_member":"team_member","teamsalary":"teamsalary","vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709":"vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709","accoun_purpose_edit":"accoun_purpose_edit","account_purpose_add":"account_purpose_add","addLoan":"addLoan","addPurchase":"addPurchase","add_employee_sell_center":"add_employee_sell_center","add_team_member":"add_team_member","adminProfile":"adminProfile","admin_add":"admin_add","AccountReport":"AccountReport","SaleProfite":"SaleProfite","profiteReport":"profiteReport","admin_login":"admin_login","assign_admin_permission":"assign_admin_permission","assingRoleAdmin":"assingRoleAdmin","categoryAdd":"categoryAdd","categoryedit":"categoryedit","commentAdd":"commentAdd","contact_messgae_reply":"contact_messgae_reply","creditEdit":"creditEdit","debitEdit":"debitEdit","editAdmin":"editAdmin","editPermission":"editPermission","edit_employee_sell_center":"edit_employee_sell_center","edit_investor":"edit_investor","edit_member":"edit_member","edit_team_member":"edit_team_member","feature_banner":"feature_banner","fondtransferAdd":"fondtransferAdd","investment_add":"investment_add","member_add":"member_add","member_edit_profile":"member_edit_profile","member_login":"member_login","member_password":"member_password","merchnat_login":"merchnat_login","passwordChange":"passwordChange","project":"project","purchaseView":"purchaseView","roleAdd":"roleAdd","sell_center_add":"sell_center_add","sell_center_company_sale_add":"sell_center_company_sale_add","sell_center_credit_add":"sell_center_credit_add","sell_center_credit_edit":"sell_center_credit_edit","sell_center_debit_add":"sell_center_debit_add","sell_center_debit_edit":"sell_center_debit_edit","sell_center_edit":"sell_center_edit","sell_center_manager_add":"sell_center_manager_add","sell_center_manager_edit":"sell_center_manager_edit","sell_center_password_edit":"sell_center_password_edit","sell_center_profile_edit":"sell_center_profile_edit","sell_center_sale_add":"sell_center_sale_add","sell_center_sale_edit":"sell_center_sale_edit","sell_center_statement_add":"sell_center_statement_add","slider_add":"slider_add","slider_edit":"slider_edit","sms_campaign":"sms_campaign","statement_add":"statement_add","supplierAdd":"supplierAdd","vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204":"vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204","add_carrier":"add_carrier","edit_carrier":"edit_carrier","generl_setting":"generl_setting","project_add":"project_add","project_edit":"project_edit","sell_center_product_add":"sell_center_product_add","sell_center_product_edit":"sell_center_product_edit","show_carrier":"show_carrier","vendors~creditAdd~debitAdd":"vendors~creditAdd~debitAdd","creditAdd":"creditAdd","debitAdd":"debitAdd","vendors~merchnat_product_manage":"vendors~merchnat_product_manage","merchnat_product_manage":"merchnat_product_manage","vendors~new_password_sellcenter~sell_center_code_verified~sell_center_password_reset":"vendors~new_password_sellcenter~sell_center_code_verified~sell_center_password_reset","new_password_sellcenter~sell_center_code_verified~sell_center_password_reset":"new_password_sellcenter~sell_center_code_verified~sell_center_password_reset","new_password_sellcenter":"new_password_sellcenter","sell_center_code_verified":"sell_center_code_verified","sell_center_password_reset":"sell_center_password_reset","editComment":"editComment","supplierEdit":"supplierEdit","about_and_contact":"about_and_contact","aggreement":"aggreement","footer_setting":"footer_setting","yesterday_sales_report":"yesterday_sales_report"}[chunkId]||chunkId) + ".bundle.js"
+/******/ 		return __webpack_require__.p + "chunks/" + ({"account_purpose":"account_purpose","admin":"admin","bondhon_member":"bondhon_member","comment":"comment","contact_messgae":"contact_messgae","credit":"credit","customer":"customer","debit":"debit","fondtransfer":"fondtransfer","member_notice":"member_notice","purchase":"purchase","role":"role","sell_center":"sell_center","sell_center_courier":"sell_center_courier","sell_center_credit":"sell_center_credit","sell_center_debit":"sell_center_debit","sell_center_sale":"sell_center_sale","subscriber_list":"subscriber_list","supplier":"supplier","this_month_sales_report":"this_month_sales_report","this_week_sales_report":"this_week_sales_report","today_sales_report":"today_sales_report","total_sales_report":"total_sales_report","user":"user","vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9":"vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9","Loan":"Loan","LoanDetails":"LoanDetails","SupplierAmount":"SupplierAmount","admin_dashboard":"admin_dashboard","category":"category","slider":"slider","applied_user":"applied_user","bondhon_member_details":"bondhon_member_details","creditDue":"creditDue","credit_statement":"credit_statement","debit_statement":"debit_statement","employee_sell_center":"employee_sell_center","home_carrier":"home_carrier","investment":"investment","investor_details":"investor_details","member_collection_history":"member_collection_history","member_dashboard":"member_dashboard","member_profile":"member_profile","member_profit_history":"member_profit_history","project_details":"project_details","salaryDetails":"salaryDetails","sell_center_credit_statement":"sell_center_credit_statement","sell_center_dashboard":"sell_center_dashboard","sell_center_debit_statement":"sell_center_debit_statement","sell_center_employee_salary":"sell_center_employee_salary","sell_center_manager":"sell_center_manager","sell_center_profile":"sell_center_profile","sell_center_statement_details":"sell_center_statement_details","statement_details":"statement_details","team_member":"team_member","teamsalary":"teamsalary","vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946":"vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946","accoun_purpose_edit":"accoun_purpose_edit","account_purpose_add":"account_purpose_add","addLoan":"addLoan","addPurchase":"addPurchase","add_employee_sell_center":"add_employee_sell_center","add_team_member":"add_team_member","adminProfile":"adminProfile","admin_add":"admin_add","AccountReport":"AccountReport","SaleProfite":"SaleProfite","profiteReport":"profiteReport","admin_login":"admin_login","assign_admin_permission":"assign_admin_permission","assingRoleAdmin":"assingRoleAdmin","categoryAdd":"categoryAdd","categoryedit":"categoryedit","commentAdd":"commentAdd","contact_messgae_reply":"contact_messgae_reply","creditEdit":"creditEdit","debitEdit":"debitEdit","editAdmin":"editAdmin","editPermission":"editPermission","edit_employee_sell_center":"edit_employee_sell_center","edit_investor":"edit_investor","edit_member":"edit_member","edit_team_member":"edit_team_member","feature_banner":"feature_banner","fondtransferAdd":"fondtransferAdd","investment_add":"investment_add","member_add":"member_add","member_edit_profile":"member_edit_profile","member_login":"member_login","member_password":"member_password","merchnat_login":"merchnat_login","passwordChange":"passwordChange","project":"project","purchaseView":"purchaseView","roleAdd":"roleAdd","sell_center_add":"sell_center_add","sell_center_company_sale_add":"sell_center_company_sale_add","sell_center_courier_add":"sell_center_courier_add","sell_center_credit_add":"sell_center_credit_add","sell_center_credit_edit":"sell_center_credit_edit","sell_center_debit_add":"sell_center_debit_add","sell_center_debit_edit":"sell_center_debit_edit","sell_center_edit":"sell_center_edit","sell_center_manager_add":"sell_center_manager_add","sell_center_manager_edit":"sell_center_manager_edit","sell_center_password_edit":"sell_center_password_edit","sell_center_profile_edit":"sell_center_profile_edit","sell_center_sale_add":"sell_center_sale_add","sell_center_sale_edit":"sell_center_sale_edit","sell_center_statement_add":"sell_center_statement_add","slider_add":"slider_add","slider_edit":"slider_edit","sms_campaign":"sms_campaign","statement_add":"statement_add","supplierAdd":"supplierAdd","vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204":"vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204","add_carrier":"add_carrier","edit_carrier":"edit_carrier","generl_setting":"generl_setting","project_add":"project_add","project_edit":"project_edit","sell_center_product_add":"sell_center_product_add","sell_center_product_edit":"sell_center_product_edit","show_carrier":"show_carrier","vendors~creditAdd~debitAdd":"vendors~creditAdd~debitAdd","creditAdd":"creditAdd","debitAdd":"debitAdd","vendors~merchnat_product_manage":"vendors~merchnat_product_manage","merchnat_product_manage":"merchnat_product_manage","vendors~new_password_sellcenter~sell_center_code_verified~sell_center_password_reset":"vendors~new_password_sellcenter~sell_center_code_verified~sell_center_password_reset","new_password_sellcenter~sell_center_code_verified~sell_center_password_reset":"new_password_sellcenter~sell_center_code_verified~sell_center_password_reset","new_password_sellcenter":"new_password_sellcenter","sell_center_code_verified":"sell_center_code_verified","sell_center_password_reset":"sell_center_password_reset","editComment":"editComment","sell_center_courier_edit":"sell_center_courier_edit","supplierEdit":"supplierEdit","about_and_contact":"about_and_contact","aggreement":"aggreement","footer_setting":"footer_setting","yesterday_sales_report":"yesterday_sales_report"}[chunkId]||chunkId) + ".bundle.js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -80929,7 +80929,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 var routes = [{
   path: '/member/login',
   component: function component() {
-    return Promise.all(/*! import() | member_login */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("member_login")]).then(__webpack_require__.bind(null, /*! ./components/member/Login.vue */ "./resources/js/components/member/Login.vue"));
+    return Promise.all(/*! import() | member_login */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("member_login")]).then(__webpack_require__.bind(null, /*! ./components/member/Login.vue */ "./resources/js/components/member/Login.vue"));
   },
   name: 'member_login',
   meta: {
@@ -80938,7 +80938,7 @@ var routes = [{
 }, {
   path: '/member/dashboard',
   component: function component() {
-    return Promise.all(/*! import() | member_dashboard */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("member_dashboard")]).then(__webpack_require__.bind(null, /*! ./components/member/Index.vue */ "./resources/js/components/member/Index.vue"));
+    return Promise.all(/*! import() | member_dashboard */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("member_dashboard")]).then(__webpack_require__.bind(null, /*! ./components/member/Index.vue */ "./resources/js/components/member/Index.vue"));
   },
   name: 'member_dashboard',
   meta: {
@@ -80958,7 +80958,7 @@ var routes = [{
 }, {
   path: '/member/profile/info',
   component: function component() {
-    return Promise.all(/*! import() | member_profile */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("member_profile")]).then(__webpack_require__.bind(null, /*! ./components/member/member/Profile.vue */ "./resources/js/components/member/member/Profile.vue"));
+    return Promise.all(/*! import() | member_profile */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("member_profile")]).then(__webpack_require__.bind(null, /*! ./components/member/member/Profile.vue */ "./resources/js/components/member/member/Profile.vue"));
   },
   name: 'member_profile',
   meta: {
@@ -80968,7 +80968,7 @@ var routes = [{
 }, {
   path: '/member/profile/info/update',
   component: function component() {
-    return Promise.all(/*! import() | member_edit_profile */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("member_edit_profile")]).then(__webpack_require__.bind(null, /*! ./components/member/member/Edit.vue */ "./resources/js/components/member/member/Edit.vue"));
+    return Promise.all(/*! import() | member_edit_profile */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("member_edit_profile")]).then(__webpack_require__.bind(null, /*! ./components/member/member/Edit.vue */ "./resources/js/components/member/member/Edit.vue"));
   },
   name: 'member_edit_profile',
   meta: {
@@ -80978,7 +80978,7 @@ var routes = [{
 }, {
   path: '/member/password',
   component: function component() {
-    return Promise.all(/*! import() | member_password */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("member_password")]).then(__webpack_require__.bind(null, /*! ./components/member/member/Password.vue */ "./resources/js/components/member/member/Password.vue"));
+    return Promise.all(/*! import() | member_password */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("member_password")]).then(__webpack_require__.bind(null, /*! ./components/member/member/Password.vue */ "./resources/js/components/member/member/Password.vue"));
   },
   name: 'member_password',
   meta: {
@@ -80988,7 +80988,7 @@ var routes = [{
 }, {
   path: '/member/collection/history',
   component: function component() {
-    return Promise.all(/*! import() | member_collection_history */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("member_collection_history")]).then(__webpack_require__.bind(null, /*! ./components/member/account/Collection.vue */ "./resources/js/components/member/account/Collection.vue"));
+    return Promise.all(/*! import() | member_collection_history */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("member_collection_history")]).then(__webpack_require__.bind(null, /*! ./components/member/account/Collection.vue */ "./resources/js/components/member/account/Collection.vue"));
   },
   name: 'member_collection_history',
   meta: {
@@ -80998,7 +80998,7 @@ var routes = [{
 }, {
   path: '/member/profit/history',
   component: function component() {
-    return Promise.all(/*! import() | member_profit_history */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("member_profit_history")]).then(__webpack_require__.bind(null, /*! ./components/member/account/Profit.vue */ "./resources/js/components/member/account/Profit.vue"));
+    return Promise.all(/*! import() | member_profit_history */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("member_profit_history")]).then(__webpack_require__.bind(null, /*! ./components/member/account/Profit.vue */ "./resources/js/components/member/account/Profit.vue"));
   },
   name: 'member_profit_history',
   meta: {
@@ -81008,7 +81008,7 @@ var routes = [{
 }, {
   path: '/backend/dashboard',
   component: function component() {
-    return Promise.all(/*! import() | admin_dashboard */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("admin_dashboard")]).then(__webpack_require__.bind(null, /*! ./components/admin/Index.vue */ "./resources/js/components/admin/Index.vue"));
+    return Promise.all(/*! import() | admin_dashboard */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("admin_dashboard")]).then(__webpack_require__.bind(null, /*! ./components/admin/Index.vue */ "./resources/js/components/admin/Index.vue"));
   },
   name: 'dashboard',
   meta: {
@@ -81019,7 +81019,7 @@ var routes = [{
   path: '/backend/company/investment',
   name: 'investment',
   component: function component() {
-    return Promise.all(/*! import() | investment */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("investment")]).then(__webpack_require__.bind(null, /*! ./components/admin/Investment/Index.vue */ "./resources/js/components/admin/Investment/Index.vue"));
+    return Promise.all(/*! import() | investment */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("investment")]).then(__webpack_require__.bind(null, /*! ./components/admin/Investment/Index.vue */ "./resources/js/components/admin/Investment/Index.vue"));
   },
   meta: {
     requiresAuthAdmin: true
@@ -81028,7 +81028,7 @@ var routes = [{
   path: '/backend/company/investment/add',
   name: 'investment_add',
   component: function component() {
-    return Promise.all(/*! import() | investment_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("investment_add")]).then(__webpack_require__.bind(null, /*! ./components/admin/Investment/Add.vue */ "./resources/js/components/admin/Investment/Add.vue"));
+    return Promise.all(/*! import() | investment_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("investment_add")]).then(__webpack_require__.bind(null, /*! ./components/admin/Investment/Add.vue */ "./resources/js/components/admin/Investment/Add.vue"));
   },
   meta: {
     requiresAuthAdmin: true
@@ -81037,7 +81037,7 @@ var routes = [{
   path: '/backend/company/investment/edit/:id',
   name: 'edit_investor',
   component: function component() {
-    return Promise.all(/*! import() | edit_investor */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("edit_investor")]).then(__webpack_require__.bind(null, /*! ./components/admin/Investment/Edit.vue */ "./resources/js/components/admin/Investment/Edit.vue"));
+    return Promise.all(/*! import() | edit_investor */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("edit_investor")]).then(__webpack_require__.bind(null, /*! ./components/admin/Investment/Edit.vue */ "./resources/js/components/admin/Investment/Edit.vue"));
   },
   meta: {
     requiresAuthAdmin: true
@@ -81046,7 +81046,7 @@ var routes = [{
   path: '/backend/company/investor/details/:id',
   name: 'investor_details',
   component: function component() {
-    return Promise.all(/*! import() | investor_details */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("investor_details")]).then(__webpack_require__.bind(null, /*! ./components/admin/Investment/InvestorDetails.vue */ "./resources/js/components/admin/Investment/InvestorDetails.vue"));
+    return Promise.all(/*! import() | investor_details */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("investor_details")]).then(__webpack_require__.bind(null, /*! ./components/admin/Investment/InvestorDetails.vue */ "./resources/js/components/admin/Investment/InvestorDetails.vue"));
   },
   meta: {
     requiresAuthAdmin: true
@@ -81054,7 +81054,7 @@ var routes = [{
 }, {
   path: '/backend/category',
   component: function component() {
-    return Promise.all(/*! import() | category */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("admin_dashboard"), __webpack_require__.e("category")]).then(__webpack_require__.bind(null, /*! ./components/admin/category/Category */ "./resources/js/components/admin/category/Category.vue"));
+    return Promise.all(/*! import() | category */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("admin_dashboard"), __webpack_require__.e("category")]).then(__webpack_require__.bind(null, /*! ./components/admin/category/Category */ "./resources/js/components/admin/category/Category.vue"));
   },
   name: "category",
   meta: {
@@ -81064,7 +81064,7 @@ var routes = [{
 }, {
   path: '/backend/categoryEdit/:categoryId',
   component: function component() {
-    return Promise.all(/*! import() | categoryedit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("categoryedit")]).then(__webpack_require__.bind(null, /*! ./components/admin/category/Edit */ "./resources/js/components/admin/category/Edit.vue"));
+    return Promise.all(/*! import() | categoryedit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("categoryedit")]).then(__webpack_require__.bind(null, /*! ./components/admin/category/Edit */ "./resources/js/components/admin/category/Edit.vue"));
   },
   name: "CategoryEdit",
   meta: {
@@ -81074,7 +81074,7 @@ var routes = [{
 }, {
   path: '/backend/categoryAdd',
   component: function component() {
-    return Promise.all(/*! import() | categoryAdd */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("categoryAdd")]).then(__webpack_require__.bind(null, /*! ./components/admin/category/Add */ "./resources/js/components/admin/category/Add.vue"));
+    return Promise.all(/*! import() | categoryAdd */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("categoryAdd")]).then(__webpack_require__.bind(null, /*! ./components/admin/category/Add */ "./resources/js/components/admin/category/Add.vue"));
   },
   name: "categoryAdd",
   meta: {
@@ -81084,7 +81084,7 @@ var routes = [{
 }, {
   path: '/backend/slider',
   component: function component() {
-    return Promise.all(/*! import() | slider */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("admin_dashboard"), __webpack_require__.e("slider")]).then(__webpack_require__.bind(null, /*! ./components/admin/slider/Slider */ "./resources/js/components/admin/slider/Slider.vue"));
+    return Promise.all(/*! import() | slider */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("admin_dashboard"), __webpack_require__.e("slider")]).then(__webpack_require__.bind(null, /*! ./components/admin/slider/Slider */ "./resources/js/components/admin/slider/Slider.vue"));
   },
   name: 'slider',
   meta: {
@@ -81094,7 +81094,7 @@ var routes = [{
 }, {
   path: '/backend/sliderAdd',
   component: function component() {
-    return Promise.all(/*! import() | slider_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("slider_add")]).then(__webpack_require__.bind(null, /*! ./components/admin/slider/Add */ "./resources/js/components/admin/slider/Add.vue"));
+    return Promise.all(/*! import() | slider_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("slider_add")]).then(__webpack_require__.bind(null, /*! ./components/admin/slider/Add */ "./resources/js/components/admin/slider/Add.vue"));
   },
   name: "sliderAdd",
   meta: {
@@ -81104,7 +81104,7 @@ var routes = [{
 }, {
   path: '/backend/sliderEdit/:id',
   component: function component() {
-    return Promise.all(/*! import() | slider_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("slider_edit")]).then(__webpack_require__.bind(null, /*! ./components/admin/slider/Edit */ "./resources/js/components/admin/slider/Edit.vue"));
+    return Promise.all(/*! import() | slider_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("slider_edit")]).then(__webpack_require__.bind(null, /*! ./components/admin/slider/Edit */ "./resources/js/components/admin/slider/Edit.vue"));
   },
   name: 'sliderEdit',
   meta: {
@@ -81134,7 +81134,7 @@ var routes = [{
 }, {
   path: '/backend/adminLogin',
   component: function component() {
-    return Promise.all(/*! import() | admin_login */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("admin_login")]).then(__webpack_require__.bind(null, /*! ./components/admin/Login.vue */ "./resources/js/components/admin/Login.vue"));
+    return Promise.all(/*! import() | admin_login */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("admin_login")]).then(__webpack_require__.bind(null, /*! ./components/admin/Login.vue */ "./resources/js/components/admin/Login.vue"));
   },
   name: 'adminLogin',
   meta: {
@@ -81153,7 +81153,7 @@ var routes = [{
 }, {
   path: '/backend/credit/due',
   component: function component() {
-    return Promise.all(/*! import() | creditDue */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("creditDue")]).then(__webpack_require__.bind(null, /*! ./components/admin/credit/Due */ "./resources/js/components/admin/credit/Due.vue"));
+    return Promise.all(/*! import() | creditDue */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("creditDue")]).then(__webpack_require__.bind(null, /*! ./components/admin/credit/Due */ "./resources/js/components/admin/credit/Due.vue"));
   },
   name: 'CreditDue',
   meta: {
@@ -81163,7 +81163,7 @@ var routes = [{
 }, {
   path: '/backend/credit/add',
   component: function component() {
-    return Promise.all(/*! import() | creditAdd */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("vendors~creditAdd~debitAdd"), __webpack_require__.e("creditAdd")]).then(__webpack_require__.bind(null, /*! ./components/admin/credit/Add */ "./resources/js/components/admin/credit/Add.vue"));
+    return Promise.all(/*! import() | creditAdd */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("vendors~creditAdd~debitAdd"), __webpack_require__.e("creditAdd")]).then(__webpack_require__.bind(null, /*! ./components/admin/credit/Add */ "./resources/js/components/admin/credit/Add.vue"));
   },
   name: 'creditAdd',
   meta: {
@@ -81173,7 +81173,7 @@ var routes = [{
 }, {
   path: '/backend/credit/edit/:id',
   component: function component() {
-    return Promise.all(/*! import() | creditEdit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("creditEdit")]).then(__webpack_require__.bind(null, /*! ./components/admin/credit/Edit */ "./resources/js/components/admin/credit/Edit.vue"));
+    return Promise.all(/*! import() | creditEdit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("creditEdit")]).then(__webpack_require__.bind(null, /*! ./components/admin/credit/Edit */ "./resources/js/components/admin/credit/Edit.vue"));
   },
   name: 'creditEdit',
   meta: {
@@ -81193,7 +81193,7 @@ var routes = [{
 }, {
   path: '/backend/debit/add',
   component: function component() {
-    return Promise.all(/*! import() | debitAdd */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("vendors~creditAdd~debitAdd"), __webpack_require__.e("debitAdd")]).then(__webpack_require__.bind(null, /*! ./components/admin/debit/Add */ "./resources/js/components/admin/debit/Add.vue"));
+    return Promise.all(/*! import() | debitAdd */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("vendors~creditAdd~debitAdd"), __webpack_require__.e("debitAdd")]).then(__webpack_require__.bind(null, /*! ./components/admin/debit/Add */ "./resources/js/components/admin/debit/Add.vue"));
   },
   name: 'debitAdd',
   meta: {
@@ -81203,7 +81203,7 @@ var routes = [{
 }, {
   path: '/backend/debit/edit/:id',
   component: function component() {
-    return Promise.all(/*! import() | debitEdit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("debitEdit")]).then(__webpack_require__.bind(null, /*! ./components/admin/debit/Edit */ "./resources/js/components/admin/debit/Edit.vue"));
+    return Promise.all(/*! import() | debitEdit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("debitEdit")]).then(__webpack_require__.bind(null, /*! ./components/admin/debit/Edit */ "./resources/js/components/admin/debit/Edit.vue"));
   },
   name: 'debitEdit',
   meta: {
@@ -81223,7 +81223,7 @@ var routes = [{
 }, {
   path: '/backend/role/add',
   component: function component() {
-    return Promise.all(/*! import() | roleAdd */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("roleAdd")]).then(__webpack_require__.bind(null, /*! ./components/admin/role/Add */ "./resources/js/components/admin/role/Add.vue"));
+    return Promise.all(/*! import() | roleAdd */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("roleAdd")]).then(__webpack_require__.bind(null, /*! ./components/admin/role/Add */ "./resources/js/components/admin/role/Add.vue"));
   },
   name: 'roleAdd',
   meta: {
@@ -81233,7 +81233,7 @@ var routes = [{
 }, {
   path: '/backend/permissions/edit/role/:id',
   component: function component() {
-    return Promise.all(/*! import() | editPermission */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("editPermission")]).then(__webpack_require__.bind(null, /*! ./components/admin/role/Permissions */ "./resources/js/components/admin/role/Permissions.vue"));
+    return Promise.all(/*! import() | editPermission */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("editPermission")]).then(__webpack_require__.bind(null, /*! ./components/admin/role/Permissions */ "./resources/js/components/admin/role/Permissions.vue"));
   },
   name: 'EditPermissions',
   meta: {
@@ -81253,7 +81253,7 @@ var routes = [{
 }, {
   path: '/backend/found/transfer/add',
   component: function component() {
-    return Promise.all(/*! import() | fondtransferAdd */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("fondtransferAdd")]).then(__webpack_require__.bind(null, /*! ./components/admin/fondtransfer/Add */ "./resources/js/components/admin/fondtransfer/Add.vue"));
+    return Promise.all(/*! import() | fondtransferAdd */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("fondtransferAdd")]).then(__webpack_require__.bind(null, /*! ./components/admin/fondtransfer/Add */ "./resources/js/components/admin/fondtransfer/Add.vue"));
   },
   name: 'fondtransferAdd',
   meta: {
@@ -81273,7 +81273,7 @@ var routes = [{
 }, {
   path: '/backend/addComment',
   component: function component() {
-    return Promise.all(/*! import() | commentAdd */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("commentAdd")]).then(__webpack_require__.bind(null, /*! ./components/admin/comment/Add */ "./resources/js/components/admin/comment/Add.vue"));
+    return Promise.all(/*! import() | commentAdd */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("commentAdd")]).then(__webpack_require__.bind(null, /*! ./components/admin/comment/Add */ "./resources/js/components/admin/comment/Add.vue"));
   },
   name: 'commentAdd',
   meta: {
@@ -81283,7 +81283,7 @@ var routes = [{
 }, {
   path: '/backend/editComment/:id',
   component: function component() {
-    return Promise.all(/*! import() | editComment */[__webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("editComment")]).then(__webpack_require__.bind(null, /*! ./components/admin/comment/Edit */ "./resources/js/components/admin/comment/Edit.vue"));
+    return Promise.all(/*! import() | editComment */[__webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("editComment")]).then(__webpack_require__.bind(null, /*! ./components/admin/comment/Edit */ "./resources/js/components/admin/comment/Edit.vue"));
   },
   name: 'editComment',
   meta: {
@@ -81293,7 +81293,7 @@ var routes = [{
 }, {
   path: '/backend/project',
   component: function component() {
-    return Promise.all(/*! import() | project */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("project")]).then(__webpack_require__.bind(null, /*! ./components/admin/project/Index.vue */ "./resources/js/components/admin/project/Index.vue"));
+    return Promise.all(/*! import() | project */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("project")]).then(__webpack_require__.bind(null, /*! ./components/admin/project/Index.vue */ "./resources/js/components/admin/project/Index.vue"));
   },
   name: 'project',
   meta: {
@@ -81303,7 +81303,7 @@ var routes = [{
 }, {
   path: '/backend/add/project',
   component: function component() {
-    return Promise.all(/*! import() | project_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("project_add")]).then(__webpack_require__.bind(null, /*! ./components/admin/project/Add.vue */ "./resources/js/components/admin/project/Add.vue"));
+    return Promise.all(/*! import() | project_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("project_add")]).then(__webpack_require__.bind(null, /*! ./components/admin/project/Add.vue */ "./resources/js/components/admin/project/Add.vue"));
   },
   name: 'project_add',
   meta: {
@@ -81313,7 +81313,7 @@ var routes = [{
 }, {
   path: '/backend/project/edit/:id',
   component: function component() {
-    return Promise.all(/*! import() | project_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("project_edit")]).then(__webpack_require__.bind(null, /*! ./components/admin/project/Edit.vue */ "./resources/js/components/admin/project/Edit.vue"));
+    return Promise.all(/*! import() | project_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("project_edit")]).then(__webpack_require__.bind(null, /*! ./components/admin/project/Edit.vue */ "./resources/js/components/admin/project/Edit.vue"));
   },
   name: 'project_edit',
   meta: {
@@ -81323,7 +81323,7 @@ var routes = [{
 }, {
   path: '/backend/project/details/:id',
   component: function component() {
-    return Promise.all(/*! import() | project_details */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("project_details")]).then(__webpack_require__.bind(null, /*! ./components/admin/project/ProjectDetails.vue */ "./resources/js/components/admin/project/ProjectDetails.vue"));
+    return Promise.all(/*! import() | project_details */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("project_details")]).then(__webpack_require__.bind(null, /*! ./components/admin/project/ProjectDetails.vue */ "./resources/js/components/admin/project/ProjectDetails.vue"));
   },
   name: 'project_details',
   meta: {
@@ -81333,7 +81333,7 @@ var routes = [{
 }, {
   path: '/backend/carrier',
   component: function component() {
-    return Promise.all(/*! import() | home_carrier */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("home_carrier")]).then(__webpack_require__.bind(null, /*! ./components/admin/carrier/index */ "./resources/js/components/admin/carrier/index.vue"));
+    return Promise.all(/*! import() | home_carrier */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("home_carrier")]).then(__webpack_require__.bind(null, /*! ./components/admin/carrier/index */ "./resources/js/components/admin/carrier/index.vue"));
   },
   name: 'home_carrier',
   meta: {
@@ -81343,7 +81343,7 @@ var routes = [{
 }, {
   path: '/backend/carrier/add',
   component: function component() {
-    return Promise.all(/*! import() | add_carrier */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("add_carrier")]).then(__webpack_require__.bind(null, /*! ./components/admin/carrier/Add */ "./resources/js/components/admin/carrier/Add.vue"));
+    return Promise.all(/*! import() | add_carrier */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("add_carrier")]).then(__webpack_require__.bind(null, /*! ./components/admin/carrier/Add */ "./resources/js/components/admin/carrier/Add.vue"));
   },
   name: 'add_carrier',
   meta: {
@@ -81353,7 +81353,7 @@ var routes = [{
 }, {
   path: '/backend/carrier/show/:id',
   component: function component() {
-    return Promise.all(/*! import() | show_carrier */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("show_carrier")]).then(__webpack_require__.bind(null, /*! ./components/admin/carrier/Show */ "./resources/js/components/admin/carrier/Show.vue"));
+    return Promise.all(/*! import() | show_carrier */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("show_carrier")]).then(__webpack_require__.bind(null, /*! ./components/admin/carrier/Show */ "./resources/js/components/admin/carrier/Show.vue"));
   },
   name: 'show_carrier',
   meta: {
@@ -81363,7 +81363,7 @@ var routes = [{
 }, {
   path: '/backend/carrier/edit/:id',
   component: function component() {
-    return Promise.all(/*! import() | edit_carrier */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("edit_carrier")]).then(__webpack_require__.bind(null, /*! ./components/admin/carrier/Edit */ "./resources/js/components/admin/carrier/Edit.vue"));
+    return Promise.all(/*! import() | edit_carrier */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("edit_carrier")]).then(__webpack_require__.bind(null, /*! ./components/admin/carrier/Edit */ "./resources/js/components/admin/carrier/Edit.vue"));
   },
   name: 'edit_carrier',
   meta: {
@@ -81373,7 +81373,7 @@ var routes = [{
 }, {
   path: '/backend/job/post/applied/users/:id',
   component: function component() {
-    return Promise.all(/*! import() | applied_user */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("applied_user")]).then(__webpack_require__.bind(null, /*! ./components/admin/carrier/jobApplied */ "./resources/js/components/admin/carrier/jobApplied.vue"));
+    return Promise.all(/*! import() | applied_user */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("applied_user")]).then(__webpack_require__.bind(null, /*! ./components/admin/carrier/jobApplied */ "./resources/js/components/admin/carrier/jobApplied.vue"));
   },
   name: 'applied_users',
   meta: {
@@ -81393,7 +81393,7 @@ var routes = [{
 }, {
   path: '/backend/account/purpose/add',
   component: function component() {
-    return Promise.all(/*! import() | account_purpose_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("account_purpose_add")]).then(__webpack_require__.bind(null, /*! ./components/admin/account/Add */ "./resources/js/components/admin/account/Add.vue"));
+    return Promise.all(/*! import() | account_purpose_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("account_purpose_add")]).then(__webpack_require__.bind(null, /*! ./components/admin/account/Add */ "./resources/js/components/admin/account/Add.vue"));
   },
   name: 'account_purpose_add',
   meta: {
@@ -81403,7 +81403,7 @@ var routes = [{
 }, {
   path: '/backend/account/purpose/edit/:id',
   component: function component() {
-    return Promise.all(/*! import() | accoun_purpose_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("accoun_purpose_edit")]).then(__webpack_require__.bind(null, /*! ./components/admin/account/Edit */ "./resources/js/components/admin/account/Edit.vue"));
+    return Promise.all(/*! import() | accoun_purpose_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("accoun_purpose_edit")]).then(__webpack_require__.bind(null, /*! ./components/admin/account/Edit */ "./resources/js/components/admin/account/Edit.vue"));
   },
   name: 'account_purpose_edit',
   meta: {
@@ -81413,7 +81413,7 @@ var routes = [{
 }, {
   path: '/backend/team/member',
   component: function component() {
-    return Promise.all(/*! import() | team_member */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("team_member")]).then(__webpack_require__.bind(null, /*! ./components/admin/team/index */ "./resources/js/components/admin/team/index.vue"));
+    return Promise.all(/*! import() | team_member */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("team_member")]).then(__webpack_require__.bind(null, /*! ./components/admin/team/index */ "./resources/js/components/admin/team/index.vue"));
   },
   name: 'team_member',
   meta: {
@@ -81423,7 +81423,7 @@ var routes = [{
 }, {
   path: '/backend/team/member/add',
   component: function component() {
-    return Promise.all(/*! import() | add_team_member */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("add_team_member")]).then(__webpack_require__.bind(null, /*! ./components/admin/team/Add */ "./resources/js/components/admin/team/Add.vue"));
+    return Promise.all(/*! import() | add_team_member */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("add_team_member")]).then(__webpack_require__.bind(null, /*! ./components/admin/team/Add */ "./resources/js/components/admin/team/Add.vue"));
   },
   name: 'add_team_member',
   meta: {
@@ -81433,7 +81433,7 @@ var routes = [{
 }, {
   path: '/backend/team/member/edit/:id',
   component: function component() {
-    return Promise.all(/*! import() | edit_team_member */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("edit_team_member")]).then(__webpack_require__.bind(null, /*! ./components/admin/team/Edit */ "./resources/js/components/admin/team/Edit.vue"));
+    return Promise.all(/*! import() | edit_team_member */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("edit_team_member")]).then(__webpack_require__.bind(null, /*! ./components/admin/team/Edit */ "./resources/js/components/admin/team/Edit.vue"));
   },
   name: 'edit_team_member',
   meta: {
@@ -81443,7 +81443,7 @@ var routes = [{
 }, {
   path: '/backend/team/salary/:id',
   component: function component() {
-    return Promise.all(/*! import() | teamsalary */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("teamsalary")]).then(__webpack_require__.bind(null, /*! ./components/admin/team/Salary */ "./resources/js/components/admin/team/Salary.vue"));
+    return Promise.all(/*! import() | teamsalary */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("teamsalary")]).then(__webpack_require__.bind(null, /*! ./components/admin/team/Salary */ "./resources/js/components/admin/team/Salary.vue"));
   },
   name: 'teamSalary',
   meta: {
@@ -81453,7 +81453,7 @@ var routes = [{
 }, {
   path: '/backend/team/salary/:id/:month',
   component: function component() {
-    return Promise.all(/*! import() | salaryDetails */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("salaryDetails")]).then(__webpack_require__.bind(null, /*! ./components/admin/team/SalaryDetails */ "./resources/js/components/admin/team/SalaryDetails.vue"));
+    return Promise.all(/*! import() | salaryDetails */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("salaryDetails")]).then(__webpack_require__.bind(null, /*! ./components/admin/team/SalaryDetails */ "./resources/js/components/admin/team/SalaryDetails.vue"));
   },
   name: 'SalaryDetails',
   meta: {
@@ -81463,7 +81463,7 @@ var routes = [{
 }, {
   path: '/backend/profite/report',
   component: function component() {
-    return Promise.all(/*! import() | profiteReport */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("admin_dashboard"), __webpack_require__.e("profiteReport")]).then(__webpack_require__.bind(null, /*! ./components/admin/Report/Profite */ "./resources/js/components/admin/Report/Profite.vue"));
+    return Promise.all(/*! import() | profiteReport */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("admin_dashboard"), __webpack_require__.e("profiteReport")]).then(__webpack_require__.bind(null, /*! ./components/admin/Report/Profite */ "./resources/js/components/admin/Report/Profite.vue"));
   },
   name: 'ProfiteReport',
   meta: {
@@ -81473,7 +81473,7 @@ var routes = [{
 }, {
   path: '/backend/sale/profite/report',
   component: function component() {
-    return Promise.all(/*! import() | SaleProfite */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("admin_dashboard"), __webpack_require__.e("SaleProfite")]).then(__webpack_require__.bind(null, /*! ./components/admin/Report/SaleProfite */ "./resources/js/components/admin/Report/SaleProfite.vue"));
+    return Promise.all(/*! import() | SaleProfite */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("admin_dashboard"), __webpack_require__.e("SaleProfite")]).then(__webpack_require__.bind(null, /*! ./components/admin/Report/SaleProfite */ "./resources/js/components/admin/Report/SaleProfite.vue"));
   },
   name: 'SaleProfite',
   meta: {
@@ -81483,7 +81483,7 @@ var routes = [{
 }, {
   path: '/backend/account/report',
   component: function component() {
-    return Promise.all(/*! import() | AccountReport */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("admin_dashboard"), __webpack_require__.e("AccountReport")]).then(__webpack_require__.bind(null, /*! ./components/admin/Report/Account */ "./resources/js/components/admin/Report/Account.vue"));
+    return Promise.all(/*! import() | AccountReport */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("admin_dashboard"), __webpack_require__.e("AccountReport")]).then(__webpack_require__.bind(null, /*! ./components/admin/Report/Account */ "./resources/js/components/admin/Report/Account.vue"));
   },
   name: 'AccountReport',
   meta: {
@@ -81512,7 +81512,7 @@ var routes = [{
 }, {
   path: '/backend/admin/profile',
   component: function component() {
-    return Promise.all(/*! import() | adminProfile */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("adminProfile")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/AdminProfile.vue */ "./resources/js/components/admin/admin/AdminProfile.vue"));
+    return Promise.all(/*! import() | adminProfile */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("adminProfile")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/AdminProfile.vue */ "./resources/js/components/admin/admin/AdminProfile.vue"));
   },
   name: 'adminProfile',
   meta: {
@@ -81522,7 +81522,7 @@ var routes = [{
 }, {
   path: '/backend/add/member',
   component: function component() {
-    return Promise.all(/*! import() | member_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("member_add")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/MemberAdd.vue */ "./resources/js/components/admin/admin/MemberAdd.vue"));
+    return Promise.all(/*! import() | member_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("member_add")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/MemberAdd.vue */ "./resources/js/components/admin/admin/MemberAdd.vue"));
   },
   name: 'member_add',
   meta: {
@@ -81532,7 +81532,7 @@ var routes = [{
 }, {
   path: '/backend/add/admin',
   component: function component() {
-    return Promise.all(/*! import() | admin_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("admin_add")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/AdminAdd.vue */ "./resources/js/components/admin/admin/AdminAdd.vue"));
+    return Promise.all(/*! import() | admin_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("admin_add")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/AdminAdd.vue */ "./resources/js/components/admin/admin/AdminAdd.vue"));
   },
   name: 'admin_add',
   meta: {
@@ -81542,7 +81542,7 @@ var routes = [{
 }, {
   path: '/backend/edit/admin/:adminId',
   component: function component() {
-    return Promise.all(/*! import() | editAdmin */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("editAdmin")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/AdminEdit.vue */ "./resources/js/components/admin/admin/AdminEdit.vue"));
+    return Promise.all(/*! import() | editAdmin */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("editAdmin")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/AdminEdit.vue */ "./resources/js/components/admin/admin/AdminEdit.vue"));
   },
   name: 'editAdmin',
   meta: {
@@ -81551,7 +81551,7 @@ var routes = [{
 }, {
   path: '/backend/edit/member/:adminId',
   component: function component() {
-    return Promise.all(/*! import() | edit_member */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("edit_member")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/EditMember.vue */ "./resources/js/components/admin/admin/EditMember.vue"));
+    return Promise.all(/*! import() | edit_member */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("edit_member")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/EditMember.vue */ "./resources/js/components/admin/admin/EditMember.vue"));
   },
   name: 'edit_member',
   meta: {
@@ -81560,7 +81560,7 @@ var routes = [{
 }, {
   path: '/backend/admin/details/:id',
   component: function component() {
-    return Promise.all(/*! import() | admin_profile */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("adminProfile")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/AdminProfile.vue */ "./resources/js/components/admin/admin/AdminProfile.vue"));
+    return Promise.all(/*! import() | admin_profile */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("adminProfile")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/AdminProfile.vue */ "./resources/js/components/admin/admin/AdminProfile.vue"));
   },
   name: 'admin_profile',
   meta: {
@@ -81570,7 +81570,7 @@ var routes = [{
 }, {
   path: '/backend/member/details/:id',
   component: function component() {
-    return Promise.all(/*! import() | bondhon_member_details */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("bondhon_member_details")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/MemberDetails.vue */ "./resources/js/components/admin/admin/MemberDetails.vue"));
+    return Promise.all(/*! import() | bondhon_member_details */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("bondhon_member_details")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/MemberDetails.vue */ "./resources/js/components/admin/admin/MemberDetails.vue"));
   },
   name: 'bondhon_member_details',
   meta: {
@@ -81580,7 +81580,7 @@ var routes = [{
 }, {
   path: '/backend/assign/role/admin/:id',
   component: function component() {
-    return Promise.all(/*! import() | assingRoleAdmin */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("assingRoleAdmin")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/Role */ "./resources/js/components/admin/admin/Role.vue"));
+    return Promise.all(/*! import() | assingRoleAdmin */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("assingRoleAdmin")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/Role */ "./resources/js/components/admin/admin/Role.vue"));
   },
   name: 'AssignRoleAdmin',
   meta: {
@@ -81589,7 +81589,7 @@ var routes = [{
 }, {
   path: '/backend/assign/admin/permission/:id',
   component: function component() {
-    return Promise.all(/*! import() | assign_admin_permission */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("assign_admin_permission")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/AdminPermission */ "./resources/js/components/admin/admin/AdminPermission.vue"));
+    return Promise.all(/*! import() | assign_admin_permission */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("assign_admin_permission")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/AdminPermission */ "./resources/js/components/admin/admin/AdminPermission.vue"));
   },
   name: 'assign_admin_permission',
   meta: {
@@ -81598,7 +81598,7 @@ var routes = [{
 }, {
   path: '/backend/admin/password/:id',
   component: function component() {
-    return Promise.all(/*! import() | passwordChange */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("passwordChange")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/Password */ "./resources/js/components/admin/admin/Password.vue"));
+    return Promise.all(/*! import() | passwordChange */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("passwordChange")]).then(__webpack_require__.bind(null, /*! ./components/admin/admin/Password */ "./resources/js/components/admin/admin/Password.vue"));
   },
   name: 'passwordChange',
   meta: {
@@ -81607,7 +81607,7 @@ var routes = [{
 }, {
   path: '/backend/sms/campaign',
   component: function component() {
-    return Promise.all(/*! import() | sms_campaign */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("sms_campaign")]).then(__webpack_require__.bind(null, /*! ./components/admin/sms/Send */ "./resources/js/components/admin/sms/Send.vue"));
+    return Promise.all(/*! import() | sms_campaign */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("sms_campaign")]).then(__webpack_require__.bind(null, /*! ./components/admin/sms/Send */ "./resources/js/components/admin/sms/Send.vue"));
   },
   name: 'sms_campaign',
   meta: {
@@ -81634,7 +81634,7 @@ var routes = [{
 }, {
   path: '/backend/contact/message/reply/:id',
   component: function component() {
-    return Promise.all(/*! import() | contact_messgae_reply */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("contact_messgae_reply")]).then(__webpack_require__.bind(null, /*! ./components/admin/contact/Reply */ "./resources/js/components/admin/contact/Reply.vue"));
+    return Promise.all(/*! import() | contact_messgae_reply */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("contact_messgae_reply")]).then(__webpack_require__.bind(null, /*! ./components/admin/contact/Reply */ "./resources/js/components/admin/contact/Reply.vue"));
   },
   name: 'contact_message_reply',
   meta: {
@@ -81643,7 +81643,7 @@ var routes = [{
 }, {
   path: '/backend/loaner/add',
   component: function component() {
-    return Promise.all(/*! import() | addLoan */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("addLoan")]).then(__webpack_require__.bind(null, /*! ./components/admin/loan/Add */ "./resources/js/components/admin/loan/Add.vue"));
+    return Promise.all(/*! import() | addLoan */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("addLoan")]).then(__webpack_require__.bind(null, /*! ./components/admin/loan/Add */ "./resources/js/components/admin/loan/Add.vue"));
   },
   name: 'loaner_add',
   meta: {
@@ -81653,7 +81653,7 @@ var routes = [{
 }, {
   path: '/backend/loaner/edit/:id',
   component: function component() {
-    return Promise.all(/*! import() | addLoan */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("addLoan")]).then(__webpack_require__.bind(null, /*! ./components/admin/loan/edit */ "./resources/js/components/admin/loan/edit.vue"));
+    return Promise.all(/*! import() | addLoan */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("addLoan")]).then(__webpack_require__.bind(null, /*! ./components/admin/loan/edit */ "./resources/js/components/admin/loan/edit.vue"));
   },
   name: 'loaner_edit',
   meta: {
@@ -81663,7 +81663,7 @@ var routes = [{
 }, {
   path: '/backend/loan/manage',
   component: function component() {
-    return Promise.all(/*! import() | Loan */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("Loan")]).then(__webpack_require__.bind(null, /*! ./components/admin/loan/Loan */ "./resources/js/components/admin/loan/Loan.vue"));
+    return Promise.all(/*! import() | Loan */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("Loan")]).then(__webpack_require__.bind(null, /*! ./components/admin/loan/Loan */ "./resources/js/components/admin/loan/Loan.vue"));
   },
   name: 'loan',
   meta: {
@@ -81672,7 +81672,7 @@ var routes = [{
 }, {
   path: '/backend/loaner/detaials/:id',
   component: function component() {
-    return Promise.all(/*! import() | LoanDetails */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("LoanDetails")]).then(__webpack_require__.bind(null, /*! ./components/admin/loan/LoanerDetails */ "./resources/js/components/admin/loan/LoanerDetails.vue"));
+    return Promise.all(/*! import() | LoanDetails */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("LoanDetails")]).then(__webpack_require__.bind(null, /*! ./components/admin/loan/LoanerDetails */ "./resources/js/components/admin/loan/LoanerDetails.vue"));
   },
   name: 'LoanerDetails',
   meta: {
@@ -81681,7 +81681,7 @@ var routes = [{
 }, {
   path: '/backend/feature/banner',
   component: function component() {
-    return Promise.all(/*! import() | feature_banner */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("feature_banner")]).then(__webpack_require__.bind(null, /*! ./components/admin/feature_banner/Index.vue */ "./resources/js/components/admin/feature_banner/Index.vue"));
+    return Promise.all(/*! import() | feature_banner */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("feature_banner")]).then(__webpack_require__.bind(null, /*! ./components/admin/feature_banner/Index.vue */ "./resources/js/components/admin/feature_banner/Index.vue"));
   },
   name: 'feature_banner',
   meta: {
@@ -81691,7 +81691,7 @@ var routes = [{
 }, {
   path: '/backend/general/setting',
   component: function component() {
-    return Promise.all(/*! import() | generl_setting */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("generl_setting")]).then(__webpack_require__.bind(null, /*! ./components/admin/general_setting/General.vue */ "./resources/js/components/admin/general_setting/General.vue"));
+    return Promise.all(/*! import() | generl_setting */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("generl_setting")]).then(__webpack_require__.bind(null, /*! ./components/admin/general_setting/General.vue */ "./resources/js/components/admin/general_setting/General.vue"));
   },
   name: 'general_setting',
   meta: {
@@ -81701,7 +81701,7 @@ var routes = [{
   path: '/backend/footer/info',
   name: 'footer_setting',
   component: function component() {
-    return Promise.all(/*! import() | footer_setting */[__webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("footer_setting")]).then(__webpack_require__.bind(null, /*! ./components/admin/footer_setting/Index.vue */ "./resources/js/components/admin/footer_setting/Index.vue"));
+    return Promise.all(/*! import() | footer_setting */[__webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("footer_setting")]).then(__webpack_require__.bind(null, /*! ./components/admin/footer_setting/Index.vue */ "./resources/js/components/admin/footer_setting/Index.vue"));
   },
   meta: {
     requiresAuthAdmin: true
@@ -81710,7 +81710,7 @@ var routes = [{
   path: '/backend/about/contact/info',
   name: 'about_and_contact',
   component: function component() {
-    return Promise.all(/*! import() | about_and_contact */[__webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("about_and_contact")]).then(__webpack_require__.bind(null, /*! ./components/admin/page_info/AboutContact.vue */ "./resources/js/components/admin/page_info/AboutContact.vue"));
+    return Promise.all(/*! import() | about_and_contact */[__webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("about_and_contact")]).then(__webpack_require__.bind(null, /*! ./components/admin/page_info/AboutContact.vue */ "./resources/js/components/admin/page_info/AboutContact.vue"));
   },
   meta: {
     requiresAuthAdmin: true
@@ -81719,7 +81719,7 @@ var routes = [{
   path: '/backend/aggreement/info',
   name: 'aggreement',
   component: function component() {
-    return Promise.all(/*! import() | aggreement */[__webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("aggreement")]).then(__webpack_require__.bind(null, /*! ./components/admin/page_info/Aggrement.vue */ "./resources/js/components/admin/page_info/Aggrement.vue"));
+    return Promise.all(/*! import() | aggreement */[__webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("aggreement")]).then(__webpack_require__.bind(null, /*! ./components/admin/page_info/Aggrement.vue */ "./resources/js/components/admin/page_info/Aggrement.vue"));
   },
   meta: {
     requiresAuthAdmin: true
@@ -81728,7 +81728,7 @@ var routes = [{
   path: '/backend/debit/statement',
   name: 'debit_statement',
   component: function component() {
-    return Promise.all(/*! import() | debit_statement */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("debit_statement")]).then(__webpack_require__.bind(null, /*! ./components/admin/bill_statement/debit_statement.vue */ "./resources/js/components/admin/bill_statement/debit_statement.vue"));
+    return Promise.all(/*! import() | debit_statement */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("debit_statement")]).then(__webpack_require__.bind(null, /*! ./components/admin/bill_statement/debit_statement.vue */ "./resources/js/components/admin/bill_statement/debit_statement.vue"));
   },
   meta: {
     requiresAuthAdmin: true,
@@ -81738,7 +81738,7 @@ var routes = [{
   path: '/backend/credit/statement',
   name: 'credit_statement',
   component: function component() {
-    return Promise.all(/*! import() | credit_statement */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("credit_statement")]).then(__webpack_require__.bind(null, /*! ./components/admin/bill_statement/credit_statement.vue */ "./resources/js/components/admin/bill_statement/credit_statement.vue"));
+    return Promise.all(/*! import() | credit_statement */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("credit_statement")]).then(__webpack_require__.bind(null, /*! ./components/admin/bill_statement/credit_statement.vue */ "./resources/js/components/admin/bill_statement/credit_statement.vue"));
   },
   meta: {
     requiresAuthAdmin: true,
@@ -81748,7 +81748,7 @@ var routes = [{
   path: '/backend/bill/statement/add',
   name: 'statement_add',
   component: function component() {
-    return Promise.all(/*! import() | statement_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("statement_add")]).then(__webpack_require__.bind(null, /*! ./components/admin/bill_statement/Add.vue */ "./resources/js/components/admin/bill_statement/Add.vue"));
+    return Promise.all(/*! import() | statement_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("statement_add")]).then(__webpack_require__.bind(null, /*! ./components/admin/bill_statement/Add.vue */ "./resources/js/components/admin/bill_statement/Add.vue"));
   },
   meta: {
     requiresAuthAdmin: true,
@@ -81758,7 +81758,7 @@ var routes = [{
   path: '/backend/bill/statement/details/:id',
   name: 'statement_details',
   component: function component() {
-    return Promise.all(/*! import() | statement_details */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("statement_details")]).then(__webpack_require__.bind(null, /*! ./components/admin/bill_statement/statement_details.vue */ "./resources/js/components/admin/bill_statement/statement_details.vue"));
+    return Promise.all(/*! import() | statement_details */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("statement_details")]).then(__webpack_require__.bind(null, /*! ./components/admin/bill_statement/statement_details.vue */ "./resources/js/components/admin/bill_statement/statement_details.vue"));
   },
   meta: {
     requiresAuthAdmin: true,
@@ -81778,7 +81778,7 @@ var routes = [{
   path: '/backend/sell/center/add',
   name: 'sell_center_add',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("sell_center_add")]).then(__webpack_require__.bind(null, /*! ./components/admin/sell_center/Add.vue */ "./resources/js/components/admin/sell_center/Add.vue"));
+    return Promise.all(/*! import() | sell_center_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("sell_center_add")]).then(__webpack_require__.bind(null, /*! ./components/admin/sell_center/Add.vue */ "./resources/js/components/admin/sell_center/Add.vue"));
   },
   meta: {
     requiresAuthAdmin: true,
@@ -81788,7 +81788,7 @@ var routes = [{
   path: '/backend/sell/center/edit/:id',
   name: 'sell_center_edit',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("sell_center_edit")]).then(__webpack_require__.bind(null, /*! ./components/admin/sell_center/Edit.vue */ "./resources/js/components/admin/sell_center/Edit.vue"));
+    return Promise.all(/*! import() | sell_center_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("sell_center_edit")]).then(__webpack_require__.bind(null, /*! ./components/admin/sell_center/Edit.vue */ "./resources/js/components/admin/sell_center/Edit.vue"));
   },
   meta: {
     requiresAuthAdmin: true,
@@ -81798,7 +81798,7 @@ var routes = [{
   path: '/backend/sell/center/manager',
   name: 'sell_center_manager',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_manager */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("sell_center_manager")]).then(__webpack_require__.bind(null, /*! ./components/admin/sell_center_manager/Index.vue */ "./resources/js/components/admin/sell_center_manager/Index.vue"));
+    return Promise.all(/*! import() | sell_center_manager */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("sell_center_manager")]).then(__webpack_require__.bind(null, /*! ./components/admin/sell_center_manager/Index.vue */ "./resources/js/components/admin/sell_center_manager/Index.vue"));
   },
   meta: {
     requiresAuthAdmin: true,
@@ -81808,7 +81808,7 @@ var routes = [{
   path: '/backend/sell/center/manager/add',
   name: 'sell_center_manager_add',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_manager_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("sell_center_manager_add")]).then(__webpack_require__.bind(null, /*! ./components/admin/sell_center_manager/Add.vue */ "./resources/js/components/admin/sell_center_manager/Add.vue"));
+    return Promise.all(/*! import() | sell_center_manager_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("sell_center_manager_add")]).then(__webpack_require__.bind(null, /*! ./components/admin/sell_center_manager/Add.vue */ "./resources/js/components/admin/sell_center_manager/Add.vue"));
   },
   meta: {
     requiresAuthAdmin: true,
@@ -81818,7 +81818,7 @@ var routes = [{
   path: '/backend/sell/center/manager/edit/:id',
   name: 'sell_center_manager_edit',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_manager_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("sell_center_manager_edit")]).then(__webpack_require__.bind(null, /*! ./components/admin/sell_center_manager/Edit.vue */ "./resources/js/components/admin/sell_center_manager/Edit.vue"));
+    return Promise.all(/*! import() | sell_center_manager_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("sell_center_manager_edit")]).then(__webpack_require__.bind(null, /*! ./components/admin/sell_center_manager/Edit.vue */ "./resources/js/components/admin/sell_center_manager/Edit.vue"));
   },
   meta: {
     requiresAuthAdmin: true,
@@ -81827,7 +81827,7 @@ var routes = [{
 }, {
   path: '/sell/center/login',
   component: function component() {
-    return Promise.all(/*! import() | merchnat_login */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("merchnat_login")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/Login */ "./resources/js/components/sellcenter/Login.vue"));
+    return Promise.all(/*! import() | merchnat_login */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("merchnat_login")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/Login */ "./resources/js/components/sellcenter/Login.vue"));
   },
   name: 'sell_center_login',
   meta: {
@@ -81836,7 +81836,7 @@ var routes = [{
 }, {
   path: '/sell/center/password/reset',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_password_reset */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("vendors~new_password_sellcenter~sell_center_code_verified~sell_center_password_reset"), __webpack_require__.e("new_password_sellcenter~sell_center_code_verified~sell_center_password_reset"), __webpack_require__.e("sell_center_password_reset")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/PasswordReset */ "./resources/js/components/sellcenter/PasswordReset.vue"));
+    return Promise.all(/*! import() | sell_center_password_reset */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("vendors~new_password_sellcenter~sell_center_code_verified~sell_center_password_reset"), __webpack_require__.e("new_password_sellcenter~sell_center_code_verified~sell_center_password_reset"), __webpack_require__.e("sell_center_password_reset")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/PasswordReset */ "./resources/js/components/sellcenter/PasswordReset.vue"));
   },
   name: 'sell_center_password_reset',
   meta: {
@@ -81845,7 +81845,7 @@ var routes = [{
 }, {
   path: '/sell/center/code/verify/:phone',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_code_verified */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("vendors~new_password_sellcenter~sell_center_code_verified~sell_center_password_reset"), __webpack_require__.e("new_password_sellcenter~sell_center_code_verified~sell_center_password_reset"), __webpack_require__.e("sell_center_code_verified")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/CodeVerified */ "./resources/js/components/sellcenter/CodeVerified.vue"));
+    return Promise.all(/*! import() | sell_center_code_verified */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("vendors~new_password_sellcenter~sell_center_code_verified~sell_center_password_reset"), __webpack_require__.e("new_password_sellcenter~sell_center_code_verified~sell_center_password_reset"), __webpack_require__.e("sell_center_code_verified")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/CodeVerified */ "./resources/js/components/sellcenter/CodeVerified.vue"));
   },
   name: 'sell_center_code_verified',
   meta: {
@@ -81854,7 +81854,7 @@ var routes = [{
 }, {
   path: '/sell/center/reset/new/password/:phone',
   component: function component() {
-    return Promise.all(/*! import() | new_password_sellcenter */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("vendors~new_password_sellcenter~sell_center_code_verified~sell_center_password_reset"), __webpack_require__.e("new_password_sellcenter~sell_center_code_verified~sell_center_password_reset"), __webpack_require__.e("new_password_sellcenter")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/NewPassword */ "./resources/js/components/sellcenter/NewPassword.vue"));
+    return Promise.all(/*! import() | new_password_sellcenter */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("vendors~new_password_sellcenter~sell_center_code_verified~sell_center_password_reset"), __webpack_require__.e("new_password_sellcenter~sell_center_code_verified~sell_center_password_reset"), __webpack_require__.e("new_password_sellcenter")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/NewPassword */ "./resources/js/components/sellcenter/NewPassword.vue"));
   },
   name: 'new_password_sellcenter',
   meta: {
@@ -81863,7 +81863,7 @@ var routes = [{
 }, {
   path: '/sell/center/dashboard',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_dashboard */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("sell_center_dashboard")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/Dashboard */ "./resources/js/components/sellcenter/Dashboard.vue"));
+    return Promise.all(/*! import() | sell_center_dashboard */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("sell_center_dashboard")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/Dashboard */ "./resources/js/components/sellcenter/Dashboard.vue"));
   },
   name: 'sell_center_dashboard',
   meta: {
@@ -81873,7 +81873,7 @@ var routes = [{
 }, {
   path: '/sell/center/product/manage',
   component: function component() {
-    return Promise.all(/*! import() | merchnat_product_manage */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("vendors~merchnat_product_manage"), __webpack_require__.e("merchnat_product_manage")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/product/Menage */ "./resources/js/components/sellcenter/product/Menage.vue"));
+    return Promise.all(/*! import() | merchnat_product_manage */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("vendors~merchnat_product_manage"), __webpack_require__.e("merchnat_product_manage")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/product/Menage */ "./resources/js/components/sellcenter/product/Menage.vue"));
   },
   name: 'sell_center_product_manage',
   meta: {
@@ -81883,7 +81883,7 @@ var routes = [{
 }, {
   path: '/sell/center/product/add',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_product_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("sell_center_product_add")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/product/Add */ "./resources/js/components/sellcenter/product/Add.vue"));
+    return Promise.all(/*! import() | sell_center_product_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("sell_center_product_add")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/product/Add */ "./resources/js/components/sellcenter/product/Add.vue"));
   },
   name: 'sell_center_product_add',
   meta: {
@@ -81893,7 +81893,7 @@ var routes = [{
 }, {
   path: '/sell/center/product/edit/:id',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_product_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("sell_center_product_edit")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/product/Edit */ "./resources/js/components/sellcenter/product/Edit.vue"));
+    return Promise.all(/*! import() | sell_center_product_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("vendors~about_and_contact~add_carrier~aggreement~edit_carrier~footer_setting~generl_setting~project_~cfa3d204"), __webpack_require__.e("sell_center_product_edit")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/product/Edit */ "./resources/js/components/sellcenter/product/Edit.vue"));
   },
   name: 'sell_center_product_edit',
   meta: {
@@ -81963,7 +81963,7 @@ var routes = [{
 }, {
   path: '/sell/center/company/sale/add',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_company_sale_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("sell_center_company_sale_add")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/sale/CompanySaleAdd.vue */ "./resources/js/components/sellcenter/sale/CompanySaleAdd.vue"));
+    return Promise.all(/*! import() | sell_center_company_sale_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("sell_center_company_sale_add")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/sale/CompanySaleAdd.vue */ "./resources/js/components/sellcenter/sale/CompanySaleAdd.vue"));
   },
   name: 'sell_center_company_sale_add',
   meta: {
@@ -81973,7 +81973,7 @@ var routes = [{
 }, {
   path: '/sell/center/sale/add',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_sale_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("sell_center_sale_add")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/sale/ShopSaleAdd.vue */ "./resources/js/components/sellcenter/sale/ShopSaleAdd.vue"));
+    return Promise.all(/*! import() | sell_center_sale_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("sell_center_sale_add")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/sale/ShopSaleAdd.vue */ "./resources/js/components/sellcenter/sale/ShopSaleAdd.vue"));
   },
   name: 'sell_center_sale_add',
   meta: {
@@ -81983,7 +81983,7 @@ var routes = [{
 }, {
   path: '/sell/center/sale/edit/:id',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_sale_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("sell_center_sale_edit")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/sale/Edit.vue */ "./resources/js/components/sellcenter/sale/Edit.vue"));
+    return Promise.all(/*! import() | sell_center_sale_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("sell_center_sale_edit")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/sale/Edit.vue */ "./resources/js/components/sellcenter/sale/Edit.vue"));
   },
   name: 'sell_center_sale_edit',
   meta: {
@@ -81993,7 +81993,7 @@ var routes = [{
 }, {
   path: '/sell/center/profile',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_profile */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("sell_center_profile")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/profile/Profile */ "./resources/js/components/sellcenter/profile/Profile.vue"));
+    return Promise.all(/*! import() | sell_center_profile */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("sell_center_profile")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/profile/Profile */ "./resources/js/components/sellcenter/profile/Profile.vue"));
   },
   name: 'sell_center_profile',
   meta: {
@@ -82003,7 +82003,7 @@ var routes = [{
 }, {
   path: '/sell/center/profile/edit',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_profile_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("sell_center_profile_edit")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/profile/Change_profile.vue */ "./resources/js/components/sellcenter/profile/Change_profile.vue"));
+    return Promise.all(/*! import() | sell_center_profile_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("sell_center_profile_edit")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/profile/Change_profile.vue */ "./resources/js/components/sellcenter/profile/Change_profile.vue"));
   },
   name: 'sell_center_profile_edit',
   meta: {
@@ -82013,7 +82013,7 @@ var routes = [{
 }, {
   path: '/sell/center/security/edit',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_password_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("sell_center_password_edit")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/profile/Change_password.vue */ "./resources/js/components/sellcenter/profile/Change_password.vue"));
+    return Promise.all(/*! import() | sell_center_password_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("sell_center_password_edit")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/profile/Change_password.vue */ "./resources/js/components/sellcenter/profile/Change_password.vue"));
   },
   name: 'sell_center_password_edit',
   meta: {
@@ -82033,7 +82033,7 @@ var routes = [{
 }, {
   path: '/sell/center/supplier/amount/:id',
   component: function component() {
-    return Promise.all(/*! import() | SupplierAmount */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("SupplierAmount")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/supplier/Amount.vue */ "./resources/js/components/sellcenter/supplier/Amount.vue"));
+    return Promise.all(/*! import() | SupplierAmount */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("SupplierAmount")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/supplier/Amount.vue */ "./resources/js/components/sellcenter/supplier/Amount.vue"));
   },
   name: 'SupplierAmount',
   meta: {
@@ -82043,7 +82043,7 @@ var routes = [{
 }, {
   path: '/sell/center/Supplier/Add',
   component: function component() {
-    return Promise.all(/*! import() | supplierAdd */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("supplierAdd")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/supplier/Add.vue */ "./resources/js/components/sellcenter/supplier/Add.vue"));
+    return Promise.all(/*! import() | supplierAdd */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("supplierAdd")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/supplier/Add.vue */ "./resources/js/components/sellcenter/supplier/Add.vue"));
   },
   name: 'supllierAdd',
   meta: {
@@ -82053,7 +82053,7 @@ var routes = [{
 }, {
   path: '/sell/center/edit/supplier/:id',
   component: function component() {
-    return Promise.all(/*! import() | supplierEdit */[__webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("supplierEdit")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/supplier/Edit.vue */ "./resources/js/components/sellcenter/supplier/Edit.vue"));
+    return Promise.all(/*! import() | supplierEdit */[__webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("supplierEdit")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/supplier/Edit.vue */ "./resources/js/components/sellcenter/supplier/Edit.vue"));
   },
   name: 'supplierEdit',
   meta: {
@@ -82073,7 +82073,7 @@ var routes = [{
 }, {
   path: '/sell/center/add/purchase',
   component: function component() {
-    return Promise.all(/*! import() | addPurchase */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("addPurchase")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/purchase/Add.vue */ "./resources/js/components/sellcenter/purchase/Add.vue"));
+    return Promise.all(/*! import() | addPurchase */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("addPurchase")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/purchase/Add.vue */ "./resources/js/components/sellcenter/purchase/Add.vue"));
   },
   name: 'addPurchase',
   meta: {
@@ -82083,7 +82083,7 @@ var routes = [{
 }, {
   path: '/sell/center/purchase/:id',
   component: function component() {
-    return Promise.all(/*! import() | purchaseView */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("purchaseView")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/purchase/View.vue */ "./resources/js/components/sellcenter/purchase/View.vue"));
+    return Promise.all(/*! import() | purchaseView */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("purchaseView")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/purchase/View.vue */ "./resources/js/components/sellcenter/purchase/View.vue"));
   },
   name: 'purchaseView',
   meta: {
@@ -82103,7 +82103,7 @@ var routes = [{
 }, {
   path: '/sell/center/credit/add',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_credit_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("sell_center_credit_add")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/credit/Add.vue */ "./resources/js/components/sellcenter/credit/Add.vue"));
+    return Promise.all(/*! import() | sell_center_credit_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("sell_center_credit_add")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/credit/Add.vue */ "./resources/js/components/sellcenter/credit/Add.vue"));
   },
   name: 'sell_center_credit_add',
   meta: {
@@ -82113,7 +82113,7 @@ var routes = [{
 }, {
   path: '/sell/center/credit/edit/:id',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_credit_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("sell_center_credit_edit")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/credit/Edit.vue */ "./resources/js/components/sellcenter/credit/Edit.vue"));
+    return Promise.all(/*! import() | sell_center_credit_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("sell_center_credit_edit")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/credit/Edit.vue */ "./resources/js/components/sellcenter/credit/Edit.vue"));
   },
   name: 'sell_center_credit_edit',
   meta: {
@@ -82133,7 +82133,7 @@ var routes = [{
 }, {
   path: '/sell/center/debit/add',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_debit_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("sell_center_debit_add")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/debit/Add.vue */ "./resources/js/components/sellcenter/debit/Add.vue"));
+    return Promise.all(/*! import() | sell_center_debit_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("sell_center_debit_add")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/debit/Add.vue */ "./resources/js/components/sellcenter/debit/Add.vue"));
   },
   name: 'sell_center_debit_add',
   meta: {
@@ -82143,7 +82143,7 @@ var routes = [{
 }, {
   path: '/sell/center/debit/edit/:id',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_debit_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("sell_center_debit_edit")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/debit/Edit.vue */ "./resources/js/components/sellcenter/debit/Edit.vue"));
+    return Promise.all(/*! import() | sell_center_debit_edit */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("sell_center_debit_edit")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/debit/Edit.vue */ "./resources/js/components/sellcenter/debit/Edit.vue"));
   },
   name: 'sell_center_debit_edit',
   meta: {
@@ -82154,7 +82154,7 @@ var routes = [{
   path: '/sell/center/debit/statement',
   name: 'sell_center_debit_statement',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_debit_statement */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("sell_center_debit_statement")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/bill_statement/debit_statement.vue */ "./resources/js/components/sellcenter/bill_statement/debit_statement.vue"));
+    return Promise.all(/*! import() | sell_center_debit_statement */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("sell_center_debit_statement")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/bill_statement/debit_statement.vue */ "./resources/js/components/sellcenter/bill_statement/debit_statement.vue"));
   },
   meta: {
     authSellCenter: true,
@@ -82164,7 +82164,7 @@ var routes = [{
   path: '/sell/center/credit/statement',
   name: 'sell_center_credit_statement',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_credit_statement */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("sell_center_credit_statement")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/bill_statement/credit_statement.vue */ "./resources/js/components/sellcenter/bill_statement/credit_statement.vue"));
+    return Promise.all(/*! import() | sell_center_credit_statement */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("sell_center_credit_statement")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/bill_statement/credit_statement.vue */ "./resources/js/components/sellcenter/bill_statement/credit_statement.vue"));
   },
   meta: {
     authSellCenter: true,
@@ -82174,7 +82174,7 @@ var routes = [{
   path: '/sell/center/bill/statement/add',
   name: 'sell_center_statement_add',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_statement_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("sell_center_statement_add")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/bill_statement/Add.vue */ "./resources/js/components/sellcenter/bill_statement/Add.vue"));
+    return Promise.all(/*! import() | sell_center_statement_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("sell_center_statement_add")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/bill_statement/Add.vue */ "./resources/js/components/sellcenter/bill_statement/Add.vue"));
   },
   meta: {
     authSellCenter: true,
@@ -82184,7 +82184,7 @@ var routes = [{
   path: '/sell/center/bill/statement/details/:id',
   name: 'sell_center_statement_details',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_statement_details */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("sell_center_statement_details")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/bill_statement/statement_details.vue */ "./resources/js/components/sellcenter/bill_statement/statement_details.vue"));
+    return Promise.all(/*! import() | sell_center_statement_details */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("sell_center_statement_details")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/bill_statement/statement_details.vue */ "./resources/js/components/sellcenter/bill_statement/statement_details.vue"));
   },
   meta: {
     authSellCenter: true,
@@ -82193,7 +82193,7 @@ var routes = [{
 }, {
   path: '/sell/center/employee',
   component: function component() {
-    return Promise.all(/*! import() | employee_sell_center */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("employee_sell_center")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/employee/index */ "./resources/js/components/sellcenter/employee/index.vue"));
+    return Promise.all(/*! import() | employee_sell_center */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("employee_sell_center")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/employee/index */ "./resources/js/components/sellcenter/employee/index.vue"));
   },
   name: 'employee_sell_center',
   meta: {
@@ -82203,7 +82203,7 @@ var routes = [{
 }, {
   path: '/sell/center/employee/add',
   component: function component() {
-    return Promise.all(/*! import() | add_employee_sell_center */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("add_employee_sell_center")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/employee/Add */ "./resources/js/components/sellcenter/employee/Add.vue"));
+    return Promise.all(/*! import() | add_employee_sell_center */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("add_employee_sell_center")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/employee/Add */ "./resources/js/components/sellcenter/employee/Add.vue"));
   },
   name: 'add_employee_sell_center',
   meta: {
@@ -82213,7 +82213,7 @@ var routes = [{
 }, {
   path: '/sell/center/employee/edit/:id',
   component: function component() {
-    return Promise.all(/*! import() | edit_employee_sell_center */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~8cdf9709"), __webpack_require__.e("edit_employee_sell_center")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/employee/Edit */ "./resources/js/components/sellcenter/employee/Edit.vue"));
+    return Promise.all(/*! import() | edit_employee_sell_center */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("edit_employee_sell_center")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/employee/Edit */ "./resources/js/components/sellcenter/employee/Edit.vue"));
   },
   name: 'edit_employee_sell_center',
   meta: {
@@ -82223,12 +82223,42 @@ var routes = [{
 }, {
   path: '/sell/center/employee/salary/:id',
   component: function component() {
-    return Promise.all(/*! import() | sell_center_employee_salary */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~5932048e"), __webpack_require__.e("sell_center_employee_salary")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/employee/Salary */ "./resources/js/components/sellcenter/employee/Salary.vue"));
+    return Promise.all(/*! import() | sell_center_employee_salary */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("sell_center_employee_salary")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/employee/Salary */ "./resources/js/components/sellcenter/employee/Salary.vue"));
   },
   name: 'sell_center_employee_salary',
   meta: {
     title: 'Employee Salary',
     authSellCenter: true
+  }
+}, {
+  path: '/sell/center/courier',
+  component: function component() {
+    return __webpack_require__.e(/*! import() | sell_center_courier */ "sell_center_courier").then(__webpack_require__.bind(null, /*! ./components/sellcenter/courier/Index.vue */ "./resources/js/components/sellcenter/courier/Index.vue"));
+  },
+  name: 'sell_center_courier',
+  meta: {
+    authSellCenter: true,
+    title: 'Courier'
+  }
+}, {
+  path: '/sell/center/courier/add',
+  component: function component() {
+    return Promise.all(/*! import() | sell_center_courier_add */[__webpack_require__.e("vendors~AccountReport~Loan~LoanDetails~SaleProfite~SupplierAmount~accoun_purpose_edit~account_purpos~590512e9"), __webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("sell_center_courier_add")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/courier/Add.vue */ "./resources/js/components/sellcenter/courier/Add.vue"));
+  },
+  name: 'sell_center_courier_add',
+  meta: {
+    authSellCenter: true,
+    title: 'add|credit'
+  }
+}, {
+  path: '/sell/center/courier/edit/:id',
+  component: function component() {
+    return Promise.all(/*! import() | sell_center_courier_edit */[__webpack_require__.e("vendors~AccountReport~SaleProfite~about_and_contact~accoun_purpose_edit~account_purpose_add~addLoan~~ab343946"), __webpack_require__.e("sell_center_courier_edit")]).then(__webpack_require__.bind(null, /*! ./components/sellcenter/courier/Edit.vue */ "./resources/js/components/sellcenter/courier/Edit.vue"));
+  },
+  name: 'sell_center_courier_edit',
+  meta: {
+    authSellCenter: true,
+    title: 'Edit Courier'
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({

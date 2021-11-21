@@ -1398,6 +1398,39 @@ const routes = [
         }
     },
 
+    
+    {
+        path: '/sell/center/courier',
+        component: () => import(/* webpackChunkName: "sell_center_courier" */'./components/sellcenter/courier/Index.vue'),
+        name: 'sell_center_courier',
+        meta: {
+            authSellCenter: true,
+            title: 'Courier'
+        }
+
+    },
+ 
+    {
+        path: '/sell/center/courier/add',
+        component: () => import(/* webpackChunkName: "sell_center_courier_add" */'./components/sellcenter/courier/Add.vue'),
+        name: 'sell_center_courier_add',
+        meta: {
+            authSellCenter: true,
+            title: 'add|credit'
+        }
+
+    },
+
+    {
+        path: '/sell/center/courier/edit/:id',
+        component: () => import(/* webpackChunkName: "sell_center_courier_edit" */'./components/sellcenter/courier/Edit.vue'),
+        name: 'sell_center_courier_edit',
+        meta: {
+            authSellCenter: true,
+            title: 'Edit Courier'
+        }
+
+    },
 
 
 

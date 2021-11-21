@@ -164,7 +164,18 @@ $sellcenter = session()->get('sellcenter');
             
           </ul>
         </li>
-
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-list-alt"></i> <span> Couriers</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li> <router-link  :to="{ name: 'sell_center_courier_add'}"  > <i class="fa fa-plus"></i> Add</router-link></li>
+            <li> <router-link  :to="{ name: 'sell_center_courier' }"  > <i class="fa fa-eye"></i>Manage</router-link></li>
+          </ul>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
