@@ -466,6 +466,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -479,10 +484,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     return {
       //form submit data
       form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
-        type: 1,
+        type: 2,
         customer_name: "",
         customer_phone: "",
         customer_address: "",
+        comment: '',
         //multiple product data
         products: [],
         courier: '',
@@ -490,7 +496,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         paid: 0,
         due: 0,
         discount: 0,
-        company_id: "",
         paid_by: 'Cash',
         invoice_no: "",
         partials_paid_by: "",
@@ -540,7 +545,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
       var _this2 = this;
 
       this.$Progress.start();
-      this.form.post("/sell/center/company/sale/store").then(function (resp) {
+      this.form.post("/api/sell/center/company/sale/store").then(function (resp) {
         _this2.$Progress.finish();
 
         console.log(resp);
@@ -548,15 +553,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         if (resp.data.status == "SUCCESS") {
           console.log(resp);
 
-          if (_this2.form.type == 1) {
-            _this2.$router.push({
-              name: "officeSale"
-            });
-          } else {
-            _this2.$router.push({
-              name: "compnaySale"
-            });
-          }
+          _this2.$router.push({
+            name: "sell_center_company_sale"
+          });
 
           _this2.$toasted.show(resp.data.message, {
             type: "success",
@@ -794,7 +793,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
           console.log(resp); //when com data from t resp
 
           if (resp.data.customer) {
-            _this5.form.customer_name = resp.data.customer.name, _this5.form.customer_address = resp.data.customer.address;
+            _this5.form.customer_name = resp.data.customer.customer_name, _this5.form.customer_address = resp.data.customer.customer_address;
 
             _this5.$toasted.show('Registered customer', {
               type: "info",
@@ -1062,7 +1061,7 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "btn btn-primary",
-                  attrs: { to: { name: "companySale" } }
+                  attrs: { to: { name: "sell_center_company_sale" } }
                 },
                 [_c("i", { staticClass: "fa fa-arrow-left" })]
               )
@@ -1830,6 +1829,40 @@ var render = function() {
                                   _c("td", [_vm._v("Amount Due")]),
                                   _vm._v(" "),
                                   _c("td", [_vm._v(_vm._s(_vm.form.due))])
+                                ]),
+                                _vm._v(" "),
+                                _c("tr", [
+                                  _c("td", { attrs: { colspan: "5" } }),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("Order Note(optional) ")]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.form.comment,
+                                          expression: "form.comment"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { type: "text" },
+                                      domProps: { value: _vm.form.comment },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.form,
+                                            "comment",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
                                 ])
                               ],
                               2

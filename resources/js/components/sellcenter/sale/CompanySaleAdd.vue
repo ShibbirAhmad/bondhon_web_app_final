@@ -4,7 +4,7 @@
     <div class="content-wrapper">
       <section class="content-header">
         <h1>
-          <router-link :to="{ name: 'companySale' }" class="btn btn-primary">
+          <router-link :to="{ name: 'sell_center_company_sale' }" class="btn btn-primary">
             <i class="fa fa-arrow-left"></i>
           </router-link>
         </h1>
@@ -286,6 +286,11 @@
                         <td>Amount Due</td>
                         <td>{{ form.due }}</td>
                       </tr>
+                       <tr>
+                        <td colspan="5"></td>
+                        <td>Order Note(optional) </td>
+                        <td> <input type="text" class="form-control" v-model="form.comment"> </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -323,10 +328,11 @@ export default {
     return {
       //form submit data
       form: new Form({
-        type: 1,
+        type: 2,
         customer_name: "",
         customer_phone: "",
         customer_address: "",
+        comment:'',
       //multiple product data
         products: [],
         courier:'',
@@ -334,7 +340,6 @@ export default {
         paid: 0,
         due: 0,
         discount:0,
-        company_id: "",
         paid_by: 'Cash',
         invoice_no: "",
         partials_paid_by:"",
@@ -348,7 +353,7 @@ export default {
        "Nagad",
        "Bank"
       ],
-      error: "",
+      error:"",
       //store product item from to get db when user type product code or product name
       productItems: [],
       //auto complete
@@ -389,17 +394,13 @@ export default {
     add() {
      this.$Progress.start();
       this.form
-        .post("/sell/center/company/sale/store")
+        .post("/api/sell/center/company/sale/store")
         .then((resp) => {
           this.$Progress.finish();
           console.log(resp);
           if (resp.data.status == "SUCCESS") {
             console.log(resp);
-            if (this.form.type == 1) {
-              this.$router.push({ name: "officeSale" });
-            } else {
-              this.$router.push({ name: "compnaySale" });
-            }
+            this.$router.push({ name: "sell_center_company_sale" });
             this.$toasted.show(resp.data.message, {
               type: "success",
               position: "top-center",
@@ -657,8 +658,8 @@ export default {
             console.log(resp)
             //when com data from t resp
              if (resp.data.customer) {
-                this.form.customer_name = resp.data.customer.name,
-                this.form.customer_address = resp.data.customer.address;
+                this.form.customer_name = resp.data.customer.customer_name,
+                this.form.customer_address = resp.data.customer.customer_address;
                  this.$toasted.show('Registered customer', {
                       type: "info",
                       position: "top-center",

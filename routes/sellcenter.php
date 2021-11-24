@@ -105,6 +105,8 @@ Route::group([
        Route::get('api/sellcenter/sale/item/{id}', 'SaleController@saleItem');
        Route::post('api/sellcenter/sale/update/{id}', 'SaleController@update');
        Route::post('api/sellcenter/sale/add', 'SaleController@store');
+       Route::get('api/sell/center/company/sales', 'SaleController@CompanySales');
+       Route::post('api/sell/center/company/sale/store', 'SaleController@CompanySaleStore');
        //new
        Route::get('api/search/sell/center/customer/{phone}', 'SaleController@searchCustomer');
        Route::get('api/sellcenter/coureir/list', 'SaleController@Couriers');

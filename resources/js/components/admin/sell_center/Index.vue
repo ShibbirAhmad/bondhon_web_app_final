@@ -99,7 +99,7 @@ export default {
        })
     },
     getShowroms() {
-      axios.get("/api/sellcenter/list")
+      axios.get("/api/list/of/sellcenter")
       .then((resp) => {
         if (resp.data.status == "SUCCESS") {
           this.sellcenters = resp.data.sellcenters;

@@ -140,7 +140,7 @@ export default {
 
   methods: {
      getShowroms() {
-      axios.get("/api/sellcenter/list").then((resp) => {
+      axios.get("/api/list/of/sellcenter").then((resp) => {
         if (resp.data.status == "SUCCESS") {
           this.sellcenters = resp.data.sellcenters;
         }
@@ -148,7 +148,7 @@ export default {
     },
     getManagerList(page = 1) {
       axios
-        .get("/api/sellcenter/manager/list?page=" + page, {
+        .get("/api/manager/list/sellcenter?page=" + page, {
           params: { item: this.item },
         })
         .then((resp) => {
@@ -160,7 +160,7 @@ export default {
         })
 
     },
-
+    
     trash_manager(manager_id) {
       if (confirm("Are you sure to remove")) {
         axios

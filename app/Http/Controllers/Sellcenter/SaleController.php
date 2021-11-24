@@ -193,6 +193,105 @@ class SaleController extends Controller
      }
 
 
+     public function CompanySales(Request $request){
+
+           $item= $request->item ?? 30 ;
+           $sales=SellCenterSale::where('sell_center_id',session()->get('sellcenter')['id'])
+                                ->where('sale_type',2)->select('sell_center_id','amount','discount','customer_name',
+                                                        'customer_phone','customer_address',
+                                                        'invoice_no','paid')->paginate($item);
+           return response()->json(['status' => 'SUCCESS',
+                                    'sales' => $sales 
+                                  ]);
+     }
+
+
+     public function CompanySaleStore(Request $request){
+          // return $request->all();
+            $validatedData = $request->validate([
+                'customer_name' => 'required ',
+                'customer_phone' => 'required|digits:11',
+                'customer_address' => 'required',
+            ]); 
+
+            DB::transaction(function() use($request){
+                      
+                $max_id=SellCenterSale::max('id') ?? 1 ; 
+                $invoice_no=$max_id + rand(111,999) ;
+                $discount= 0 ;
+                if ($request->discount > 0) {
+                    $discount += $request->discount / count($request->products) ;
+                }
+                foreach ($request->products as  $sale_item) {
+
+                    $sale = new SellCenterSale();
+                    $sale->sell_center_id = session()->get('sellcenter')['id'];
+                    $sale->sale_type = 2;
+                    $sale->sell_center_product_id = $sale_item['product_id'];
+                    $sale->invoice_no =$invoice_no;
+                    $sale->customer_name =$request->customer_name;
+                    $sale->customer_phone =$request->customer_phone;
+                    $sale->customer_address =$request->customer_address;
+                    $sale->size =$sale_item['size']?? null;
+                    $sale->color =$sale_item['color'] ?? null;
+                    $sale->comment =$request->comment ?? null;
+                    $sale->courier =$request->courier ?? null;
+                    $sale->price = $sale_item['price'];
+                    $sale->sale_quantity = floatval($sale_item['quantity']);
+                    $sale->quantity_type = "pice";
+                    $sale->discount = $discount ;
+                    $sale->amount =  $sale_item['total'] ;
+                    $sale->save();
+
+                    //update stock
+                    $product=SellCenterProduct::find($sale_item['product_id']);
+                    $product->stock= floatval($product->stock) -  floatval($sale_item['quantity']) ;
+                    $product->save();
+
+                }
+
+                if ($request->paid > 0) {
+                    $partial_paid = 0 ;
+                    if ($request->partials_payment_amount > 0) {
+                        $partial_paid +=$request->partials_payment_amount ;
+                        $credit = new SellCenterCredit();
+                        $credit->sell_center_id = session()->get('sellcenter')['id'];
+                        $credit->purpose = "company sale partial";
+                        $credit->amount =  intval($partial_paid);
+                        $credit->comment = null;
+                        $credit->date = date('Y-m-d');
+                        $credit->credit_in = $request->partials_paid_by;
+                        $credit->save();
+                    }
+                    
+                    $credit = new SellCenterCredit();
+                    $credit->sell_center_id = session()->get('sellcenter')['id'];
+                    $credit->purpose = "company sale paid";
+                    $credit->amount =  intval($request->paid) - intval($partial_paid);
+                    $credit->comment = null;
+                    $credit->date = date('Y-m-d');
+                    $credit->credit_in = $request->paid_by;
+                    $credit->save();
+                }
+
+
+
+            });
+        
+
+
+        //return success message
+        return response()->json([
+            'status' => 'SUCCESS',
+            'message' => 'added successfully'
+        ]);
+    
+         
+     }
+
+
+
+
     public function  profitCalculator($sales_products){
 
             $sale_amount = 0 ;
@@ -294,20 +393,17 @@ class SaleController extends Controller
 
 
 
-    public function StoreCourier(Request $request)
-    {
+    public function StoreCourier(Request $request){
         $this->validate($request, [
             'name' => 'required|unique:sell_center_couriers',
-
         ]);
-
         $courier = new SellCenterCourier();
         $courier->name = $request->name;
         $courier->save();
-            return response()->json([
-                'status' => 'SUCCESS',
-                'message' => "add successfully"
-            ]);
+        return response()->json([
+            'status' => 'SUCCESS',
+            'message' => "add successfully"
+        ]);
         
     }
 

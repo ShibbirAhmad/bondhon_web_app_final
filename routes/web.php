@@ -312,17 +312,17 @@ Route::group([
 
 
     //sellcenter routes
-    Route::get('api/sellcenter/list','sellCenterController@index');
-    Route::post('api/sellcenter/add','sellCenterController@addSellCenter');
-    Route::get('api/admin/access/to/sell/center/{id}','sellCenterController@adminAccessSellCenter');
-    Route::get('api/sellcenter/edit/item/{id}','sellCenterController@sellcenterItem');
-    Route::post('api/sellcenter/update/{id}','sellCenterController@updateSellCenter');
+    Route::get('api/list/of/sellcenter','SellCenterController@index');
+    Route::post('api/sellcenter/add','SellCenterController@addSellCenter');
+    Route::get('api/admin/access/to/sell/center/{id}','SellCenterController@adminAccessSellCenter');
+    Route::get('api/sellcenter/edit/item/{id}','SellCenterController@sellcenterItem');
+    Route::post('api/sellcenter/update/{id}','SellCenterController@updateSellCenter');
     //sellcenter manager routes
-    Route::get('api/sellcenter/manager/list','sellCenterController@managers');
-    Route::post('api/sellcenter/manager/add','sellCenterController@addManager');
-    Route::get('api/sellcenter/manager/edit/item/{id}','sellCenterController@getManager');
-    Route::get('api/sellcenter/manager/delete/{id}','sellCenterController@removeManager');
-    Route::post('api/sellcenter/manager/update/{id}','sellCenterController@updateManager');
+    Route::get('api/manager/list/sellcenter','SellCenterController@managers');
+    Route::post('api/sellcenter/manager/add','SellCenterController@addManager');
+    Route::get('api/sellcenter/manager/edit/item/{id}','SellCenterController@getManager');
+    Route::get('api/sellcenter/manager/delete/{id}','SellCenterController@removeManager');
+    Route::post('api/sellcenter/manager/update/{id}','SellCenterController@updateManager');
    
 });
 

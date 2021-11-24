@@ -111,7 +111,7 @@ __webpack_require__.r(__webpack_exports__);
     getShowroms: function getShowroms() {
       var _this = this;
 
-      axios.get("/api/sellcenter/list").then(function (resp) {
+      axios.get("/api/list/of/sellcenter").then(function (resp) {
         if (resp.data.status == "SUCCESS") {
           _this.sellcenters = resp.data.sellcenters;
           _this.loading = false;
