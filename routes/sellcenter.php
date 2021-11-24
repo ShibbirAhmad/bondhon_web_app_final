@@ -19,10 +19,8 @@ Route::group([
         Route::get('api/sellcenter/logout','LoginController@logout') ;
         Route::get('api/sellcenter/products','ProductController@index');
         Route::post('api/sellcenter/product/store','ProductController@storeProduct');
-
         // route for dashboard data
          Route::get('api/sellcenter/dashboard/analysis','HomeController@DashboardHighlightInfo');
-
         //start the others  route . to load other data of products
         Route::get('api/product/others', 'OthersController@others');
         //route for search product, edit product and delete product if it pending situation
@@ -101,12 +99,14 @@ Route::group([
 
        //sales routes 
        Route::get('api/sellcenter/sales', 'SaleController@index');
-       Route::get('api/sellcenter/sales/filter', 'SaleController@filterSales');
+       Route::get('api/sellcenter/sales/filter', 'SaleController@filterSales');      
+       Route::get('api/filter/sell/center/company/sales', 'SaleController@FilterCompanySales');
        Route::get('api/sellcenter/sale/item/{id}', 'SaleController@saleItem');
        Route::post('api/sellcenter/sale/update/{id}', 'SaleController@update');
        Route::post('api/sellcenter/sale/add', 'SaleController@store');
        Route::get('api/sell/center/company/sales', 'SaleController@CompanySales');
        Route::post('api/sell/center/company/sale/store', 'SaleController@CompanySaleStore');
+
        //new
        Route::get('api/search/sell/center/customer/{phone}', 'SaleController@searchCustomer');
        Route::get('api/sellcenter/coureir/list', 'SaleController@Couriers');

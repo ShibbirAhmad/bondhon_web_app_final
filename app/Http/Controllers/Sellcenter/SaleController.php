@@ -17,7 +17,7 @@ class SaleController extends Controller
 
      public function index(Request $request){
             $item = $request->item ?? 30 ;
-            $sales = SellCenterSale::where('sell_center_id',session()->get('sellcenter')['id'])->orderBy('id','desc')->with('product')->paginate($item);
+            $sales = SellCenterSale::where('sale_type',1)->where('sell_center_id',session()->get('sellcenter')['id'])->orderBy('id','desc')->with('product')->paginate($item);
             return response()->json([
                 'status' => 'SUCCESS',
                 'sales' => $sales,
@@ -52,21 +52,21 @@ class SaleController extends Controller
             $paginate=$request->item??30;
             if(!empty($request->start_date) && empty($request->end_date)){
                 
-                    $sales=SellCenterSale::where('sell_center_id',session()->get('sellcenter')['id'])
-                                            ->whereDate('created_at','=',$request->start_date)
+                    $sales=SellCenterSale::where('sale_type',1)->where('sell_center_id',session()->get('sellcenter')['id'])
+                                            ->whereDate('created_at','>=',$request->start_date)
                                             ->orderBy('id','desc')->with('product')
                                             ->paginate($paginate);
                  
             }
             elseif(!empty($request->end_date) && !empty($request->start_date)){
     
-                    $sales=SellCenterSale::where('sell_center_id',session()->get('sellcenter')['id'])->whereDate('created_at', '>=', $request->start_date)
+                    $sales=SellCenterSale::where('sale_type',1)->where('sell_center_id',session()->get('sellcenter')['id'])->whereDate('created_at', '>=', $request->start_date)
                                             ->whereDate('created_at', '<=', $request->end_date)
                                             ->orderBy('id','desc')->with('product')
                                             ->paginate($paginate);
              }else{
-                  $sales=SellCenterSale::where('sell_center_id',session()->get('sellcenter')['id'])
-                                        ->whereDate('created_at','=',$request->end_date)
+                  $sales=SellCenterSale::where('sale_type',1)->where('sell_center_id',session()->get('sellcenter')['id'])
+                                        ->whereDate('created_at','<=',$request->end_date)
                                         ->orderBy('id','desc')->with('product')
                                         ->paginate($paginate);
                   
@@ -95,6 +95,7 @@ class SaleController extends Controller
                 $sale = new SellCenterSale();
                 $sale->sell_center_id = session()->get('sellcenter')['id'];
                 $sale->sell_center_product_id = $product->id;
+                $sale->sale_type = 1;
                 $sale->price = $request->price;
                 $sale->sale_quantity = floatval($request->quantity);
                 $sale->quantity_type = $request->quantity_type;
@@ -196,14 +197,57 @@ class SaleController extends Controller
      public function CompanySales(Request $request){
 
            $item= $request->item ?? 30 ;
-           $sales=SellCenterSale::where('sell_center_id',session()->get('sellcenter')['id'])
-                                ->where('sale_type',2)->select('sell_center_id','amount','discount','customer_name',
-                                                        'customer_phone','customer_address',
-                                                        'invoice_no','paid')->paginate($item);
+           $sales=SellCenterSale:: where('sell_center_id',session()->get('sellcenter')['id'])->where('sale_type',2)->orderBy('id','desc')->select(DB::raw('invoice_no as invoice_no'))->groupBy('invoice_no')->paginate($item);
+           foreach($sales as $sale){
+             $sale->{'company_sales'}=SellCenterSale::where('invoice_no',$sale->invoice_no)->get();
+           }
            return response()->json(['status' => 'SUCCESS',
                                     'sales' => $sales 
                                   ]);
      }
+
+
+
+      
+     public function FilterCompanySales(Request $request){
+        $sales='';
+        $item=$request->item??30;
+        if(!empty($request->start_date) && empty($request->end_date)){
+            
+                $sales=SellCenterSale::where('sell_center_id',session()->get('sellcenter')['id'])
+                                        ->whereDate('created_at','>=',$request->start_date)
+                                        ->where('sale_type',2)->orderBy('id','desc')->select(DB::raw('invoice_no as invoice_no'))->groupBy('invoice_no')->paginate($item);
+                foreach($sales as $sale){
+                    $sale->{'company_sales'}=SellCenterSale::where('invoice_no',$sale->invoice_no)->get();
+                }
+             
+        }
+        elseif(!empty($request->end_date) && !empty($request->start_date)){
+
+                $sales=SellCenterSale::where('sell_center_id',session()->get('sellcenter')['id'])
+                                        ->whereDate('created_at', '>=', $request->start_date)
+                                        ->whereDate('created_at', '<=', $request->end_date)
+                                        ->where('sale_type',2)->orderBy('id','desc')->select(DB::raw('invoice_no as invoice_no'))->groupBy('invoice_no')->paginate($item);
+                foreach($sales as $sale){
+                    $sale->{'company_sales'}=SellCenterSale::where('invoice_no',$sale->invoice_no)->get();
+                }
+
+         }else{
+                $sales=SellCenterSale::where('sell_center_id',session()->get('sellcenter')['id'])
+                                        ->whereDate('created_at','<=',$request->end_date)
+                                        ->where('sale_type',2)->orderBy('id','desc')->select(DB::raw('invoice_no as invoice_no'))->groupBy('invoice_no')->paginate($item);
+                foreach($sales as $sale){
+                    $sale->{'company_sales'}=SellCenterSale::where('invoice_no',$sale->invoice_no)->get();
+                }
+              
+         }
+       
+        return response()->json([
+            'status' => 'SUCCESS',
+            'sales' => $sales,
+        ]);
+ }
+
 
 
      public function CompanySaleStore(Request $request){
@@ -240,6 +284,7 @@ class SaleController extends Controller
                     $sale->sale_quantity = floatval($sale_item['quantity']);
                     $sale->quantity_type = "pice";
                     $sale->discount = $discount ;
+                    $sale->paid = $request->paid ?? 0;
                     $sale->amount =  $sale_item['total'] ;
                     $sale->save();
 

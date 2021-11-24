@@ -185,9 +185,7 @@ class SellCenterController extends Controller
              ]);
          }
 
-
     }
-
 
     public function removeManager($id){
 

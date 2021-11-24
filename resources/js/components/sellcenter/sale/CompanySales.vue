@@ -65,12 +65,10 @@
                       <tr>
                         <th width="5%">#</th>
                         <th width="10%">Invoice</th>
-                        <th width="20%">Customer</th>
-                        <th width="20%">Address</th>
-                        <th width="10%">Amount</th>
-                        <th width="10%">Paid</th>
-                        <th width="10%">Due</th>
-                        <th width="15%">Action</th>
+                        <th width="25%">Customer</th>
+                        <th width="30%">Address</th>
+                        <th width="20%">Amount</th>
+                        <th width="10%">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -80,13 +78,20 @@
                       <tr v-for="(sale, index) in sales.data" :key="index" v-else>
                         <td scope="row">{{ index + 1 }}</td>
                         <td>{{  sale.invoice_no }}</td>
-                        <td>{{     sale.customer_name ? sale.customer_name : 'empty' }} <br>
-                            <b> {{  sale.customer_phone ? sale.customer_phone : 'empty'  }} </b>
+                        <td>{{  sale.company_sales[0].customer_name ? sale.company_sales[0].customer_name : 'empty' }} <br>
+                          <b> {{ sale.company_sales[0].customer_phone ? sale.company_sales[0].customer_phone: 'empty'  }} </b>
                        </td>
-                        <td> {{ sale.customer_address ? sale.customer_address : 'empty' }}</td>
-                        <td> {{ sale.amount }}</td>
-                        <td> {{ sale.paid }} </td>
-                        <td> {{ sale.discount }} </td>
+                        <td> {{ sale.company_sales[0].customer_address ? sale.company_sales[0].customer_address : 'empty' }}</td>
+                        <td>
+                          <div class="amout_container">
+                            <p> Total:  {{ saleAmount(sale.company_sales) }}  </p>
+                            <p> Discount: {{ saleDiscount(sale.company_sales) }}  </p>
+                            <p> Paid: {{ sale.company_sales[0].paid }} </p>
+                            <p> Due: {{ saleAmount(sale.company_sales) - parseInt(sale.company_sales[0].paid) - saleDiscount(sale.company_sales)   }}  </p>
+                          </div>
+
+                        </td>
+                
                         <td>
                           <router-link
                             :to="{
@@ -158,10 +163,28 @@ export default {
   },
   methods: {
 
-    filterSales(page = 1) {
+    saleAmount(sales){
+       let amount=0 ;
+       sales.forEach(sale => {
+          amount += parseInt(sale.amount) ;
+       });
+       return amount ;
+    },
+
+
+    saleDiscount(sales){
+       let amount=0 ;
+       sales.forEach(sale => {
+          amount += parseFloat(sale.discount) ;
+       });
+       return amount.toFixed(0) ;
+    },
+
+    
+  filterSales(page = 1) {
       //fetch data
       axios
-        .get("/api/sell/center/company/sales?page=" + page, {
+        .get("/api/filter/sell/center/company/sales?page=" + page, {
           //send data
           params: {
             start_date: this.start_date,
@@ -222,4 +245,12 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+
+.amout_container{
+   margin-left: 60px;
+ }
+ .amout_container>p{
+   text-align: left;
+ }
+</style>
