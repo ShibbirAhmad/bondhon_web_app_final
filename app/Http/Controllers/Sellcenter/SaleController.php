@@ -10,6 +10,7 @@ use App\Models\SellCenterCourier;
 use App\Models\SellCenterProduct;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\SellCenter;
 
 class SaleController extends Controller
 {
@@ -202,11 +203,35 @@ class SaleController extends Controller
              $sale->{'company_sales'}=SellCenterSale::where('invoice_no',$sale->invoice_no)->get();
            }
            return response()->json(['status' => 'SUCCESS',
-                                    'sales' => $sales 
+                                    'sales' => $sales ,
                                   ]);
      }
 
 
+
+     public function CompanySaleView($invoice_no){
+
+           $sales=SellCenterSale:: where('sell_center_id',session()->get('sellcenter')['id'])
+                                  ->where('sale_type',2)->where('invoice_no',$invoice_no)->with('product')->get();
+           return response()->json(['status' => 'SUCCESS',
+                                    'sales' => $sales ,
+                                    'sellcenter' => SellCenter::where('id',session()->get('sellcenter')['id'])->first()
+                                  ]);
+     }
+
+     
+     public function CompanySalePrint($invoice_no){
+           $sellcenter=SellCenter::where('id',session()->get('sellcenter')['id'])->first();
+           $sales=SellCenterSale:: where('sell_center_id',session()->get('sellcenter')['id'])
+                                  ->where('sale_type',2)->where('invoice_no',$invoice_no)->with('product')->get();
+
+            foreach ($sales as $sale) {
+                $sale->print_status = 1 ;
+                $sale->save();
+            }
+    
+            return view('sellcenter.invoice_print',compact('sales','sellcenter'));
+     }
 
       
      public function FilterCompanySales(Request $request){
@@ -283,6 +308,7 @@ class SaleController extends Controller
                     $sale->price = $sale_item['price'];
                     $sale->sale_quantity = floatval($sale_item['quantity']);
                     $sale->quantity_type = "pice";
+                    $sale->status = "Order Placed";
                     $sale->discount = $discount ;
                     $sale->paid = $request->paid ?? 0;
                     $sale->amount =  $sale_item['total'] ;

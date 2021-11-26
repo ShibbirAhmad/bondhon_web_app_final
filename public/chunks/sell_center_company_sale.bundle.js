@@ -286,6 +286,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -402,7 +435,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.amout_container[data-v-0c295bda]{\r\n   margin-left: 60px;\n}\n.amout_container>p[data-v-0c295bda]{\r\n   text-align: left;\n}\r\n", ""]);
+exports.push([module.i, "\n.action_container>a[data-v-0c295bda]{\n  margin:2px 0px;\n}\n.amout_container>p[data-v-0c295bda]{\n  text-align: left;\n}\n", ""]);
 
 // exports
 
@@ -636,8 +669,8 @@ var render = function() {
         _vm._v(" "),
         _c("section", { staticClass: "content" }, [
           _c("div", { staticClass: "container" }, [
-            _c("div", { staticClass: "row justify-content-center" }, [
-              _c("div", { staticClass: "col-lg-11" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-lg-12 col-xl-12 col-md-12" }, [
                 _c("div", { staticClass: "box box-primary" }, [
                   _c(
                     "div",
@@ -654,7 +687,7 @@ var render = function() {
                           staticStyle: { "margin-top": "10px" }
                         },
                         [
-                          _c("div", { staticClass: "col-lg-8" }, [
+                          _c("div", { staticClass: "col-lg-10" }, [
                             _c(
                               "form",
                               {
@@ -667,9 +700,37 @@ var render = function() {
                               },
                               [
                                 _c("div", { staticClass: "row" }, [
+                                  _c("div", { staticClass: "col-lg-4" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.search,
+                                          expression: "search"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        autocomplete: "off",
+                                        placeholder: "search by invoice,phone "
+                                      },
+                                      domProps: { value: _vm.search },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.search = $event.target.value
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
                                   _c(
                                     "div",
-                                    { staticClass: "col-lg-5" },
+                                    { staticClass: "col-lg-4" },
                                     [
                                       _c("date-picker", {
                                         attrs: {
@@ -691,7 +752,7 @@ var render = function() {
                                   _vm._v(" "),
                                   _c(
                                     "div",
-                                    { staticClass: "col-lg-5" },
+                                    { staticClass: "col-lg-4" },
                                     [
                                       _c("date-picker", {
                                         attrs: {
@@ -715,7 +776,7 @@ var render = function() {
                             )
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-lg-4" }, [
+                          _c("div", { staticClass: "col-lg-2" }, [
                             _c(
                               "select",
                               {
@@ -775,7 +836,7 @@ var render = function() {
                       "table",
                       {
                         staticClass:
-                          "table text-center table-bordered table-hover table-striped "
+                          "table table-bordered table-hover table-striped "
                       },
                       [
                         _vm._m(1),
@@ -877,11 +938,24 @@ var render = function() {
                                           _vm._v(" "),
                                           _c("p", [
                                             _vm._v(
+                                              " Shipping: " +
+                                                _vm._s(
+                                                  sale.company_sales[0]
+                                                    .shipping_cost
+                                                ) +
+                                                " "
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("p", [
+                                            _vm._v(
                                               " Due: " +
                                                 _vm._s(
                                                   _vm.saleAmount(
                                                     sale.company_sales
-                                                  ) -
+                                                  ) +
+                                                    sale.company_sales[0]
+                                                      .shipping_cost -
                                                     parseInt(
                                                       sale.company_sales[0].paid
                                                     ) -
@@ -896,30 +970,124 @@ var render = function() {
                                       )
                                     ]),
                                     _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c(
-                                          "router-link",
-                                          {
-                                            staticClass:
-                                              "btn btn-success btn-sm",
-                                            attrs: {
-                                              to: {
-                                                name: "sell_center_sale_edit",
-                                                params: { id: sale.id }
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fa fa-eye"
-                                            })
-                                          ]
+                                    _c("td", [
+                                      sale.company_sales[0].courier.length > 0
+                                        ? _c("div", [
+                                            _c("p", [
+                                              _vm._v(
+                                                _vm._s(
+                                                  sale.company_sales[0].courier
+                                                ) + " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("p", [
+                                              _vm._v(" memo: "),
+                                              _c("b", [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    sale.company_sales[0]
+                                                      .memo_no
+                                                      ? sale.company_sales[0]
+                                                          .memo_no
+                                                      : "empty"
+                                                  )
+                                                )
+                                              ])
+                                            ])
+                                          ])
+                                        : _c("div", [
+                                            _vm._v(
+                                              "\n                          Empty\n                        "
+                                            )
+                                          ])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c("p", [
+                                        _vm._v(
+                                          "   " +
+                                            _vm._s(
+                                              sale.company_sales[0].status
+                                            ) +
+                                            " "
                                         )
-                                      ],
-                                      1
-                                    )
+                                      ]),
+                                      _vm._v(" "),
+                                      sale.company_sales[0].print_status == 1
+                                        ? _c(
+                                            "a",
+                                            {
+                                              staticClass:
+                                                "btn btn-xs btn-success",
+                                              staticStyle: { width: "70px" }
+                                            },
+                                            [_vm._v("printed")]
+                                          )
+                                        : _vm._e()
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        "\n                        " +
+                                          _vm._s(
+                                            sale.company_sales[0].commment
+                                              ? sale.company_sales[0].commment
+                                              : ""
+                                          ) +
+                                          "\n                      "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "div",
+                                        { staticClass: "action_container" },
+                                        [
+                                          _c(
+                                            "router-link",
+                                            {
+                                              staticClass:
+                                                "btn btn-primary btn-sm",
+                                              staticStyle: { width: "70px" },
+                                              attrs: {
+                                                to: {
+                                                  name:
+                                                    "sell_center_company_sale_view",
+                                                  params: {
+                                                    invoice_no: sale.invoice_no
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fa fa-eye"
+                                              }),
+                                              _vm._v("view")
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass: "btn btn-sm btn-info"
+                                            },
+                                            [_vm._v("shipment")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass:
+                                                "btn btn-sm btn-success"
+                                            },
+                                            [_vm._v("delivered")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ])
                                   ])
                                 })
                           ],
@@ -1002,13 +1170,19 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { width: "10%" } }, [_vm._v("Invoice")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "25%" } }, [_vm._v("Customer")]),
+        _c("th", { attrs: { width: "15%" } }, [_vm._v("Customer")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "30%" } }, [_vm._v("Address")]),
+        _c("th", { attrs: { width: "20%" } }, [_vm._v("Address")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "20%" } }, [_vm._v("Amount")]),
+        _c("th", { attrs: { width: "15%" } }, [_vm._v("Amount")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "10%" } }, [_vm._v("Action")])
+        _c("th", { attrs: { width: "10%" } }, [_vm._v("Courier")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "9%" } }, [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "10%" } }, [_vm._v("Comment")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "6%" } }, [_vm._v("Action")])
       ])
     ])
   }

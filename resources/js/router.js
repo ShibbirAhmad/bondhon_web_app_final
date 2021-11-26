@@ -1131,6 +1131,16 @@ const routes = [
     },
 
     {
+        path: '/sell/center/company/sale/view/:invoice_no',
+        component: () => import(/* webpackChunkName: "sell_center_company_sale_view" */'./components/sellcenter/sale/CompanySaleView.vue'),
+        name: 'sell_center_company_sale_view',
+        meta: {
+            title: 'company sale add',
+            authSellCenter: true ,
+        }
+    },
+
+    {
         path: '/sell/center/sale/add',
         component: () => import(/* webpackChunkName: "sell_center_sale_add" */'./components/sellcenter/sale/ShopSaleAdd.vue'),
         name: 'sell_center_sale_add',

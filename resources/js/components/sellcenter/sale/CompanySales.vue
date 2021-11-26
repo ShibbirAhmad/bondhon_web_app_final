@@ -17,17 +17,20 @@
       </section>
       <section class="content">
         <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-11">
+          <div class="row">
+            <div class="col-lg-12 col-xl-12 col-md-12">
               <div class="box box-primary">
                 <div class="box-header with-border text-center">
                   <h3 class="box-title">Sales Records </h3>
 
                     <div style="margin-top: 10px" class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-10">
                       <form @submit.prevent="filterSales">
                         <div class="row">
-                          <div class="col-lg-5">
+                           <div class="col-lg-4">
+                             <input type="text" v-model="search" autocomplete="off" placeholder="search by invoice,phone "  class="form-control">
+                           </div>
+                          <div class="col-lg-4">
                             <date-picker
                               autocomplete="off"
                               v-model="start_date"
@@ -35,7 +38,7 @@
                               :config="options"
                             ></date-picker>
                           </div>
-                          <div class="col-lg-5">
+                          <div class="col-lg-4">
                             <date-picker
                               autocomplete="off"
                               v-model="end_date"
@@ -47,7 +50,7 @@
                       </form>
                     </div>
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-2">
                       <select class="form-control" v-model="item" @change="saleList">
                         <option value="10">10</option>
                         <option value="20">20</option>
@@ -60,15 +63,18 @@
 
                 </div>
                 <div class="box-body">
-                  <table class="table text-center table-bordered table-hover table-striped ">
+                  <table class="table table-bordered table-hover table-striped ">
                     <thead>
                       <tr>
                         <th width="5%">#</th>
                         <th width="10%">Invoice</th>
-                        <th width="25%">Customer</th>
-                        <th width="30%">Address</th>
-                        <th width="20%">Amount</th>
-                        <th width="10%">Action</th>
+                        <th width="15%">Customer</th>
+                        <th width="20%">Address</th>
+                        <th width="15%">Amount</th>
+                        <th width="10%">Courier</th>
+                        <th width="9%">Status</th>
+                        <th width="10%">Comment</th>
+                        <th width="6%">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -87,20 +93,47 @@
                             <p> Total:  {{ saleAmount(sale.company_sales) }}  </p>
                             <p> Discount: {{ saleDiscount(sale.company_sales) }}  </p>
                             <p> Paid: {{ sale.company_sales[0].paid }} </p>
-                            <p> Due: {{ saleAmount(sale.company_sales) - parseInt(sale.company_sales[0].paid) - saleDiscount(sale.company_sales)   }}  </p>
+                            <p> Shipping: {{ sale.company_sales[0].shipping_cost }} </p>
+                            <p> Due: {{ (saleAmount(sale.company_sales) + sale.company_sales[0].shipping_cost ) - parseInt(sale.company_sales[0].paid) - saleDiscount(sale.company_sales)   }}  </p>
                           </div>
 
                         </td>
-                
+
                         <td>
-                          <router-link
-                            :to="{
-                              name: 'sell_center_sale_edit',
-                              params: { id: sale.id },
-                            }"
-                            class="btn btn-success btn-sm"
-                            ><i class="fa fa-eye"></i
-                          ></router-link>
+                        
+                          <div v-if="sale.company_sales[0].courier.length > 0">
+                              <p>{{ sale.company_sales[0].courier }} </p>  
+                              <p> memo: <b>{{ sale.company_sales[0].memo_no?sale.company_sales[0].memo_no : 'empty' }}</b> </p>  
+                          </div>
+                          <div v-else>
+                            Empty
+                          </div>
+                        </td>
+                        <td>  <p>   {{ sale.company_sales[0].status }} </p> 
+                              <a  style="width:70px;" v-if="sale.company_sales[0].print_status==1"
+                              class="btn btn-xs btn-success">printed</a>
+                        </td>
+                        <td>
+                          {{ sale.company_sales[0].commment ? sale.company_sales[0].commment : '' }}
+                        </td>
+
+                        <td>
+                          <div class="action_container">
+                               <router-link style="width:70px;"
+                                  :to="{
+                                    name: 'sell_center_company_sale_view',
+                                    params: { invoice_no: sale.invoice_no },
+                                  }"
+                                  class="btn btn-primary btn-sm"
+                                  ><i class="fa fa-eye"></i
+                                >view</router-link>
+                              
+                              <a class="btn btn-sm btn-info">shipment</a>
+                              <a class="btn btn-sm btn-success">delivered</a>
+                          
+                
+                          </div>
+
                         </td>
                       </tr>
                     </tbody>
@@ -247,8 +280,8 @@ export default {
 
 <style scoped>
 
-.amout_container{
-   margin-left: 60px;
+ .action_container>a{
+   margin:2px 0px;
  }
  .amout_container>p{
    text-align: left;
