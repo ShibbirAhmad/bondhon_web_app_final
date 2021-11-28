@@ -236,7 +236,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     getCourier: function getCourier() {
       var _this2 = this;
 
-      axios.get('/api/sellcenter/coureir/' + this.$route.params.id).then(function (resp) {
+      axios.get('/api/sellcenter/courier/' + this.$route.params.id).then(function (resp) {
         //  console.log(resp)
         if (resp.data.status == 'SUCCESS') {
           _this2.form.name = resp.data.courier.name;
@@ -246,7 +246,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     update: function update() {
       var _this3 = this;
 
-      this.form.post('/api/sellcenter/coureir/update/' + this.$route.params.id, {
+      this.form.post('/api/sellcenter/courier/update/' + this.$route.params.id, {
         transformRequest: [function (data, headers) {
           return objectToFormData(data);
         }]
@@ -457,7 +457,7 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "btn btn-primary",
-                  attrs: { to: { name: "sell_center_coureir" } }
+                  attrs: { to: { name: "sell_center_courier" } }
                 },
                 [_c("i", { staticClass: "fa fa-arrow-left" })]
               )

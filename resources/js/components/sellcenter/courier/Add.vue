@@ -72,7 +72,7 @@
         },
         methods: {
             add() {
-                this.form.post('/api/sellcenter/coureir/store', {
+                this.form.post('/api/sellcenter/courier/store', {
                     transformRequest: [function (data, headers) {
                         return objectToFormData(data)
                     }],

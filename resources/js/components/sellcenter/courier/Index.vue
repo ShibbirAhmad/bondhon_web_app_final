@@ -139,7 +139,7 @@ export default {
   methods: {
     courierList() {
       axios
-        .get("/api/sellcenter/coureir/list")
+        .get("/api/sellcenter/courier/list")
         .then((resp) => {
           if (resp.data.status == "SUCCESS") {
             this.couriers = resp.data.couriers;

@@ -290,7 +290,7 @@ __webpack_require__.r(__webpack_exports__);
     courierList: function courierList() {
       var _this2 = this;
 
-      axios.get("/api/sellcenter/coureir/list").then(function (resp) {
+      axios.get("/api/sellcenter/courier/list").then(function (resp) {
         if (resp.data.status == "SUCCESS") {
           _this2.couriers = resp.data.couriers;
           _this2.loading = false;

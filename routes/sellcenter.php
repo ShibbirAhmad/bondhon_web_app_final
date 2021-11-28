@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 //route for sellcenter login and registration and authorizatoin
 Route::post('api/sellcenter/login','Sellcenter\LoginController@check_login') ;
-
 Route::post('api/sellcenter/password/reset/send/code','Sellcenter\LoginController@send_reset_code');
 Route::post('api/sellcenter/verify/reset/code/{phone}','Sellcenter\LoginController@sellcenter_reset_code_verified');
 Route::post('api/sellcenter/new/password/set/{phone}','Sellcenter\LoginController@sellcenter_set_new_password');
@@ -20,7 +19,7 @@ Route::group([
         Route::get('api/sellcenter/products','ProductController@index');
         Route::post('api/sellcenter/product/store','ProductController@storeProduct');
         // route for dashboard data
-         Route::get('api/sellcenter/dashboard/analysis','HomeController@DashboardHighlightInfo');
+        Route::get('api/sellcenter/dashboard/analysis','HomeController@DashboardHighlightInfo');
         //start the others  route . to load other data of products
         Route::get('api/product/others', 'OthersController@others');
         //route for search product, edit product and delete product if it pending situation
@@ -33,16 +32,13 @@ Route::group([
         Route::post('api/sellcenter/edit/product/{id}','ProductController@edit_product');
         Route::get('api/sellcenter/delete/existing/product/image/{id}','ProductController@delete_product_image');
         Route::get('api/sellcenter/delete/product/{id}','ProductController@delete_product');
-
         //route for sellcenter order
         Route::get('api/sellcenter/order','OrderController@get_sellcenter_order');
         Route::get('api/sellcenter/order/view/{id}','OrderController@sellcenter_order_details');
-
         //sellcenter profile route
         Route::get('api/get/single/sellcenter','HomeController@get_current_sellcenter') ;
         Route::post('api/sellcenter/update','HomeController@current_sellcenter_update') ;
         Route::post('api/sellcenter/password/update','LoginController@current_sellcenter_password_update') ;
-
 
 
         //supplier routes    
@@ -73,7 +69,6 @@ Route::group([
         Route::post('api/purchase/memo/upload','PurchaseController@uploadFile');
     
  
-
         //start credit route
         Route::get('api/sellcenter/credits', 'AccountController@get_credit');
         Route::post('api/sellcenter/credit/store', 'AccountController@store_credit');
@@ -87,7 +82,6 @@ Route::group([
         //credit due route......
         Route::get('api/sellcenter/credit/due', 'CreditDueController@index');
         Route::get('api/sellcenter/due/to/paid/{id}', 'CreditDueController@duePaid');
-
         //start debit route
         Route::get('api/sellcenter/debits', 'AccountController@get_debit');
         Route::post('/api/sellcenter/debit/store', 'AccountController@store_debit');
@@ -96,7 +90,6 @@ Route::group([
         Route::post('api/sellcenter/debit/update/{id}', 'AccountController@update_debit');
         Route::get('api/sellcenter/debit/destroy/{id}', 'AccountController@destroy_debit');
        
-
        //sales routes 
        Route::get('api/sellcenter/sales', 'SaleController@index');
        Route::get('api/sellcenter/sales/filter', 'SaleController@filterSales');      
@@ -106,19 +99,20 @@ Route::group([
        Route::post('api/sellcenter/sale/add', 'SaleController@store');
        Route::get('api/sell/center/company/sales', 'SaleController@CompanySales');
        Route::post('api/sell/center/company/sale/store', 'SaleController@CompanySaleStore');
+       Route::post('api/sell/center/sale/shipment', 'SaleController@CompanySaleShipment');
+       Route::post('api/sell/center/sale/delivery', 'SaleController@CompanySaleDelivery');
        Route::get('api/sell/center/company/sale/view/{invoice_no}', 'SaleController@CompanySaleView');
        Route::get('api/print/sell/center/sale/invoice/{invoice_no}', 'SaleController@CompanySalePrint');
 
        //new
        Route::get('api/search/sell/center/customer/{phone}', 'SaleController@searchCustomer');
-       Route::get('api/sellcenter/coureir/list', 'SaleController@Couriers');
-       Route::get('api/sellcenter/coureir/{id}', 'SaleController@EditCourer');
+       Route::get('api/sellcenter/courier/list', 'SaleController@Couriers');
+       Route::get('api/sellcenter/courier/{id}', 'SaleController@EditCourer');
        Route::get('api/sell/center/courier/de-active/{id}', 'SaleController@DeActiveCourier');
        Route::get('api/sell/center/courier/active/{id}', 'SaleController@ActiveCourier');
-       Route::post('api/sellcenter/coureir/store', 'SaleController@StoreCourier');
-       Route::post('api/sellcenter/coureir/update/{id}', 'SaleController@UpdateCourier');
+       Route::post('api/sellcenter/courier/store', 'SaleController@StoreCourier');
+       Route::post('api/sellcenter/courier/update/{id}', 'SaleController@UpdateCourier');
       
-
 
          // start employee route here
         Route::get('api/sellcenter/employee/list','EmployeeController@index');
@@ -128,7 +122,6 @@ Route::group([
         Route::get('api/sellcenter/employee/trash/{id}','EmployeeController@destroyEmployee');
         Route::get('api/api/sellcenter/employee/search/{data}','EmployeeController@search_employee');
         Route::get('api/sellcenter/employee/salary/list/{id}','EmployeeController@salaryDetails');
-
         // end employee route here
             
         //company bill statements route is here

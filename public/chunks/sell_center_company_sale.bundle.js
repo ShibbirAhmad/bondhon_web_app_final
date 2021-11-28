@@ -147,7 +147,98 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Navbar_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Navbar.vue */ "./resources/js/components/sellcenter/Navbar.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Navbar_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Navbar.vue */ "./resources/js/components/sellcenter/Navbar.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -320,12 +411,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    navbar: _Navbar_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    navbar: _Navbar_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    HasError: vform__WEBPACK_IMPORTED_MODULE_1__["HasError"]
   },
   created: function created() {
     this.saleList();
+    this.courierList();
   },
   data: function data() {
     return {
@@ -334,15 +429,118 @@ __webpack_require__.r(__webpack_exports__);
       item: 20,
       start_date: "",
       end_date: "",
-      data_search: "",
+      search: "",
+      couriers: "",
       //date picker options ..........
       options: {
         format: "YYYY-MM-DD",
         useCurrent: true
-      }
+      },
+      shipment_form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
+        invoice_no: "",
+        courier: "",
+        memo_no: ""
+      }),
+      delivery_form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
+        invoice_no: "",
+        cash_in: "Cash",
+        amount: ""
+      }),
+      balance: ["Cash", "Bkash", "Nagad", "Bank"],
+      max_delivery_amount: 0
     };
   },
   methods: {
+    shipmentOrder: function shipmentOrder() {
+      var _this = this;
+
+      this.shipment_form.post('/api/sell/center/sale/shipment', {
+        transformRequest: [function (data, headers) {
+          return objectToFormData(data);
+        }]
+      }).then(function (resp) {
+        if (resp.data.status == 'OK') {
+          _this.saleList();
+
+          _this.shipment_form.invoice_no = '', _this.shipment_form.courier = '', _this.shipment_form.memo_no = '', _this.$toasted.show(resp.data.message, {
+            type: "success",
+            position: "top-center",
+            duration: 4000
+          });
+
+          _this.$modal.hide('shipment');
+        } else {
+          _this.$toasted.show('shimpent failed', {
+            type: "error",
+            position: "top-center",
+            duration: 4000
+          });
+        }
+      });
+    },
+    deliveryOrder: function deliveryOrder() {
+      var _this2 = this;
+
+      if (this.delivery_form.amount > this.max_delivery_amount) {
+        alert("Due amount can't be more than actual due amount, this order max due amount is: BDT " + this.max_delivery_amount);
+        this.max_delivery_amount = 0;
+        this.delivery_form.invoice_no = '';
+        this.delivery_form.amount = '';
+        this.delivery_form.cash_in = 'Cash';
+        this.$modal.hide("delivery");
+        return;
+      }
+
+      this.delivery_form.post('/api/sell/center/sale/delivery', {
+        transformRequest: [function (data, headers) {
+          return objectToFormData(data);
+        }]
+      }).then(function (resp) {
+        if (resp.data.status == 'OK') {
+          _this2.saleList();
+
+          _this2.delivery_form.invoice_no = '';
+          _this2.delivery_form.amount = '';
+          _this2.delivery_form.cash_in = 'Cash';
+
+          _this2.$toasted.show(resp.data.message, {
+            type: "success",
+            position: "top-center",
+            duration: 4000
+          });
+
+          _this2.$modal.hide('delivery');
+        } else {
+          _this2.$toasted.show('delivered failed', {
+            type: "error",
+            position: "top-center",
+            duration: 4000
+          });
+        }
+      });
+    },
+    showDeliveryModal: function showDeliveryModal(invoice_no, amount) {
+      this.delivery_form.invoice_no = invoice_no;
+      this.delivery_form.amount = amount;
+      this.max_delivery_amount = amount;
+      this.$modal.show("delivery");
+    },
+    showShipmentModal: function showShipmentModal(invoice_no, courier) {
+      this.shipment_form.invoice_no = invoice_no;
+      this.shipment_form.courier = courier;
+      this.$modal.show("shipment");
+    },
+    courierList: function courierList() {
+      var _this3 = this;
+
+      axios.get("/api/sellcenter/courier/list").then(function (resp) {
+        console.log(resp);
+
+        if (resp.data.status == "SUCCESS") {
+          _this3.couriers = resp.data.couriers.data;
+        }
+      });
+    },
     saleAmount: function saleAmount(sales) {
       var amount = 0;
       sales.forEach(function (sale) {
@@ -357,8 +555,15 @@ __webpack_require__.r(__webpack_exports__);
       });
       return amount.toFixed(0);
     },
+    searchFilter: function searchFilter() {
+      if (this.search.length > 3) {
+        this.filterSales();
+      } else {
+        this.saleList();
+      }
+    },
     filterSales: function filterSales() {
-      var _this = this;
+      var _this4 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       //fetch data
@@ -367,18 +572,19 @@ __webpack_require__.r(__webpack_exports__);
         params: {
           start_date: this.start_date,
           end_date: this.end_date,
+          search: this.search,
           item: this.item
         }
       }).then(function (resp) {
         console.log(resp);
 
         if (resp.data.status == "SUCCESS") {
-          _this.sales = resp.data.sales;
+          _this4.sales = resp.data.sales;
         }
       });
     },
     saleList: function saleList() {
-      var _this2 = this;
+      var _this5 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get("/api/sell/center/company/sales?page=" + page, {
@@ -389,17 +595,17 @@ __webpack_require__.r(__webpack_exports__);
         console.log(resp);
 
         if (resp.data.status == "SUCCESS") {
-          _this2.sales = resp.data.sales;
-          _this2.loading = false;
+          _this5.sales = resp.data.sales;
+          _this5.loading = false;
         } else {
-          _this2.$toasted.show("something went to wrong", {
+          _this5.$toasted.show("something went to wrong", {
             type: "error",
             position: "top-center",
             duration: 5000
           });
         }
       })["catch"](function (error) {
-        _this2.$toasted.show("something went to wrong", {
+        _this5.$toasted.show("something went to wrong", {
           type: "error",
           position: "top-center",
           duration: 4000
@@ -656,7 +862,7 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "btn btn-primary",
-                  attrs: { to: { name: "sell_center_sale_add" } }
+                  attrs: { to: { name: "sell_center_company_sale_add" } }
                 },
                 [_c("i", { staticClass: "fa fa-plus" })]
               )
@@ -718,6 +924,7 @@ var render = function() {
                                       },
                                       domProps: { value: _vm.search },
                                       on: {
+                                        keyup: _vm.searchFilter,
                                         input: function($event) {
                                           if ($event.target.composing) {
                                             return
@@ -954,14 +1161,18 @@ var render = function() {
                                                   _vm.saleAmount(
                                                     sale.company_sales
                                                   ) +
-                                                    sale.company_sales[0]
-                                                      .shipping_cost -
                                                     parseInt(
-                                                      sale.company_sales[0].paid
+                                                      sale.company_sales[0]
+                                                        .shipping_cost
                                                     ) -
-                                                    _vm.saleDiscount(
-                                                      sale.company_sales
-                                                    )
+                                                    (parseInt(
+                                                      sale.company_sales[0].paid
+                                                    ) +
+                                                      parseInt(
+                                                        _vm.saleDiscount(
+                                                          sale.company_sales
+                                                        )
+                                                      ))
                                                 ) +
                                                 "  "
                                             )
@@ -1031,6 +1242,16 @@ var render = function() {
                                       _vm._v(
                                         "\n                        " +
                                           _vm._s(
+                                            sale.company_sales[0].created_at
+                                          ) +
+                                          "\n                      "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        "\n                        " +
+                                          _vm._s(
                                             sale.company_sales[0].commment
                                               ? sale.company_sales[0].commment
                                               : ""
@@ -1068,22 +1289,60 @@ var render = function() {
                                             ]
                                           ),
                                           _vm._v(" "),
-                                          _c(
-                                            "a",
-                                            {
-                                              staticClass: "btn btn-sm btn-info"
-                                            },
-                                            [_vm._v("shipment")]
-                                          ),
+                                          sale.company_sales[0].status ==
+                                          "Order Placed"
+                                            ? _c(
+                                                "a",
+                                                {
+                                                  staticClass:
+                                                    "btn btn-sm btn-info",
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.showShipmentModal(
+                                                        sale.invoice_no,
+                                                        sale.company_sales[0]
+                                                          .courier
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [_vm._v("shipment")]
+                                              )
+                                            : _vm._e(),
                                           _vm._v(" "),
-                                          _c(
-                                            "a",
-                                            {
-                                              staticClass:
-                                                "btn btn-sm btn-success"
-                                            },
-                                            [_vm._v("delivered")]
-                                          )
+                                          sale.company_sales[0].status !=
+                                            "delivered" &&
+                                          sale.company_sales[0].status ==
+                                            "shipment"
+                                            ? _c(
+                                                "a",
+                                                {
+                                                  staticClass:
+                                                    "btn btn-sm btn-success",
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.showDeliveryModal(
+                                                        sale.invoice_no,
+                                                        _vm.saleAmount(
+                                                          sale.company_sales
+                                                        ) +
+                                                          sale.company_sales[0]
+                                                            .shipping_cost -
+                                                          (parseInt(
+                                                            sale
+                                                              .company_sales[0]
+                                                              .paid
+                                                          ) +
+                                                            _vm.saleDiscount(
+                                                              sale.company_sales
+                                                            ))
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [_vm._v("delivered")]
+                                              )
+                                            : _vm._e()
                                         ],
                                         1
                                       )
@@ -1139,6 +1398,274 @@ var render = function() {
             ])
           ])
         ])
+      ]),
+      _vm._v(" "),
+      _c("modal", { attrs: { name: "shipment", width: 350, height: 300 } }, [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.shipmentOrder($event)
+              }
+            }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { padding: "20px" } },
+              [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "courier" } }, [
+                      _vm._v("Select  Coureir")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.shipment_form.courier,
+                            expression: "shipment_form.courier"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { required: "" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.shipment_form,
+                              "courier",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      _vm._l(_vm.couriers, function(courier, index) {
+                        return _c(
+                          "option",
+                          { key: index, domProps: { value: courier.name } },
+                          [_vm._v(_vm._s(courier.name))]
+                        )
+                      }),
+                      0
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("label", [_vm._v("Memon Number")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.shipment_form.memo_no,
+                            expression: "shipment_form.memo_no"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.shipment_form.errors.has("memo_no")
+                        },
+                        attrs: {
+                          type: "text",
+                          required: "",
+                          name: "memo_no",
+                          placeholder: "xxxxxxxxx"
+                        },
+                        domProps: { value: _vm.shipment_form.memo_no },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.shipment_form,
+                              "memo_no",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.shipment_form, field: "memo_no" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group text-center" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success ",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("\n                  Submit\n                ")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("br")
+                ])
+              ]
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("modal", { attrs: { name: "delivery", width: 350, height: 270 } }, [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.deliveryOrder($event)
+              }
+            }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { padding: "20px" } },
+              [
+                _c("div", { staticClass: "card-body" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("label", [_vm._v("Amount")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.delivery_form.amount,
+                            expression: "delivery_form.amount"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.delivery_form.errors.has("amount")
+                        },
+                        attrs: {
+                          type: "number",
+                          name: "amount",
+                          readonly: "",
+                          required: ""
+                        },
+                        domProps: { value: _vm.delivery_form.amount },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.delivery_form,
+                              "amount",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.delivery_form, field: "amount" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "cash_in" } }, [
+                      _vm._v("Paid By")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.delivery_form.cash_in,
+                            expression: "delivery_form.cash_in"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { required: "" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.delivery_form,
+                              "cash_in",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      _vm._l(_vm.balance, function(balance, index) {
+                        return _c(
+                          "option",
+                          { key: index, domProps: { value: balance } },
+                          [_vm._v(_vm._s(balance))]
+                        )
+                      }),
+                      0
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group text-center" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success ",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("\n                  Submit\n                ")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("br")
+                ])
+              ]
+            )
+          ]
+        )
       ])
     ],
     1
@@ -1168,21 +1695,23 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { attrs: { width: "5%" } }, [_vm._v("#")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "10%" } }, [_vm._v("Invoice")]),
+        _c("th", { attrs: { width: "8%" } }, [_vm._v("Invoice")]),
         _vm._v(" "),
         _c("th", { attrs: { width: "15%" } }, [_vm._v("Customer")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "20%" } }, [_vm._v("Address")]),
+        _c("th", { attrs: { width: "16%" } }, [_vm._v("Address")]),
         _vm._v(" "),
         _c("th", { attrs: { width: "15%" } }, [_vm._v("Amount")]),
         _vm._v(" "),
         _c("th", { attrs: { width: "10%" } }, [_vm._v("Courier")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "9%" } }, [_vm._v("Status")]),
+        _c("th", { attrs: { width: "8%" } }, [_vm._v("Status")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "10%" } }, [_vm._v("Comment")]),
+        _c("th", { attrs: { width: "10%" } }, [_vm._v("Date")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "6%" } }, [_vm._v("Action")])
+        _c("th", { attrs: { width: "8%" } }, [_vm._v("Comment")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "5%" } }, [_vm._v("Action")])
       ])
     ])
   }

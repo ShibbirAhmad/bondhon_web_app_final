@@ -4,7 +4,7 @@
         <div class="content-wrapper">
             <section class="content-header">
                 <h1>
-                    <router-link :to="{name:'sell_center_coureir'}" class="btn btn-primary"><i class="fa fa-arrow-left"></i></router-link>
+                    <router-link :to="{name:'sell_center_courier'}" class="btn btn-primary"><i class="fa fa-arrow-left"></i></router-link>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
@@ -79,7 +79,7 @@
         },
         methods: {
             getCourier() {
-                axios.get('/api/sellcenter/coureir/'+this.$route.params.id)
+                axios.get('/api/sellcenter/courier/'+this.$route.params.id)
                     .then((resp) => {
                         //  console.log(resp)
                         if (resp.data.status == 'SUCCESS') {
@@ -89,7 +89,7 @@
 
             },
             update() {
-                this.form.post('/api/sellcenter/coureir/update/' + this.$route.params.id, {
+                this.form.post('/api/sellcenter/courier/update/' + this.$route.params.id, {
                     transformRequest: [function (data, headers) {
                         return objectToFormData(data)
                     }],

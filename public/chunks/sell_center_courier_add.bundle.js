@@ -227,7 +227,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     add: function add() {
       var _this = this;
 
-      this.form.post('/api/sellcenter/coureir/store', {
+      this.form.post('/api/sellcenter/courier/store', {
         transformRequest: [function (data, headers) {
           return objectToFormData(data);
         }]

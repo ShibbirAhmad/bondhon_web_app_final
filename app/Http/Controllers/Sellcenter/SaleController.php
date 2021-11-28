@@ -219,7 +219,99 @@ class SaleController extends Controller
                                   ]);
      }
 
+    
+   
+   
+    public function CompanySaleShipment(Request $request){
+           
+           $validatedData = $request->validate([
+                'invoice_no' => 'required ',
+                'memo_no' => 'required ',
+                'courier' => 'required',
+            ]); 
+        
+           $sales=SellCenterSale:: where('sell_center_id',session()->get('sellcenter')['id'])->where('sale_type',2)->where('invoice_no',$request->invoice_no)->select('id','invoice_no')->get();
+           foreach ($sales as $sale) {
+               $exist_sale =  SellCenterSale::findOrFail($sale->id);
+               $exist_sale->status="shipment" ;
+               $exist_sale->memo_no=$request->memo_no ;
+               $exist_sale->courier=$request->courier ;
+               $exist_sale->save();
+           }   
+           
+           $my_sale=SellCenterSale::where('sell_center_id',session()->get('sellcenter')['id'])->where('sale_type',2)->where('invoice_no',$request->invoice_no)->first();
+           $msg = 'Assalamualikum, '. $my_sale->customer_name.' your order has been shiped on '.$request->courier.'. Order memo number is '.$request->memo_no .' Thanks from ' .session()->get('sellcenter')['name'];
+           $this->sendShipmentMessageToCustomer($my_sale->customer_phone,$msg);
+           return response()->json([
+                                    'status' => 'OK',
+                                    'message'=>'order shipmented successfully'
+                                  ]);
+    }
+
+
+
+    public  function sendShipmentMessageToCustomer($phone,$sms){
+
+        $api_key = "C200833360d1a324e46036.34232547";
+        $contacts = $phone;
+        $senderid = '8809612436107';
+        $URL = "http://sms.esmsbd.com/smsapi?api_key=" . urlencode($api_key) . "&type=text&contacts=" . urlencode($contacts) . "&senderid=" . urlencode($senderid) . "&msg=" . urlencode($sms);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $URL);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, 0);
+        try {
+            $output = $content = curl_exec($ch);
+         //  print_r($output);
+        } catch (Exception $ex) {
+           return back();
+        }
+        return $output;
+    }
+
      
+   
+    public function CompanySaleDelivery(Request $request){
+           
+        $validatedData = $request->validate([
+             'invoice_no' => 'required ',
+             'amount' => 'required ',
+             'cash_in' => 'required',
+         ]); 
+
+        DB::transaction(function() use($request){
+
+            $sales=SellCenterSale:: where('sell_center_id',session()->get('sellcenter')['id'])
+                                ->where('sale_type',2)->where('invoice_no',$request->invoice_no)->select('id','invoice_no')->get();
+            foreach ($sales as $sale) {
+                $exist_sale =  SellCenterSale::findOrFail($sale->id);
+                $exist_sale->status="delivered" ;
+                $exist_sale->paid=$request->amount ;
+                $exist_sale->save();
+            }
+            
+            if ($request->amount > 0) {
+                $credit = new SellCenterCredit();
+                $credit->sell_center_id = session()->get('sellcenter')['id'];
+                $credit->purpose = "company sale paid on delivery";
+                $credit->amount =  intval($request->amount);
+                $credit->comment = null;
+                $credit->date = date('Y-m-d');
+                $credit->credit_in = $request->cash_in;
+                $credit->save();
+            }
+        });
+
+        return response()->json([
+                                'status' => 'OK',
+                                 'message'=>'order delivered successfully'
+                               ]);
+    }
+
+
+
      public function CompanySalePrint($invoice_no){
            $sellcenter=SellCenter::where('id',session()->get('sellcenter')['id'])->first();
            $sales=SellCenterSale:: where('sell_center_id',session()->get('sellcenter')['id'])
@@ -237,6 +329,15 @@ class SaleController extends Controller
      public function FilterCompanySales(Request $request){
         $sales='';
         $item=$request->item??30;
+        if ($request->search) {
+            $sales=SellCenterSale::where('sell_center_id',session()->get('sellcenter')['id'])
+                                    ->where('invoice_no',$request->search)
+                                    ->orWhere('customer_phone','like','%'.$request->search.'%')
+                                    ->where('sale_type',2)->orderBy('id','desc')->select(DB::raw('invoice_no as invoice_no'))->groupBy('invoice_no')->paginate($item);
+            foreach($sales as $sale){
+               $sale->{'company_sales'}=SellCenterSale::where('invoice_no',$sale->invoice_no)->get();
+            }
+        }else { 
         if(!empty($request->start_date) && empty($request->end_date)){
             
                 $sales=SellCenterSale::where('sell_center_id',session()->get('sellcenter')['id'])
@@ -266,7 +367,7 @@ class SaleController extends Controller
                 }
               
          }
-       
+        }
         return response()->json([
             'status' => 'SUCCESS',
             'sales' => $sales,
@@ -311,6 +412,7 @@ class SaleController extends Controller
                     $sale->status = "Order Placed";
                     $sale->discount = $discount ;
                     $sale->paid = $request->paid ?? 0;
+                    $sale->shipping_cost = $request->shipping_cost ?? 0;
                     $sale->amount =  $sale_item['total'] ;
                     $sale->save();
 

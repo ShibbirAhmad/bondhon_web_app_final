@@ -236,6 +236,11 @@
                       </tr>
                       <tr>
                         <td colspan="5"></td>
+                        <td>Shipping Cost </td>
+                        <td> <input type="number" @keyup="totalAmount" class="form-control" v-model="form.shipping_cost"> </td>
+                      </tr>
+                      <tr>
+                        <td colspan="5"></td>
                         <td>Paid</td>
                         <td>
                           <input
@@ -336,6 +341,7 @@ export default {
       //multiple product data
         products: [],
         courier:'',
+        shipping_cost: 0,
         AmountTotal: 0,
         paid: 0,
         due: 0,
@@ -381,7 +387,7 @@ export default {
   methods: {
     courierList() {
       axios
-        .get("/api/sellcenter/coureir/list")
+        .get("/api/sellcenter/courier/list")
         .then((resp) => {
           console.log(resp);
           if (resp.data.status == "SUCCESS") {
@@ -575,17 +581,18 @@ export default {
     totalAmount() {
       let i = 0;
       let total = 0;
+      let shipping_cost = parseInt(this.form.shipping_cost) ;
       let products = this.form.products;
       for (i; i < products.length; i++) {
         total += products[i].price * products[i].quantity;
       }
-      this.form.AmountTotal = total ;
-      this.form.due = total - this.form.discount  ;
+      this.form.AmountTotal = total + shipping_cost ;
+      this.form.due = (total + shipping_cost) - this.form.discount  ;
     },
     amountDue() {
       let paid = this.form.paid;
-      let total = this.form.AmountTotal;
-      let due = parseInt(total) - parseInt(paid)-parseInt(this.form.discount);
+      let total = this.form.AmountTotal   ;
+      let due = parseInt(total) - (parseInt(paid)+parseInt(this.form.discount));
 
       this.form.due = due;
     },

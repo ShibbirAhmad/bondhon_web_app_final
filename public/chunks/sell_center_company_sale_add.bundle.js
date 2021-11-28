@@ -471,6 +471,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -492,6 +497,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
         //multiple product data
         products: [],
         courier: '',
+        shipping_cost: 0,
         AmountTotal: 0,
         paid: 0,
         due: 0,
@@ -532,7 +538,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     courierList: function courierList() {
       var _this = this;
 
-      axios.get("/api/sellcenter/coureir/list").then(function (resp) {
+      axios.get("/api/sellcenter/courier/list").then(function (resp) {
         console.log(resp);
 
         if (resp.data.status == "SUCCESS") {
@@ -716,19 +722,20 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
     totalAmount: function totalAmount() {
       var i = 0;
       var total = 0;
+      var shipping_cost = parseInt(this.form.shipping_cost);
       var products = this.form.products;
 
       for (i; i < products.length; i++) {
         total += products[i].price * products[i].quantity;
       }
 
-      this.form.AmountTotal = total;
-      this.form.due = total - this.form.discount;
+      this.form.AmountTotal = total + shipping_cost;
+      this.form.due = total + shipping_cost - this.form.discount;
     },
     amountDue: function amountDue() {
       var paid = this.form.paid;
       var total = this.form.AmountTotal;
-      var due = parseInt(total) - parseInt(paid) - parseInt(this.form.discount);
+      var due = parseInt(total) - (parseInt(paid) + parseInt(this.form.discount));
       this.form.due = due;
     },
     cancel: function cancel(index) {
@@ -1653,6 +1660,43 @@ var render = function() {
                                   _vm._v(" "),
                                   _c("td", [
                                     _vm._v(_vm._s(this.form.AmountTotal))
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("tr", [
+                                  _c("td", { attrs: { colspan: "5" } }),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("Shipping Cost ")]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.form.shipping_cost,
+                                          expression: "form.shipping_cost"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { type: "number" },
+                                      domProps: {
+                                        value: _vm.form.shipping_cost
+                                      },
+                                      on: {
+                                        keyup: _vm.totalAmount,
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.form,
+                                            "shipping_cost",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
                                   ])
                                 ]),
                                 _vm._v(" "),
