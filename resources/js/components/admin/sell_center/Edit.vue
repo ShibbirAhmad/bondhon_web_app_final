@@ -31,28 +31,38 @@
                   <div class="alert-danger alert" v-if="error">
                     {{ error }}
                   </div>
+                   <div class="row">
+                     <div class="col-md-8">
+                        <div class="form-group">
+                          <label>Name</label>
+                          <input
+                            class="form-control"
+                            v-model="form.name"
+                            :class="{ 'is-invalid': form.errors.has('name') }"
+                            type="text"
+                            name="name"
+                            placeholder="sellcenter"
+                          />
+                          <has-error :form="form" field="name"></has-error>
+                        </div> 
+                      </div>
+                     <div class="col-md-4">
+                        <div class="form-group">
+                          <label>Status</label>
+                          <select v-model="form.status" class="form-control">
+                            <option value="1">Active</option>
+                            <option value="0">De-Active</option>
+                          </select>
+                        </div> 
+                       
+                        </div>
+                   </div>
                   <div class="form-group">
-                    <label>Name</label>
-                    <input
-                      class="form-control"
-                      v-model="form.name"
-                      :class="{ 'is-invalid': form.errors.has('name') }"
-                      type="text"
-                      name="name"
-                      placeholder="sellcenter"
-                    />
-                    <has-error :form="form" field="name"></has-error>
-                  </div>
-                  <div class="form-group">
-                    <label>Address</label>
-                    <input
-                      class="form-control"
+                    <label>Address/Invoice Address </label>
+                     <textarea class="form-control"
                       v-model="form.address"
-                      :class="{ 'is-invalid': form.errors.has('address') }"
-                      type="text"
-                      name="address"
-                      placeholder="sellcenter location"
-                    />
+                      required
+                      :class="{ 'is-invalid': form.errors.has('address') }" rows="3"></textarea>
                     <has-error :form="form" field="address"></has-error>
                   </div>
                      <div class="row">
@@ -134,6 +144,7 @@ export default {
         address: "",
         licience: "",
         phone: "",
+        status: "",
       }),
       error: "",
     };
@@ -147,6 +158,7 @@ export default {
           this.form.address = resp.data.sellcenter.address;
           this.form.licience = resp.data.sellcenter.licience;
           this.form.phone = resp.data.sellcenter.phone;
+          this.form.status = resp.data.sellcenter.status;
           this.loading = false;
       });
     },

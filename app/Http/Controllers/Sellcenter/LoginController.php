@@ -19,7 +19,7 @@ class LoginController extends Controller
             'phone' => 'required ',
             'password' => 'required',
         ]);
-        $credential = ['phone' => $request->phone, 'password' => $request->password];
+        $credential = ['phone' => $request->phone, 'password' => $request->password, 'status' => 1];
 
            if (Auth::guard('sellcenter')->attempt($credential)) {
                Session::put('sellcenter', Auth::guard('sellcenter')->user() );

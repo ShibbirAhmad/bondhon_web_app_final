@@ -48,7 +48,8 @@
                         :src="base_url +sellcenter.logo"
                         class="m_logo"
                       />
-                      <p v-html="sellcenter.address" class="address_line" style="margin-top: -10px">
+                      <p> {{ sellcenter.name }} </p>
+                      <p v-html="sellcenter.address" class="address_line" style="margin-top:-10px">
                         
                       </p>
             
@@ -274,8 +275,10 @@ p {
   font-size: 14px;
 }
 .m_logo {
-  margin-top: -30px;
-  height: 80px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  height: 60px;
+  width: 155px;
 }
 .m_title {
   margin-top: -15px;

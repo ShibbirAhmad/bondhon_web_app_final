@@ -584,16 +584,16 @@ export default {
       let shipping_cost = parseInt(this.form.shipping_cost) ;
       let products = this.form.products;
       for (i; i < products.length; i++) {
-        total += products[i].price * products[i].quantity;
+        total += parseFloat(products[i].price).toFixed(0) * parseFloat(products[i].quantity).toFixed(0);
       }
       this.form.AmountTotal = total + shipping_cost ;
       this.form.due = (total + shipping_cost) - this.form.discount  ;
+      this.amountDue();
     },
     amountDue() {
       let paid = this.form.paid;
       let total = this.form.AmountTotal   ;
-      let due = parseInt(total) - (parseInt(paid)+parseInt(this.form.discount));
-
+      let due = parseInt(total) - (parseInt(paid) + parseInt(this.form.discount) );
       this.form.due = due;
     },
     cancel(index) {

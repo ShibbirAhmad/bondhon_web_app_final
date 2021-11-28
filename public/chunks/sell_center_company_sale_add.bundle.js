@@ -726,11 +726,12 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
       var products = this.form.products;
 
       for (i; i < products.length; i++) {
-        total += products[i].price * products[i].quantity;
+        total += parseFloat(products[i].price).toFixed(0) * parseFloat(products[i].quantity).toFixed(0);
       }
 
       this.form.AmountTotal = total + shipping_cost;
       this.form.due = total + shipping_cost - this.form.discount;
+      this.amountDue();
     },
     amountDue: function amountDue() {
       var paid = this.form.paid;

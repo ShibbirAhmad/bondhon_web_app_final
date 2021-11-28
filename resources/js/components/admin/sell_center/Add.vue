@@ -45,16 +45,11 @@
                     <has-error :form="form" field="name"></has-error>
                   </div>
                   <div class="form-group">
-                    <label>Place/Location</label>
-                    <input
-                      class="form-control"
+                    <label>Address/Invoice Address </label>
+                     <textarea class="form-control"
                       v-model="form.address"
-                      :class="{ 'is-invalid': form.errors.has('address') }"
-                      type="text"
-                      name="address"
                       required
-                      placeholder="sellcenter location"
-                    />
+                      :class="{ 'is-invalid': form.errors.has('address') }" rows="3"></textarea>
                     <has-error :form="form" field="address"></has-error>
                   </div>
                   <div class="row">

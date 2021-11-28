@@ -62,12 +62,14 @@ class SellCenterController extends Controller
             $this->validate($request, [
                 'name' => 'required|unique:sell_centers,name,'.$id,
                 'address' => 'required',
+                'status' => 'required',
                 'phone' => 'required|unique:sell_centers,phone,'.$id,
             ]);
             $sellcenter = SellCenter::findOrFail($id);
             $sellcenter->name = $request->name;
             $sellcenter->address = $request->address;
             $sellcenter->phone = $request->phone;
+            $sellcenter->status = $request->status;
             $sellcenter->licience = $request->licience;
             if ($request->hasFile('logo')) {
                 $path = $request->file('logo')->store('images/sellcenter/logo');

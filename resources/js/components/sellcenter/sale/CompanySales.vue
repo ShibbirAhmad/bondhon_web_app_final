@@ -95,7 +95,7 @@
                             <p> Discount: {{ saleDiscount(sale.company_sales) }}  </p>
                             <p> Paid: {{ sale.company_sales[0].paid }} </p>
                             <p> Shipping: {{ sale.company_sales[0].shipping_cost }} </p>
-                            <p> Due: {{ (saleAmount(sale.company_sales) + parseInt(sale.company_sales[0].shipping_cost) ) - (parseInt(sale.company_sales[0].paid) + parseInt(saleDiscount(sale.company_sales)))   }}  </p>
+                            <p> Due: {{ (saleAmount(sale.company_sales) + parseInt(sale.company_sales[0].shipping_cost) ) - (parseInt(sale.company_sales[0].paid) + parseInt(saleDiscount(sale.company_sales)) )   }}  </p>
                           </div>
 
                         </td>
@@ -133,7 +133,8 @@
                                 >view</router-link>
                               
                               <a v-if="sale.company_sales[0].status == 'Order Placed'" @click="showShipmentModal(sale.invoice_no,sale.company_sales[0].courier)" class="btn btn-sm btn-info">shipment</a>
-                              <a v-if="sale.company_sales[0].status != 'delivered' && sale.company_sales[0].status == 'shipment' "  @click="showDeliveryModal(sale.invoice_no,(saleAmount(sale.company_sales) + sale.company_sales[0].shipping_cost ) - (parseInt(sale.company_sales[0].paid) + saleDiscount(sale.company_sales)))" class="btn btn-sm btn-success">delivered</a>
+                              <a v-if="sale.company_sales[0].status != 'delivered' && sale.company_sales[0].status == 'shipment' "
+                                @click="showDeliveryModal( sale.invoice_no,(   (  parseInt(saleAmount(sale.company_sales)) + parseInt(sale.company_sales[0].shipping_cost) ) - ( parseInt(sale.company_sales[0].paid) + parseInt(saleDiscount(sale.company_sales)) ) )   )" class="btn btn-sm btn-success">delivered</a>
                           
                 
                           </div>

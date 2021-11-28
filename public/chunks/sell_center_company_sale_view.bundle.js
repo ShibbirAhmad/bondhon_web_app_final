@@ -318,6 +318,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -413,7 +414,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.mb-2[data-v-deeff3a4] {\r\n  margin-bottom: 5px !important;\n}\n.bottomBtn[data-v-deeff3a4] {\r\n  margin-top: 15px;\r\n  margin-left: 20px;\n}\n.head_title[data-v-deeff3a4] {\r\n  margin-left: 27px;\r\n  margin-top: -12px;\n}\n.address_line[data-v-deeff3a4] {\r\n  line-height: 15px;\n}\np[data-v-deeff3a4] {\r\n  line-height: 11px;\r\n  font-size: 14px;\n}\n.m_logo[data-v-deeff3a4] {\r\n  margin-top: -30px;\r\n  height: 80px;\n}\n.m_title[data-v-deeff3a4] {\r\n  margin-top: -15px;\r\n  font-size: 11px;\n}\ntable[data-v-deeff3a4] {\r\n  margin-top: 10px;\n}\n@media print {\ntable[data-v-deeff3a4] {\r\n    margin-top: 0px !important;\n}\n.m_title[data-v-deeff3a4] {\r\n    margin-top: -15px;\r\n    font-size: 10px;\n}\n.navbar[data-v-deeff3a4] {\r\n    display: none;\n}\n.print_info_container[data-v-deeff3a4] {\r\n    display: flex;\r\n    flex-direction: row;\r\n    position: relative;\r\n    width: 100%;\r\n    padding: 10px 10px !important;\r\n    margin-top: -15px;\n}\n.col-sm-1[data-v-deeff3a4] {\r\n    display: none;\n}\np[data-v-deeff3a4] {\r\n    line-height: 8px;\r\n    font-size: 14px;\n}\n.logo[data-v-deeff3a4] {\r\n    width: 40% !important;\n}\n.description[data-v-deeff3a4] {\r\n    width: 50% !important;\n}\n.col-lg-2[data-v-deeff3a4] {\r\n    width: 20% !important;\r\n    margin-top: 20px !important;\n}\n.invoice-header[data-v-deeff3a4] {\r\n    display: block;\n}\n.box[data-v-deeff3a4] {\r\n    border-top: none;\n}\nfooter[data-v-deeff3a4] {\r\n    border-top: none !important;\n}\n.bottomBtn[data-v-deeff3a4] {\r\n    display: none;\n}\n.address[data-v-deeff3a4] {\r\n    text-align: right;\n}\n}\n.exchange-memo[data-v-deeff3a4] {\r\n  position: absolute;\r\n  left: 25%;\r\n  top: 43%;\n}\r\n", ""]);
+exports.push([module.i, "\n.mb-2[data-v-deeff3a4] {\r\n  margin-bottom: 5px !important;\n}\n.bottomBtn[data-v-deeff3a4] {\r\n  margin-top: 15px;\r\n  margin-left: 20px;\n}\n.head_title[data-v-deeff3a4] {\r\n  margin-left: 27px;\r\n  margin-top: -12px;\n}\n.address_line[data-v-deeff3a4] {\r\n  line-height: 15px;\n}\np[data-v-deeff3a4] {\r\n  line-height: 11px;\r\n  font-size: 14px;\n}\n.m_logo[data-v-deeff3a4] {\r\n  margin-top: 0px;\r\n  margin-bottom: 20px;\r\n  height: 60px;\r\n  width: 155px;\n}\n.m_title[data-v-deeff3a4] {\r\n  margin-top: -15px;\r\n  font-size: 11px;\n}\ntable[data-v-deeff3a4] {\r\n  margin-top: 10px;\n}\n@media print {\ntable[data-v-deeff3a4] {\r\n    margin-top: 0px !important;\n}\n.m_title[data-v-deeff3a4] {\r\n    margin-top: -15px;\r\n    font-size: 10px;\n}\n.navbar[data-v-deeff3a4] {\r\n    display: none;\n}\n.print_info_container[data-v-deeff3a4] {\r\n    display: flex;\r\n    flex-direction: row;\r\n    position: relative;\r\n    width: 100%;\r\n    padding: 10px 10px !important;\r\n    margin-top: -15px;\n}\n.col-sm-1[data-v-deeff3a4] {\r\n    display: none;\n}\np[data-v-deeff3a4] {\r\n    line-height: 8px;\r\n    font-size: 14px;\n}\n.logo[data-v-deeff3a4] {\r\n    width: 40% !important;\n}\n.description[data-v-deeff3a4] {\r\n    width: 50% !important;\n}\n.col-lg-2[data-v-deeff3a4] {\r\n    width: 20% !important;\r\n    margin-top: 20px !important;\n}\n.invoice-header[data-v-deeff3a4] {\r\n    display: block;\n}\n.box[data-v-deeff3a4] {\r\n    border-top: none;\n}\nfooter[data-v-deeff3a4] {\r\n    border-top: none !important;\n}\n.bottomBtn[data-v-deeff3a4] {\r\n    display: none;\n}\n.address[data-v-deeff3a4] {\r\n    text-align: right;\n}\n}\n.exchange-memo[data-v-deeff3a4] {\r\n  position: absolute;\r\n  left: 25%;\r\n  top: 43%;\n}\r\n", ""]);
 
 // exports
 
@@ -709,6 +710,10 @@ var render = function() {
                               staticClass: "m_logo",
                               attrs: { src: _vm.base_url + _vm.sellcenter.logo }
                             }),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(" " + _vm._s(_vm.sellcenter.name) + " ")
+                            ]),
                             _vm._v(" "),
                             _c("p", {
                               staticClass: "address_line",

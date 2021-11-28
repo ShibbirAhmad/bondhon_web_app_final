@@ -165,11 +165,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MODULE_1__["HasError"].name, vform__WEBPACK_IMPORTED_MODULE_1__["HasError"]);
@@ -390,9 +385,9 @@ var render = function() {
                         "div",
                         { staticClass: "form-group" },
                         [
-                          _c("label", [_vm._v("Place/Location")]),
+                          _c("label", [_vm._v("Address/Invoice Address ")]),
                           _vm._v(" "),
-                          _c("input", {
+                          _c("textarea", {
                             directives: [
                               {
                                 name: "model",
@@ -405,12 +400,7 @@ var render = function() {
                             class: {
                               "is-invalid": _vm.form.errors.has("address")
                             },
-                            attrs: {
-                              type: "text",
-                              name: "address",
-                              required: "",
-                              placeholder: "sellcenter location"
-                            },
+                            attrs: { required: "", rows: "3" },
                             domProps: { value: _vm.form.address },
                             on: {
                               input: function($event) {

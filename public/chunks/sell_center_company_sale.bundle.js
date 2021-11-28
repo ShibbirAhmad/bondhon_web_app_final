@@ -410,6 +410,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -1323,18 +1324,25 @@ var render = function() {
                                                     click: function($event) {
                                                       _vm.showDeliveryModal(
                                                         sale.invoice_no,
-                                                        _vm.saleAmount(
-                                                          sale.company_sales
+                                                        parseInt(
+                                                          _vm.saleAmount(
+                                                            sale.company_sales
+                                                          )
                                                         ) +
-                                                          sale.company_sales[0]
-                                                            .shipping_cost -
+                                                          parseInt(
+                                                            sale
+                                                              .company_sales[0]
+                                                              .shipping_cost
+                                                          ) -
                                                           (parseInt(
                                                             sale
                                                               .company_sales[0]
                                                               .paid
                                                           ) +
-                                                            _vm.saleDiscount(
-                                                              sale.company_sales
+                                                            parseInt(
+                                                              _vm.saleDiscount(
+                                                                sale.company_sales
+                                                              )
                                                             ))
                                                       )
                                                     }

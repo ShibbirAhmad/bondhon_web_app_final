@@ -18,7 +18,7 @@
       <section class="content">
         <div class="container">
           <div class="row justify-content-center">
-            <div class="col-lg-10 col-lg-offset-1">
+            <div class="col-lg-11 col-md-11 col-sm-11 ">
               <div class="box box-primary">
                 <div class="box-header with-border text-center">
                     <h3 class="box-title">Sell Center table</h3>
@@ -33,6 +33,7 @@
                         <th scope="col">Phone</th>
                         <th scope="col">Licience</th>
                         <th scope="col">Logo</th>
+                        <th scope="col">Status</th>
                         <th scope="col">action</th>
                       </tr>
                     </thead>
@@ -51,13 +52,17 @@
                         <td>{{ sellcenter.phone }}</td>
                         <td>{{ sellcenter.licience ? sellcenter.licience : 'None'}}</td>
                         <td>  <img :src="base_url+sellcenter.logo" alt="logo" width="50px" height="50px"> </td>
+                         <td> 
+                           <span v-if="sellcenter.status==1" class="badge badge-success"> Active </span>
+                           <span v-else class="badge badge-success"> De-Active </span> </td>
                         <td>
                           <router-link class="btn btn-sm btn-success"
+                            style="margin-bottom:5px;"
                             :to="{
                               name: 'sell_center_edit',
                               params: { id: sellcenter.id },
                             }"
-                          > <i class="fa fa-edit"></i> </router-link>
+                          > <i class="fa fa-edit"></i> Edit Info </router-link>
                          
                          <button @click="goToSellCenterDashboard(sellcenter.id)" class="btn btn-sm btn-success">Dashboard</button>
 

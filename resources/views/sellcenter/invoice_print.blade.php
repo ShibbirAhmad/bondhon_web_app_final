@@ -15,10 +15,7 @@
 
     <style>
 
-        .pull-right.moha_add_inv p {
-            line-height: .5;
-        ;
-        }
+
         .pull-right.moha_add_inv {
             text-align: left;
             margin-right: 20px ;
@@ -86,7 +83,7 @@
 
 
         .customer_info_list {
-          bsale:3px dashed #000 ;
+          border:3px dashed #000 ;
           margin-top: 30px;
           margin-right: 100px;
           margin-left: 10px;
@@ -103,7 +100,8 @@
         }
 
         .company_logo {
-            width: 200px;
+            width: 155px;
+            height: 60px;
             margin-left: 20px;
             margin-top: 20px;
         }
@@ -117,7 +115,7 @@
 
          foreach ($sales as $sale) {
                 $total_qty += $sale->sale_quantity ;
-                $sale_amount += $sale->amount ;
+                $sale_amount += intval($sale->amount) ;
                 $sale_discount += floatval($sale->discount) ;
          }
 
@@ -148,6 +146,7 @@
             <div class="invoice_header_right_section">
               <img class="company_logo" src="{{ asset('storage/'.$sellcenter->logo) }}" >
                 <div class="pull-right moha_add_inv" >
+                    <p> {{  $sellcenter->name  }} </p>
                     <p> {!! $sellcenter->address !!} </p>
                     <p class="current_date" style="margin-top: 5px;" >
                      <strong>  Date: <span style="bsale:1px solid #ddd">  <?php echo date("d/m/Y"); ?></span>   </strong> </p>
@@ -203,7 +202,7 @@
                                 {{$sale->price}}
                             </td>
                             <td class="text-center"><span style="bsale: 1px solid #ddd;"><b style="font-size: 16px;padding:5px 5px 5px 5px;"> {{$sale->sale_quantity}}</b></span></td>
-                            <td class="text-right">{{$sale->sale_quantity*$sale->price}} Tk</td>
+                            <td class="text-right">{{ $sale->sale_quantity * $sale->price }} Tk</td>
                         </tr>
                     @endforeach
 
@@ -218,20 +217,20 @@
                         <td colspan="7" class="text-right">Total:</td>
                         <td class="text-right">
                          <span style="font-weight:bold;font-size:13px;">
-                            {{ $sales[0]->shipping_cost + $sale_amount }} TK</span>
+                            {{ intval($sales[0]->shipping_cost) + intval($sale_amount) }} TK</span>
                         </td>
                     </tr>
                         <tr>
                             <td colspan="7" class="text-right">Discount:</td>
-                            <td class="text-right"> {{ $sale_discount }} Tk</td>
+                            <td class="text-right"> {{ intval($sale_discount )}} Tk</td>
                         </tr>
                          <tr>
                             <td colspan="7" class="text-right">Paid:</td>
-                            <td class="text-right"> {{$sales[0]->paid}} Tk</td>
+                            <td class="text-right"> {{ intval($sales[0]->paid)  }} Tk</td>
                         </tr>
                          <tr>
                             <td colspan="7" class="text-right">Amount Due:</td>
-                            <td class="text-right">{{ ($sale_amount)-($sales[0]->paid+$sale_discount) + $sales[0]->shipping_cost  }} Tk</td>
+                            <td class="text-right">{{ ( intval($sale_amount) +  intval($sales[0]->shipping_cost) ) - ( intval($sales[0]->paid) + intval($sale_discount) )   }} Tk</td>
                         </tr>
 
                     </tbody>
