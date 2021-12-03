@@ -409,8 +409,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -1183,7 +1181,7 @@ var render = function() {
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      sale.company_sales[0].courier.length > 0
+                                      sale.company_sales[0].courier
                                         ? _c("div", [
                                             _c("p", [
                                               _vm._v(
@@ -1208,11 +1206,7 @@ var render = function() {
                                               ])
                                             ])
                                           ])
-                                        : _c("div", [
-                                            _vm._v(
-                                              "\n                          Empty\n                        "
-                                            )
-                                          ])
+                                        : _vm._e()
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [

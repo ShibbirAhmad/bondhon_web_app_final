@@ -102,13 +102,11 @@
 
                         <td>
                         
-                          <div v-if="sale.company_sales[0].courier.length > 0">
+                          <div v-if="sale.company_sales[0].courier">
                               <p>{{ sale.company_sales[0].courier }} </p>  
                               <p> memo: <b>{{ sale.company_sales[0].memo_no?sale.company_sales[0].memo_no : 'empty' }}</b> </p>  
                           </div>
-                          <div v-else>
-                            Empty
-                          </div>
+                        
                         </td>
                         <td>  <p>   {{ sale.company_sales[0].status }} </p> 
                               <a  style="width:70px;" v-if="sale.company_sales[0].print_status==1"

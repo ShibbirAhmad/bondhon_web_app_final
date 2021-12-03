@@ -152,7 +152,6 @@ class SaleController extends Controller
             DB::transaction(function() use($request,$product,$id){
 
                 $sale = SellCenterSale::findOrFail($id);
-
                 //update stock 
                 $product->stock = $product->stock + $sale->sale_quantity;
                 $product->stock = $product->stock  - floatval($request->quantity);

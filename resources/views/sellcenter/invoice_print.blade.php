@@ -147,6 +147,7 @@
               <img class="company_logo" src="{{ asset('storage/'.$sellcenter->logo) }}" >
                 <div class="pull-right moha_add_inv" >
                     <p> {{  $sellcenter->name  }} </p>
+                    <p> {{  $sellcenter->phone  }} </p>
                     <p> {!! $sellcenter->address !!} </p>
                     <p class="current_date" style="margin-top: 5px;" >
                      <strong>  Date: <span style="bsale:1px solid #ddd">  <?php echo date("d/m/Y"); ?></span>   </strong> </p>

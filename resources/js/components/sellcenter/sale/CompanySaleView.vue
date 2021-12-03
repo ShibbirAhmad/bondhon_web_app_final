@@ -140,8 +140,9 @@
                             </td>
                             <td>
                               <b>{{
-                                ( saleAmount()  + sales[0].shipping_cost ) -
-                                (saleDiscount() + sales[0].paid ) 
+
+                                  (dueSaleAmount() + parseInt(sales[0].shipping_cost)) - ( parseInt(sales[0].paid) + parseInt(saleDiscount()) )
+                              
                               }}</b>
                             </td>
                           </tr>
@@ -235,6 +236,7 @@ export default {
 
       return total;
     },
+    
     saleAmount() {
       let total = 0;
       this.sales.forEach((ele) => {
@@ -242,6 +244,16 @@ export default {
       });
       return total;
     },
+
+    
+    dueSaleAmount() {
+      let total = 0;
+      this.sales.forEach((ele) => {
+          total += parseInt(ele.price) * parseInt(ele.sale_quantity);
+      });
+      return total;
+    },
+
     saleDiscount() {
       let total = 0;
       this.sales.forEach((ele) => {

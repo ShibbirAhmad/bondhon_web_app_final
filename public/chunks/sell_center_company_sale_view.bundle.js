@@ -319,6 +319,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -384,6 +385,13 @@ __webpack_require__.r(__webpack_exports__);
       return total;
     },
     saleAmount: function saleAmount() {
+      var total = 0;
+      this.sales.forEach(function (ele) {
+        total += parseInt(ele.price) * parseInt(ele.sale_quantity);
+      });
+      return total;
+    },
+    dueSaleAmount: function dueSaleAmount() {
       var total = 0;
       this.sales.forEach(function (ele) {
         total += parseInt(ele.price) * parseInt(ele.sale_quantity);
@@ -864,10 +872,14 @@ var render = function() {
                                           _c("b", [
                                             _vm._v(
                                               _vm._s(
-                                                _vm.saleAmount() +
-                                                  _vm.sales[0].shipping_cost -
-                                                  (_vm.saleDiscount() +
-                                                    _vm.sales[0].paid)
+                                                _vm.dueSaleAmount() +
+                                                  parseInt(
+                                                    _vm.sales[0].shipping_cost
+                                                  ) -
+                                                  (parseInt(_vm.sales[0].paid) +
+                                                    parseInt(
+                                                      _vm.saleDiscount()
+                                                    ))
                                               )
                                             )
                                           ])
